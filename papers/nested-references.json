@@ -1,0 +1,13 @@
+[
+  {
+    "parent_id": "ref-miwa",
+    "artifact": {
+      "path": "quarantine/ref-miwa/Interactive-WebRobot-main.zip",
+      "sha256": "9bf03a7bbc642cfe1c6ee5ad5fea334655ca44350abe0fd6740b903775d773b0",
+      "bytes": 28042861
+    },
+    "tree": "quarantine/miwa-implementation",
+    "scope": "Nested archive extracted with scripts/acquire.py extract(); bundled node_modules and detritus excluded.",
+    "restore_command": "python3 -c 'from pathlib import Path; from scripts.acquire import extract; extract(Path(\"quarantine/ref-miwa/Interactive-WebRobot-main.zip\"), Path(\"quarantine/miwa-implementation\").resolve(), [], rebuild=True)'"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "id": "cef-rust",
+    "title": "tauri-apps/cef-rs",
+    "url": "https://github.com/tauri-apps/cef-rs",
+    "kind": "repository",
+    "repo": "tauri-apps/cef-rs",
+    "notes": "Rust CEF bindings, browser/shared-process examples and macOS app bundling; reference only."
+  },
+  {
+    "id": "jcef",
+    "title": "chromiumembedded/java-cef",
+    "url": "https://github.com/chromiumembedded/java-cef",
+    "kind": "repository",
+    "repo": "chromiumembedded/java-cef",
+    "notes": "CEF Java/JNI bridge and process lifecycle; study only."
+  },
+  {
+    "id": "wry",
+    "title": "tauri-apps/wry",
+    "url": "https://github.com/tauri-apps/wry",
+    "kind": "repository",
+    "repo": "tauri-apps/wry",
+    "notes": "Platform webview adapters and native messaging, WKWebView on macOS and WebKitGTK on Linux."
+  },
+  {
+    "id": "qutebrowser",
+    "title": "qutebrowser/qutebrowser",
+    "url": "https://github.com/qutebrowser/qutebrowser",
+    "kind": "repository",
+    "repo": "qutebrowser/qutebrowser",
+    "notes": "Qt browser shell, human commands, hints, process ownership and userscripts."
+  },
+  {
+    "id": "tauri-webview-versions",
+    "title": "Tauri webview versions",
+    "url": "https://v2.tauri.app/reference/webview-versions/",
+    "kind": "documentation",
+    "notes": "Engine choice and runtime updates differ between OSes; Tauri itself not selected."
+  }
+]

@@ -1,0 +1,394 @@
+[
+  {
+    "id": "chromium",
+    "title": "Chromium source and Content embedding interfaces",
+    "url": "https://chromium.googlesource.com/chromium/src/",
+    "kind": "repository",
+    "repo": "chromium/chromium",
+    "selected_paths": [
+      "content/README.md",
+      "content/public/browser/web_contents.h",
+      "content/public/browser/web_contents_observer.h",
+      "content/public/browser/navigation_throttle.h",
+      "content/public/browser/browser_context.h",
+      "content/public/browser/devtools_agent_host.h",
+      "content/public/browser/render_frame_host.h",
+      "content/public/browser/content_browser_client.h",
+      "content/shell/browser/shell.cc",
+      "content/shell/browser/shell_browser_context.cc",
+      "content/shell/browser/shell_content_browser_client.cc",
+      "content/browser/devtools/devtools_http_handler.cc",
+      "content/browser/devtools/devtools_agent_host_impl.cc",
+      "chrome/browser/devtools/remote_debugging_server.cc",
+      "chrome/browser/extensions/api/messaging/native_message_process_host.cc",
+      "docs/mojo_and_services.md",
+      "docs/security/mojo.md",
+      "docs/security/compromised-renderers.md",
+      "docs/process_model_and_site_isolation.md"
+    ],
+    "notes": "Study selected browser authority, navigation, profile, CDP, Native Messaging, and IPC files; GitHub official source mirror for acquisition. Not a buildable Chromium checkout; DEPS and vendor components remain separate.",
+    "mode": "files"
+  },
+  {
+    "id": "cef",
+    "title": "Chromium Embedded Framework",
+    "url": "https://github.com/chromiumembedded/cef",
+    "kind": "repository",
+    "repo": "chromiumembedded/cef",
+    "notes": "Acquire full project: docs, headers, libcef, wrapper message router, cefsimple/cefclient and ceftests. Chromium itself is not included."
+  },
+  {
+    "id": "cef-project",
+    "title": "Official CEF embedding sample project",
+    "url": "https://github.com/chromiumembedded/cef-project",
+    "kind": "repository",
+    "repo": "chromiumembedded/cef-project",
+    "notes": "Study sample application, CMake distribution use, subprocess layout; do not fetch binary dependencies or run its build."
+  },
+  {
+    "id": "chrome-extension-samples",
+    "title": "Official Chrome extension samples",
+    "url": "https://github.com/GoogleChrome/chrome-extensions-samples",
+    "kind": "repository",
+    "repo": "GoogleChrome/chrome-extensions-samples",
+    "notes": "Study activeTab, scripting, side panel, debugger, service-worker and Native Messaging examples; identify legacy Manifest V2 examples before using as evidence."
+  },
+  {
+    "id": "devtools-protocol",
+    "title": "Chrome DevTools Protocol definitions",
+    "url": "https://github.com/ChromeDevTools/devtools-protocol",
+    "kind": "repository",
+    "repo": "ChromeDevTools/devtools-protocol",
+    "notes": "PDL/JSON schema and protocol version evidence. Chromium runtime capability probes still required; tip-of-tree is not guaranteed backward compatible."
+  },
+  {
+    "id": "electron",
+    "title": "Electron embedding and security source",
+    "url": "https://github.com/electron/electron",
+    "kind": "repository",
+    "repo": "electron/electron",
+    "selected_paths": [
+      "docs/tutorial/security.md",
+      "docs/tutorial/process-model.md",
+      "docs/tutorial/context-isolation.md",
+      "docs/tutorial/sandbox.md",
+      "docs/api/web-contents.md",
+      "docs/api/web-contents-view.md",
+      "docs/api/session.md",
+      "docs/api/debugger.md",
+      "shell/browser/api/electron_api_web_contents.cc",
+      "shell/browser/api/electron_api_web_contents_view.cc",
+      "shell/browser/api/electron_api_debugger.cc",
+      "shell/browser/electron_permission_manager.cc",
+      "shell/browser/electron_browser_context.cc"
+    ],
+    "notes": "Study WebContentsView, main-process authority, sandbox and IPC policy; no npm install or checkout of Chromium DEPS.",
+    "mode": "files"
+  },
+  {
+    "id": "qtwebengine",
+    "title": "Qt WebEngine source and browser samples",
+    "url": "https://github.com/qt/qtwebengine",
+    "kind": "repository",
+    "repo": "qt/qtwebengine",
+    "selected_paths": [
+      "src/core/api/qwebenginepage.h",
+      "src/core/api/qwebenginepage.cpp",
+      "src/core/api/qwebengineprofile.h",
+      "src/core/api/qwebengineprofile.cpp",
+      "src/core/api/qwebenginescript.h",
+      "src/core/api/qwebenginepermission.h",
+      "src/core/api/qwebengineurlrequestinterceptor.h",
+      "src/core/web_contents_adapter.cpp",
+      "examples/webenginewidgets/simplebrowser/browserwindow.cpp",
+      "examples/webenginewidgets/simplebrowser/webpage.cpp",
+      "examples/webenginewidgets/permissionbrowser/mainwindow.cpp",
+      "src/core/doc/src/qtwebengine-overview.qdoc"
+    ],
+    "notes": "Selected source from development branch must not be conflated with released 6.10 APIs. Read profiles, requests, isolated script worlds and native browser samples."
+  },
+  {
+    "id": "webview2-samples",
+    "title": "Microsoft Edge WebView2 official samples",
+    "url": "https://github.com/MicrosoftEdge/WebView2Samples",
+    "kind": "repository",
+    "repo": "MicrosoftEdge/WebView2Samples",
+    "notes": "Study native Win32/WPF shells, WebMessage/host objects, permissions, process lifetime and DevTools methods. Windows-only candidate."
+  },
+  {
+    "id": "webkit",
+    "title": "WebKit embedding and automation internals",
+    "url": "https://github.com/WebKit/WebKit",
+    "kind": "repository",
+    "repo": "WebKit/WebKit",
+    "selected_paths": [
+      "ReadMe.md",
+      "Source/WebKit/UIProcess/API/glib/WebKitWebContext.cpp",
+      "Source/WebKit/UIProcess/API/glib/WebKitUserContentManager.cpp",
+      "Source/WebKit/UIProcess/API/glib/WebKitWebView.cpp",
+      "Source/WebKit/UIProcess/API/Cocoa/WKWebView.h",
+      "Source/WebKit/UIProcess/Automation/WebAutomationSession.cpp",
+      "Source/WebKit/WebProcess/InjectedBundle/API/glib/WebKitWebPage.cpp",
+      "Tools/MiniBrowser/gtk/BrowserWindow.c"
+    ],
+    "notes": "Acquire selected files only: full engine archive is very large. API layout changes by release; record missing selected paths as gaps. GTK/WPE and Cocoa are distinct integration choices.",
+    "mode": "files"
+  },
+  {
+    "id": "cog",
+    "title": "Cog WPE WebKit launcher",
+    "url": "https://github.com/Igalia/cog",
+    "kind": "repository",
+    "repo": "Igalia/cog",
+    "notes": "Compact WPE shell and platform/backend separation; embedded launcher rather than full desktop browser."
+  },
+  {
+    "id": "servo",
+    "title": "Servo embeddable browser engine",
+    "url": "https://github.com/servo/servo",
+    "kind": "repository",
+    "repo": "servo/servo",
+    "selected_paths": [
+      "README.md",
+      "components/servo/lib.rs",
+      "components/servo/webview.rs",
+      "components/servo/servo.rs",
+      "components/shared/embedder/lib.rs",
+      "components/shared/embedder/embedder_controls.rs",
+      "components/constellation/embedder.rs",
+      "components/servo/tests/webview.rs",
+      "ffi/capi/lib.rs",
+      "ffi/capi/webview.rs",
+      "ports/servoshell/running_app_state.rs",
+      "ports/servoshell/window.rs",
+      "components/servo/webview_delegate.rs"
+    ],
+    "notes": "Read current Rust and C embedding boundaries, delegate controls and test cases; selective source study, no claim of mainstream-browser parity.",
+    "mode": "files"
+  },
+  {
+    "id": "ladybird",
+    "title": "Ladybird independent browser",
+    "url": "https://github.com/LadybirdBrowser/ladybird",
+    "kind": "repository",
+    "repo": "LadybirdBrowser/ladybird",
+    "selected_paths": [
+      "README.md",
+      "Documentation/ProcessArchitecture.md",
+      "Documentation/BuildInstructionsLadybird.md",
+      "UI/Qt/BrowserWindow.cpp",
+      "Services/WebContent/WebContentServer.ipc",
+      "Libraries/LibWebView/Application.cpp",
+      "Libraries/LibWebView/ViewImplementation.cpp",
+      "Libraries/LibWeb/PermissionsAPI/PermissionStore.cpp",
+      "Libraries/LibWeb/HTML/BrowsingContext.cpp"
+    ],
+    "notes": "Source for independent engine/browser process architecture and UI separation. Pre-release compatibility/security work is an investigation burden, not a production baseline assumption.",
+    "mode": "files"
+  },
+  {
+    "id": "min",
+    "title": "Min minimal Electron browser",
+    "url": "https://github.com/minbrowser/min",
+    "kind": "repository",
+    "repo": "minbrowser/min",
+    "notes": "Full shell for human browsing: tab/task/session structure, permissionManager and browser content/UI ownership. Reference security posture must be evaluated independently."
+  },
+  {
+    "id": "nyxt",
+    "title": "Nyxt programmable browser",
+    "url": "https://github.com/atlas-engineer/nyxt",
+    "kind": "repository",
+    "repo": "atlas-engineer/nyxt",
+    "notes": "Full programmable human-browser shell: command/mode system, buffers, renderer abstraction, WebKit GTK integration and history. Useful interaction/extension design reference."
+  },
+  {
+    "id": "chromium-content-doc",
+    "title": "Chromium Content module",
+    "url": "https://chromium.googlesource.com/chromium/src/+/main/content/README.md",
+    "kind": "documentation",
+    "notes": "Defines content versus chrome, browser platform versus browser-product features, and embedding classes."
+  },
+  {
+    "id": "chromium-multiprocess-doc",
+    "title": "Chromium multi-process architecture",
+    "url": "https://www.chromium.org/developers/design-documents/multi-process-architecture/",
+    "kind": "documentation",
+    "notes": "Architecture introduction; some historical naming/details require checking current source."
+  },
+  {
+    "id": "chromium-site-isolation-doc",
+    "title": "Chromium site isolation design",
+    "url": "https://www.chromium.org/developers/design-documents/site-isolation/",
+    "kind": "documentation",
+    "notes": "SiteInstance, OOPIF, browser-enforced origin/site separation."
+  },
+  {
+    "id": "chromium-mojo-doc",
+    "title": "Chromium Mojo and services",
+    "url": "https://chromium.googlesource.com/chromium/src/+/main/docs/mojo_and_services.md",
+    "kind": "documentation",
+    "notes": "Typed IPC, document-scoped binders, process sandbox, navigation ordering."
+  },
+  {
+    "id": "chromium-mojo-security-doc",
+    "title": "Chromium Mojo security style guide",
+    "url": "https://raw.githubusercontent.com/chromium/chromium/faee0a28a27e62768c53844d7a29a63d609315dd/docs/security/mojo.md",
+    "kind": "documentation",
+    "notes": "Trust compromised renderers; IPC interface validation and lifetime guidance. Official GitHub mirror at acquired Chromium revision; googlesource endpoint returns 503."
+  },
+  {
+    "id": "cef-general-doc",
+    "title": "CEF general usage",
+    "url": "https://chromiumembedded.github.io/cef/general_usage",
+    "kind": "documentation",
+    "notes": "Processes, threads, message loops, OSR, request handling and asynchronous JavaScript bridge. Cross-check old passages with current headers."
+  },
+  {
+    "id": "cef-architecture-doc",
+    "title": "CEF architecture",
+    "url": "https://chromiumembedded.github.io/cef/architecture",
+    "kind": "documentation",
+    "notes": "Modern runtime bootstrap/style split; Alloy bootstrap removal in M128."
+  },
+  {
+    "id": "cef-javascript-doc",
+    "title": "CEF JavaScript integration",
+    "url": "https://chromiumembedded.github.io/cef/javascript_integration",
+    "kind": "documentation",
+    "notes": "V8 contexts, render-process restrictions and asynchronous integration."
+  },
+  {
+    "id": "cef-sandbox-doc",
+    "title": "CEF sandbox setup",
+    "url": "https://chromiumembedded.github.io/cef/sandbox_setup",
+    "kind": "documentation",
+    "notes": "Platform bootstrap requirements, including M138 macOS shared sandbox library and Windows bootstrap change."
+  },
+  {
+    "id": "chrome-native-messaging-doc",
+    "title": "Chrome native messaging",
+    "url": "https://developer.chrome.com/docs/extensions/develop/concepts/native-messaging",
+    "kind": "documentation",
+    "notes": "Allowlisted extension IDs, stdio length-prefixed JSON, message limits and host lifetime."
+  },
+  {
+    "id": "chrome-debugger-doc",
+    "title": "Chrome extension debugger API",
+    "url": "https://developer.chrome.com/docs/extensions/reference/api/debugger",
+    "kind": "documentation",
+    "notes": "Restricted CDP domains, target sessions and debugger detach behavior."
+  },
+  {
+    "id": "chrome-active-tab-doc",
+    "title": "Chrome activeTab permission",
+    "url": "https://developer.chrome.com/docs/extensions/develop/concepts/activeTab",
+    "kind": "documentation",
+    "notes": "User gesture scoped temporary access and navigation revocation; useful bounded-delegation precedent."
+  },
+  {
+    "id": "chrome-remote-debug-security-doc",
+    "title": "Chrome 136 remote-debugging security changes",
+    "url": "https://developer.chrome.com/blog/remote-debugging-port",
+    "kind": "documentation",
+    "notes": "Default profile debugging disallowed; custom user-data-dir required for port and pipe."
+  },
+  {
+    "id": "electron-security-doc",
+    "title": "Electron security guidance",
+    "url": "https://www.electronjs.org/docs/latest/tutorial/security",
+    "kind": "documentation",
+    "notes": "Arbitrary remote-content warning, sandbox/context isolation, permissions, sender validation and host API containment."
+  },
+  {
+    "id": "electron-webcontents-doc",
+    "title": "Electron webContents",
+    "url": "https://www.electronjs.org/docs/latest/api/web-contents",
+    "kind": "documentation",
+    "notes": "Navigation and popup hooks, execution, input and lifecycle."
+  },
+  {
+    "id": "electron-webcontentsview-doc",
+    "title": "Electron WebContentsView",
+    "url": "https://www.electronjs.org/docs/latest/api/web-contents-view",
+    "kind": "documentation",
+    "notes": "Native view containing webContents; alternative to renderer-owned webview and deprecated BrowserView."
+  },
+  {
+    "id": "qt-overview-doc",
+    "title": "Qt WebEngine 6.10 overview",
+    "url": "https://doc.qt.io/qt-6.10/qtwebengine-overview.html",
+    "kind": "documentation",
+    "notes": "Release-specific overview; unversioned qt-6 URLs redirected to development snapshot during this survey."
+  },
+  {
+    "id": "qt-profile-doc",
+    "title": "Qt WebEngine 6.10 profile API",
+    "url": "https://doc.qt.io/qt-6.10/qwebengineprofile.html",
+    "kind": "documentation",
+    "notes": "Off-record/persistent storage, permissions and profiles."
+  },
+  {
+    "id": "qt-page-doc",
+    "title": "Qt WebEngine 6.10 page API",
+    "url": "https://doc.qt.io/qt-6.10/qwebenginepage.html",
+    "kind": "documentation",
+    "notes": "Page lifecycle, isolated script worlds, permissions and navigation."
+  },
+  {
+    "id": "webview2-security-doc",
+    "title": "WebView2 secure native applications",
+    "url": "https://learn.microsoft.com/en-us/microsoft-edge/webview2/concepts/security",
+    "kind": "documentation",
+    "notes": "Origin checks, restricted settings/host objects and navigation-aware script messaging."
+  },
+  {
+    "id": "webview2-process-doc",
+    "title": "WebView2 process model",
+    "url": "https://learn.microsoft.com/en-us/microsoft-edge/webview2/concepts/process-model",
+    "kind": "documentation",
+    "notes": "User data folder/process collection and process failures."
+  },
+  {
+    "id": "webview2-distribution-doc",
+    "title": "WebView2 Runtime distribution",
+    "url": "https://learn.microsoft.com/en-us/microsoft-edge/webview2/concepts/distribution",
+    "kind": "documentation",
+    "notes": "Evergreen versus Fixed Version deployment; update responsibility."
+  },
+  {
+    "id": "webkitgtk-webview-doc",
+    "title": "WebKitGTK WebView API",
+    "url": "https://webkitgtk.org/reference/webkit2gtk/stable/class.WebView.html",
+    "kind": "documentation",
+    "notes": "API 4.1/library 2.42.5 page served at survey time; do not claim newest release. Isolated evaluation, permission and policy hooks."
+  },
+  {
+    "id": "webkitgtk-content-doc",
+    "title": "WebKitGTK UserContentManager",
+    "url": "https://webkitgtk.org/reference/webkit2gtk/stable/class.UserContentManager.html",
+    "kind": "documentation",
+    "notes": "Script-message handler registration and world-specific messaging."
+  },
+  {
+    "id": "wpe-doc",
+    "title": "WPE WebKit overview",
+    "url": "https://wpewebkit.org/about/",
+    "kind": "documentation",
+    "notes": "Embedded port and backend focus; not equivalent to a complete browser shell."
+  },
+  {
+    "id": "servo-book",
+    "title": "The Servo Book",
+    "url": "https://book.servo.org/",
+    "kind": "documentation",
+    "notes": "Follow current embedding chapters from book index; old embedding.html URL did not resolve."
+  },
+  {
+    "id": "webkit-cocoa-doc",
+    "title": "Apple WKWebView",
+    "url": "https://developer.apple.com/documentation/webkit/wkwebview",
+    "kind": "documentation",
+    "notes": "macOS/iOS system-WebKit baseline: Cocoa navigation, script bridge and website-data APIs; platform-specific option."
+  }
+]

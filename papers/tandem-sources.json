@@ -1,0 +1,482 @@
+[
+  {
+    "id": "miwa-2023",
+    "title": "MIWA: Mixed-Initiative Web Automation for Better User Control and Confidence",
+    "url": "https://doi.org/10.1145/3586183.3606720",
+    "kind": "paper",
+    "notes": "D: author manuscript system, anomaly detection, study design and limitations reviewed; UIST 2023.",
+    "pdf_url": "https://tianyi-zhang.github.io/files/uist2023-miwa.pdf"
+  },
+  {
+    "id": "ref-agenttrek",
+    "title": "xlang-ai/AgentTrek",
+    "url": "https://github.com/xlang-ai/AgentTrek",
+    "kind": "repository",
+    "notes": "Official author project link resolved.",
+    "repo": "xlang-ai/AgentTrek"
+  },
+  {
+    "id": "ref-cellmate",
+    "title": "earlence-security/cellmate",
+    "url": "https://github.com/earlence-security/cellmate",
+    "kind": "repository",
+    "notes": "Official author project link resolved; HTTP enforcement study only.",
+    "repo": "earlence-security/cellmate"
+  },
+  {
+    "id": "ref-miwa",
+    "title": "ferranschen/MIWA",
+    "url": "https://github.com/ferranschen/MIWA",
+    "kind": "repository",
+    "notes": "Official repo inspected; implementation inside Interactive-WebRobot-main.zip with bundled node_modules. Preserve nested source ZIP; remove bundled node_modules and Git metadata from extracted reference.",
+    "repo": "ferranschen/MIWA"
+  },
+  {
+    "id": "horvitz-1999",
+    "title": "Principles of Mixed-Initiative User Interfaces",
+    "url": "https://www.erichorvitz.com/uiact.htm",
+    "kind": "paper",
+    "notes": "D: primary manuscript principles and LookOut system reviewed; CHI 1999.",
+    "pdf_url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/11/chi99horvitz.pdf"
+  },
+  {
+    "id": "bainbridge-1983",
+    "title": "Ironies of Automation",
+    "url": "https://doi.org/10.1016/0005-1098(83)90046-8",
+    "kind": "paper",
+    "notes": "A: publisher abstract verified; publisher full text may require operator access. Seek author/institutional copy; do not claim full read.",
+    "pdf_url": "https://tc.ifac-control.org/4/1/newsletter/ironies-of-automation/@@download/file/Bainbridge1983_Automatica_Ironies%20of%20automation.pdf"
+  },
+  {
+    "id": "parasuraman-2000",
+    "title": "A Model for Types and Levels of Human Interaction with Automation",
+    "url": "https://doi.org/10.1109/3468.844354",
+    "kind": "paper",
+    "notes": "A: original-paper search excerpt reviewed. University-hosted original PDF open returned internal error; acquisition retry warranted.",
+    "pdf_url": "https://www.cs.uml.edu/~holly/91.550/papers/sheridan-autonomy.pdf"
+  },
+  {
+    "id": "parasuraman-riley-1997",
+    "title": "Humans and Automation: Use, Misuse, Disuse, Abuse",
+    "url": "https://doi.org/10.1518/001872097778543886",
+    "kind": "paper",
+    "notes": "A: original manuscript abstract reviewed. MIT PDF has no extracted text in browsing; acquired PDF needs OCR/read.",
+    "pdf_url": "https://web.mit.edu/16.459/www/parasuraman.pdf"
+  },
+  {
+    "id": "endsley-kiris-1995",
+    "title": "The Out-of-the-Loop Performance Problem and Level of Control in Automation",
+    "url": "https://doi.org/10.1518/001872095779064555",
+    "kind": "paper",
+    "notes": "A: publisher abstract reviewed; full paper not read.",
+    "pdf_url": "https://journals.sagepub.com/doi/pdf/10.1518/001872095779064555"
+  },
+  {
+    "id": "lee-see-2004",
+    "title": "Trust in Automation: Designing for Appropriate Reliance",
+    "url": "https://doi.org/10.1518/hfes.46.1.50_30392",
+    "kind": "paper",
+    "notes": "A: publisher abstract and original manuscript excerpt reviewed; not a full read.",
+    "pdf_url": "https://user.engineering.uiowa.edu/~csl/publications/pdf/leesee04.pdf"
+  },
+  {
+    "id": "klein-2004",
+    "title": "Ten Challenges for Making Automation a Team Player in Joint Human-Agent Activity",
+    "url": "https://ieeexplore.ieee.org/document/1363742/",
+    "kind": "paper",
+    "notes": "L: publisher bibliographic/abstract record verified; author PDF open failed.",
+    "pdf_url": "https://cmapsconverted.ihmc.us/rid%3D1G9NSTB39-GNNK1M-LBJ/AutomationTeamPlayer.pdf"
+  },
+  {
+    "id": "amershi-2019",
+    "title": "Guidelines for Human-AI Interaction",
+    "url": "https://www.microsoft.com/en-us/research/publication/guidelines-for-human-ai-interaction/",
+    "kind": "paper",
+    "notes": "A: author abstract and first-page manuscript reviewed; PDF open failed.",
+    "pdf_url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2019/01/Guidelines-for-Human-AI-Interaction-camera-ready.pdf"
+  },
+  {
+    "id": "bansal-2021",
+    "title": "Does the Whole Exceed its Parts? The Effect of AI Explanations on Complementary Team Performance",
+    "url": "https://arxiv.org/abs/2006.14779",
+    "kind": "paper",
+    "notes": "A: abstract and author manuscript conclusion reviewed; CHI 2021.",
+    "pdf_url": "https://arxiv.org/pdf/2006.14779"
+  },
+  {
+    "id": "bucinca-2021",
+    "title": "To Trust or to Think: Cognitive Forcing Functions Can Reduce Overreliance on AI in AI-Assisted Decision-Making",
+    "url": "https://arxiv.org/abs/2102.09692",
+    "kind": "paper",
+    "notes": "D: original Harvard manuscript results/discussion/limitations reviewed; CSCW 2021; not a browser study.",
+    "pdf_url": "https://arxiv.org/pdf/2102.09692"
+  },
+  {
+    "id": "cowpilot-2025",
+    "title": "CowPilot: A Framework for Autonomous and Human-Agent Collaborative Web Navigation",
+    "url": "https://aclanthology.org/2025.naacl-demo.17/",
+    "kind": "paper",
+    "notes": "D: full main paper, results and ethics reviewed. 27 WebArena tasks, 3 author operators; countdown veto model; paper releases extension only, source proprietary.",
+    "pdf_url": "https://aclanthology.org/2025.naacl-demo.17.pdf"
+  },
+  {
+    "id": "interaction-driven-2025",
+    "title": "Interaction-Driven Browsing: A Human-in-the-Loop Conceptual Framework Informed by Human Web Browsing for Browser-Using Agents",
+    "url": "https://arxiv.org/abs/2509.12049v1",
+    "kind": "paper",
+    "notes": "A: primary framework and limitations sections reviewed; authors report no implementation or user study.",
+    "pdf_url": "https://arxiv.org/pdf/2509.12049v1"
+  },
+  {
+    "id": "webarena-2023",
+    "title": "WebArena: A Realistic Web Environment for Building Autonomous Agents",
+    "url": "https://arxiv.org/abs/2307.13854v2",
+    "kind": "paper",
+    "notes": "D: environment, observation/action space, evaluation and human baseline reviewed.",
+    "pdf_url": "https://arxiv.org/pdf/2307.13854v2"
+  },
+  {
+    "id": "visualwebarena-2024",
+    "title": "VisualWebArena: Evaluating Multimodal Agents on Realistic Visual Web Tasks",
+    "url": "https://arxiv.org/abs/2401.13649",
+    "kind": "paper",
+    "notes": "A: primary abstract plus official repo reviewed; multimodal tasks with execution-based evaluation.",
+    "pdf_url": "https://arxiv.org/pdf/2401.13649"
+  },
+  {
+    "id": "browsergym-2024",
+    "title": "The BrowserGym Ecosystem for Web Agent Research",
+    "url": "https://arxiv.org/abs/2412.05467v1",
+    "kind": "paper",
+    "notes": "D: paper environment/evaluation structure and official README reviewed; paper v1 and current code may differ.",
+    "pdf_url": "https://arxiv.org/pdf/2412.05467v1"
+  },
+  {
+    "id": "workarena-2024",
+    "title": "WorkArena: How Capable Are Web Agents at Solving Common Knowledge Work Tasks?",
+    "url": "https://arxiv.org/abs/2403.07718",
+    "kind": "paper",
+    "notes": "A: primary abstract plus official repository; task count differs between early workshop and later paper.",
+    "pdf_url": "https://arxiv.org/pdf/2403.07718"
+  },
+  {
+    "id": "workarena-plus-2024",
+    "title": "WorkArena++: Towards Compositional Planning and Reasoning-based Common Knowledge Work Tasks",
+    "url": "https://arxiv.org/abs/2407.05291",
+    "kind": "paper",
+    "notes": "A: primary abstract; uses same official WorkArena repo.",
+    "pdf_url": "https://arxiv.org/pdf/2407.05291"
+  },
+  {
+    "id": "mind2web-2023",
+    "title": "Mind2Web: Towards a Generalist Agent for the Web",
+    "url": "https://arxiv.org/abs/2306.06070v3",
+    "kind": "paper",
+    "notes": "A: primary abstract and official repo; static demonstration benchmark, macro/micro metrics distinction.",
+    "pdf_url": "https://arxiv.org/pdf/2306.06070v3"
+  },
+  {
+    "id": "weblinx-2024",
+    "title": "WebLINX: Real-World Website Navigation with Multi-Turn Dialogue",
+    "url": "https://arxiv.org/abs/2402.05930v1",
+    "kind": "paper",
+    "notes": "D: state/action representation, dialogue evolution, generalization splits and evaluation sections reviewed.",
+    "pdf_url": "https://arxiv.org/pdf/2402.05930v1"
+  },
+  {
+    "id": "seeact-2024",
+    "title": "GPT-4V(ision) is a Generalist Web Agent, if Grounded",
+    "url": "https://arxiv.org/abs/2401.01614v2",
+    "kind": "paper",
+    "notes": "D: method/oracle-grounding distinction and evaluation sections reviewed; oracle grounding is not autonomous capability.",
+    "pdf_url": "https://arxiv.org/pdf/2401.01614v2"
+  },
+  {
+    "id": "webvoyager-2024",
+    "title": "WebVoyager: Building an End-to-End Web Agent with Large Multimodal Models",
+    "url": "https://arxiv.org/abs/2401.13919",
+    "kind": "paper",
+    "notes": "A: primary abstract and official evaluator README; 85.3% judge agreement is imperfect.",
+    "pdf_url": "https://arxiv.org/pdf/2401.13919"
+  },
+  {
+    "id": "agenttrek-2024",
+    "title": "AgentTrek: Agent Trajectory Synthesis via Guiding Replay with Web Tutorials",
+    "url": "https://arxiv.org/abs/2412.09605",
+    "kind": "paper",
+    "notes": "A: primary abstract and author pipeline description; synthetic tutorial-guided traces, VLM-filtered.",
+    "pdf_url": "https://arxiv.org/pdf/2412.09605"
+  },
+  {
+    "id": "online-mind2web-2025",
+    "title": "An Illusion of Progress? Assessing the Current State of Web Agents",
+    "url": "https://arxiv.org/abs/2504.01382",
+    "kind": "paper",
+    "notes": "A: primary abstract and official repo; Online-Mind2Web live tasks are versioned/mutable.",
+    "pdf_url": "https://arxiv.org/pdf/2504.01382"
+  },
+  {
+    "id": "mind2web2-2025",
+    "title": "Mind2Web 2: Evaluating Agentic Search with Agent-as-a-Judge",
+    "url": "https://arxiv.org/abs/2506.21506",
+    "kind": "paper",
+    "notes": "A: primary abstract and official repo; long-horizon information synthesis.",
+    "pdf_url": "https://arxiv.org/pdf/2506.21506"
+  },
+  {
+    "id": "osworld-2024",
+    "title": "OSWorld: Benchmarking Multimodal Agents for Open-Ended Tasks in Real Computer Environments",
+    "url": "https://arxiv.org/abs/2404.07972",
+    "kind": "paper",
+    "notes": "A: primary abstract; adjacent desktop/web boundary evaluation, not tandem browser benchmark.",
+    "pdf_url": "https://arxiv.org/pdf/2404.07972"
+  },
+  {
+    "id": "webarena-verified-2025",
+    "title": "WebArena Verified: Reliable Evaluation for Web Agents",
+    "url": "https://openreview.net/forum?id=94tlGxmqkN",
+    "kind": "paper",
+    "notes": "L: primary repo read; paper forum blocked by browser verification. Repo reports full 812-task/258 hard dataset; an earlier paper search excerpt has different counts; inspect exact PDF before citing paper results.",
+    "pdf_url": "https://openreview.net/pdf?id=94tlGxmqkN"
+  },
+  {
+    "id": "greshake-2023",
+    "title": "Not What You've Signed Up For: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection",
+    "url": "https://arxiv.org/abs/2302.12173v2",
+    "kind": "paper",
+    "notes": "A: primary abstract; original indirect-injection attack taxonomy.",
+    "pdf_url": "https://arxiv.org/pdf/2302.12173v2"
+  },
+  {
+    "id": "injecagent-2024",
+    "title": "InjecAgent: Benchmarking Indirect Prompt Injections in Tool-Integrated Large Language Model Agents",
+    "url": "https://arxiv.org/abs/2403.02691",
+    "kind": "paper",
+    "notes": "A: primary abstract; tool-integrated attacks, direct harm/exfiltration.",
+    "pdf_url": "https://arxiv.org/pdf/2403.02691"
+  },
+  {
+    "id": "agentdojo-2024",
+    "title": "AgentDojo: A Dynamic Environment to Evaluate Attacks and Defenses for LLM Agents",
+    "url": "https://arxiv.org/abs/2406.13352v1",
+    "kind": "paper",
+    "notes": "D: dynamic adaptive-attack framework, benign utility and attacker objectives reviewed.",
+    "pdf_url": "https://arxiv.org/pdf/2406.13352v1"
+  },
+  {
+    "id": "camel-2025",
+    "title": "Defeating Prompt Injections by Design",
+    "url": "https://arxiv.org/abs/2503.18813v1",
+    "kind": "paper",
+    "notes": "D: trusted/untrusted control/data split, capability tracking, limitations and policy fatigue reviewed. Reference README explicitly warns not production secure.",
+    "pdf_url": "https://arxiv.org/pdf/2503.18813v1"
+  },
+  {
+    "id": "browserart-2024",
+    "title": "Refusal-Trained LLMs Are Easily Jailbroken As Browser Agents",
+    "url": "https://arxiv.org/abs/2410.13886",
+    "kind": "paper",
+    "notes": "A: primary abstract; harmful-user-request testing distinct from indirect injection.",
+    "pdf_url": "https://arxiv.org/pdf/2410.13886"
+  },
+  {
+    "id": "st-webagentbench-2024",
+    "title": "ST-WebAgentBench: A Benchmark for Evaluating Safety and Trustworthiness in Web Agents",
+    "url": "https://arxiv.org/abs/2410.06703v1",
+    "kind": "paper",
+    "notes": "D: policy hierarchy, completion under policy, policy oracles reviewed.",
+    "pdf_url": "https://arxiv.org/pdf/2410.06703v1"
+  },
+  {
+    "id": "agentic-sop-2026",
+    "title": "Agentic Browsers and the Same-Origin Policy",
+    "url": "https://agent-security.cs.washington.edu/agentic_browsers_sop.html",
+    "kind": "paper",
+    "notes": "D: full main paper, tested modes, fixture assumptions, limitations and attack/precondition distinction reviewed. Jan/Feb 2026 snapshots, not current vendor assessment.",
+    "pdf_url": "https://homes.cs.washington.edu/~franzi/pdf/roesner_kohlbrenner_2026_agentic_sop.pdf"
+  },
+  {
+    "id": "browsesafe-2025",
+    "title": "BrowseSafe: Understanding and Preventing Prompt Injection Within AI Browser Agents",
+    "url": "https://arxiv.org/abs/2511.20597v1",
+    "kind": "paper",
+    "notes": "D: threat model, HTML data construction, architecture, classification/evaluation limitations reviewed.",
+    "pdf_url": "https://arxiv.org/pdf/2511.20597v1"
+  },
+  {
+    "id": "wasp-2025",
+    "title": "WASP: Benchmarking Web Agent Security Against Prompt Injection Attacks",
+    "url": "https://arxiv.org/abs/2504.18575v3",
+    "kind": "paper",
+    "notes": "D: realistic adversary, attack initiation versus end-to-end goal distinction reviewed; official repo archived July 2026.",
+    "pdf_url": "https://arxiv.org/pdf/2504.18575v3"
+  },
+  {
+    "id": "cellmate-2025",
+    "title": "ceLLMate: Sandboxing Browser AI Agents",
+    "url": "https://arxiv.org/abs/2512.12594v1",
+    "kind": "paper",
+    "notes": "D: HTTP policy enforcement, trusted sitemap assumptions, single-turn/single-thread/dedicated-session limitations reviewed.",
+    "pdf_url": "https://arxiv.org/pdf/2512.12594v1"
+  },
+  {
+    "id": "ref-browsergym",
+    "title": "ServiceNow/BrowserGym",
+    "url": "https://github.com/ServiceNow/BrowserGym",
+    "kind": "repository",
+    "notes": "Environment interfaces and observations; current README inspected.",
+    "repo": "ServiceNow/BrowserGym"
+  },
+  {
+    "id": "ref-agentlab",
+    "title": "ServiceNow/AgentLab",
+    "url": "https://github.com/ServiceNow/AgentLab",
+    "kind": "repository",
+    "notes": "Experiment management and trajectory analysis; linked by BrowserGym official README.",
+    "repo": "ServiceNow/AgentLab"
+  },
+  {
+    "id": "ref-webarena",
+    "title": "web-arena-x/webarena",
+    "url": "https://github.com/web-arena-x/webarena",
+    "kind": "repository",
+    "notes": "Primary self-hosted benchmark implementation.",
+    "repo": "web-arena-x/webarena"
+  },
+  {
+    "id": "ref-visualwebarena",
+    "title": "web-arena-x/visualwebarena",
+    "url": "https://github.com/web-arena-x/visualwebarena",
+    "kind": "repository",
+    "notes": "Multimodal evaluation and trajectories; README inspected.",
+    "repo": "web-arena-x/visualwebarena"
+  },
+  {
+    "id": "ref-workarena",
+    "title": "ServiceNow/WorkArena",
+    "url": "https://github.com/ServiceNow/WorkArena",
+    "kind": "repository",
+    "notes": "WorkArena and WorkArena++.",
+    "repo": "ServiceNow/WorkArena"
+  },
+  {
+    "id": "ref-mind2web",
+    "title": "OSU-NLP-Group/Mind2Web",
+    "url": "https://github.com/OSU-NLP-Group/Mind2Web",
+    "kind": "repository",
+    "notes": "Offline demonstration and scoring source; README inspected.",
+    "repo": "OSU-NLP-Group/Mind2Web"
+  },
+  {
+    "id": "ref-weblinx",
+    "title": "McGill-NLP/weblinx",
+    "url": "https://github.com/McGill-NLP/weblinx",
+    "kind": "repository",
+    "notes": "Conversational trajectory representation and turn metrics; README inspected.",
+    "repo": "McGill-NLP/weblinx"
+  },
+  {
+    "id": "ref-seeact",
+    "title": "OSU-NLP-Group/SeeAct",
+    "url": "https://github.com/OSU-NLP-Group/SeeAct",
+    "kind": "repository",
+    "notes": "Action grounding and online evaluation; primary paper link.",
+    "repo": "OSU-NLP-Group/SeeAct"
+  },
+  {
+    "id": "ref-webvoyager",
+    "title": "MinorJerry/WebVoyager",
+    "url": "https://github.com/MinorJerry/WebVoyager",
+    "kind": "repository",
+    "notes": "End-to-end observation/action loop and multimodal judge; README inspected.",
+    "repo": "MinorJerry/WebVoyager"
+  },
+  {
+    "id": "ref-online-mind2web",
+    "title": "OSU-NLP-Group/Online-Mind2Web",
+    "url": "https://github.com/OSU-NLP-Group/Online-Mind2Web",
+    "kind": "repository",
+    "notes": "Live benchmark task updates; README inspected. Code/evaluation subset acquired; multi-gigabyte recorded browser data deferred.",
+    "repo": "OSU-NLP-Group/Online-Mind2Web",
+    "revision": "f0d805ee0e9e0b3ea70911e45e5264b72968f3dc",
+    "mode": "files",
+    "selected_paths": [
+      "LICENSE",
+      "README.md",
+      "requirements.txt",
+      "script/eval.sh",
+      "src/clean_html.py",
+      "src/methods/agenttrek_eval.py",
+      "src/methods/automomous_eval.py",
+      "src/methods/webjudge_general_eval.py",
+      "src/methods/webjudge_online_mind2web.py",
+      "src/methods/webvoyager_eval.py",
+      "src/run.py",
+      "src/utils.py"
+    ]
+  },
+  {
+    "id": "ref-mind2web2",
+    "title": "OSU-NLP-Group/Mind2Web-2",
+    "url": "https://github.com/OSU-NLP-Group/Mind2Web-2",
+    "kind": "repository",
+    "notes": "Agent-as-judge source; README inspected.",
+    "repo": "OSU-NLP-Group/Mind2Web-2"
+  },
+  {
+    "id": "ref-osworld",
+    "title": "xlang-ai/OSWorld",
+    "url": "https://github.com/xlang-ai/OSWorld",
+    "kind": "repository",
+    "notes": "Adjacent real computer benchmark source; primary project association.",
+    "repo": "xlang-ai/OSWorld"
+  },
+  {
+    "id": "ref-webarena-verified",
+    "title": "ServiceNow/webarena-verified",
+    "url": "https://github.com/ServiceNow/webarena-verified",
+    "kind": "repository",
+    "notes": "Deterministic evaluation with HAR traces; current README inspected.",
+    "repo": "ServiceNow/webarena-verified"
+  },
+  {
+    "id": "ref-injecagent",
+    "title": "uiuc-kang-lab/InjecAgent",
+    "url": "https://github.com/uiuc-kang-lab/InjecAgent",
+    "kind": "repository",
+    "notes": "Primary paper's artifact link.",
+    "repo": "uiuc-kang-lab/InjecAgent"
+  },
+  {
+    "id": "ref-agentdojo",
+    "title": "ethz-spylab/agentdojo",
+    "url": "https://github.com/ethz-spylab/agentdojo",
+    "kind": "repository",
+    "notes": "Primary paper artifact origin; resolve redirect/pin during acquisition.",
+    "repo": "ethz-spylab/agentdojo"
+  },
+  {
+    "id": "ref-camel",
+    "title": "google-research/camel-prompt-injection",
+    "url": "https://github.com/google-research/camel-prompt-injection",
+    "kind": "repository",
+    "notes": "Research custom interpreter; README inspected; do not adopt.",
+    "repo": "google-research/camel-prompt-injection"
+  },
+  {
+    "id": "ref-wasp",
+    "title": "facebookresearch/wasp",
+    "url": "https://github.com/facebookresearch/wasp",
+    "kind": "repository",
+    "notes": "Realistic browser injection scenarios; README inspected; archived, submodules must be separately acquired.",
+    "repo": "facebookresearch/wasp"
+  },
+  {
+    "id": "ref-agentic-sop",
+    "title": "UWCSESecurityLab/agentic-browser-sop",
+    "url": "https://github.com/UWCSESecurityLab/agentic-browser-sop",
+    "kind": "repository",
+    "notes": "Official two-origin test website fixtures; author link resolved.",
+    "repo": "UWCSESecurityLab/agentic-browser-sop"
+  }
+]

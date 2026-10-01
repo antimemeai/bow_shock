@@ -1,0 +1,108 @@
+[
+  {
+    "id": "cef-native-surfaces",
+    "title": "Pinned CEF native DOM, frame lifetime, accessibility and request surfaces",
+    "url": "https://github.com/chromiumembedded/cef",
+    "kind": "repository",
+    "repo": "chromiumembedded/cef",
+    "revision": "ff57d4eae16d36457895f2de115a71d502e85a08",
+    "mode": "files",
+    "selected_paths": [
+      "include/cef_dom.h",
+      "include/cef_frame.h",
+      "include/cef_frame_handler.h",
+      "include/cef_browser.h",
+      "include/cef_accessibility_handler.h",
+      "include/cef_render_handler.h",
+      "include/cef_resource_request_handler.h",
+      "include/cef_response_filter.h",
+      "include/internal/cef_types.h",
+      "libcef/renderer/frame_impl.cc",
+      "libcef/renderer/dom_document_impl.cc",
+      "libcef/renderer/dom_node_impl.cc",
+      "libcef/common/chrome/chrome_main_delegate_cef.cc"
+    ],
+    "notes": "Explicit pinned supplement of existing CEF corpus; read native DOM visitor scope, Blink wrapper traversal, geometry, AX windowed/windowless difference and network callback provenance. Study only."
+  },
+  {
+    "id": "chromium-native-surfaces",
+    "title": "Pinned Blink native snapshot/AX/DOM internals and Chromium runtime identity",
+    "url": "https://github.com/chromium/chromium",
+    "kind": "repository",
+    "repo": "chromium/chromium",
+    "revision": "faee0a28a27e62768c53844d7a29a63d609315dd",
+    "mode": "files",
+    "selected_paths": [
+      "components/embedder_support/user_agent_utils.cc",
+      "docs/chromium_browser_vs_google_chrome.md",
+      "third_party/blink/renderer/core/dom/events/event.h",
+      "third_party/blink/renderer/core/frame/navigator.cc",
+      "third_party/blink/renderer/core/inspector/inspector_dom_agent.cc",
+      "third_party/blink/renderer/core/inspector/inspector_dom_snapshot_agent.cc",
+      "third_party/blink/renderer/modules/accessibility/inspector_accessibility_agent.cc",
+      "ui/accessibility/platform/browser_accessibility_manager.cc"
+    ],
+    "notes": "All exact paths HTTP 200 verified at pin. Native renderer traversal and layout, DOM event trust field, Navigator.webdriver, UA/client-hint generation, browser AX manager, Linux Chromium/Chrome comparison. Does not constitute buildable full engine checkout."
+  },
+  {
+    "id": "cdp-native-surfaces",
+    "title": "Pinned CDP observation, target and provenance domain schemas",
+    "url": "https://github.com/ChromeDevTools/devtools-protocol",
+    "kind": "repository",
+    "repo": "ChromeDevTools/devtools-protocol",
+    "revision": "8b7f1d955017db8633ecae04cdfa194f731c9eff",
+    "mode": "files",
+    "selected_paths": [
+      "pdl/domains/DOMSnapshot.pdl",
+      "pdl/domains/DOM.pdl",
+      "pdl/domains/Accessibility.pdl",
+      "pdl/domains/Network.pdl",
+      "pdl/domains/Target.pdl",
+      "pdl/domains/Page.pdl",
+      "pdl/domains/Emulation.pdl"
+    ],
+    "notes": "DOMSnapshot, DOM, Accessibility, Network, Target, Page and Emulation native protocol schemas; model should not receive arbitrary dispatcher. Runtime support must be established independently."
+  },
+  {
+    "id": "dom-event-trust",
+    "title": "DOM Standard event trust",
+    "url": "https://dom.spec.whatwg.org/#dom-event-istrusted",
+    "kind": "documentation",
+    "notes": "isTrusted means user-agent dispatch, not human provenance or site acceptance."
+  },
+  {
+    "id": "html-user-activation",
+    "title": "HTML Standard user activation",
+    "url": "https://html.spec.whatwg.org/multipage/interaction.html#tracking-user-activation",
+    "kind": "documentation",
+    "notes": "Activation-triggering event types, trusted-event condition and expiry/consumption."
+  },
+  {
+    "id": "webdriver-active-flag",
+    "title": "WebDriver automation information",
+    "url": "https://www.w3.org/TR/webdriver/#dfn-webdriver-active-flag",
+    "kind": "documentation",
+    "notes": "Navigator.webdriver is standardized automation disclosure, not complete fingerprint definition."
+  },
+  {
+    "id": "ua-client-hints",
+    "title": "Chrome User-Agent Client Hints",
+    "url": "https://developer.chrome.com/docs/privacy-security/user-agent-client-hints",
+    "kind": "documentation",
+    "notes": "User-agent string, brand/platform hints and JavaScript-visible metadata form multiple coherence surfaces."
+  },
+  {
+    "id": "cef-native-dom-api",
+    "title": "CEF DOM visitor contract at pin",
+    "url": "https://github.com/chromiumembedded/cef/blob/ff57d4eae16d36457895f2de115a71d502e85a08/include/cef_dom.h",
+    "kind": "documentation",
+    "notes": "Renderer-main-thread traversal; ephemeral document/node handles and native geometry."
+  },
+  {
+    "id": "blink-native-dom-snapshot",
+    "title": "Blink native DOMSnapshot implementation at pin",
+    "url": "https://github.com/chromium/chromium/blob/faee0a28a27e62768c53844d7a29a63d609315dd/third_party/blink/renderer/core/inspector/inspector_dom_snapshot_agent.cc",
+    "kind": "documentation",
+    "notes": "Native C++ traversal after lifecycle update; local frame loop, layout/text/style joins and field exposure."
+  }
+]

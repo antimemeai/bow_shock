@@ -1,0 +1,228 @@
+[
+  {
+    "id": "codex-app-server",
+    "title": "Codex App Server",
+    "url": "https://learn.chatgpt.com/docs/app-server",
+    "kind": "documentation",
+    "notes": "Official integration protocol; fetched 2026-10-01. App-server and WebSocket transport maturity caveats, versioned schemas, dynamic tools, streaming, approvals and auth. Documentation is moving; preserve snapshot."
+  },
+  {
+    "id": "codex-mcp-removal",
+    "title": "Codex MCP server removal",
+    "url": "https://learn.chatgpt.com/docs/mcp-server",
+    "kind": "documentation",
+    "notes": "Current docs remove hosting Codex via codex mcp-server; external MCP consumption remains. Distinguish protocol directions."
+  },
+  {
+    "id": "codex-mcp-client",
+    "title": "Model Context Protocol for Codex",
+    "url": "https://learn.chatgpt.com/docs/extend/mcp",
+    "kind": "documentation",
+    "notes": "STDIO and Streamable HTTP tool server connections; per-server controls and OAuth. Read before configuring any user account."
+  },
+  {
+    "id": "codex-sign-in",
+    "title": "Sign in with ChatGPT: Codex app-server",
+    "url": "https://developers.openai.com/siwc/token-sharing-open-source/codex-app-server",
+    "kind": "documentation",
+    "notes": "Official OAuth provider configuration, originator metadata and renewal; no credentials acquired."
+  },
+  {
+    "id": "codex-source",
+    "title": "Codex App Server implementation and protocol",
+    "url": "https://github.com/openai/codex",
+    "kind": "repository",
+    "repo": "openai/codex",
+    "selected_paths": [
+      "README.md",
+      "LICENSE",
+      "codex-rs/app-server",
+      "codex-rs/app-server-protocol",
+      "docs",
+      "sdk"
+    ],
+    "notes": "Study local rich-client boundary, bidirectional requests, dynamic tools, interrupt tests, transport authentication. Do not use as browser action authority."
+  },
+  {
+    "id": "playwright-mcp",
+    "title": "Playwright MCP release wrapper and integration tests",
+    "url": "https://github.com/microsoft/playwright-mcp",
+    "kind": "repository",
+    "repo": "microsoft/playwright-mcp",
+    "notes": "Source moved to microsoft/playwright monorepo; this wrapper supplies current README, config surface, compatibility tests. Explicitly not a security boundary."
+  },
+  {
+    "id": "playwright-source",
+    "title": "Playwright automation, MCP and extension implementation",
+    "url": "https://github.com/microsoft/playwright",
+    "kind": "repository",
+    "repo": "microsoft/playwright",
+    "selected_paths": [
+      "README.md",
+      "LICENSE",
+      "packages/playwright-core/src/tools",
+      "packages/playwright-core/src/server/chromium",
+      "packages/playwright-core/src/client",
+      "tests"
+    ],
+    "notes": "MCP source lives packages/playwright-core/src/tools/mcp; inspect browserFactory, extensionContextFactory, cdpRelay and config. Chromium attach tests needed before claims about CEF compatibility."
+  },
+  {
+    "id": "playwright-cdp-doc",
+    "title": "Playwright BrowserType connectOverCDP",
+    "url": "https://playwright.dev/docs/api/class-browsertype#browser-type-connect-over-cdp",
+    "kind": "documentation",
+    "notes": "Chromium-only attach, lower fidelity than native Playwright protocol; current noDefaults option avoids some default-context interference."
+  },
+  {
+    "id": "devtools-mcp",
+    "title": "Chrome DevTools MCP",
+    "url": "https://github.com/ChromeDevTools/chrome-devtools-mcp",
+    "kind": "repository",
+    "repo": "ChromeDevTools/chrome-devtools-mcp",
+    "notes": "Study src/tools/script.ts, input.ts, pages.ts, snapshot.ts, config and browser connection code plus tests. evaluate_script has readOnlyHint false; inspect tool exposure and endpoint ownership."
+  },
+  {
+    "id": "browser-use",
+    "title": "Browser Use agent library",
+    "url": "https://github.com/browser-use/browser-use",
+    "kind": "repository",
+    "repo": "browser-use/browser-use",
+    "notes": "Study browser_use/agent/service.py, browser/session.py, tools/service.py, dom and watchdogs for observation/action/state separation. Autonomous baseline rather than assumed tandem design."
+  },
+  {
+    "id": "browser-harness",
+    "title": "Browser Use Browser Harness",
+    "url": "https://github.com/browser-use/browser-harness",
+    "kind": "repository",
+    "repo": "browser-use/browser-harness",
+    "notes": "New current CLI companion linked by Browser Use README; inspect src/browser_harness/_ipc.py, daemon.py, auth.py and src/mcp_server.py. Not yet deeply read in this pass."
+  },
+  {
+    "id": "stagehand",
+    "title": "Stagehand interaction SDK, browser extension and agent integrations",
+    "url": "https://github.com/browserbase/stagehand",
+    "kind": "repository",
+    "repo": "browserbase/stagehand",
+    "notes": "Study packages/extension/handlers and understudy, packages/integrations/codex/src/agent.ts, packages/docs/v4 and packages/cli. Distinguish act, extraction, observation and autonomous agent; SDK integration example chooses automated approvals and older policy spelling."
+  },
+  {
+    "id": "agent-browser",
+    "title": "Agent Browser CLI",
+    "url": "https://github.com/vercel-labs/agent-browser",
+    "kind": "repository",
+    "repo": "vercel-labs/agent-browser",
+    "notes": "Study cli/src/native/policy.rs, browser.rs, daemon.rs, tests and docs/security. Action categories, domain containment and confirmation; selected policy helper swallows load errors, call graph needs audit before safety claims."
+  },
+  {
+    "id": "cdp-protocol",
+    "title": "Chrome DevTools Protocol definitions",
+    "url": "https://github.com/ChromeDevTools/devtools-protocol",
+    "kind": "repository",
+    "repo": "ChromeDevTools/devtools-protocol",
+    "notes": "Pin definitions and browser revision together. json/browser_protocol.json and json/js_protocol.json; Runtime/Input/Target/Browser/Network boundaries. Homepage renderer returned little text."
+  },
+  {
+    "id": "chrome-debugging-change",
+    "title": "Changes to remote debugging switches to improve security",
+    "url": "https://developer.chrome.com/blog/remote-debugging-port",
+    "kind": "documentation",
+    "notes": "Chrome 136 changes around default profile and remote-debugging port/pipe. Default-profile cookie exposure matters to shared browsing."
+  },
+  {
+    "id": "puppeteer-source",
+    "title": "Puppeteer CDP and WebDriver BiDi implementation",
+    "url": "https://github.com/puppeteer/puppeteer",
+    "kind": "repository",
+    "repo": "puppeteer/puppeteer",
+    "selected_paths": [
+      "README.md",
+      "LICENSE",
+      "docs",
+      "packages/puppeteer-core/src",
+      "test",
+      "examples"
+    ],
+    "notes": "Study packages/puppeteer-core/src/cdp/Connection.ts and bidi/Connection.ts, event subscription/disconnection and target lifecycle."
+  },
+  {
+    "id": "puppeteer-bidi",
+    "title": "Puppeteer WebDriver BiDi support",
+    "url": "https://pptr.dev/webdriver-bidi",
+    "kind": "documentation",
+    "notes": "Chrome and Firefox support with documented feature differences; cross-browser action API does not imply identical behavior."
+  },
+  {
+    "id": "selenium-source",
+    "title": "Selenium WebDriver BiDi implementation and tests",
+    "url": "https://github.com/SeleniumHQ/selenium",
+    "kind": "repository",
+    "repo": "SeleniumHQ/selenium",
+    "selected_paths": [
+      "README.md",
+      "LICENSE",
+      "py/selenium/webdriver",
+      "py/test",
+      "javascript/selenium-webdriver/bidi",
+      "javascript/selenium-webdriver/test/bidi",
+      "java/src/org/openqa/selenium/bidi",
+      "java/test/org/openqa/selenium/bidi"
+    ],
+    "notes": "Study independent cross-browser event transport and test oracles; avoid whole browser/driver dependency decision."
+  },
+  {
+    "id": "selenium-bidi",
+    "title": "Selenium WebDriver BiDi documentation",
+    "url": "https://www.selenium.dev/documentation/webdriver/bidi/",
+    "kind": "documentation",
+    "notes": "Migration and bidirectional event model; documentation notes CDP support as transitional."
+  },
+  {
+    "id": "webdriver-bidi-spec",
+    "title": "W3C WebDriver BiDi specification",
+    "url": "https://www.w3.org/TR/webdriver-bidi/",
+    "kind": "documentation",
+    "notes": "Primary normative browser automation protocol. Dated 2026-09-16 Working Draft appeared in search; dated fetch failed and should be restored by acquisition script or added to shopping list."
+  },
+  {
+    "id": "native-messaging",
+    "title": "Chrome Extension Native Messaging",
+    "url": "https://developer.chrome.com/docs/extensions/develop/concepts/native-messaging",
+    "kind": "documentation",
+    "notes": "Native host registration, fixed extension origins, length-prefixed stdio framing and content-script trust boundary; not Codex JSONL wire format."
+  },
+  {
+    "id": "native-messaging-sample",
+    "title": "Chrome Native Messaging sample",
+    "url": "https://github.com/GoogleChrome/chrome-extensions-samples",
+    "kind": "repository",
+    "repo": "GoogleChrome/chrome-extensions-samples",
+    "selected_paths": [
+      "LICENSE",
+      "README.md",
+      "api-samples/nativeMessaging"
+    ],
+    "notes": "Study extension manifest, main.js, host framing and install/uninstall registration. Echo demonstration, not authenticated action gateway."
+  },
+  {
+    "id": "extension-debugger",
+    "title": "Chrome Extension debugger API",
+    "url": "https://developer.chrome.com/docs/extensions/reference/api/debugger",
+    "kind": "documentation",
+    "notes": "Restricted CDP domain access, tab attachment and onDetach; study DevTools takeover and restricted pages."
+  },
+  {
+    "id": "mcp-tools-spec",
+    "title": "MCP tools specification 2025-06-18",
+    "url": "https://modelcontextprotocol.io/specification/2025-06-18/server/tools",
+    "kind": "documentation",
+    "notes": "Versioned reference for tool input/output schema, model-controlled invocation and untrusted annotations. Verify chosen client/server version later."
+  },
+  {
+    "id": "mcp-transports-spec",
+    "title": "MCP transports specification 2025-06-18",
+    "url": "https://modelcontextprotocol.io/specification/2025-06-18/basic/transports",
+    "kind": "documentation",
+    "notes": "STDIO and Streamable HTTP framing, Origin validation, localhost binding and authentication; explicit cancellation versus disconnect."
+  }
+]

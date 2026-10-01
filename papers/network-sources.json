@@ -1,0 +1,124 @@
+[
+  {
+    "id": "network-devtools-reference",
+    "title": "DevTools Network reference",
+    "url": "https://developer.chrome.com/docs/devtools/network/reference",
+    "kind": "documentation",
+    "notes": "Read inspect/export/provisional headers/cache/messages sections. Human inspection precedent; sanitized HAR is not whole-payload anonymization."
+  },
+  {
+    "id": "network-devtools-overrides",
+    "title": "DevTools local response overrides",
+    "url": "https://developer.chrome.com/docs/devtools/overrides",
+    "kind": "documentation",
+    "notes": "Read local content/header overrides and limitations; cache disabled; DOM tree edits not saved."
+  },
+  {
+    "id": "network-cdp-network",
+    "title": "CDP Network domain",
+    "url": "https://chromedevtools.github.io/devtools-protocol/tot/Network/",
+    "kind": "documentation",
+    "notes": "Moving documentation; concrete contract read in existing pinned devtools-protocol pdl/domains/Network.pdl. Experimental streaming/durability need engine runtime probes."
+  },
+  {
+    "id": "network-cdp-fetch",
+    "title": "CDP Fetch domain",
+    "url": "https://chromedevtools.github.io/devtools-protocol/tot/Fetch/",
+    "kind": "documentation",
+    "notes": "Moving documentation; concrete contract read in existing pinned Fetch PDL. Stream-taking cannot continue request unchanged; redirect response bodies unavailable."
+  },
+  {
+    "id": "network-mdn-fetch",
+    "title": "MDN Using Fetch",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch",
+    "kind": "documentation",
+    "notes": "Browser credentials/CORS/header constraints; page fetch is not unrestricted raw authenticated replay."
+  },
+  {
+    "id": "network-mitmproxy-tls",
+    "title": "How mitmproxy works",
+    "url": "https://docs.mitmproxy.org/stable/concepts/how-mitmproxy-works/",
+    "kind": "documentation",
+    "notes": "Read TLS interception/trust flow. Reference comparison only; no proxy/CA installation or dependency adoption."
+  },
+  {
+    "id": "network-mitmproxy-protocols",
+    "title": "mitmproxy protocol limitations",
+    "url": "https://docs.mitmproxy.org/stable/concepts/protocols/",
+    "kind": "documentation",
+    "notes": "Read protocol and replay limitations, including HTTP3 compatibility and no WebSocket replay; version-sensitive."
+  },
+  {
+    "id": "network-meta-pixel-reference",
+    "title": "Meta Pixel reference",
+    "url": "https://developers.facebook.com/docs/meta-pixel/reference/",
+    "kind": "documentation",
+    "notes": "Primary current event-parameter contract needed; reading failed HTTP429. Do not treat a returned login/error page as reviewed documentation."
+  },
+  {
+    "id": "network-meta-pixel-implementation",
+    "title": "Meta Pixel implementation",
+    "url": "https://developers.facebook.com/docs/meta-pixel/implementation/",
+    "kind": "documentation",
+    "notes": "Primary docs fetch failed; requested as acquisition gap, no inferred current API contract."
+  },
+  {
+    "id": "network-meta-advanced-matching",
+    "title": "Meta Pixel advanced matching",
+    "url": "https://developers.facebook.com/docs/meta-pixel/advanced/advanced-matching/",
+    "kind": "documentation",
+    "notes": "Primary docs fetch failed; operator access needed. Distinguish hashed customer information from anonymization."
+  },
+  {
+    "id": "network-meta-blueprint-matching",
+    "title": "Official Meta Blueprint advanced matching course",
+    "url": "https://www.facebookblueprint.com/student/path/211540-advanced-matching-course",
+    "kind": "documentation",
+    "notes": "Available official course description confirms hashed customer information shared with website events; not a wire-field specification."
+  },
+  {
+    "id": "network-pixelconfig-paper",
+    "title": "PixelConfig: Longitudinal Measurement and Reverse-Engineering of Meta Pixel Configurations",
+    "url": "https://arxiv.org/abs/2603.09380",
+    "kind": "paper",
+    "pdf_url": "https://arxiv.org/pdf/2603.09380v1",
+    "notes": "Ghani, Vekaria, Shafiq 2026 v1. Read HTML methodology/background and limitations; primary differential static/dynamic configuration study, archived2017\u20132024. Not a current Meta API contract."
+  },
+  {
+    "id": "network-pixelconfig-code",
+    "title": "PixelConfig author reference implementation",
+    "url": "https://github.com/Yash-Vekaria/pixel-config",
+    "kind": "repository",
+    "repo": "Yash-Vekaria/pixel-config",
+    "revision": "4426e53848932a5e4f4aa95b1a4d598d59bee6a2",
+    "selected_paths": [
+      "README.md",
+      "LICENSE",
+      "Analysis/processSnapshots.py",
+      "Data Collection/extractPixelIDs.py",
+      "Data Collection/fetchConfigurationSnapshots.py",
+      "Data Collection/fetchWebsiteSnapshots.py",
+      "Data Collection/requirements.txt"
+    ],
+    "notes": "Pinned collection/parser source subset only, preserved in deterministic ZIP; no datasets, archived configuration ZIPs, notebooks, dependencies or weights. Read README and parser functions; do not treat regex as general JavaScript parsing or execute crawlers.",
+    "mode": "files"
+  },
+  {
+    "id": "network-chromium-code",
+    "title": "Chromium network observation and interception implementation",
+    "url": "https://github.com/chromium/chromium",
+    "kind": "repository",
+    "repo": "chromium/chromium",
+    "revision": "faee0a28a27e62768c53844d7a29a63d609315dd",
+    "mode": "files",
+    "selected_paths": [
+      "third_party/blink/renderer/core/inspector/inspector_network_agent.cc",
+      "third_party/blink/renderer/core/inspector/network_resources_data.cc",
+      "content/browser/devtools/protocol/network_handler.cc",
+      "content/browser/devtools/devtools_url_loader_interceptor.cc",
+      "third_party/blink/public/devtools_protocol/domains/Network.pdl",
+      "third_party/blink/public/devtools_protocol/domains/Fetch.pdl"
+    ],
+    "notes": "Pinned to existing Chromium acquisition. All six paths fetched/read in focused fragments; body buffers/eviction, target/frame identity, intercepted stream ownership. Individual files for study, not a buildable checkout; CEF headers/wrappers/tests reused from existing full cef reference."
+  }
+]

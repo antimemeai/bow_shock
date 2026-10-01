@@ -1,0 +1,98 @@
+[
+  {
+    "id": "chickenfoot-chapter",
+    "title": "Rewriting the Web with Chickenfoot",
+    "url": "https://up.csail.mit.edu/other-pubs/rewriting-web-with-chickenfoot.pdf",
+    "pdf_url": "https://up.csail.mit.edu/other-pubs/rewriting-web-with-chickenfoot.pdf",
+    "kind": "paper",
+    "notes": "Author-hosted retrospective, visible page targeting and embedded end-user automation."
+  },
+  {
+    "id": "ringer-oopsla2016",
+    "title": "Ringer: Web Automation by Demonstration",
+    "url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/12/oopsla16-web.pdf",
+    "pdf_url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/12/oopsla16-web.pdf",
+    "kind": "paper",
+    "notes": "Actions/triggers/elements; synchronization and faithful replay."
+  },
+  {
+    "id": "helena-dissertation",
+    "title": "Democratizing Web Automation: Programming for Social Scientists and Other Domain Experts",
+    "url": "https://www2.eecs.berkeley.edu/Pubs/TechRpts/2019/EECS-2019-139.html",
+    "pdf_url": "https://www2.eecs.berkeley.edu/Pubs/TechRpts/2019/EECS-2019-139.pdf",
+    "kind": "paper",
+    "notes": "Helena language, replay, skip blocks, deployment and user work."
+  },
+  {
+    "id": "coscripter-reuse",
+    "title": "Predicting Reuse of End-User Web Macro Scripts",
+    "url": "https://www.cs.cmu.edu/~Compose/paper_42.pdf",
+    "pdf_url": "https://www.cs.cmu.edu/~Compose/paper_42.pdf",
+    "kind": "paper",
+    "notes": "Includes explicit mixed-initiative runtime pause commands; observational reuse study."
+  },
+  {
+    "id": "coscripter-field",
+    "title": "End-user programming in the wild: A field study of CoScripter scripts",
+    "url": "https://research.ibm.com/publications/end-user-programming-in-the-wild-a-field-study-of-coscripter-scripts",
+    "pdf_url": null,
+    "kind": "paper",
+    "notes": "IBM primary abstract; full paper still needs author/publisher copy."
+  },
+  {
+    "id": "webrobot-pldi2022",
+    "title": "WebRobot: Web Robotic Process Automation using Interactive Programming-by-Demonstration",
+    "url": "https://arxiv.org/abs/2203.09993",
+    "pdf_url": "https://arxiv.org/pdf/2203.09993",
+    "kind": "paper",
+    "notes": "Interactive synthesis of bounded automation from demonstrations; MIWA repo includes implementation archive."
+  },
+  {
+    "id": "chickenfoot",
+    "title": "Chickenfoot",
+    "url": "https://github.com/bolinfest/chickenfoot",
+    "repo": "bolinfest/chickenfoot",
+    "kind": "repository",
+    "notes": "Historical Firefox extension; keyword targeting and script context."
+  },
+  {
+    "id": "ringer",
+    "title": "Ringer / webscript",
+    "url": "https://github.com/sbarman/webscript",
+    "repo": "sbarman/webscript",
+    "kind": "repository",
+    "notes": "Historical Chrome record/replay; old extension APIs, study only."
+  },
+  {
+    "id": "helena",
+    "title": "Helena",
+    "url": "https://github.com/schasins/helena",
+    "repo": "schasins/helena",
+    "kind": "repository",
+    "notes": "Demonstration-driven scraping; study language and replay, no execution."
+  },
+  {
+    "id": "coscripter",
+    "title": "CoScripter extension",
+    "url": "https://github.com/jeffnichols-ibm/coscripter-extension",
+    "repo": "jeffnichols-ibm/coscripter-extension",
+    "kind": "repository",
+    "notes": "Historical Mozilla extension, parser/runtime/sidebar and event-recording layers."
+  },
+  {
+    "id": "rousillon-uist2018",
+    "title": "Rousillon: Scraping Distributed Hierarchical Web Data",
+    "url": "https://schasins.com/assets/papers/rousillon.pdf",
+    "pdf_url": "https://schasins.com/assets/papers/rousillon.pdf",
+    "kind": "paper",
+    "notes": "Single-row demonstration of hierarchical datasets; inspect method and evaluation limits."
+  },
+  {
+    "id": "skip-blocks-oopsla2017",
+    "title": "Skip Blocks: Reusing Execution History to Accelerate Web Scripts",
+    "url": "https://schasins.com/assets/papers/skipBlocks.pdf",
+    "pdf_url": "https://schasins.com/assets/papers/skipBlocks.pdf",
+    "kind": "paper",
+    "notes": "Recovery and history-aware repeated scraping; not general transaction replay."
+  }
+]

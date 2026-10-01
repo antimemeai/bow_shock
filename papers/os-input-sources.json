@@ -1,0 +1,427 @@
+[
+  {
+    "id": "fitts-1954",
+    "title": "The Information Capacity of the Human Motor System in Controlling the Amplitude of Movement",
+    "url": "https://doi.org/10.1037/h0055392",
+    "kind": "paper",
+    "notes": "A: original opening and experimental excerpt; stylus/physical movement, not universal browser trajectory model.",
+    "pdf_url": "https://www2.psychology.uiowa.edu/faculty/mordkoff/infoproc/pdfs/Fitts%201954.pdf"
+  },
+  {
+    "id": "mackenzie-fitts-1992",
+    "title": "Fitts\u2019 Law as a Research and Design Tool in Human-Computer Interaction",
+    "url": "https://www.yorku.ca/mack/hci1992.html",
+    "kind": "paper",
+    "notes": "D: formula, effective width, corrections, methodological limits and conclusions reviewed.",
+    "pdf_url": "https://www.yorku.ca/mack/hci1992.pdf"
+  },
+  {
+    "id": "flash-hogan-1985",
+    "title": "The coordination of arm movements: an experimentally confirmed mathematical model",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/4020415/",
+    "kind": "paper",
+    "notes": "A: original abstract and author-PDF model/results excerpts; minimum jerk arm motion is a candidate mean shape, not stochastic mouse model.",
+    "pdf_url": "https://bpb-us-e1.wpmucdn.com/sites.mit.edu/dist/5/1384/files/2025/02/1985-the-coordination-of-arm-movements-an-experimentally-confirmed-mathematical-model.pdf"
+  },
+  {
+    "id": "meyer-motor-1988",
+    "title": "Optimality in human motor performance: ideal control of rapid aimed movements",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/3406245/",
+    "kind": "paper",
+    "notes": "L: original bibliographic record and model as described by MacKenzie; full original author/publisher paper needs retrieval. No secondary-host PDF asserted as acquired."
+  },
+  {
+    "id": "harris-wolpert-1998",
+    "title": "Signal-dependent noise determines motor planning",
+    "url": "https://www.nature.com/articles/29528",
+    "kind": "paper",
+    "notes": "A: publisher abstract and author-PDF model excerpts. Signal-dependent variance, not independent constant coordinate jitter.",
+    "pdf_url": "https://wolpertlab.neuroscience.columbia.edu/sites/wolpertlab.neuroscience.columbia.edu/files/content/papers/HarWol98.pdf"
+  },
+  {
+    "id": "todorov-jordan-2002",
+    "title": "Optimal feedback control as a theory of motor coordination",
+    "url": "https://doi.org/10.1038/nn963",
+    "kind": "paper",
+    "notes": "D: original theoretical framework/feedback/minimal-intervention sections reviewed, not every experiment.",
+    "pdf_url": "https://roboti.us/lab/papers/TodorovNatNeurosci02.pdf"
+  },
+  {
+    "id": "accot-zhai-1997",
+    "title": "Beyond Fitts\u2019 Law: Models for Trajectory-Based HCI Tasks",
+    "url": "https://research.google/pubs/beyond-fitts-law-models-for-trajectory-based-hci-tasks/",
+    "kind": "paper",
+    "notes": "A: original paper abstract excerpt and author index; steering constraints differ from free pointing. Institutional mirror PDF is acquisition lead.",
+    "pdf_url": "https://citeseerx.ist.psu.edu/document?doi=c55bfa1f5f3c8aa97a102ef88dba0026041c38b7&repid=rep1&type=pdf"
+  },
+  {
+    "id": "hinckley-scrolling-2002",
+    "title": "Quantitative Analysis of Scrolling Techniques",
+    "url": "https://www.microsoft.com/en-us/research/publication/quantitative-analysis-of-scrolling-techniques/",
+    "kind": "paper",
+    "notes": "A: original abstract and author PDF opening; distance/tolerance, device crossover and acceleration.",
+    "pdf_url": "https://cutrell.org/papers/Scrolling_CHI02.pdf"
+  },
+  {
+    "id": "casiez-roussel-2011",
+    "title": "No more bricolage! Methods and tools to characterize, replicate and compare pointing transfer functions",
+    "url": "https://doi.org/10.1145/2047196.2047276",
+    "kind": "paper",
+    "notes": "D: original toolkit, transfer functions, units, device assumptions and evaluation excerpts. OS versions in paper are historical.",
+    "pdf_url": "https://gery.casiez.net/publications/UIST2011-NoMoreBricolage.pdf"
+  },
+  {
+    "id": "quinn-touch-scroll-2013",
+    "title": "Touch Scrolling Transfer Functions",
+    "url": "https://doi.org/10.1145/2501988.2501995",
+    "kind": "paper",
+    "notes": "L: verified author index; primary author-deposited HAL retrieval failed in web tool. Touch/mobile transfer cannot be assumed macOS wheel/trackpad.",
+    "pdf_url": "https://hal.inria.fr/hal-02862506/document"
+  },
+  {
+    "id": "turner-gaze-scroll-2015",
+    "title": "Understanding Gaze and Scrolling Strategies in Text Consumption Tasks",
+    "url": "https://www.microsoft.com/en-us/research/publication/understanding-gaze-scrolling-strategies-text-consumption-tasks/",
+    "kind": "paper",
+    "notes": "D: original methods/results/limitations; 18 company employees, formatted Wikipedia passages, scroll wheel, 32px font; paragraph/heading confounding explicitly noted.",
+    "pdf_url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/PETMEI2015scrolling_petmei_15_final.pdf"
+  },
+  {
+    "id": "altmann-goals-2002",
+    "title": "Memory for goals: an activation-based model",
+    "url": "https://doi.org/10.1207/s15516709cog2601_2",
+    "kind": "paper",
+    "notes": "A: publisher abstract and original section 5.4 interruption excerpt, not full 45-page paper.",
+    "pdf_url": "https://www.interruptions.net/literature/Altmann-CogSci02.pdf"
+  },
+  {
+    "id": "altmann-interruption-2004",
+    "title": "Task interruption: Resumption lag and the role of cues",
+    "url": "https://www.interruptions.net/literature/Altmann-CogSci04.pdf",
+    "kind": "paper",
+    "notes": "D: original methods/results/discussion; 96 students across four experiments; cue benefit reliable at 8s lag, not all lag durations.",
+    "pdf_url": "https://www.interruptions.net/literature/Altmann-CogSci04.pdf"
+  },
+  {
+    "id": "huang-cursor-2011",
+    "title": "No Clicks, No Problem: Using Cursor Movements to Understand and Improve Search",
+    "url": "https://www.microsoft.com/en-us/research/publication/no-clicks-no-problem-using-cursor-movements-to-understand-and-improve-search-2/",
+    "kind": "paper",
+    "notes": "A: original abstract and PDF available; search-result cursor/gaze relationship does not imply cursor always equals attention.",
+    "pdf_url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2011/01/Final_CursorBehavior_CHI11-1.pdf"
+  },
+  {
+    "id": "white-task-differences-2012",
+    "title": "Large-Scale Analysis of Individual and Task Differences in Search Result Page Examination Strategies",
+    "url": "https://www.microsoft.com/en-us/research/publication/large-scale-analysis-of-individual-and-task-differences-in-search-result-page-examination-strategies/",
+    "kind": "paper",
+    "notes": "A: original abstract and features/results excerpt; individual and task differences, cursor/scroll/selection jointly.",
+    "pdf_url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2012/01/Final_InteractionDifferences_WSDM12.pdf"
+  },
+  {
+    "id": "scroll-readability-2021",
+    "title": "Predicting Text Readability from Scrolling Interactions",
+    "url": "https://arxiv.org/abs/2105.06354",
+    "kind": "paper",
+    "notes": "A: original abstract only; 518-participant study, reader background and text difficulty affect scrolling.",
+    "pdf_url": "https://arxiv.org/pdf/2105.06354"
+  },
+  {
+    "id": "card-keystroke-1980",
+    "title": "The Keystroke-Level Model for User Performance Time with Interactive Systems",
+    "url": "https://doi.org/10.1145/358886.358895",
+    "kind": "paper",
+    "notes": "A: original paper opening/abstract; expert fixed-method performance timing, not arbitrary cognitive dwell or typing biometric distribution.",
+    "pdf_url": "https://frankritter.com/hcdd331/cardMN80.pdf"
+  },
+  {
+    "id": "apple-cgevent",
+    "title": "Apple CGEvent",
+    "url": "https://developer.apple.com/documentation/coregraphics/cgevent",
+    "kind": "documentation",
+    "notes": "D: native WindowServer/Quartz event path overview."
+  },
+  {
+    "id": "apple-cgevent-post",
+    "title": "Apple CGEventPost",
+    "url": "https://developer.apple.com/documentation/coregraphics/cgevent/post(tap:)",
+    "kind": "documentation",
+    "notes": "D: posts to event stream before event taps; not physical device authenticity."
+  },
+  {
+    "id": "apple-post-preflight",
+    "title": "Apple CGPreflightPostEventAccess",
+    "url": "https://developer.apple.com/documentation/coregraphics/cgpreflightposteventaccess()",
+    "kind": "documentation",
+    "notes": "A: declaration; checked installed MacOSX15.5 SDK CGEvent.h documenting synthesizing-access preflight."
+  },
+  {
+    "id": "apple-post-request",
+    "title": "Apple CGRequestPostEventAccess",
+    "url": "https://developer.apple.com/documentation/coregraphics/cgrequestposteventaccess()",
+    "kind": "documentation",
+    "notes": "A: declaration; installed SDK documents synthesizing-access request may prompt. Not invoked."
+  },
+  {
+    "id": "apple-listen-preflight",
+    "title": "Apple CGPreflightListenEventAccess",
+    "url": "https://developer.apple.com/documentation/coregraphics/cgpreflightlisteneventaccess()",
+    "kind": "documentation",
+    "notes": "A: declaration; installed SDK listening-access check separate from posting."
+  },
+  {
+    "id": "apple-ax-trust",
+    "title": "Apple AXIsProcessTrustedWithOptions",
+    "url": "https://developer.apple.com/documentation/applicationservices/1459186-axisprocesstrustedwithoptions",
+    "kind": "documentation",
+    "notes": "D: Apple DocC JSON read; prompt asynchronous and does not change immediate return value."
+  },
+  {
+    "id": "apple-network-path-monitor",
+    "title": "Apple NWPathMonitor",
+    "url": "https://developer.apple.com/documentation/network/nwpathmonitor",
+    "kind": "documentation",
+    "notes": "D: monitor/current path/callback/interface APIs; observation, not simulation."
+  },
+  {
+    "id": "apple-network-path-status",
+    "title": "Apple NWPath.Status",
+    "url": "https://developer.apple.com/documentation/network/nwpath/status-swift.enum",
+    "kind": "documentation",
+    "notes": "A: DocC JSON enum description; path use by connections, not arbitrary site reachability."
+  },
+  {
+    "id": "apple-adverse-network-2019",
+    "title": "Designing for Adverse Network and Temperature Conditions, WWDC19",
+    "url": "https://developer.apple.com/videos/play/wwdc2019/422/",
+    "kind": "documentation",
+    "notes": "D: transcript network conditioning/tooling sections. Historical macOS preference-pane recommendation; current distribution/operator installation still to verify."
+  },
+  {
+    "id": "whatwg-event-trust",
+    "title": "DOM Standard: Event.isTrusted",
+    "url": "https://dom.spec.whatwg.org/#dom-event-istrusted",
+    "kind": "documentation",
+    "notes": "D: definition, create/dispatch algorithms; UA dispatch provenance, not proof of a person."
+  },
+  {
+    "id": "whatwg-online",
+    "title": "HTML Standard: navigator.onLine and online/offline",
+    "url": "https://html.spec.whatwg.org/multipage/system-state.html#navigator.online",
+    "kind": "documentation",
+    "notes": "D: getter/events; inherently unreliable as Internet-access signal."
+  },
+  {
+    "id": "linux-uinput",
+    "title": "Linux kernel uinput documentation",
+    "url": "https://docs.kernel.org/input/uinput.html",
+    "kind": "documentation",
+    "notes": "D: virtual-device setup/capability/event examples; recommends libevdev, study only."
+  },
+  {
+    "id": "libei-protocol",
+    "title": "libei Emulated Input protocol documentation",
+    "url": "https://libinput.pages.freedesktop.org/libei/",
+    "kind": "documentation",
+    "notes": "D: native input-stack integration and compositor distinction; not adopter dependency."
+  },
+  {
+    "id": "portal-remote-desktop",
+    "title": "XDG Desktop Portal RemoteDesktop",
+    "url": "https://flatpak.github.io/xdg-desktop-portal/docs/doc-org.freedesktop.portal.RemoteDesktop.html",
+    "kind": "documentation",
+    "notes": "D: v2 session consent/device grants/persistence/EIS vs Notify calls. Check target backend support."
+  },
+  {
+    "id": "portal-input-capture",
+    "title": "XDG Desktop Portal InputCapture",
+    "url": "https://flatpak.github.io/xdg-desktop-portal/docs/doc-org.freedesktop.portal.InputCapture.html",
+    "kind": "documentation",
+    "notes": "D: v2 trigger/barrier/compositor activation semantics; redirects active input, not generic passive global monitoring."
+  },
+  {
+    "id": "x11-xtest",
+    "title": "XTEST Extension Library",
+    "url": "https://xorg.freedesktop.org/archive/X11R7.7/doc/libXtst/xtestlib.html",
+    "kind": "documentation",
+    "notes": "A: core input synthesis specification overview. X11-specific; no universal Wayland compatibility claim."
+  },
+  {
+    "id": "x11-record",
+    "title": "X Record Extension Library",
+    "url": "https://www.x.org/releases/current/doc/libXtst/recordlib.pdf",
+    "kind": "documentation",
+    "notes": "A: original recording and synchronous playback design excerpts. Does not enforce playback synchronization."
+  },
+  {
+    "id": "linux-network-namespace",
+    "title": "Linux network_namespaces(7)",
+    "url": "https://www.man7.org/linux/man-pages/man7/network_namespaces.7.html",
+    "kind": "documentation",
+    "notes": "D: isolated network devices/routes/firewalls/stacks; veth bridge context; GUI and D-Bus are separate concerns."
+  },
+  {
+    "id": "linux-netem",
+    "title": "iproute2 netem(8)",
+    "url": "https://www.man7.org/linux/man-pages/man8/netem.8.html",
+    "kind": "documentation",
+    "notes": "D: packet impairment, correlated loss/jitter, timing/TCP limitations; no guarantee of link/offline notification."
+  },
+  {
+    "id": "linux-veth",
+    "title": "Linux veth(4)",
+    "url": "https://www.man7.org/linux/man-pages/man4/veth.4.html",
+    "kind": "documentation",
+    "notes": "D: short primary manual reviewed; paired virtual interfaces, either endpoint down makes pair link down."
+  },
+  {
+    "id": "chromium-apple-network-notifier",
+    "title": "net/base/network_change_notifier_apple.mm",
+    "url": "https://chromium.googlesource.com/chromium/src/+/refs/heads/main/net/base/network_change_notifier_apple.mm",
+    "kind": "documentation",
+    "notes": "D: current source selected functions read; old SCReachability and new feature-gated nw_path_monitor, connection-type mapping, delays. Main discovery URL retained for existing acquisition. Reviewed pinned snapshot cataloged separately."
+  },
+  {
+    "id": "chromium-apple-network-watcher",
+    "title": "net/base/network_config_watcher_apple.cc",
+    "url": "https://chromium.googlesource.com/chromium/src/+/refs/heads/main/net/base/network_config_watcher_apple.cc",
+    "kind": "documentation",
+    "notes": "D: selected DynamicStore callback/thread/watch initialization; macOS vs iOS distinction. Main discovery URL retained for existing acquisition. Reviewed pinned snapshot cataloged separately."
+  },
+  {
+    "id": "chromium-linux-network-notifier",
+    "title": "net/base/network_change_notifier_linux.cc",
+    "url": "https://chromium.googlesource.com/chromium/src/+/refs/heads/main/net/base/network_change_notifier_linux.cc",
+    "kind": "documentation",
+    "notes": "D: selected current source netlink plus feature-gated XDG portal state, type-change notifications and delays. Main discovery URL retained for existing acquisition. Reviewed pinned snapshot cataloged separately."
+  },
+  {
+    "id": "chromium-linux-address-tracker",
+    "title": "net/base/address_tracker_linux.cc",
+    "url": "https://chromium.googlesource.com/chromium/src/+/refs/heads/main/net/base/address_tracker_linux.cc",
+    "kind": "documentation",
+    "notes": "D: selected link/address netlink handling; IFF_UP/LOWER_UP/RUNNING; tunnel filtering; no route-loss equals offline claim. Main discovery URL retained for existing acquisition. Reviewed pinned snapshot cataloged separately."
+  },
+  {
+    "id": "chromium-linux-network-portal",
+    "title": "net/base/network_change_notifier_linux_portal.cc",
+    "url": "https://chromium.googlesource.com/chromium/src/+/refs/heads/main/net/base/network_change_notifier_linux_portal.cc",
+    "kind": "documentation",
+    "notes": "D: selected portal DBus setup/state code; external desktop global state matters to isolated tests. Main discovery URL retained for existing acquisition. Reviewed pinned snapshot cataloged separately."
+  },
+  {
+    "id": "blink-online-getter",
+    "title": "third_party/blink/renderer/core/frame/navigator_on_line.h",
+    "url": "https://chromium.googlesource.com/chromium/src/+/refs/heads/main/third_party/blink/renderer/core/frame/navigator_on_line.h",
+    "kind": "documentation",
+    "notes": "D: getter calls GetNetworkStateNotifier().OnLine(). Main discovery URL retained for existing acquisition. Reviewed pinned snapshot cataloged separately."
+  },
+  {
+    "id": "blink-network-state",
+    "title": "third_party/blink/renderer/platform/network/network_state_notifier.cc",
+    "url": "https://chromium.googlesource.com/chromium/src/+/refs/heads/main/third_party/blink/renderer/platform/network/network_state_notifier.cc",
+    "kind": "documentation",
+    "notes": "D: selected online/observer state vs network quality/override paths, not complete browser IPC trace. Main discovery URL retained for existing acquisition. Reviewed pinned snapshot cataloged separately."
+  },
+  {
+    "id": "apple-ifconfig-man",
+    "title": "Apple ifconfig(8) source manual",
+    "url": "https://raw.githubusercontent.com/apple-oss-distributions/network_cmds/main/ifconfig.tproj/ifconfig.8",
+    "kind": "documentation",
+    "notes": "D: manual up/down/address/interface context; also local SDK manual read. No commands changing interfaces run."
+  },
+  {
+    "id": "apple-route-man",
+    "title": "Apple route(8) source manual",
+    "url": "https://raw.githubusercontent.com/apple-oss-distributions/network_cmds/main/route.tproj/route.8",
+    "kind": "documentation",
+    "notes": "A: route table context and local SDK manual; route loss is separate from packet drop and link state."
+  },
+  {
+    "id": "apple-pf-man",
+    "title": "Apple archived pf.conf(5) manual",
+    "url": "https://developer.apple.com/library/archive/documentation/Darwin/Reference/ManPages/man5/pf.conf.5.html",
+    "kind": "documentation",
+    "notes": "L: archived Apple URL returns 404. Actual installed SDK pfctl(8) description and anchor section read; acquisition needs local SDK/manual provenance. macOS PF not assumed identical to current OpenBSD."
+  },
+  {
+    "id": "hammerspoon-eventtap-doc",
+    "title": "Hammerspoon eventtap reference",
+    "url": "https://www.hammerspoon.org/docs/hs.eventtap.html",
+    "kind": "documentation",
+    "notes": "D: native tap/event pairs/wheel units/Secure Input constraints and source links. Defaults not human-behavior empirical evidence."
+  },
+  {
+    "id": "ref-hammerspoon",
+    "title": "Hammerspoon native macOS automation",
+    "url": "https://github.com/Hammerspoon/hammerspoon",
+    "kind": "repository",
+    "notes": "D: extensions/eventtap/libeventtap.m and libeventtap_event.m selected create/post/source/wheel functions read from raw upstream. Study only, no install.",
+    "repo": "Hammerspoon/hammerspoon"
+  },
+  {
+    "id": "ref-libpointing",
+    "title": "libpointing transfer-function reference",
+    "url": "https://github.com/INRIA/libpointing",
+    "kind": "repository",
+    "notes": "A: official README plus primary paper toolkit architecture. Study only.",
+    "repo": "INRIA/libpointing"
+  },
+  {
+    "id": "ref-apple-network-cmds",
+    "title": "Apple network_cmds source",
+    "url": "https://github.com/apple-oss-distributions/network_cmds",
+    "kind": "repository",
+    "notes": "A: official tree and ifconfig/route manuals; dnctl network conditioning is a follow-up lead. Study only.",
+    "repo": "apple-oss-distributions/network_cmds"
+  },
+  {
+    "id": "chromium-apple-network-notifier-reviewed",
+    "title": "net/base/network_change_notifier_apple.mm (reviewed snapshot)",
+    "url": "https://raw.githubusercontent.com/chromium/chromium/914e10757b012f036db5a1fcbb9367815a799091/net/base/network_change_notifier_apple.mm",
+    "kind": "documentation",
+    "notes": "D: current source selected functions read; old SCReachability and new feature-gated nw_path_monitor, connection-type mapping, delays. Reviewed origin pinned to upstream commit 914e10757b012f036db5a1fcbb9367815a799091."
+  },
+  {
+    "id": "chromium-apple-network-watcher-reviewed",
+    "title": "net/base/network_config_watcher_apple.cc (reviewed snapshot)",
+    "url": "https://raw.githubusercontent.com/chromium/chromium/914e10757b012f036db5a1fcbb9367815a799091/net/base/network_config_watcher_apple.cc",
+    "kind": "documentation",
+    "notes": "D: selected DynamicStore callback/thread/watch initialization; macOS vs iOS distinction. Reviewed origin pinned to upstream commit 914e10757b012f036db5a1fcbb9367815a799091."
+  },
+  {
+    "id": "chromium-linux-network-notifier-reviewed",
+    "title": "net/base/network_change_notifier_linux.cc (reviewed snapshot)",
+    "url": "https://raw.githubusercontent.com/chromium/chromium/914e10757b012f036db5a1fcbb9367815a799091/net/base/network_change_notifier_linux.cc",
+    "kind": "documentation",
+    "notes": "D: selected current source netlink plus feature-gated XDG portal state, type-change notifications and delays. Reviewed origin pinned to upstream commit 914e10757b012f036db5a1fcbb9367815a799091."
+  },
+  {
+    "id": "chromium-linux-address-tracker-reviewed",
+    "title": "net/base/address_tracker_linux.cc (reviewed snapshot)",
+    "url": "https://raw.githubusercontent.com/chromium/chromium/914e10757b012f036db5a1fcbb9367815a799091/net/base/address_tracker_linux.cc",
+    "kind": "documentation",
+    "notes": "D: selected link/address netlink handling; IFF_UP/LOWER_UP/RUNNING; tunnel filtering; no route-loss equals offline claim. Reviewed origin pinned to upstream commit 914e10757b012f036db5a1fcbb9367815a799091."
+  },
+  {
+    "id": "chromium-linux-network-portal-reviewed",
+    "title": "net/base/network_change_notifier_linux_portal.cc (reviewed snapshot)",
+    "url": "https://raw.githubusercontent.com/chromium/chromium/914e10757b012f036db5a1fcbb9367815a799091/net/base/network_change_notifier_linux_portal.cc",
+    "kind": "documentation",
+    "notes": "D: selected portal DBus setup/state code; external desktop global state matters to isolated tests. Reviewed origin pinned to upstream commit 914e10757b012f036db5a1fcbb9367815a799091."
+  },
+  {
+    "id": "blink-online-getter-reviewed",
+    "title": "third_party/blink/renderer/core/frame/navigator_on_line.h (reviewed snapshot)",
+    "url": "https://raw.githubusercontent.com/chromium/chromium/914e10757b012f036db5a1fcbb9367815a799091/third_party/blink/renderer/core/frame/navigator_on_line.h",
+    "kind": "documentation",
+    "notes": "D: getter calls GetNetworkStateNotifier().OnLine(). Reviewed origin pinned to upstream commit 914e10757b012f036db5a1fcbb9367815a799091."
+  },
+  {
+    "id": "blink-network-state-reviewed",
+    "title": "third_party/blink/renderer/platform/network/network_state_notifier.cc (reviewed snapshot)",
+    "url": "https://raw.githubusercontent.com/chromium/chromium/914e10757b012f036db5a1fcbb9367815a799091/third_party/blink/renderer/platform/network/network_state_notifier.cc",
+    "kind": "documentation",
+    "notes": "D: selected online/observer state vs network quality/override paths, not complete browser IPC trace. Reviewed origin pinned to upstream commit 914e10757b012f036db5a1fcbb9367815a799091."
+  }
+]

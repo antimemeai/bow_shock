@@ -1,0 +1,4437 @@
+[
+  {
+    "id": "accot-zhai-1997",
+    "title": "Beyond Fitts\u2019 Law: Models for Trajectory-Based HCI Tasks",
+    "source_url": "https://research.google/pubs/beyond-fitts-law-models-for-trajectory-based-hci-tasks/",
+    "kind": "paper",
+    "checked_at": "2026-10-01T22:11:04.880853+00:00",
+    "status": "failed",
+    "error": "ValueError: download is not a PDF"
+  },
+  {
+    "id": "agent-browser",
+    "title": "Agent Browser CLI",
+    "source_url": "https://github.com/vercel-labs/agent-browser",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:51:59.537982+00:00",
+    "revision": "39a74c70d7759d5a6de7a22c04570bb626bbd081",
+    "selected_paths": [],
+    "archive_url": "https://codeload.github.com/vercel-labs/agent-browser/tar.gz/39a74c70d7759d5a6de7a22c04570bb626bbd081",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/agent-browser-39a74c70d7759d5a6de7a22c04570bb626bbd081.tar.gz",
+      "bytes": 2169981,
+      "sha256": "f95f730316f2849fd62f41b2153f06fc6b78c76636270f98495c7e773ef77274"
+    },
+    "tree": "quarantine/agent-browser",
+    "status": "acquired",
+    "repo": "vercel-labs/agent-browser",
+    "mode": "archive",
+    "submodules_not_acquired": []
+  },
+  {
+    "id": "agentdojo-2024",
+    "title": "AgentDojo: A Dynamic Environment to Evaluate Attacks and Defenses for LLM Agents",
+    "source_url": "https://arxiv.org/abs/2406.13352v1",
+    "kind": "paper",
+    "checked_at": "2026-10-01T21:53:22.038073+00:00",
+    "download_url": "https://arxiv.org/pdf/2406.13352v1",
+    "artifact": {
+      "path": "papers/pdfs/agentdojo-2024.pdf",
+      "bytes": 988332,
+      "sha256": "7a67dd10e57390d5e5b58911724be1a3fc7e9c6647ac5fcd799719f4adff925e"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "agentic-sop-2026",
+    "title": "Agentic Browsers and the Same-Origin Policy",
+    "source_url": "https://agent-security.cs.washington.edu/agentic_browsers_sop.html",
+    "kind": "paper",
+    "checked_at": "2026-10-01T21:53:30.793489+00:00",
+    "download_url": "https://homes.cs.washington.edu/~franzi/pdf/roesner_kohlbrenner_2026_agentic_sop.pdf",
+    "artifact": {
+      "path": "papers/pdfs/agentic-sop-2026.pdf",
+      "bytes": 716817,
+      "sha256": "4b278a7762acd0ab9e0a319dccfa3b6fd078f3ed72000e5709e5946431e71972"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "agenttrek-2024",
+    "title": "AgentTrek: Agent Trajectory Synthesis via Guiding Replay with Web Tutorials",
+    "source_url": "https://arxiv.org/abs/2412.09605",
+    "kind": "paper",
+    "checked_at": "2026-10-01T21:53:07.669023+00:00",
+    "download_url": "https://arxiv.org/pdf/2412.09605",
+    "artifact": {
+      "path": "papers/pdfs/agenttrek-2024.pdf",
+      "bytes": 4439073,
+      "sha256": "7bdb3828c245ef1ad1cf60ead2140e1bd5f6ff01f8a189f50914cb07f49ef603"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "altmann-goals-2002",
+    "title": "Memory for goals: an activation-based model",
+    "source_url": "https://doi.org/10.1207/s15516709cog2601_2",
+    "kind": "paper",
+    "checked_at": "2026-10-01T22:29:26.554239+00:00",
+    "status": "acquired",
+    "download_url": "https://www.interruptions.net/literature/Altmann-CogSci02.pdf",
+    "artifact": {
+      "path": "papers/pdfs/altmann-goals-2002.pdf",
+      "bytes": 127887,
+      "sha256": "23d94d0e863f3c3a0cdc7ec4914569c02c2ca7ca7e0f16ce4f153642d1c9eda1"
+    }
+  },
+  {
+    "id": "altmann-interruption-2004",
+    "title": "Task interruption: Resumption lag and the role of cues",
+    "source_url": "https://www.interruptions.net/literature/Altmann-CogSci04.pdf",
+    "kind": "paper",
+    "checked_at": "2026-10-01T22:29:51.290819+00:00",
+    "status": "failed",
+    "error": "URLError: <urlopen error _ssl.c:1011: The handshake operation timed out>"
+  },
+  {
+    "id": "amershi-2019",
+    "title": "Guidelines for Human-AI Interaction",
+    "source_url": "https://www.microsoft.com/en-us/research/publication/guidelines-for-human-ai-interaction/",
+    "kind": "paper",
+    "checked_at": "2026-10-01T21:52:33.411218+00:00",
+    "download_url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2019/01/Guidelines-for-Human-AI-Interaction-camera-ready.pdf",
+    "artifact": {
+      "path": "papers/pdfs/amershi-2019.pdf",
+      "bytes": 1405242,
+      "sha256": "82fff584c6b986f573608361478e93447538c6ce707e4b9b04d45d584272ea03"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "apple-adverse-network-2019",
+    "title": "Designing for Adverse Network and Temperature Conditions, WWDC19",
+    "source_url": "https://developer.apple.com/videos/play/wwdc2019/422/",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:31:08.769564+00:00",
+    "status": "acquired",
+    "download_url": "https://developer.apple.com/videos/play/wwdc2019/422/",
+    "artifact": {
+      "path": "context/docs/apple-adverse-network-2019.html",
+      "bytes": 225573,
+      "sha256": "5a7ba49b7b9325cb100e4c71b68adf009ba74c88873dac071d609ddab488b63a"
+    }
+  },
+  {
+    "id": "apple-ax-trust",
+    "title": "Apple AXIsProcessTrustedWithOptions",
+    "source_url": "https://developer.apple.com/documentation/applicationservices/1459186-axisprocesstrustedwithoptions",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:17:13.832967+00:00",
+    "download_url": "https://developer.apple.com/documentation/applicationservices/1459186-axisprocesstrustedwithoptions",
+    "artifact": {
+      "path": "context/docs/apple-ax-trust.html",
+      "bytes": 18966,
+      "sha256": "a04d419cf890ae3d1736e215432d89c9615a3e095b2a861d939e0e9bc8563aa4"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "apple-cgevent",
+    "title": "Apple CGEvent",
+    "source_url": "https://developer.apple.com/documentation/coregraphics/cgevent",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:31:07.743531+00:00",
+    "status": "acquired",
+    "download_url": "https://developer.apple.com/documentation/coregraphics/cgevent",
+    "artifact": {
+      "path": "context/docs/apple-cgevent.html",
+      "bytes": 18358,
+      "sha256": "4aef6f4603964ce395eb7e179a94fbe7f033ab0053e62e01b688ea118edce0cb"
+    }
+  },
+  {
+    "id": "apple-cgevent-post",
+    "title": "Apple CGEventPost",
+    "source_url": "https://developer.apple.com/documentation/coregraphics/cgevent/post(tap:)",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:17:05.015854+00:00",
+    "download_url": "https://developer.apple.com/documentation/coregraphics/cgevent/post(tap:)",
+    "artifact": {
+      "path": "context/docs/apple-cgevent-post.html",
+      "bytes": 18524,
+      "sha256": "8ccdcf163ccbd8a3150caf115b26ca5213f6c77cf4073012d73740458a590c26"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "apple-ifconfig-man",
+    "title": "Apple ifconfig(8) source manual",
+    "source_url": "https://raw.githubusercontent.com/apple-oss-distributions/network_cmds/main/ifconfig.tproj/ifconfig.8",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:31:20.029072+00:00",
+    "status": "acquired",
+    "download_url": "https://raw.githubusercontent.com/apple-oss-distributions/network_cmds/main/ifconfig.tproj/ifconfig.8",
+    "artifact": {
+      "path": "context/docs/apple-ifconfig-man.html",
+      "bytes": 36805,
+      "sha256": "b8e44622877646b4908a041ad4454b29806305845d1deb304f9b8d776ecf3e1d"
+    }
+  },
+  {
+    "id": "apple-listen-preflight",
+    "title": "Apple CGPreflightListenEventAccess",
+    "source_url": "https://developer.apple.com/documentation/coregraphics/cgpreflightlisteneventaccess()",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:17:13.579072+00:00",
+    "download_url": "https://developer.apple.com/documentation/coregraphics/cgpreflightlisteneventaccess()",
+    "artifact": {
+      "path": "context/docs/apple-listen-preflight.html",
+      "bytes": 18743,
+      "sha256": "729675e1465b4ac53e21f2d8e5015a3b95411c68fd08b31043c8dd748cac369c"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "apple-network-path-monitor",
+    "title": "Apple NWPathMonitor",
+    "source_url": "https://developer.apple.com/documentation/network/nwpathmonitor",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:17:14.735318+00:00",
+    "download_url": "https://developer.apple.com/documentation/network/nwpathmonitor",
+    "artifact": {
+      "path": "context/docs/apple-network-path-monitor.html",
+      "bytes": 18387,
+      "sha256": "3a7cb3d538d52bd98ad5a80eab6e6824def33ec6d63e4fb3441178f32961168c"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "apple-network-path-status",
+    "title": "Apple NWPath.Status",
+    "source_url": "https://developer.apple.com/documentation/network/nwpath/status-swift.enum",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:31:08.609353+00:00",
+    "status": "acquired",
+    "download_url": "https://developer.apple.com/documentation/network/nwpath/status-swift.enum",
+    "artifact": {
+      "path": "context/docs/apple-network-path-status.html",
+      "bytes": 18547,
+      "sha256": "4ca0c0bdf87912307500724dc957c7966d5986373c072450914f02e6d3e44493"
+    }
+  },
+  {
+    "id": "apple-pf-man",
+    "title": "Apple archived pf.conf(5) manual",
+    "source_url": "https://developer.apple.com/library/archive/documentation/Darwin/Reference/ManPages/man5/pf.conf.5.html",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:22:23.753920+00:00",
+    "status": "failed",
+    "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+    "id": "apple-post-preflight",
+    "title": "Apple CGPreflightPostEventAccess",
+    "source_url": "https://developer.apple.com/documentation/coregraphics/cgpreflightposteventaccess()",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:31:07.927479+00:00",
+    "status": "acquired",
+    "download_url": "https://developer.apple.com/documentation/coregraphics/cgpreflightposteventaccess()",
+    "artifact": {
+      "path": "context/docs/apple-post-preflight.html",
+      "bytes": 18709,
+      "sha256": "00c0efef34053dc549004cbeeeb94a0d51db9e63ddd573d5c8071f0b1ea9ccf8"
+    }
+  },
+  {
+    "id": "apple-post-request",
+    "title": "Apple CGRequestPostEventAccess",
+    "source_url": "https://developer.apple.com/documentation/coregraphics/cgrequestposteventaccess()",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:17:11.738788+00:00",
+    "download_url": "https://developer.apple.com/documentation/coregraphics/cgrequestposteventaccess()",
+    "artifact": {
+      "path": "context/docs/apple-post-request.html",
+      "bytes": 18675,
+      "sha256": "7fe433c2f0985edce2faa1a21dc1f3ee428c4e15ed2d907ef4f10c58f37d37c5"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "apple-route-man",
+    "title": "Apple route(8) source manual",
+    "source_url": "https://raw.githubusercontent.com/apple-oss-distributions/network_cmds/main/route.tproj/route.8",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:22:23.552857+00:00",
+    "download_url": "https://raw.githubusercontent.com/apple-oss-distributions/network_cmds/main/route.tproj/route.8",
+    "artifact": {
+      "path": "context/docs/apple-route-man.html",
+      "bytes": 12394,
+      "sha256": "72d3cd9317e02a1c819cd2e42e4d51ff6a1b73f1f4689c4d5f28a4635423eb1e"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "bainbridge-1983",
+    "title": "Ironies of Automation",
+    "source_url": "https://doi.org/10.1016/0005-1098(83)90046-8",
+    "kind": "paper",
+    "checked_at": "2026-10-01T22:02:33.409564+00:00",
+    "status": "acquired",
+    "download_url": "https://tc.ifac-control.org/4/1/newsletter/ironies-of-automation/@@download/file/Bainbridge1983_Automatica_Ironies%20of%20automation.pdf",
+    "artifact": {
+      "path": "papers/pdfs/bainbridge-1983.pdf",
+      "bytes": 630136,
+      "sha256": "5f26903a9c1ef2745aa94329174fda8ccfcd44780a987cf031458bb43019caec"
+    }
+  },
+  {
+    "id": "bansal-2021",
+    "title": "Does the Whole Exceed its Parts? The Effect of AI Explanations on Complementary Team Performance",
+    "source_url": "https://arxiv.org/abs/2006.14779",
+    "kind": "paper",
+    "checked_at": "2026-10-01T21:52:34.207690+00:00",
+    "download_url": "https://arxiv.org/pdf/2006.14779",
+    "artifact": {
+      "path": "papers/pdfs/bansal-2021.pdf",
+      "bytes": 3420209,
+      "sha256": "9a00f4566bf0b4a84b4134afcac2eedc6dfdee638c8b79304bee71eec07b0c17"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "blink-native-dom-snapshot",
+    "title": "Blink native DOMSnapshot implementation at pin",
+    "source_url": "https://github.com/chromium/chromium/blob/faee0a28a27e62768c53844d7a29a63d609315dd/third_party/blink/renderer/core/inspector/inspector_dom_snapshot_agent.cc",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:02:33.088089+00:00",
+    "download_url": "https://github.com/chromium/chromium/blob/faee0a28a27e62768c53844d7a29a63d609315dd/third_party/blink/renderer/core/inspector/inspector_dom_snapshot_agent.cc",
+    "artifact": {
+      "path": "context/docs/blink-native-dom-snapshot.html",
+      "bytes": 719496,
+      "sha256": "26b085add9f60fafcca7d76431b77b20c9b8e5c49e60046500f83c26eec93320"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "blink-network-state",
+    "title": "third_party/blink/renderer/platform/network/network_state_notifier.cc",
+    "source_url": "https://chromium.googlesource.com/chromium/src/+/refs/heads/main/third_party/blink/renderer/platform/network/network_state_notifier.cc",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:22:21.461868+00:00",
+    "download_url": "https://chromium.googlesource.com/chromium/src/+/refs/heads/main/third_party/blink/renderer/platform/network/network_state_notifier.cc",
+    "artifact": {
+      "path": "context/docs/blink-network-state.html",
+      "bytes": 184846,
+      "sha256": "47ccc914c21634bb6ab506269a845de68c952e3cff3d1c03d5972d7a584bfcd3"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "blink-network-state-reviewed",
+    "title": "third_party/blink/renderer/platform/network/network_state_notifier.cc (reviewed snapshot)",
+    "source_url": "https://raw.githubusercontent.com/chromium/chromium/914e10757b012f036db5a1fcbb9367815a799091/third_party/blink/renderer/platform/network/network_state_notifier.cc",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:32:35.728825+00:00",
+    "download_url": "https://raw.githubusercontent.com/chromium/chromium/914e10757b012f036db5a1fcbb9367815a799091/third_party/blink/renderer/platform/network/network_state_notifier.cc",
+    "artifact": {
+      "path": "context/docs/blink-network-state-reviewed.html",
+      "bytes": 18142,
+      "sha256": "2aa584a7549596067e0bdd3a9aa471ae7adf0d9b7ee69c48818c527bbb03aff5"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "blink-online-getter",
+    "title": "third_party/blink/renderer/core/frame/navigator_on_line.h",
+    "source_url": "https://chromium.googlesource.com/chromium/src/+/refs/heads/main/third_party/blink/renderer/core/frame/navigator_on_line.h",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:22:19.843931+00:00",
+    "download_url": "https://chromium.googlesource.com/chromium/src/+/refs/heads/main/third_party/blink/renderer/core/frame/navigator_on_line.h",
+    "artifact": {
+      "path": "context/docs/blink-online-getter.html",
+      "bytes": 20990,
+      "sha256": "f12dce722e5b488ef231a43b52ffd67bd52da4f700a469975dd2f9507f9087ae"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "blink-online-getter-reviewed",
+    "title": "third_party/blink/renderer/core/frame/navigator_on_line.h (reviewed snapshot)",
+    "source_url": "https://raw.githubusercontent.com/chromium/chromium/914e10757b012f036db5a1fcbb9367815a799091/third_party/blink/renderer/core/frame/navigator_on_line.h",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:32:35.719511+00:00",
+    "download_url": "https://raw.githubusercontent.com/chromium/chromium/914e10757b012f036db5a1fcbb9367815a799091/third_party/blink/renderer/core/frame/navigator_on_line.h",
+    "artifact": {
+      "path": "context/docs/blink-online-getter-reviewed.html",
+      "bytes": 2070,
+      "sha256": "6435674b7df7a2555ac38a3ca64af45480be30eb958984bf61d7cf01235f946b"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "brave-farbling",
+    "title": "Brave Fingerprinting Defenses 2.0",
+    "source_url": "https://brave.com/privacy-updates/4-fingerprinting-defenses-2.0/",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:02:26.366514+00:00",
+    "download_url": "https://brave.com/privacy-updates/4-fingerprinting-defenses-2.0/",
+    "artifact": {
+      "path": "context/docs/brave-farbling.html",
+      "bytes": 94066,
+      "sha256": "e355d7754110574a1c80c01aff5cf9af44c56a319773bb4c0a81ddfb70f3ca96"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "browser-harness",
+    "title": "Browser Use Browser Harness",
+    "source_url": "https://github.com/browser-use/browser-harness",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:51:59.327118+00:00",
+    "revision": "afbcc381b963040c19627d788e40c7e7663171ee",
+    "selected_paths": [],
+    "archive_url": "https://codeload.github.com/browser-use/browser-harness/tar.gz/afbcc381b963040c19627d788e40c7e7663171ee",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/browser-harness-afbcc381b963040c19627d788e40c7e7663171ee.tar.gz",
+      "bytes": 2195220,
+      "sha256": "9db397b0a0e529196fd2626e7e28c9da5057d21f36c221956d8a74be99e9c5f6"
+    },
+    "tree": "quarantine/browser-harness",
+    "status": "acquired",
+    "repo": "browser-use/browser-harness",
+    "mode": "archive",
+    "submodules_not_acquired": []
+  },
+  {
+    "id": "browser-use",
+    "title": "Browser Use agent library",
+    "source_url": "https://github.com/browser-use/browser-use",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:51:59.243519+00:00",
+    "revision": "4cbe921673b48a488f5415d9159249afd12a625b",
+    "selected_paths": [],
+    "archive_url": "https://codeload.github.com/browser-use/browser-use/tar.gz/4cbe921673b48a488f5415d9159249afd12a625b",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/browser-use-4cbe921673b48a488f5415d9159249afd12a625b.tar.gz",
+      "bytes": 4721738,
+      "sha256": "0733cbd47eeb96e7c370637f7780baa717de56751c72d74d08d18f41d689c733"
+    },
+    "tree": "quarantine/browser-use",
+    "status": "acquired",
+    "repo": "browser-use/browser-use",
+    "mode": "archive",
+    "submodules_not_acquired": []
+  },
+  {
+    "id": "browserart-2024",
+    "title": "Refusal-Trained LLMs Are Easily Jailbroken As Browser Agents",
+    "source_url": "https://arxiv.org/abs/2410.13886",
+    "kind": "paper",
+    "checked_at": "2026-10-01T21:53:25.835637+00:00",
+    "download_url": "https://arxiv.org/pdf/2410.13886",
+    "artifact": {
+      "path": "papers/pdfs/browserart-2024.pdf",
+      "bytes": 1800919,
+      "sha256": "dac1054a0a353db947c57c08c5be65d251bd5c31190ca83f4efbdfa9e6eb5600"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "browsergym-2024",
+    "title": "The BrowserGym Ecosystem for Web Agent Research",
+    "source_url": "https://arxiv.org/abs/2412.05467v1",
+    "kind": "paper",
+    "checked_at": "2026-10-01T21:52:43.031106+00:00",
+    "download_url": "https://arxiv.org/pdf/2412.05467v1",
+    "artifact": {
+      "path": "papers/pdfs/browsergym-2024.pdf",
+      "bytes": 9583355,
+      "sha256": "7e46aefba6b72bb091824abf3ee70ff59affd66eca769199fc39c58d9d1f2146"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "browsesafe-2025",
+    "title": "BrowseSafe: Understanding and Preventing Prompt Injection Within AI Browser Agents",
+    "source_url": "https://arxiv.org/abs/2511.20597v1",
+    "kind": "paper",
+    "checked_at": "2026-10-01T21:53:32.639035+00:00",
+    "download_url": "https://arxiv.org/pdf/2511.20597v1",
+    "artifact": {
+      "path": "papers/pdfs/browsesafe-2025.pdf",
+      "bytes": 2068515,
+      "sha256": "7197ddd06a38aff820b48fb5f6d6be468e507d4e7987b62489167ae002123453"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "bucinca-2021",
+    "title": "To Trust or to Think: Cognitive Forcing Functions Can Reduce Overreliance on AI in AI-Assisted Decision-Making",
+    "source_url": "https://arxiv.org/abs/2102.09692",
+    "kind": "paper",
+    "checked_at": "2026-10-01T21:52:34.826350+00:00",
+    "download_url": "https://arxiv.org/pdf/2102.09692",
+    "artifact": {
+      "path": "papers/pdfs/bucinca-2021.pdf",
+      "bytes": 1910784,
+      "sha256": "c0c6983901488b46ea3951fb29f96a9420f87952a46816824826d0320d175989"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "camel-2025",
+    "title": "Defeating Prompt Injections by Design",
+    "source_url": "https://arxiv.org/abs/2503.18813v1",
+    "kind": "paper",
+    "checked_at": "2026-10-01T21:53:25.014352+00:00",
+    "download_url": "https://arxiv.org/pdf/2503.18813v1",
+    "artifact": {
+      "path": "papers/pdfs/camel-2025.pdf",
+      "bytes": 6120475,
+      "sha256": "f6ef8b92c3b858ebaf30d0a0746d74fe7d0173d36d13ae1766e6b7b1748119f3"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "card-keystroke-1980",
+    "title": "The Keystroke-Level Model for User Performance Time with Interactive Systems",
+    "source_url": "https://doi.org/10.1145/358886.358895",
+    "kind": "paper",
+    "checked_at": "2026-10-01T22:15:34.490715+00:00",
+    "download_url": "https://frankritter.com/hcdd331/cardMN80.pdf",
+    "artifact": {
+      "path": "papers/pdfs/card-keystroke-1980.pdf",
+      "bytes": 196207,
+      "sha256": "3c489fdbce9266b94902077a0722222ad6d59aed0307003516aadde302776574"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "casiez-roussel-2011",
+    "title": "No more bricolage! Methods and tools to characterize, replicate and compare pointing transfer functions",
+    "source_url": "https://doi.org/10.1145/2047196.2047276",
+    "kind": "paper",
+    "checked_at": "2026-10-01T22:11:10.350317+00:00",
+    "download_url": "https://gery.casiez.net/publications/UIST2011-NoMoreBricolage.pdf",
+    "artifact": {
+      "path": "papers/pdfs/casiez-roussel-2011.pdf",
+      "bytes": 892365,
+      "sha256": "f1f38d3680d8002124e507cbe87841052c57d7765092c9b950edea85ae2062b0"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "cdp-native-surfaces",
+    "title": "Pinned CDP observation, target and provenance domain schemas",
+    "source_url": "https://github.com/ChromeDevTools/devtools-protocol",
+    "kind": "repository",
+    "checked_at": "2026-10-01T22:02:27.397365+00:00",
+    "repo": "ChromeDevTools/devtools-protocol",
+    "revision": "8b7f1d955017db8633ecae04cdfa194f731c9eff",
+    "selected_paths": [
+      "pdl/domains/DOMSnapshot.pdl",
+      "pdl/domains/DOM.pdl",
+      "pdl/domains/Accessibility.pdl",
+      "pdl/domains/Network.pdl",
+      "pdl/domains/Target.pdl",
+      "pdl/domains/Page.pdl",
+      "pdl/domains/Emulation.pdl"
+    ],
+    "mode": "files",
+    "archive_url": "https://raw.githubusercontent.com/ChromeDevTools/devtools-protocol/8b7f1d955017db8633ecae04cdfa194f731c9eff/",
+    "scope": "listed individual files",
+    "artifact": {
+      "path": "quarantine/archives/cdp-native-surfaces-8b7f1d955017db8633ecae04cdfa194f731c9eff-ae2b463aa844.zip",
+      "bytes": 62842,
+      "sha256": "00c11909e0d8f8b112b27766eb4ea2d481f04846c0ae71b80cf516454248d9fe"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/cdp-native-surfaces",
+    "status": "acquired"
+  },
+  {
+    "id": "cdp-protocol",
+    "title": "Chrome DevTools Protocol definitions",
+    "source_url": "https://github.com/ChromeDevTools/devtools-protocol",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:51:59.674555+00:00",
+    "revision": "8b7f1d955017db8633ecae04cdfa194f731c9eff",
+    "selected_paths": [],
+    "archive_url": "https://codeload.github.com/ChromeDevTools/devtools-protocol/tar.gz/8b7f1d955017db8633ecae04cdfa194f731c9eff",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/cdp-protocol-8b7f1d955017db8633ecae04cdfa194f731c9eff.tar.gz",
+      "bytes": 940772,
+      "sha256": "74e54fb44d79eeda42f57750bcc6ff794c2ff2a6638486dd3939a19da639f83d"
+    },
+    "tree": "quarantine/cdp-protocol",
+    "status": "acquired",
+    "repo": "ChromeDevTools/devtools-protocol",
+    "mode": "archive",
+    "submodules_not_acquired": [
+      {
+        "path": "scripts/inspector_protocol",
+        "url": "https://chromium.googlesource.com/deps/inspector_protocol",
+        "status": "not included in source archive"
+      }
+    ]
+  },
+  {
+    "id": "cef",
+    "title": "Chromium Embedded Framework",
+    "source_url": "https://github.com/chromiumembedded/cef",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:52:01.221273+00:00",
+    "revision": "ff57d4eae16d36457895f2de115a71d502e85a08",
+    "selected_paths": [],
+    "archive_url": "https://codeload.github.com/chromiumembedded/cef/tar.gz/ff57d4eae16d36457895f2de115a71d502e85a08",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/cef-ff57d4eae16d36457895f2de115a71d502e85a08.tar.gz",
+      "bytes": 3606194,
+      "sha256": "86c19bec1b2783d5070c480dfb82b4909700d4866df3cc020ca17b8239cbdc5d"
+    },
+    "tree": "quarantine/cef",
+    "status": "acquired",
+    "repo": "chromiumembedded/cef",
+    "mode": "archive",
+    "submodules_not_acquired": []
+  },
+  {
+    "id": "cef-architecture-doc",
+    "title": "CEF architecture",
+    "source_url": "https://chromiumembedded.github.io/cef/architecture",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T21:52:09.444460+00:00",
+    "download_url": "https://chromiumembedded.github.io/cef/architecture",
+    "artifact": {
+      "path": "context/docs/cef-architecture-doc.html",
+      "bytes": 28092,
+      "sha256": "b39fe251aca4b31288951c3504724670e9df9944f955db5da63676c17db9d2ab"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "cef-general-doc",
+    "title": "CEF general usage",
+    "source_url": "https://chromiumembedded.github.io/cef/general_usage",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T21:52:08.748869+00:00",
+    "download_url": "https://chromiumembedded.github.io/cef/general_usage",
+    "artifact": {
+      "path": "context/docs/cef-general-doc.html",
+      "bytes": 139450,
+      "sha256": "9bb428885cfed19d50eb3c983a0dca222f1782449bcef3ea7d348f3faa3c0236"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "cef-javascript-doc",
+    "title": "CEF JavaScript integration",
+    "source_url": "https://chromiumembedded.github.io/cef/javascript_integration",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T21:52:10.067867+00:00",
+    "download_url": "https://chromiumembedded.github.io/cef/javascript_integration",
+    "artifact": {
+      "path": "context/docs/cef-javascript-doc.html",
+      "bytes": 44314,
+      "sha256": "d4800e53cb960226a44edbb5c345daa1b2fb4ac39b7b4f74a376642c515deb4f"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "cef-native-dom-api",
+    "title": "CEF DOM visitor contract at pin",
+    "source_url": "https://github.com/chromiumembedded/cef/blob/ff57d4eae16d36457895f2de115a71d502e85a08/include/cef_dom.h",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:02:32.310802+00:00",
+    "download_url": "https://github.com/chromiumembedded/cef/blob/ff57d4eae16d36457895f2de115a71d502e85a08/include/cef_dom.h",
+    "artifact": {
+      "path": "context/docs/cef-native-dom-api.html",
+      "bytes": 421606,
+      "sha256": "fde511c459ccfab78bac0dd563bba652e9cc7d4ce7552cd5874baa2696788559"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "cef-native-surfaces",
+    "title": "Pinned CEF native DOM, frame lifetime, accessibility and request surfaces",
+    "source_url": "https://github.com/chromiumembedded/cef",
+    "kind": "repository",
+    "checked_at": "2026-10-01T22:02:27.011323+00:00",
+    "repo": "chromiumembedded/cef",
+    "revision": "ff57d4eae16d36457895f2de115a71d502e85a08",
+    "selected_paths": [
+      "include/cef_dom.h",
+      "include/cef_frame.h",
+      "include/cef_frame_handler.h",
+      "include/cef_browser.h",
+      "include/cef_accessibility_handler.h",
+      "include/cef_render_handler.h",
+      "include/cef_resource_request_handler.h",
+      "include/cef_response_filter.h",
+      "include/internal/cef_types.h",
+      "libcef/renderer/frame_impl.cc",
+      "libcef/renderer/dom_document_impl.cc",
+      "libcef/renderer/dom_node_impl.cc",
+      "libcef/common/chrome/chrome_main_delegate_cef.cc"
+    ],
+    "mode": "files",
+    "archive_url": "https://raw.githubusercontent.com/chromiumembedded/cef/ff57d4eae16d36457895f2de115a71d502e85a08/",
+    "scope": "listed individual files",
+    "artifact": {
+      "path": "quarantine/archives/cef-native-surfaces-ff57d4eae16d36457895f2de115a71d502e85a08-953932604397.zip",
+      "bytes": 82943,
+      "sha256": "a96de099701a588913be3390246bc00afb24f498dad399417d8995fad92a2b33"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/cef-native-surfaces",
+    "status": "acquired"
+  },
+  {
+    "id": "cef-project",
+    "title": "Official CEF embedding sample project",
+    "source_url": "https://github.com/chromiumembedded/cef-project",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:52:01.460423+00:00",
+    "revision": "3aec7049cf63a36876d7a6ef538842d6af314482",
+    "selected_paths": [],
+    "archive_url": "https://codeload.github.com/chromiumembedded/cef-project/tar.gz/3aec7049cf63a36876d7a6ef538842d6af314482",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/cef-project-3aec7049cf63a36876d7a6ef538842d6af314482.tar.gz",
+      "bytes": 258867,
+      "sha256": "ffad21f372884117ba4edafb8abadabc37e2d04d5592500d0808713bd8b2c0ce"
+    },
+    "tree": "quarantine/cef-project",
+    "status": "acquired",
+    "repo": "chromiumembedded/cef-project",
+    "mode": "archive",
+    "submodules_not_acquired": []
+  },
+  {
+    "id": "cef-rust",
+    "title": "tauri-apps/cef-rs",
+    "source_url": "https://github.com/tauri-apps/cef-rs",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:54:45.348895+00:00",
+    "repo": "tauri-apps/cef-rs",
+    "revision": "a712ad9bacd234c050631a95b9745b27d346b7cc",
+    "selected_paths": [],
+    "mode": "archive",
+    "archive_url": "https://codeload.github.com/tauri-apps/cef-rs/tar.gz/a712ad9bacd234c050631a95b9745b27d346b7cc",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/cef-rust-a712ad9bacd234c050631a95b9745b27d346b7cc.tar.gz",
+      "bytes": 6867535,
+      "sha256": "f8e836849f4569778bc7b694599439b011a348f325f817d1f94b20d0c96c84bc"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/cef-rust",
+    "status": "acquired"
+  },
+  {
+    "id": "cef-sandbox-doc",
+    "title": "CEF sandbox setup",
+    "source_url": "https://chromiumembedded.github.io/cef/sandbox_setup",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T21:52:10.356980+00:00",
+    "download_url": "https://chromiumembedded.github.io/cef/sandbox_setup",
+    "artifact": {
+      "path": "context/docs/cef-sandbox-doc.html",
+      "bytes": 23178,
+      "sha256": "307f9e87044ae12724ccaca60b7c8839acb2ba764bce385ac48127b012ef576d"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "cellmate-2025",
+    "title": "ceLLMate: Sandboxing Browser AI Agents",
+    "source_url": "https://arxiv.org/abs/2512.12594v1",
+    "kind": "paper",
+    "checked_at": "2026-10-01T21:53:35.117745+00:00",
+    "download_url": "https://arxiv.org/pdf/2512.12594v1",
+    "artifact": {
+      "path": "papers/pdfs/cellmate-2025.pdf",
+      "bytes": 972858,
+      "sha256": "d7a45c897fac560ec2678701f40c71fb689a2597b1aacc04adbaf59666990754"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "chickenfoot",
+    "title": "Chickenfoot",
+    "source_url": "https://github.com/bolinfest/chickenfoot",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:52:21.992996+00:00",
+    "revision": "97fcf004a2cc9fc7ef24a39462badb338122fc1d",
+    "selected_paths": [],
+    "archive_url": "https://codeload.github.com/bolinfest/chickenfoot/tar.gz/97fcf004a2cc9fc7ef24a39462badb338122fc1d",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/chickenfoot-97fcf004a2cc9fc7ef24a39462badb338122fc1d.tar.gz",
+      "bytes": 52818186,
+      "sha256": "6b25a7470a6e97a83f5c152f08e455e9a7c316c88e8b693db58fdd73b7ebb8f0"
+    },
+    "tree": "quarantine/chickenfoot",
+    "status": "acquired",
+    "repo": "bolinfest/chickenfoot",
+    "mode": "archive",
+    "submodules_not_acquired": []
+  },
+  {
+    "id": "chickenfoot-chapter",
+    "title": "Rewriting the Web with Chickenfoot",
+    "source_url": "https://up.csail.mit.edu/other-pubs/rewriting-web-with-chickenfoot.pdf",
+    "kind": "paper",
+    "checked_at": "2026-10-01T21:52:17.562257+00:00",
+    "download_url": "https://up.csail.mit.edu/other-pubs/rewriting-web-with-chickenfoot.pdf",
+    "artifact": {
+      "path": "papers/pdfs/chickenfoot-chapter.pdf",
+      "bytes": 1166909,
+      "sha256": "308e38b72b0ddd0d3fa894ea9d1344c8c11e13d44ba851b01503afa2a0c82c23"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "chrome-active-tab-doc",
+    "title": "Chrome activeTab permission",
+    "source_url": "https://developer.chrome.com/docs/extensions/develop/concepts/activeTab",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T21:52:11.600675+00:00",
+    "download_url": "https://developer.chrome.com/docs/extensions/develop/concepts/activeTab",
+    "artifact": {
+      "path": "context/docs/chrome-active-tab-doc.html",
+      "bytes": 142323,
+      "sha256": "83d191602747ab9127383b5d3e67af9d8927dc05c2a3f55a84e139bc62383fa2"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "chrome-debugger-doc",
+    "title": "Chrome extension debugger API",
+    "source_url": "https://developer.chrome.com/docs/extensions/reference/api/debugger",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T21:52:11.308626+00:00",
+    "download_url": "https://developer.chrome.com/docs/extensions/reference/api/debugger",
+    "artifact": {
+      "path": "context/docs/chrome-debugger-doc.html",
+      "bytes": 192203,
+      "sha256": "e77838969035aafbf9f24caa2c29daf7fa9edb374568c95c3f277ed9df30b275"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "chrome-debugging-change",
+    "title": "Changes to remote debugging switches to improve security",
+    "source_url": "https://developer.chrome.com/blog/remote-debugging-port",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T21:51:59.677842+00:00",
+    "download_url": "https://developer.chrome.com/blog/remote-debugging-port",
+    "artifact": {
+      "path": "context/docs/chrome-debugging-change.html",
+      "bytes": 96386,
+      "sha256": "4ca9e7b8deb016736cfe85a0e76f1864d6f689d0017df190cf4849017fad8829"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "chrome-extension-samples",
+    "title": "Official Chrome extension samples",
+    "source_url": "https://github.com/GoogleChrome/chrome-extensions-samples",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:52:01.489740+00:00",
+    "revision": "e01a67d830c5ccb82ac567ff86037c9333d2d648",
+    "selected_paths": [],
+    "archive_url": "https://codeload.github.com/GoogleChrome/chrome-extensions-samples/tar.gz/e01a67d830c5ccb82ac567ff86037c9333d2d648",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/chrome-extension-samples-e01a67d830c5ccb82ac567ff86037c9333d2d648.tar.gz",
+      "bytes": 39093105,
+      "sha256": "9174d31b46f13e3fdc28afb9fec5bcdb1436cac051646d61e2f54875fa53a938"
+    },
+    "tree": "quarantine/chrome-extension-samples",
+    "status": "acquired",
+    "repo": "GoogleChrome/chrome-extensions-samples",
+    "mode": "archive",
+    "submodules_not_acquired": []
+  },
+  {
+    "id": "chrome-native-messaging-doc",
+    "title": "Chrome native messaging",
+    "source_url": "https://developer.chrome.com/docs/extensions/develop/concepts/native-messaging",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T21:52:10.795045+00:00",
+    "download_url": "https://developer.chrome.com/docs/extensions/develop/concepts/native-messaging",
+    "artifact": {
+      "path": "context/docs/chrome-native-messaging-doc.html",
+      "bytes": 159040,
+      "sha256": "2c95c9112612fe2d2df47bab10196042444dae7b000f8253a1ff5d10f2472e7a"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "chrome-remote-debug-security-doc",
+    "title": "Chrome 136 remote-debugging security changes",
+    "source_url": "https://developer.chrome.com/blog/remote-debugging-port",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T21:52:11.637629+00:00",
+    "download_url": "https://developer.chrome.com/blog/remote-debugging-port",
+    "artifact": {
+      "path": "context/docs/chrome-remote-debug-security-doc.html",
+      "bytes": 96382,
+      "sha256": "a786c6a71cece88cfc375aaeddd6d3c9d54503e03b6e50b044337f307be20df4"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "chromium",
+    "title": "Chromium source and Content embedding interfaces",
+    "source_url": "https://chromium.googlesource.com/chromium/src/",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:52:01.212313+00:00",
+    "revision": "faee0a28a27e62768c53844d7a29a63d609315dd",
+    "selected_paths": [
+      "content/README.md",
+      "content/public/browser/web_contents.h",
+      "content/public/browser/web_contents_observer.h",
+      "content/public/browser/navigation_throttle.h",
+      "content/public/browser/browser_context.h",
+      "content/public/browser/devtools_agent_host.h",
+      "content/public/browser/render_frame_host.h",
+      "content/public/browser/content_browser_client.h",
+      "content/shell/browser/shell.cc",
+      "content/shell/browser/shell_browser_context.cc",
+      "content/shell/browser/shell_content_browser_client.cc",
+      "content/browser/devtools/devtools_http_handler.cc",
+      "content/browser/devtools/devtools_agent_host_impl.cc",
+      "chrome/browser/devtools/remote_debugging_server.cc",
+      "chrome/browser/extensions/api/messaging/native_message_process_host.cc",
+      "docs/mojo_and_services.md",
+      "docs/security/mojo.md",
+      "docs/security/compromised-renderers.md",
+      "docs/process_model_and_site_isolation.md"
+    ],
+    "archive_url": "https://raw.githubusercontent.com/chromium/chromium/faee0a28a27e62768c53844d7a29a63d609315dd/",
+    "scope": "listed individual files",
+    "artifact": {
+      "path": "quarantine/archives/chromium-faee0a28a27e62768c53844d7a29a63d609315dd.zip",
+      "bytes": 206815,
+      "sha256": "1179e20656a6390c0c980d7e9a36fdf93fad88f48fca53d94969e32d2181dc80"
+    },
+    "tree": "quarantine/chromium",
+    "status": "acquired",
+    "repo": "chromium/chromium",
+    "mode": "files",
+    "submodules_not_acquired": []
+  },
+  {
+    "id": "chromium-apple-network-notifier",
+    "title": "net/base/network_change_notifier_apple.mm",
+    "source_url": "https://chromium.googlesource.com/chromium/src/+/refs/heads/main/net/base/network_change_notifier_apple.mm",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:31:18.405024+00:00",
+    "status": "failed",
+    "error": "HTTPError: HTTP Error 503: Service Unavailable"
+  },
+  {
+    "id": "chromium-apple-network-notifier-reviewed",
+    "title": "net/base/network_change_notifier_apple.mm (reviewed snapshot)",
+    "source_url": "https://raw.githubusercontent.com/chromium/chromium/914e10757b012f036db5a1fcbb9367815a799091/net/base/network_change_notifier_apple.mm",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:32:30.481934+00:00",
+    "download_url": "https://raw.githubusercontent.com/chromium/chromium/914e10757b012f036db5a1fcbb9367815a799091/net/base/network_change_notifier_apple.mm",
+    "artifact": {
+      "path": "context/docs/chromium-apple-network-notifier-reviewed.html",
+      "bytes": 29756,
+      "sha256": "12183edb7abf0be7cf8e162815bfd13318c8bd56639191007ebd4f48a2078d55"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "chromium-apple-network-watcher",
+    "title": "net/base/network_config_watcher_apple.cc",
+    "source_url": "https://chromium.googlesource.com/chromium/src/+/refs/heads/main/net/base/network_config_watcher_apple.cc",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:31:18.463414+00:00",
+    "status": "acquired",
+    "download_url": "https://chromium.googlesource.com/chromium/src/+/refs/heads/main/net/base/network_config_watcher_apple.cc",
+    "artifact": {
+      "path": "context/docs/chromium-apple-network-watcher.html",
+      "bytes": 67875,
+      "sha256": "e84ff54ec48a4034a1ead8314ff455fa66299995e1ce70c26dca4da371283d61"
+    }
+  },
+  {
+    "id": "chromium-apple-network-watcher-reviewed",
+    "title": "net/base/network_config_watcher_apple.cc (reviewed snapshot)",
+    "source_url": "https://raw.githubusercontent.com/chromium/chromium/914e10757b012f036db5a1fcbb9367815a799091/net/base/network_config_watcher_apple.cc",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:32:33.865233+00:00",
+    "download_url": "https://raw.githubusercontent.com/chromium/chromium/914e10757b012f036db5a1fcbb9367815a799091/net/base/network_config_watcher_apple.cc",
+    "artifact": {
+      "path": "context/docs/chromium-apple-network-watcher-reviewed.html",
+      "bytes": 6353,
+      "sha256": "1be23a99840e82b20886e08d24812cc2f5ae66446f7fd0f3cbe0b03075cadf20"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "chromium-content-doc",
+    "title": "Chromium Content module",
+    "source_url": "https://chromium.googlesource.com/chromium/src/+/main/content/README.md",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T21:52:04.106674+00:00",
+    "download_url": "https://chromium.googlesource.com/chromium/src/+/main/content/README.md",
+    "artifact": {
+      "path": "context/docs/chromium-content-doc.html",
+      "bytes": 65234,
+      "sha256": "8bc2566e0e4a14de5daf6c15f7c3e6fc90b528f3e98f6fbeaaf08c9458058d37"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "chromium-linux-address-tracker",
+    "title": "net/base/address_tracker_linux.cc",
+    "source_url": "https://chromium.googlesource.com/chromium/src/+/refs/heads/main/net/base/address_tracker_linux.cc",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:22:02.302326+00:00",
+    "download_url": "https://chromium.googlesource.com/chromium/src/+/refs/heads/main/net/base/address_tracker_linux.cc",
+    "artifact": {
+      "path": "context/docs/chromium-linux-address-tracker.html",
+      "bytes": 270987,
+      "sha256": "876feef6eae3b9f11f4f2c91eb5ca2a400cee24087c9a20f83dfe30cdac81c5b"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "chromium-linux-address-tracker-reviewed",
+    "title": "net/base/address_tracker_linux.cc (reviewed snapshot)",
+    "source_url": "https://raw.githubusercontent.com/chromium/chromium/914e10757b012f036db5a1fcbb9367815a799091/net/base/address_tracker_linux.cc",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:32:34.385370+00:00",
+    "download_url": "https://raw.githubusercontent.com/chromium/chromium/914e10757b012f036db5a1fcbb9367815a799091/net/base/address_tracker_linux.cc",
+    "artifact": {
+      "path": "context/docs/chromium-linux-address-tracker-reviewed.html",
+      "bytes": 27049,
+      "sha256": "aca82c4466478ddeba089613ce7d154262cde9237ff61d3fcd9bea1194b24779"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "chromium-linux-network-notifier",
+    "title": "net/base/network_change_notifier_linux.cc",
+    "source_url": "https://chromium.googlesource.com/chromium/src/+/refs/heads/main/net/base/network_change_notifier_linux.cc",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:31:18.820570+00:00",
+    "status": "failed",
+    "error": "HTTPError: HTTP Error 503: Service Unavailable"
+  },
+  {
+    "id": "chromium-linux-network-notifier-reviewed",
+    "title": "net/base/network_change_notifier_linux.cc (reviewed snapshot)",
+    "source_url": "https://raw.githubusercontent.com/chromium/chromium/914e10757b012f036db5a1fcbb9367815a799091/net/base/network_change_notifier_linux.cc",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:32:34.278038+00:00",
+    "download_url": "https://raw.githubusercontent.com/chromium/chromium/914e10757b012f036db5a1fcbb9367815a799091/net/base/network_change_notifier_linux.cc",
+    "artifact": {
+      "path": "context/docs/chromium-linux-network-notifier-reviewed.html",
+      "bytes": 11969,
+      "sha256": "7532eb2bfb6a5968f355c1d4f06bbc0352724764fa1f1a747b5fe9761a545e29"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "chromium-linux-network-portal",
+    "title": "net/base/network_change_notifier_linux_portal.cc",
+    "source_url": "https://chromium.googlesource.com/chromium/src/+/refs/heads/main/net/base/network_change_notifier_linux_portal.cc",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:31:18.902449+00:00",
+    "status": "acquired",
+    "download_url": "https://chromium.googlesource.com/chromium/src/+/refs/heads/main/net/base/network_change_notifier_linux_portal.cc",
+    "artifact": {
+      "path": "context/docs/chromium-linux-network-portal.html",
+      "bytes": 100089,
+      "sha256": "35b63124b958de910822c896f9449e7872e87c64b59cf25f7cf6607752713735"
+    }
+  },
+  {
+    "id": "chromium-linux-network-portal-reviewed",
+    "title": "net/base/network_change_notifier_linux_portal.cc (reviewed snapshot)",
+    "source_url": "https://raw.githubusercontent.com/chromium/chromium/914e10757b012f036db5a1fcbb9367815a799091/net/base/network_change_notifier_linux_portal.cc",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:32:35.516733+00:00",
+    "download_url": "https://raw.githubusercontent.com/chromium/chromium/914e10757b012f036db5a1fcbb9367815a799091/net/base/network_change_notifier_linux_portal.cc",
+    "artifact": {
+      "path": "context/docs/chromium-linux-network-portal-reviewed.html",
+      "bytes": 9904,
+      "sha256": "bb6816ae4be7d041a105588f140ea37f18735a13f759b801c1054e956642384a"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "chromium-mojo-doc",
+    "title": "Chromium Mojo and services",
+    "source_url": "https://chromium.googlesource.com/chromium/src/+/main/docs/mojo_and_services.md",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T21:52:08.375271+00:00",
+    "download_url": "https://chromium.googlesource.com/chromium/src/+/main/docs/mojo_and_services.md",
+    "artifact": {
+      "path": "context/docs/chromium-mojo-doc.html",
+      "bytes": 67205,
+      "sha256": "46333b1e851a87fd78b5409c3886bd10925b4d577badce816c130d7e4bb81d72"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "chromium-mojo-security-doc",
+    "title": "Chromium Mojo security style guide",
+    "source_url": "https://raw.githubusercontent.com/chromium/chromium/faee0a28a27e62768c53844d7a29a63d609315dd/docs/security/mojo.md",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:02:26.365601+00:00",
+    "status": "acquired",
+    "download_url": "https://raw.githubusercontent.com/chromium/chromium/faee0a28a27e62768c53844d7a29a63d609315dd/docs/security/mojo.md",
+    "artifact": {
+      "path": "context/docs/chromium-mojo-security-doc.html",
+      "bytes": 35945,
+      "sha256": "bb8afb509c4daee461dbb687a97322b9e48eb210ba59654b1ae7b34b20b43c0d"
+    }
+  },
+  {
+    "id": "chromium-multiprocess-doc",
+    "title": "Chromium multi-process architecture",
+    "source_url": "https://www.chromium.org/developers/design-documents/multi-process-architecture/",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T21:52:07.835814+00:00",
+    "download_url": "https://www.chromium.org/developers/design-documents/multi-process-architecture/",
+    "artifact": {
+      "path": "context/docs/chromium-multiprocess-doc.html",
+      "bytes": 17938,
+      "sha256": "aa70b29596ad4a8e2df3c8405f3efe569e1e710e8dc67e47d02eb7e419f6966d"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "chromium-native-surfaces",
+    "title": "Pinned Blink native snapshot/AX/DOM internals and Chromium runtime identity",
+    "source_url": "https://github.com/chromium/chromium",
+    "kind": "repository",
+    "checked_at": "2026-10-01T22:02:27.304317+00:00",
+    "repo": "chromium/chromium",
+    "revision": "faee0a28a27e62768c53844d7a29a63d609315dd",
+    "selected_paths": [
+      "components/embedder_support/user_agent_utils.cc",
+      "docs/chromium_browser_vs_google_chrome.md",
+      "third_party/blink/renderer/core/dom/events/event.h",
+      "third_party/blink/renderer/core/frame/navigator.cc",
+      "third_party/blink/renderer/core/inspector/inspector_dom_agent.cc",
+      "third_party/blink/renderer/core/inspector/inspector_dom_snapshot_agent.cc",
+      "third_party/blink/renderer/modules/accessibility/inspector_accessibility_agent.cc",
+      "ui/accessibility/platform/browser_accessibility_manager.cc"
+    ],
+    "mode": "files",
+    "archive_url": "https://raw.githubusercontent.com/chromium/chromium/faee0a28a27e62768c53844d7a29a63d609315dd/",
+    "scope": "listed individual files",
+    "artifact": {
+      "path": "quarantine/archives/chromium-native-surfaces-faee0a28a27e62768c53844d7a29a63d609315dd-e7a9d24a3ce4.zip",
+      "bytes": 75617,
+      "sha256": "09b0fa8bffdb06ad3519a8ce0a471316c4c29e148f6e51cd1d8991688ac5b2d1"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/chromium-native-surfaces",
+    "status": "acquired"
+  },
+  {
+    "id": "chromium-site-isolation-doc",
+    "title": "Chromium site isolation design",
+    "source_url": "https://www.chromium.org/developers/design-documents/site-isolation/",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T21:52:07.981771+00:00",
+    "download_url": "https://www.chromium.org/developers/design-documents/site-isolation/",
+    "artifact": {
+      "path": "context/docs/chromium-site-isolation-doc.html",
+      "bytes": 29903,
+      "sha256": "e49ca20d7468efc0d12c3ab9ccc237916972dd3dc3e569d43ab9be98f1c26219"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "codex-app-server",
+    "title": "Codex App Server",
+    "source_url": "https://learn.chatgpt.com/docs/app-server",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T21:51:58.408050+00:00",
+    "download_url": "https://learn.chatgpt.com/docs/app-server",
+    "artifact": {
+      "path": "context/docs/codex-app-server.html",
+      "bytes": 955878,
+      "sha256": "063065ce2eb04dc6d9cbae47d72a37d0f247a806e4769624c1b13b2778f4b8fa"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "codex-mcp-client",
+    "title": "Model Context Protocol for Codex",
+    "source_url": "https://learn.chatgpt.com/docs/extend/mcp",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T21:51:58.408467+00:00",
+    "download_url": "https://learn.chatgpt.com/docs/extend/mcp",
+    "artifact": {
+      "path": "context/docs/codex-mcp-client.html",
+      "bytes": 473392,
+      "sha256": "8396cc3dac4597a9b3b47019b0d5cc8ca2e8ccf9759ef7e67bd451a5411e204a"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "codex-mcp-removal",
+    "title": "Codex MCP server removal",
+    "source_url": "https://learn.chatgpt.com/docs/mcp-server",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T21:51:58.408351+00:00",
+    "download_url": "https://learn.chatgpt.com/docs/mcp-server",
+    "artifact": {
+      "path": "context/docs/codex-mcp-removal.html",
+      "bytes": 336857,
+      "sha256": "164efe4b73b62094b6fb8e834380fa3c7d8c143aa80f7ca2b87bbea752905bf8"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "codex-sign-in",
+    "title": "Sign in with ChatGPT: Codex app-server",
+    "source_url": "https://developers.openai.com/siwc/token-sharing-open-source/codex-app-server",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T21:51:58.408796+00:00",
+    "download_url": "https://developers.openai.com/siwc/token-sharing-open-source/codex-app-server",
+    "artifact": {
+      "path": "context/docs/codex-sign-in.html",
+      "bytes": 339985,
+      "sha256": "5b50018d41aac6f80adcbf396a5c315b586d140494382b887a5d5b8675882cba"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "codex-source",
+    "title": "Codex App Server implementation and protocol",
+    "source_url": "https://github.com/openai/codex",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:51:59.105418+00:00",
+    "revision": "59f18e8133f2c1d3427677658752ac46697d41b7",
+    "selected_paths": [
+      "README.md",
+      "LICENSE",
+      "codex-rs/app-server",
+      "codex-rs/app-server-protocol",
+      "docs",
+      "sdk"
+    ],
+    "archive_url": "https://codeload.github.com/openai/codex/tar.gz/59f18e8133f2c1d3427677658752ac46697d41b7",
+    "scope": "full archive; selected extracted paths",
+    "artifact": {
+      "path": "quarantine/archives/codex-source-59f18e8133f2c1d3427677658752ac46697d41b7.tar.gz",
+      "bytes": 16936392,
+      "sha256": "994e41a299e9453bbc578eef934a4d56459601c95406b99191f0a7da037d5857"
+    },
+    "tree": "quarantine/codex-source",
+    "status": "acquired",
+    "repo": "openai/codex",
+    "mode": "archive",
+    "submodules_not_acquired": []
+  },
+  {
+    "id": "cog",
+    "title": "Cog WPE WebKit launcher",
+    "source_url": "https://github.com/Igalia/cog",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:52:02.522195+00:00",
+    "revision": "92ca8c4f32b1286d96fc1071b24fb9bf7e4cada0",
+    "selected_paths": [],
+    "archive_url": "https://codeload.github.com/Igalia/cog/tar.gz/92ca8c4f32b1286d96fc1071b24fb9bf7e4cada0",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/cog-92ca8c4f32b1286d96fc1071b24fb9bf7e4cada0.tar.gz",
+      "bytes": 187112,
+      "sha256": "c349a693da6104d731a3ffbe3ba875c4d8efb4b5fc9bc3015fddc3316f2b0e74"
+    },
+    "tree": "quarantine/cog",
+    "status": "acquired",
+    "repo": "Igalia/cog",
+    "mode": "archive",
+    "submodules_not_acquired": []
+  },
+  {
+    "id": "coscripter",
+    "title": "CoScripter extension",
+    "source_url": "https://github.com/jeffnichols-ibm/coscripter-extension",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:52:22.570252+00:00",
+    "revision": "0ff0c7b60920592826e1d844fac4c24b423e8d1b",
+    "selected_paths": [],
+    "archive_url": "https://codeload.github.com/jeffnichols-ibm/coscripter-extension/tar.gz/0ff0c7b60920592826e1d844fac4c24b423e8d1b",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/coscripter-0ff0c7b60920592826e1d844fac4c24b423e8d1b.tar.gz",
+      "bytes": 459756,
+      "sha256": "8d4c669b2bd3945b80ff0d72ae5282596e8ad627d315b598dd05d1c643dd3fd2"
+    },
+    "tree": "quarantine/coscripter",
+    "status": "acquired",
+    "repo": "jeffnichols-ibm/coscripter-extension",
+    "mode": "archive",
+    "submodules_not_acquired": []
+  },
+  {
+    "id": "coscripter-field",
+    "title": "End-user programming in the wild: A field study of CoScripter scripts",
+    "source_url": "https://research.ibm.com/publications/end-user-programming-in-the-wild-a-field-study-of-coscripter-scripts",
+    "kind": "paper",
+    "checked_at": "2026-10-01T21:52:18.547948+00:00",
+    "status": "lead-only",
+    "error": "No downloadable PDF URL in catalog"
+  },
+  {
+    "id": "coscripter-reuse",
+    "title": "Predicting Reuse of End-User Web Macro Scripts",
+    "source_url": "https://www.cs.cmu.edu/~Compose/paper_42.pdf",
+    "kind": "paper",
+    "checked_at": "2026-10-01T21:52:17.932520+00:00",
+    "download_url": "https://www.cs.cmu.edu/~Compose/paper_42.pdf",
+    "artifact": {
+      "path": "papers/pdfs/coscripter-reuse.pdf",
+      "bytes": 639894,
+      "sha256": "f3b4a96169ccfe2c6e1b225f0d11288fbc86b95956378b9acc6d2202bc100f92"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "cowpilot-2025",
+    "title": "CowPilot: A Framework for Autonomous and Human-Agent Collaborative Web Navigation",
+    "source_url": "https://aclanthology.org/2025.naacl-demo.17/",
+    "kind": "paper",
+    "checked_at": "2026-10-01T21:52:36.509393+00:00",
+    "download_url": "https://aclanthology.org/2025.naacl-demo.17.pdf",
+    "artifact": {
+      "path": "papers/pdfs/cowpilot-2025.pdf",
+      "bytes": 4324445,
+      "sha256": "24e0642b62822ccbba1e4e859e13daeba2a843032a91e5bb33bf7f51d80dd81c"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "devtools-mcp",
+    "title": "Chrome DevTools MCP",
+    "source_url": "https://github.com/ChromeDevTools/chrome-devtools-mcp",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:51:59.238690+00:00",
+    "revision": "648a6676e7ed64394ae2bdc5ac1deb7802d0d037",
+    "selected_paths": [],
+    "archive_url": "https://codeload.github.com/ChromeDevTools/chrome-devtools-mcp/tar.gz/648a6676e7ed64394ae2bdc5ac1deb7802d0d037",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/devtools-mcp-648a6676e7ed64394ae2bdc5ac1deb7802d0d037.tar.gz",
+      "bytes": 3594545,
+      "sha256": "2102eff49f004b738e759ed379e3a16d88faf0e84b814c7dfe301e974040270e"
+    },
+    "tree": "quarantine/devtools-mcp",
+    "status": "acquired",
+    "repo": "ChromeDevTools/chrome-devtools-mcp",
+    "mode": "archive",
+    "submodules_not_acquired": [
+      {
+        "path": "third_party/devtools-frontend",
+        "url": "https://github.com/ChromeDevTools/devtools-frontend.git",
+        "status": "not included in source archive"
+      }
+    ]
+  },
+  {
+    "id": "devtools-protocol",
+    "title": "Chrome DevTools Protocol definitions",
+    "source_url": "https://github.com/ChromeDevTools/devtools-protocol",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:52:02.090585+00:00",
+    "revision": "8b7f1d955017db8633ecae04cdfa194f731c9eff",
+    "selected_paths": [],
+    "archive_url": "https://codeload.github.com/ChromeDevTools/devtools-protocol/tar.gz/8b7f1d955017db8633ecae04cdfa194f731c9eff",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/devtools-protocol-8b7f1d955017db8633ecae04cdfa194f731c9eff.tar.gz",
+      "bytes": 940772,
+      "sha256": "74e54fb44d79eeda42f57750bcc6ff794c2ff2a6638486dd3939a19da639f83d"
+    },
+    "tree": "quarantine/devtools-protocol",
+    "status": "acquired",
+    "repo": "ChromeDevTools/devtools-protocol",
+    "mode": "archive",
+    "submodules_not_acquired": [
+      {
+        "path": "scripts/inspector_protocol",
+        "url": "https://chromium.googlesource.com/deps/inspector_protocol",
+        "status": "not included in source archive"
+      }
+    ]
+  },
+  {
+    "id": "dom-event-trust",
+    "title": "DOM Standard event trust",
+    "source_url": "https://dom.spec.whatwg.org/#dom-event-istrusted",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:02:28.223684+00:00",
+    "download_url": "https://dom.spec.whatwg.org/#dom-event-istrusted",
+    "artifact": {
+      "path": "context/docs/dom-event-trust.html",
+      "bytes": 3161879,
+      "sha256": "9da84520eacc72840851500410c38a4ca85394a7713ef94a293aa28c7bc70833"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "electron",
+    "title": "Electron embedding and security source",
+    "source_url": "https://github.com/electron/electron",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:52:02.095224+00:00",
+    "revision": "df79406cecfd393f38d5a18b83379d4ba85cc29b",
+    "selected_paths": [
+      "docs/tutorial/security.md",
+      "docs/tutorial/process-model.md",
+      "docs/tutorial/context-isolation.md",
+      "docs/tutorial/sandbox.md",
+      "docs/api/web-contents.md",
+      "docs/api/web-contents-view.md",
+      "docs/api/session.md",
+      "docs/api/debugger.md",
+      "shell/browser/api/electron_api_web_contents.cc",
+      "shell/browser/api/electron_api_web_contents_view.cc",
+      "shell/browser/api/electron_api_debugger.cc",
+      "shell/browser/electron_permission_manager.cc",
+      "shell/browser/electron_browser_context.cc"
+    ],
+    "archive_url": "https://raw.githubusercontent.com/electron/electron/df79406cecfd393f38d5a18b83379d4ba85cc29b/",
+    "scope": "listed individual files",
+    "artifact": {
+      "path": "quarantine/archives/electron-df79406cecfd393f38d5a18b83379d4ba85cc29b.zip",
+      "bytes": 149186,
+      "sha256": "8191d368c985431aadd3cfce1fe936f15c12046162b3b8e8382a75f66b527f25"
+    },
+    "tree": "quarantine/electron",
+    "status": "acquired",
+    "repo": "electron/electron",
+    "mode": "files",
+    "submodules_not_acquired": []
+  },
+  {
+    "id": "electron-security-doc",
+    "title": "Electron security guidance",
+    "source_url": "https://www.electronjs.org/docs/latest/tutorial/security",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T21:52:12.549830+00:00",
+    "download_url": "https://www.electronjs.org/docs/latest/tutorial/security",
+    "artifact": {
+      "path": "context/docs/electron-security-doc.html",
+      "bytes": 169776,
+      "sha256": "045669dcadcb5c6f91d29257545fed4b71a84b204c5e804760fcd2d875a0db6f"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "electron-webcontents-doc",
+    "title": "Electron webContents",
+    "source_url": "https://www.electronjs.org/docs/latest/api/web-contents",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T21:52:12.610596+00:00",
+    "download_url": "https://www.electronjs.org/docs/latest/api/web-contents",
+    "artifact": {
+      "path": "context/docs/electron-webcontents-doc.html",
+      "bytes": 396908,
+      "sha256": "8100a92a52b514e5823d8097a183d6f9a35e2ac5d8e4abc18943756a67c7ec96"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "electron-webcontentsview-doc",
+    "title": "Electron WebContentsView",
+    "source_url": "https://www.electronjs.org/docs/latest/api/web-contents-view",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T21:52:12.639379+00:00",
+    "download_url": "https://www.electronjs.org/docs/latest/api/web-contents-view",
+    "artifact": {
+      "path": "context/docs/electron-webcontentsview-doc.html",
+      "bytes": 48211,
+      "sha256": "699e0276873dccddc7a40df8ab3f7630f60c2b107951e75cf676dd7cfb173f8e"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "endsley-kiris-1995",
+    "title": "The Out-of-the-Loop Performance Problem and Level of Control in Automation",
+    "source_url": "https://doi.org/10.1518/001872095779064555",
+    "kind": "paper",
+    "checked_at": "2026-10-01T21:52:31.804459+00:00",
+    "status": "failed",
+    "error": "HTTPError: HTTP Error 403: Forbidden"
+  },
+  {
+    "id": "exalg-2003",
+    "title": "Extracting Structured Data from Web Pages",
+    "source_url": "https://www.microsoft.com/en-us/research/publication/extracting-structured-data-from-web-pages/",
+    "kind": "paper",
+    "checked_at": "2026-10-01T22:05:46.288182+00:00",
+    "download_url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/extract.pdf",
+    "artifact": {
+      "path": "papers/pdfs/exalg-2003.pdf",
+      "bytes": 587989,
+      "sha256": "e5f54e8ee8bb3d136e498bdc535a8365bd6d184fe0a1c440c5431028c7baf62f"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "extension-debugger",
+    "title": "Chrome Extension debugger API",
+    "source_url": "https://developer.chrome.com/docs/extensions/reference/api/debugger",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T21:52:00.636243+00:00",
+    "download_url": "https://developer.chrome.com/docs/extensions/reference/api/debugger",
+    "artifact": {
+      "path": "context/docs/extension-debugger.html",
+      "bytes": 192203,
+      "sha256": "49e9db41a610b75f5612574b6739d6f4fa68ff970542aca29a26bea89973f97a"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "extractgpt-2024",
+    "title": "ExtractGPT: Exploring the Potential of Large Language Models for Product Attribute Value Extraction",
+    "source_url": "https://arxiv.org/abs/2310.12537",
+    "kind": "paper",
+    "checked_at": "2026-10-01T22:05:46.290629+00:00",
+    "download_url": "https://arxiv.org/pdf/2310.12537",
+    "artifact": {
+      "path": "papers/pdfs/extractgpt-2024.pdf",
+      "bytes": 980167,
+      "sha256": "bf28234aa249b6d3f8446693175495aaadfe0f7e1091b2271711265321ab42c5"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "extractgpt-source",
+    "title": "wbsg-uni-mannheim/ExtractGPT",
+    "source_url": "https://github.com/wbsg-uni-mannheim/ExtractGPT",
+    "kind": "repository",
+    "checked_at": "2026-10-01T22:07:05.854745+00:00",
+    "repo": "wbsg-uni-mannheim/ExtractGPT",
+    "revision": "3f96461b28bd3f0c8ac7c479d595969a9b77d0ab",
+    "selected_paths": [
+      "LICENSE",
+      "README.md",
+      "analysis/__init__.py",
+      "analysis/analyse_decision_boundaries.py",
+      "analysis/analyse_known_attribute_values.py",
+      "analysis/attribute_analysis.py",
+      "analysis/count_example_values.py",
+      "analysis/dataset_statistics.py",
+      "analysis/error_analysis.py",
+      "analysis/parse_results_from_dicts.py",
+      "analysis/test_tokenizer.py",
+      "baselines/__init__.py",
+      "baselines/baseline_attribute_value_lookup.py",
+      "finetuning/1_zero_shot_list/__init__.py",
+      "finetuning/1_zero_shot_list/ft_list.py",
+      "finetuning/2_zero_shot_schema/__init__.py",
+      "finetuning/2_zero_shot_schema/ft_schema_description_with_example_values.py",
+      "finetuning/__init__.py",
+      "pieutils/__init__.py",
+      "pieutils/config.py",
+      "pieutils/evaluation.py",
+      "pieutils/finetuning.py",
+      "pieutils/fusion.py",
+      "pieutils/open_ai_scripts/__init__.py",
+      "pieutils/open_ai_scripts/check_running_finetuning_jobs.py",
+      "pieutils/open_ai_scripts/data_formatting_check.py",
+      "pieutils/open_ai_scripts/start_finetuning_job.py",
+      "pieutils/open_ai_scripts/upload_file_openai.py",
+      "pieutils/pieutils.py",
+      "pieutils/preprocessing.py",
+      "pieutils/pydantic_models.py",
+      "pieutils/search.py",
+      "preprocessing/__init__.py",
+      "preprocessing/prepare_datasets.py",
+      "prompts/1_zero_shot_list/__init__.py",
+      "prompts/1_zero_shot_list/zero_shot_list.py",
+      "prompts/2_zero_shot_schema/__init__.py",
+      "prompts/2_zero_shot_schema/zero_shot_schema_description.py",
+      "prompts/2_zero_shot_schema/zero_shot_schema_description_with_example_values.py",
+      "prompts/5_in-context_learning/__init__.py",
+      "prompts/5_in-context_learning/in_context_batching_extraction.py",
+      "prompts/5_in-context_learning/in_context_list.py",
+      "prompts/5_in-context_learning/in_context_schema_description_with_example_values.py",
+      "prompts/5_in-context_learning/in_context_schema_description_with_example_values_ensemble_shuffle.py",
+      "prompts/5_in-context_learning/in_context_schema_description_with_example_values_ensemble_shuffle_title_rewriting.py",
+      "setup.py"
+    ],
+    "mode": "files",
+    "archive_url": "https://raw.githubusercontent.com/wbsg-uni-mannheim/ExtractGPT/3f96461b28bd3f0c8ac7c479d595969a9b77d0ab/",
+    "scope": "listed individual files",
+    "artifact": {
+      "path": "quarantine/archives/extractgpt-source-3f96461b28bd3f0c8ac7c479d595969a9b77d0ab-21c0eef984ae.zip",
+      "bytes": 83803,
+      "sha256": "5fb723c1bcdd73414c253bb77501727a8a87e8c1605545cd2341fc9feabfe106"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/extractgpt-source",
+    "status": "acquired"
+  },
+  {
+    "id": "fitts-1954",
+    "title": "The Information Capacity of the Human Motor System in Controlling the Amplitude of Movement",
+    "source_url": "https://doi.org/10.1037/h0055392",
+    "kind": "paper",
+    "checked_at": "2026-10-01T22:10:45.285976+00:00",
+    "status": "failed",
+    "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+    "id": "flash-hogan-1985",
+    "title": "The coordination of arm movements: an experimentally confirmed mathematical model",
+    "source_url": "https://pubmed.ncbi.nlm.nih.gov/4020415/",
+    "kind": "paper",
+    "checked_at": "2026-10-01T22:28:38.982851+00:00",
+    "status": "failed",
+    "error": "TimeoutError: The read operation timed out"
+  },
+  {
+    "id": "fp-inspector-2021",
+    "title": "Fingerprinting the Fingerprinters: Learning to Detect Browser Fingerprinting Behaviors",
+    "source_url": "https://arxiv.org/abs/2008.04480",
+    "kind": "paper",
+    "checked_at": "2026-10-01T22:02:26.366413+00:00",
+    "download_url": "https://arxiv.org/pdf/2008.04480",
+    "artifact": {
+      "path": "papers/pdfs/fp-inspector-2021.pdf",
+      "bytes": 584235,
+      "sha256": "e80bf9492f563659c536ea4abd4d8b57a824942cb4b27d29374f46cbd0ba0c7e"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "fp-scanner-2018",
+    "title": "FP-Scanner: The Privacy Implications of Browser Fingerprint Inconsistencies",
+    "source_url": "https://www.usenix.org/conference/usenixsecurity18/presentation/vastel",
+    "kind": "paper",
+    "checked_at": "2026-10-01T22:02:26.365960+00:00",
+    "download_url": "https://www.usenix.org/system/files/conference/usenixsecurity18/sec18-vastel.pdf",
+    "artifact": {
+      "path": "papers/pdfs/fp-scanner-2018.pdf",
+      "bytes": 617460,
+      "sha256": "d79f2c8716a275165374af5eb73f96bb5209969df35f4019646cde5daac9797b"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "greshake-2023",
+    "title": "Not What You've Signed Up For: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection",
+    "source_url": "https://arxiv.org/abs/2302.12173v2",
+    "kind": "paper",
+    "checked_at": "2026-10-01T21:53:19.594521+00:00",
+    "download_url": "https://arxiv.org/pdf/2302.12173v2",
+    "artifact": {
+      "path": "papers/pdfs/greshake-2023.pdf",
+      "bytes": 7306999,
+      "sha256": "428e23e8c7e4f89310e113e38d082b3f65548a8b887188ebc536099061800e81"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "hammerspoon-eventtap-doc",
+    "title": "Hammerspoon eventtap reference",
+    "source_url": "https://www.hammerspoon.org/docs/hs.eventtap.html",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:31:20.308804+00:00",
+    "status": "acquired",
+    "download_url": "https://www.hammerspoon.org/docs/hs.eventtap.html",
+    "artifact": {
+      "path": "context/docs/hammerspoon-eventtap-doc.html",
+      "bytes": 31878,
+      "sha256": "891d785657764982c750fd92d0a3e58971ea2ca3c7a79691255cdbd010da0965"
+    }
+  },
+  {
+    "id": "harris-wolpert-1998",
+    "title": "Signal-dependent noise determines motor planning",
+    "source_url": "https://www.nature.com/articles/29528",
+    "kind": "paper",
+    "checked_at": "2026-10-01T22:10:56.842561+00:00",
+    "download_url": "https://wolpertlab.neuroscience.columbia.edu/sites/wolpertlab.neuroscience.columbia.edu/files/content/papers/HarWol98.pdf",
+    "artifact": {
+      "path": "papers/pdfs/harris-wolpert-1998.pdf",
+      "bytes": 506088,
+      "sha256": "ed3d8a95b3273f034378449ff53eeb27ecfc1ecca09ddd4048715b7cf57d7d58"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "helena",
+    "title": "Helena",
+    "source_url": "https://github.com/schasins/helena",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:52:22.257304+00:00",
+    "revision": "439b979118c40d95651d12bfd9f833aae0e32b51",
+    "selected_paths": [],
+    "archive_url": "https://codeload.github.com/schasins/helena/tar.gz/439b979118c40d95651d12bfd9f833aae0e32b51",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/helena-439b979118c40d95651d12bfd9f833aae0e32b51.tar.gz",
+      "bytes": 507267684,
+      "sha256": "bf53958315302831aaebd1610a69414f12024b369abae666658f3746c61a043a"
+    },
+    "tree": "quarantine/helena",
+    "status": "acquired",
+    "repo": "schasins/helena",
+    "mode": "archive",
+    "submodules_not_acquired": [
+      {
+        "path": "src/scripts/lib/helena-library",
+        "url": "https://github.com/schasins/helena-lang",
+        "status": "not included in source archive"
+      }
+    ]
+  },
+  {
+    "id": "helena-dissertation",
+    "title": "Democratizing Web Automation: Programming for Social Scientists and Other Domain Experts",
+    "source_url": "https://www2.eecs.berkeley.edu/Pubs/TechRpts/2019/EECS-2019-139.html",
+    "kind": "paper",
+    "checked_at": "2026-10-01T21:52:17.831269+00:00",
+    "download_url": "https://www2.eecs.berkeley.edu/Pubs/TechRpts/2019/EECS-2019-139.pdf",
+    "artifact": {
+      "path": "papers/pdfs/helena-dissertation.pdf",
+      "bytes": 9430034,
+      "sha256": "5fbdea997053d46dc9028f97b97f67ca3dbdd1a4da6b14bc07c96bdcb7c319c5"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "hinckley-scrolling-2002",
+    "title": "Quantitative Analysis of Scrolling Techniques",
+    "source_url": "https://www.microsoft.com/en-us/research/publication/quantitative-analysis-of-scrolling-techniques/",
+    "kind": "paper",
+    "checked_at": "2026-10-01T22:11:07.973950+00:00",
+    "download_url": "https://cutrell.org/papers/Scrolling_CHI02.pdf",
+    "artifact": {
+      "path": "papers/pdfs/hinckley-scrolling-2002.pdf",
+      "bytes": 199511,
+      "sha256": "af3d28b570f435538fc29cdd1021664224f3246d00910f883a0d76eaf9e089b5"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "horvitz-1999",
+    "title": "Principles of Mixed-Initiative User Interfaces",
+    "source_url": "https://www.erichorvitz.com/uiact.htm",
+    "kind": "paper",
+    "checked_at": "2026-10-01T21:52:26.990835+00:00",
+    "download_url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/11/chi99horvitz.pdf",
+    "artifact": {
+      "path": "papers/pdfs/horvitz-1999.pdf",
+      "bytes": 221004,
+      "sha256": "9f2596af326e186cc1eb27da5d0f0beda8d2ff15794b82958788c636693938d2"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "html-user-activation",
+    "title": "HTML Standard user activation",
+    "source_url": "https://html.spec.whatwg.org/multipage/interaction.html#tracking-user-activation",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:02:29.547381+00:00",
+    "download_url": "https://html.spec.whatwg.org/multipage/interaction.html#tracking-user-activation",
+    "artifact": {
+      "path": "context/docs/html-user-activation.html",
+      "bytes": 453780,
+      "sha256": "09386a5556bd5780d6858ea7a0d50561e18d96331075b7532ddf3daabc64a22d"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "huang-cursor-2011",
+    "title": "No Clicks, No Problem: Using Cursor Movements to Understand and Improve Search",
+    "source_url": "https://www.microsoft.com/en-us/research/publication/no-clicks-no-problem-using-cursor-movements-to-understand-and-improve-search-2/",
+    "kind": "paper",
+    "checked_at": "2026-10-01T22:30:01.659943+00:00",
+    "status": "acquired",
+    "download_url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2011/01/Final_CursorBehavior_CHI11-1.pdf",
+    "artifact": {
+      "path": "papers/pdfs/huang-cursor-2011.pdf",
+      "bytes": 1350080,
+      "sha256": "17c4563749cbb7446ec244b09817b1818a61322457d8a5b4bf11e68bbb7a5c48"
+    }
+  },
+  {
+    "id": "injecagent-2024",
+    "title": "InjecAgent: Benchmarking Indirect Prompt Injections in Tool-Integrated Large Language Model Agents",
+    "source_url": "https://arxiv.org/abs/2403.02691",
+    "kind": "paper",
+    "checked_at": "2026-10-01T21:53:19.669760+00:00",
+    "download_url": "https://arxiv.org/pdf/2403.02691",
+    "artifact": {
+      "path": "papers/pdfs/injecagent-2024.pdf",
+      "bytes": 3183277,
+      "sha256": "49e6e6a4a00c797a772ef905a154c0839426655027d5fa0ce6b632e6c1db2bfb"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "interaction-driven-2025",
+    "title": "Interaction-Driven Browsing: A Human-in-the-Loop Conceptual Framework Informed by Human Web Browsing for Browser-Using Agents",
+    "source_url": "https://arxiv.org/abs/2509.12049v1",
+    "kind": "paper",
+    "checked_at": "2026-10-01T21:52:36.822926+00:00",
+    "download_url": "https://arxiv.org/pdf/2509.12049v1",
+    "artifact": {
+      "path": "papers/pdfs/interaction-driven-2025.pdf",
+      "bytes": 1048576,
+      "sha256": "63e1ebcd6b0ee1722c81e126acaac2b8e565b1b7cfb1be140ea9a3e44d1e5b9f"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "jcef",
+    "title": "chromiumembedded/java-cef",
+    "source_url": "https://github.com/chromiumembedded/java-cef",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:54:45.350088+00:00",
+    "repo": "chromiumembedded/java-cef",
+    "revision": "17e805ad387d89839fdd2b864466b6510b2a783c",
+    "selected_paths": [],
+    "mode": "archive",
+    "archive_url": "https://codeload.github.com/chromiumembedded/java-cef/tar.gz/17e805ad387d89839fdd2b864466b6510b2a783c",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/jcef-17e805ad387d89839fdd2b864466b6510b2a783c.tar.gz",
+      "bytes": 7350265,
+      "sha256": "20154389707d99ff48598e7878c9fd210b1a1be3ce358f8c507aa5ca516f4a96"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/jcef",
+    "status": "acquired"
+  },
+  {
+    "id": "klein-2004",
+    "title": "Ten Challenges for Making Automation a Team Player in Joint Human-Agent Activity",
+    "source_url": "https://ieeexplore.ieee.org/document/1363742/",
+    "kind": "paper",
+    "checked_at": "2026-10-01T22:02:33.931120+00:00",
+    "status": "failed",
+    "error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'cmapsconverted.ihmc.us'. (_ssl.c:1028)>"
+  },
+  {
+    "id": "ladybird",
+    "title": "Ladybird independent browser",
+    "source_url": "https://github.com/LadybirdBrowser/ladybird",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:52:02.601579+00:00",
+    "revision": "cb77ef11c55a7805f40b1431084bbef1a8c4dd93",
+    "selected_paths": [
+      "README.md",
+      "Documentation/ProcessArchitecture.md",
+      "Documentation/BuildInstructionsLadybird.md",
+      "UI/Qt/BrowserWindow.cpp",
+      "Services/WebContent/WebContentServer.ipc",
+      "Libraries/LibWebView/Application.cpp",
+      "Libraries/LibWebView/ViewImplementation.cpp",
+      "Libraries/LibWeb/PermissionsAPI/PermissionStore.cpp",
+      "Libraries/LibWeb/HTML/BrowsingContext.cpp"
+    ],
+    "archive_url": "https://raw.githubusercontent.com/LadybirdBrowser/ladybird/cb77ef11c55a7805f40b1431084bbef1a8c4dd93/",
+    "scope": "listed individual files",
+    "status": "acquired",
+    "repo": "LadybirdBrowser/ladybird",
+    "mode": "files",
+    "artifact": {
+      "path": "quarantine/archives/ladybird-cb77ef11c55a7805f40b1431084bbef1a8c4dd93-8a0ea2b8fa4f.zip",
+      "bytes": 99555,
+      "sha256": "092867aa596ec6e7806c26ae9495029f924f628b6f0b6f94da3d101097d1359b"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/ladybird"
+  },
+  {
+    "id": "lee-see-2004",
+    "title": "Trust in Automation: Designing for Appropriate Reliance",
+    "source_url": "https://doi.org/10.1518/hfes.46.1.50_30392",
+    "kind": "paper",
+    "checked_at": "2026-10-01T21:52:31.974738+00:00",
+    "status": "failed",
+    "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+    "id": "libei-protocol",
+    "title": "libei Emulated Input protocol documentation",
+    "source_url": "https://libinput.pages.freedesktop.org/libei/",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:19:35.121114+00:00",
+    "download_url": "https://libinput.pages.freedesktop.org/libei/",
+    "artifact": {
+      "path": "context/docs/libei-protocol.html",
+      "bytes": 19668,
+      "sha256": "e27e2994a660d9960cab09998234c144a31a71dc4c884baa27c604c8114f8084"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "linux-netem",
+    "title": "iproute2 netem(8)",
+    "source_url": "https://www.man7.org/linux/man-pages/man8/netem.8.html",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:21:57.613330+00:00",
+    "download_url": "https://www.man7.org/linux/man-pages/man8/netem.8.html",
+    "artifact": {
+      "path": "context/docs/linux-netem.html",
+      "bytes": 20483,
+      "sha256": "08bd23bc17ec09e271a374fbba6e954986663e5a4894999357398d1949254725"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "linux-network-namespace",
+    "title": "Linux network_namespaces(7)",
+    "source_url": "https://www.man7.org/linux/man-pages/man7/network_namespaces.7.html",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:21:54.064509+00:00",
+    "download_url": "https://www.man7.org/linux/man-pages/man7/network_namespaces.7.html",
+    "artifact": {
+      "path": "context/docs/linux-network-namespace.html",
+      "bytes": 9162,
+      "sha256": "ea050b2f4172b785031b0cc5d52c7220574791dc9d6da0882ce99202f573a294"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "linux-uinput",
+    "title": "Linux kernel uinput documentation",
+    "source_url": "https://docs.kernel.org/input/uinput.html",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:31:13.285003+00:00",
+    "status": "acquired",
+    "download_url": "https://docs.kernel.org/input/uinput.html",
+    "artifact": {
+      "path": "context/docs/linux-uinput.html",
+      "bytes": 37814,
+      "sha256": "e16c8c9726083c5ade370f6ca6c042848031d9d2c5ce0555bac7ce93c3c1dfc6"
+    }
+  },
+  {
+    "id": "linux-veth",
+    "title": "Linux veth(4)",
+    "source_url": "https://www.man7.org/linux/man-pages/man4/veth.4.html",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:21:58.006711+00:00",
+    "download_url": "https://www.man7.org/linux/man-pages/man4/veth.4.html",
+    "artifact": {
+      "path": "context/docs/linux-veth.html",
+      "bytes": 8701,
+      "sha256": "7c1d4046e25b718ddf877b971a9cb3f9b9be05ab5665f2e9b1f9d5cc4df658a9"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "mackenzie-fitts-1992",
+    "title": "Fitts\u2019 Law as a Research and Design Tool in Human-Computer Interaction",
+    "source_url": "https://www.yorku.ca/mack/hci1992.html",
+    "kind": "paper",
+    "checked_at": "2026-10-01T22:10:50.647306+00:00",
+    "download_url": "https://www.yorku.ca/mack/hci1992.pdf",
+    "artifact": {
+      "path": "papers/pdfs/mackenzie-fitts-1992.pdf",
+      "bytes": 2223344,
+      "sha256": "e0b7c2454ed966ef24595317925d4237d1b831c13fd4c83a0a96f912fb0464b2"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "markuplm-2022",
+    "title": "MarkupLM: Pre-training of Text and Markup Language for Visually-rich Document Understanding",
+    "source_url": "https://arxiv.org/abs/2110.08518",
+    "kind": "paper",
+    "checked_at": "2026-10-01T22:05:46.290196+00:00",
+    "download_url": "https://arxiv.org/pdf/2110.08518",
+    "artifact": {
+      "path": "papers/pdfs/markuplm-2022.pdf",
+      "bytes": 1553454,
+      "sha256": "43c9e582e72add512f665a07cb4d00f339e1cc331b6dc0d64912cbe14659efa1"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "markuplm-source",
+    "title": "microsoft/unilm",
+    "source_url": "https://github.com/microsoft/unilm",
+    "kind": "repository",
+    "checked_at": "2026-10-01T22:06:27.148548+00:00",
+    "repo": "microsoft/unilm",
+    "revision": "31c5b904ca1bf2afb4c234a6675c683a4e5fc7cd",
+    "selected_paths": [
+      "markuplm/README.md",
+      "markuplm/examples/fine_tuning/run_swde/constants.py",
+      "markuplm/examples/fine_tuning/run_swde/eval_utils.py",
+      "markuplm/examples/fine_tuning/run_swde/pack_data.py",
+      "markuplm/examples/fine_tuning/run_swde/prepare_data.py",
+      "markuplm/examples/fine_tuning/run_swde/run.py",
+      "markuplm/examples/fine_tuning/run_swde/utils.py",
+      "markuplm/examples/fine_tuning/run_websrc/dataset_generation.py",
+      "markuplm/examples/fine_tuning/run_websrc/draft.py",
+      "markuplm/examples/fine_tuning/run_websrc/run.py",
+      "markuplm/examples/fine_tuning/run_websrc/utils.py",
+      "markuplm/examples/fine_tuning/run_websrc/utils_evaluate.py",
+      "markuplm/markuplmft/__init__.py",
+      "markuplm/markuplmft/data/__init__.py",
+      "markuplm/markuplmft/data/tag_utils.py",
+      "markuplm/markuplmft/models/__init__.py",
+      "markuplm/markuplmft/models/markuplm/__init__.py",
+      "markuplm/markuplmft/models/markuplm/configuration_markuplm.py",
+      "markuplm/markuplmft/models/markuplm/modeling_markuplm.py",
+      "markuplm/markuplmft/models/markuplm/tokenization_markuplm.py",
+      "markuplm/markuplmft/models/markuplm/tokenization_markuplm_fast.py",
+      "markuplm/setup.py"
+    ],
+    "mode": "files",
+    "archive_url": "https://raw.githubusercontent.com/microsoft/unilm/31c5b904ca1bf2afb4c234a6675c683a4e5fc7cd/",
+    "scope": "listed individual files",
+    "artifact": {
+      "path": "quarantine/archives/markuplm-source-31c5b904ca1bf2afb4c234a6675c683a4e5fc7cd-86ebadf5a9ed.zip",
+      "bytes": 67805,
+      "sha256": "db16bc77d41598306b346defa59f30ad29328fae060b0ecd96dd3b4cdfcbb99d"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/markuplm-source",
+    "status": "acquired"
+  },
+  {
+    "id": "mcp-tools-spec",
+    "title": "MCP tools specification 2025-06-18",
+    "source_url": "https://modelcontextprotocol.io/specification/2025-06-18/server/tools",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T21:52:00.894954+00:00",
+    "download_url": "https://modelcontextprotocol.io/specification/2025-06-18/server/tools",
+    "artifact": {
+      "path": "context/docs/mcp-tools-spec.html",
+      "bytes": 536189,
+      "sha256": "879273b59e000e7218f5e7ce4457d72b95f4fbd33e4be9cef9aaffd6821e408d"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "mcp-transports-spec",
+    "title": "MCP transports specification 2025-06-18",
+    "source_url": "https://modelcontextprotocol.io/specification/2025-06-18/basic/transports",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T21:52:01.055090+00:00",
+    "download_url": "https://modelcontextprotocol.io/specification/2025-06-18/basic/transports",
+    "artifact": {
+      "path": "context/docs/mcp-transports-spec.html",
+      "bytes": 364874,
+      "sha256": "c61894c9754598128590d675b1ae060dccaf43f68b9a300247201cad17bb5eed"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "meyer-motor-1988",
+    "title": "Optimality in human motor performance: ideal control of rapid aimed movements",
+    "source_url": "https://pubmed.ncbi.nlm.nih.gov/3406245/",
+    "kind": "paper",
+    "checked_at": "2026-10-01T22:10:56.842532+00:00",
+    "status": "lead-only",
+    "error": "No downloadable PDF URL in catalog"
+  },
+  {
+    "id": "min",
+    "title": "Min minimal Electron browser",
+    "source_url": "https://github.com/minbrowser/min",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:52:04.023587+00:00",
+    "revision": "c92079cde045c38ab844e53501e9c5178d503a45",
+    "selected_paths": [],
+    "archive_url": "https://codeload.github.com/minbrowser/min/tar.gz/c92079cde045c38ab844e53501e9c5178d503a45",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/min-c92079cde045c38ab844e53501e9c5178d503a45.tar.gz",
+      "bytes": 7208825,
+      "sha256": "47f968b6b3cd00975e42f84b1f50085ba921eae3aace99b5dd932823e39a8890"
+    },
+    "tree": "quarantine/min",
+    "status": "acquired",
+    "repo": "minbrowser/min",
+    "mode": "archive",
+    "submodules_not_acquired": []
+  },
+  {
+    "id": "mind2web-2023",
+    "title": "Mind2Web: Towards a Generalist Agent for the Web",
+    "source_url": "https://arxiv.org/abs/2306.06070v3",
+    "kind": "paper",
+    "checked_at": "2026-10-01T21:52:54.673811+00:00",
+    "download_url": "https://arxiv.org/pdf/2306.06070v3",
+    "artifact": {
+      "path": "papers/pdfs/mind2web-2023.pdf",
+      "bytes": 7635816,
+      "sha256": "75d8af953769a53bf75913908e2bb6185c6b338c8d89b7304e7fd8cfb79934e8"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "mind2web2-2025",
+    "title": "Mind2Web 2: Evaluating Agentic Search with Agent-as-a-Judge",
+    "source_url": "https://arxiv.org/abs/2506.21506",
+    "kind": "paper",
+    "checked_at": "2026-10-01T21:53:09.715329+00:00",
+    "download_url": "https://arxiv.org/pdf/2506.21506",
+    "artifact": {
+      "path": "papers/pdfs/mind2web2-2025.pdf",
+      "bytes": 10010725,
+      "sha256": "1aaba4b08b43f832e2f55d6273475d958c3615b376e7f354eafd5ba31ee9449e"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "miwa-2023",
+    "title": "MIWA: Mixed-Initiative Web Automation for Better User Control and Confidence",
+    "source_url": "https://doi.org/10.1145/3586183.3606720",
+    "kind": "paper",
+    "checked_at": "2026-10-01T21:52:23.391939+00:00",
+    "download_url": "https://tianyi-zhang.github.io/files/uist2023-miwa.pdf",
+    "artifact": {
+      "path": "papers/pdfs/miwa-2023.pdf",
+      "bytes": 5700239,
+      "sha256": "1f3363e9cf7bcac9eb66c1a44685c23a9a1da24c49520f0bd664d72893fa5f28"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "native-messaging",
+    "title": "Chrome Extension Native Messaging",
+    "source_url": "https://developer.chrome.com/docs/extensions/develop/concepts/native-messaging",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T21:52:00.254642+00:00",
+    "download_url": "https://developer.chrome.com/docs/extensions/develop/concepts/native-messaging",
+    "artifact": {
+      "path": "context/docs/native-messaging.html",
+      "bytes": 159040,
+      "sha256": "e81345e0174301c10c48480e70be9beac6db02e384f5963a022fbd078db95693"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "native-messaging-sample",
+    "title": "Chrome Native Messaging sample",
+    "source_url": "https://github.com/GoogleChrome/chrome-extensions-samples",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:52:00.375147+00:00",
+    "revision": "e01a67d830c5ccb82ac567ff86037c9333d2d648",
+    "selected_paths": [
+      "LICENSE",
+      "README.md",
+      "api-samples/nativeMessaging"
+    ],
+    "archive_url": "https://codeload.github.com/GoogleChrome/chrome-extensions-samples/tar.gz/e01a67d830c5ccb82ac567ff86037c9333d2d648",
+    "scope": "full archive; selected extracted paths",
+    "artifact": {
+      "path": "quarantine/archives/native-messaging-sample-e01a67d830c5ccb82ac567ff86037c9333d2d648.tar.gz",
+      "bytes": 39093105,
+      "sha256": "9174d31b46f13e3fdc28afb9fec5bcdb1436cac051646d61e2f54875fa53a938"
+    },
+    "tree": "quarantine/native-messaging-sample",
+    "status": "acquired",
+    "repo": "GoogleChrome/chrome-extensions-samples",
+    "mode": "archive",
+    "submodules_not_acquired": []
+  },
+  {
+    "id": "network-cdp-fetch",
+    "title": "CDP Fetch domain",
+    "source_url": "https://chromedevtools.github.io/devtools-protocol/tot/Fetch/",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:10:40.020761+00:00",
+    "download_url": "https://chromedevtools.github.io/devtools-protocol/tot/Fetch/",
+    "artifact": {
+      "path": "context/docs/network-cdp-fetch.html",
+      "bytes": 1998,
+      "sha256": "b36ba6ec6ee1b472212ca0f26315d43d127f15fa5a0c5619304603e2c450056a"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "network-cdp-network",
+    "title": "CDP Network domain",
+    "source_url": "https://chromedevtools.github.io/devtools-protocol/tot/Network/",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:10:40.020497+00:00",
+    "download_url": "https://chromedevtools.github.io/devtools-protocol/tot/Network/",
+    "artifact": {
+      "path": "context/docs/network-cdp-network.html",
+      "bytes": 16786,
+      "sha256": "a69db569a6820af836c69e0f09f96fa2ec7726ff8e402f55834075ada9ed1c0b"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "network-chromium-code",
+    "title": "Chromium network observation and interception implementation",
+    "source_url": "https://github.com/chromium/chromium",
+    "kind": "repository",
+    "checked_at": "2026-10-01T22:10:43.685541+00:00",
+    "repo": "chromium/chromium",
+    "revision": "faee0a28a27e62768c53844d7a29a63d609315dd",
+    "selected_paths": [
+      "third_party/blink/renderer/core/inspector/inspector_network_agent.cc",
+      "third_party/blink/renderer/core/inspector/network_resources_data.cc",
+      "content/browser/devtools/protocol/network_handler.cc",
+      "content/browser/devtools/devtools_url_loader_interceptor.cc",
+      "third_party/blink/public/devtools_protocol/domains/Network.pdl",
+      "third_party/blink/public/devtools_protocol/domains/Fetch.pdl"
+    ],
+    "mode": "files",
+    "archive_url": "https://raw.githubusercontent.com/chromium/chromium/faee0a28a27e62768c53844d7a29a63d609315dd/",
+    "scope": "listed individual files",
+    "artifact": {
+      "path": "quarantine/archives/network-chromium-code-faee0a28a27e62768c53844d7a29a63d609315dd-c01fd1732f0d.zip",
+      "bytes": 105927,
+      "sha256": "8c80c24504925bdde8b564be7324cac61335454b1af7818986c465128ef3902f"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/network-chromium-code",
+    "status": "acquired"
+  },
+  {
+    "id": "network-devtools-overrides",
+    "title": "DevTools local response overrides",
+    "source_url": "https://developer.chrome.com/docs/devtools/overrides",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:10:40.019953+00:00",
+    "download_url": "https://developer.chrome.com/docs/devtools/overrides",
+    "artifact": {
+      "path": "context/docs/network-devtools-overrides.html",
+      "bytes": 213324,
+      "sha256": "4d9076c914c77b258ce04f030d7c57049984033de5e5b0223837322244c399fd"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "network-devtools-reference",
+    "title": "DevTools Network reference",
+    "source_url": "https://developer.chrome.com/docs/devtools/network/reference",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:10:40.019477+00:00",
+    "download_url": "https://developer.chrome.com/docs/devtools/network/reference",
+    "artifact": {
+      "path": "context/docs/network-devtools-reference.html",
+      "bytes": 324179,
+      "sha256": "1f0b4c6db698ade5e961005a747c2bab437301de79b36b46019eb57d2df45db1"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "network-mdn-fetch",
+    "title": "MDN Using Fetch",
+    "source_url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:10:41.602069+00:00",
+    "download_url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch",
+    "artifact": {
+      "path": "context/docs/network-mdn-fetch.html",
+      "bytes": 184062,
+      "sha256": "61c9d3eddb896b876c7827cf4e46640064fee7b68d2eef960639ea1ce000fade"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "network-meta-advanced-matching",
+    "title": "Meta Pixel advanced matching",
+    "source_url": "https://developers.facebook.com/docs/meta-pixel/advanced/advanced-matching/",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:10:42.631315+00:00",
+    "download_url": "https://developers.facebook.com/docs/meta-pixel/advanced/advanced-matching/",
+    "artifact": {
+      "path": "context/docs/network-meta-advanced-matching.html",
+      "bytes": 3370,
+      "sha256": "0d82fcceb591aece34cd4bc2173192193a72f4d9e6b6f1044ba79e1019023478"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "network-meta-blueprint-matching",
+    "title": "Official Meta Blueprint advanced matching course",
+    "source_url": "https://www.facebookblueprint.com/student/path/211540-advanced-matching-course",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:10:43.204486+00:00",
+    "download_url": "https://www.facebookblueprint.com/student/path/211540-advanced-matching-course",
+    "artifact": {
+      "path": "context/docs/network-meta-blueprint-matching.html",
+      "bytes": 116535,
+      "sha256": "4b987a76b0dd8e6bc929129d538adca1a829938e90cdd3908f1bc49554ff81f6"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "network-meta-pixel-implementation",
+    "title": "Meta Pixel implementation",
+    "source_url": "https://developers.facebook.com/docs/meta-pixel/implementation/",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:10:42.594849+00:00",
+    "status": "failed",
+    "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+    "id": "network-meta-pixel-reference",
+    "title": "Meta Pixel reference",
+    "source_url": "https://developers.facebook.com/docs/meta-pixel/reference/",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:10:42.469374+00:00",
+    "download_url": "https://developers.facebook.com/docs/meta-pixel/reference/",
+    "artifact": {
+      "path": "context/docs/network-meta-pixel-reference.html",
+      "bytes": 7535,
+      "sha256": "963fcb7302d7e47c686ece519e55e6e61f16ce327045bdea889c94633ad99320"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "network-mitmproxy-protocols",
+    "title": "mitmproxy protocol limitations",
+    "source_url": "https://docs.mitmproxy.org/stable/concepts/protocols/",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:10:42.200600+00:00",
+    "download_url": "https://docs.mitmproxy.org/stable/concepts/protocols/",
+    "artifact": {
+      "path": "context/docs/network-mitmproxy-protocols.html",
+      "bytes": 13820,
+      "sha256": "4ad825bd8b2574d7b9497b609e214e5416e13c6a708575a3e7110086055deac0"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "network-mitmproxy-tls",
+    "title": "How mitmproxy works",
+    "source_url": "https://docs.mitmproxy.org/stable/concepts/how-mitmproxy-works/",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:10:41.698679+00:00",
+    "download_url": "https://docs.mitmproxy.org/stable/concepts/how-mitmproxy-works/",
+    "artifact": {
+      "path": "context/docs/network-mitmproxy-tls.html",
+      "bytes": 23445,
+      "sha256": "07d1420a81d01e126d00f003e6d002eead65f804f48b75fba6112942539d2c9a"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "network-pixelconfig-code",
+    "title": "PixelConfig author reference implementation",
+    "source_url": "https://github.com/Yash-Vekaria/pixel-config",
+    "kind": "repository",
+    "checked_at": "2026-10-01T22:28:38.982477+00:00",
+    "repo": "Yash-Vekaria/pixel-config",
+    "revision": "4426e53848932a5e4f4aa95b1a4d598d59bee6a2",
+    "selected_paths": [
+      "README.md",
+      "LICENSE",
+      "Analysis/processSnapshots.py",
+      "Data Collection/extractPixelIDs.py",
+      "Data Collection/fetchConfigurationSnapshots.py",
+      "Data Collection/fetchWebsiteSnapshots.py",
+      "Data Collection/requirements.txt"
+    ],
+    "mode": "files",
+    "archive_url": "https://raw.githubusercontent.com/Yash-Vekaria/pixel-config/4426e53848932a5e4f4aa95b1a4d598d59bee6a2/",
+    "scope": "listed individual files",
+    "status": "acquired",
+    "artifact": {
+      "path": "quarantine/archives/network-pixelconfig-code-4426e53848932a5e4f4aa95b1a4d598d59bee6a2-4391c051bab4.zip",
+      "bytes": 20989,
+      "sha256": "578644cabce05cfdaa769715f376f6c548835fad6015426cf6f5f678c45e433a"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/network-pixelconfig-code"
+  },
+  {
+    "id": "network-pixelconfig-paper",
+    "title": "PixelConfig: Longitudinal Measurement and Reverse-Engineering of Meta Pixel Configurations",
+    "source_url": "https://arxiv.org/abs/2603.09380",
+    "kind": "paper",
+    "checked_at": "2026-10-01T22:28:38.982133+00:00",
+    "status": "failed",
+    "error": "TimeoutError: The read operation timed out"
+  },
+  {
+    "id": "nyxt",
+    "title": "Nyxt programmable browser",
+    "source_url": "https://github.com/atlas-engineer/nyxt",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:52:04.100506+00:00",
+    "revision": "aeb6c72cf1ef4216d4bd6437b4e21ceac18b17e7",
+    "selected_paths": [],
+    "archive_url": "https://codeload.github.com/atlas-engineer/nyxt/tar.gz/aeb6c72cf1ef4216d4bd6437b4e21ceac18b17e7",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/nyxt-aeb6c72cf1ef4216d4bd6437b4e21ceac18b17e7.tar.gz",
+      "bytes": 1751980,
+      "sha256": "b3b6a6a7e220d133abd2e836f88d389b4a306e0e436cd8977533735ae66791d8"
+    },
+    "tree": "quarantine/nyxt",
+    "status": "acquired",
+    "repo": "atlas-engineer/nyxt",
+    "mode": "archive",
+    "submodules_not_acquired": [
+      {
+        "path": "_build/alexandria",
+        "url": "https://gitlab.common-lisp.net/alexandria/alexandria.git",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/bordeaux-threads",
+        "url": "https://github.com/sionescu/bordeaux-threads",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/calispel",
+        "url": "https://github.com/hawkir/calispel",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/cl-jpl-util",
+        "url": "https://github.com/hawkir/cl-jpl-util",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/trivial-garbage",
+        "url": "https://github.com/trivial-garbage/trivial-garbage",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/cl-containers",
+        "url": "https://github.com/gwkkwg/cl-containers",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/metatilities-base",
+        "url": "https://github.com/gwkkwg/metatilities-base",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/cl-custom-hash-table",
+        "url": "https://github.com/metawilm/cl-custom-hash-table",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/cl-ppcre",
+        "url": "https://github.com/edicl/cl-ppcre",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/flexi-streams",
+        "url": "https://github.com/edicl/flexi-streams",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/trivial-gray-streams",
+        "url": "https://github.com/trivial-gray-streams/trivial-gray-streams",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/cl-prevalence",
+        "url": "https://github.com/40ants/cl-prevalence",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/s-sysdeps",
+        "url": "https://github.com/svenvc/s-sysdeps",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/usocket",
+        "url": "https://github.com/usocket/usocket/",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/split-sequence",
+        "url": "https://github.com/sharplispers/split-sequence",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/closer-mop",
+        "url": "https://github.com/pcostanza/closer-mop",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/cluffer",
+        "url": "https://github.com/robert-strandh/cluffer",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/Acclimation",
+        "url": "https://github.com/robert-strandh/Acclimation",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/Clump",
+        "url": "https://github.com/robert-strandh/Clump",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/dexador",
+        "url": "https://github.com/fukamachi/dexador",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/babel",
+        "url": "https://github.com/cl-babel/babel",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/trivial-features",
+        "url": "https://github.com/trivial-features/trivial-features",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/fast-http",
+        "url": "https://github.com/fukamachi/fast-http",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/proc-parse",
+        "url": "https://github.com/fukamachi/proc-parse",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/anaphora",
+        "url": "https://github.com/tokenrove/anaphora",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/xsubseq",
+        "url": "https://github.com/fukamachi/xsubseq",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/smart-buffer",
+        "url": "https://github.com/fukamachi/smart-buffer",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/cl-unicode",
+        "url": "https://github.com/edicl/cl-unicode",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/named-readtables",
+        "url": "https://github.com/melisgl/named-readtables",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/trivial-types",
+        "url": "https://github.com/m2ym/trivial-types",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/quri",
+        "url": "https://github.com/fukamachi/quri",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/fast-io",
+        "url": "https://github.com/rpav/fast-io",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/static-vectors",
+        "url": "https://github.com/sionescu/static-vectors",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/cffi",
+        "url": "https://github.com/cffi/cffi",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/chunga",
+        "url": "https://github.com/edicl/chunga",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/cl-cookie",
+        "url": "https://github.com/fukamachi/cl-cookie",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/local-time",
+        "url": "https://github.com/dlowe-net/local-time",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/trivial-mimes",
+        "url": "https://github.com/Shinmera/trivial-mimes",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/cl-base64",
+        "url": "https://gitlab.common-lisp.net/nyxt/cl-base64.git",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/cl-plus-ssl",
+        "url": "https://github.com/cl-plus-ssl/cl-plus-ssl",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/drakma",
+        "url": "https://github.com/edicl/drakma",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/puri",
+        "url": "https://gitlab.common-lisp.net/nyxt/puri.git",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/cl-enchant",
+        "url": "https://github.com/tlikonen/cl-enchant",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/fset",
+        "url": "https://github.com/slburson/fset",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/misc-extensions",
+        "url": "https://gitlab.common-lisp.net/misc-extensions/misc-extensions.git",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/iolib",
+        "url": "https://github.com/sionescu/iolib",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/idna",
+        "url": "https://github.com/antifuchs/idna",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/swap-bytes",
+        "url": "https://github.com/sionescu/swap-bytes",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/log4cl",
+        "url": "https://github.com/sharplispers/log4cl",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/moptilities",
+        "url": "https://github.com/gwkkwg/moptilities/",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/parenscript",
+        "url": "https://gitlab.common-lisp.net/parenscript/parenscript",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/plump",
+        "url": "https://github.com/Shinmera/plump",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/array-utils",
+        "url": "https://github.com/Shinmera/array-utils",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/documentation-utils",
+        "url": "https://github.com/Shinmera/documentation-utils",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/trivial-indent",
+        "url": "https://github.com/Shinmera/trivial-indent",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/serapeum",
+        "url": "https://github.com/ruricolist/serapeum",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/nhooks",
+        "url": "https://github.com/atlas-engineer/nhooks",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/trivia",
+        "url": "https://github.com/guicho271828/trivia",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/optima",
+        "url": "https://github.com/m2ym/optima",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/lisp-namespace",
+        "url": "https://github.com/guicho271828/lisp-namespace",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/trivial-cltl2",
+        "url": "https://github.com/Zulu-Inuoe/trivial-cltl2",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/type-i",
+        "url": "https://github.com/guicho271828/type-i",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/introspect-environment",
+        "url": "https://github.com/Bike/introspect-environment",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/string-case",
+        "url": "https://github.com/pkhuong/string-case",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/parse-number",
+        "url": "https://github.com/sharplispers/parse-number/",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/parse-declarations",
+        "url": "https://gitlab.common-lisp.net/parse-declarations/parse-declarations.git",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/global-vars",
+        "url": "https://github.com/lmj/global-vars",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/trivial-file-size",
+        "url": "https://github.com/ruricolist/trivial-file-size",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/trivial-macroexpand-all",
+        "url": "https://github.com/cbaggers/trivial-macroexpand-all",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/cl-str",
+        "url": "https://github.com/vindarel/cl-str",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/cl-change-case",
+        "url": "https://github.com/rudolfochrist/cl-change-case",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/trivial-clipboard",
+        "url": "https://github.com/snmsts/trivial-clipboard",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/trivial-package-local-nicknames",
+        "url": "https://github.com/phoe/trivial-package-local-nicknames",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/unix-opts",
+        "url": "https://github.com/atlas-engineer/unix-opts",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/cl-webkit",
+        "url": "https://github.com/joachifm/cl-webkit",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/cl-gobject-introspection",
+        "url": "https://github.com/andy128k/cl-gobject-introspection",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/lparallel",
+        "url": "https://github.com/lmj/lparallel/",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/jpl-queues",
+        "url": "https://gitlab.common-lisp.net/nyxt/jpl-queues.git",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/mt19937",
+        "url": "https://gitlab.common-lisp.net/nyxt/mt19937",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/s-xml",
+        "url": "https://gitlab.common-lisp.net/s-xml/s-xml",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/cl-utilities",
+        "url": "https://gitlab.common-lisp.net/cl-utilities/cl-utilities",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/cl-qrencode",
+        "url": "https://github.com/jnjcc/cl-qrencode",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/clss",
+        "url": "https://github.com/Shinmera/clss",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/spinneret",
+        "url": "https://github.com/ruricolist/spinneret/",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/salza2",
+        "url": "https://github.com/xach/salza2",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/zpng",
+        "url": "https://github.com/xach/zpng",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/iterate",
+        "url": "https://gitlab.common-lisp.net/iterate/iterate.git",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/cl-gopher",
+        "url": "https://github.com/knusbaum/cl-gopher",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/phos",
+        "url": "https://github.com/omar-polo/phos",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/cl-tld",
+        "url": "https://github.com/lu4nx/cl-tld",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/nfiles",
+        "url": "https://github.com/atlas-engineer/nfiles",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/nkeymaps",
+        "url": "https://github.com/atlas-engineer/nkeymaps",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/py-configparser",
+        "url": "https://gitlab.common-lisp.net/nyxt/py-configparser",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/trivial-custom-debugger",
+        "url": "https://github.com/phoe/trivial-custom-debugger",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/lisp-unit2",
+        "url": "https://github.com/AccelerationNet/lisp-unit2",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/nsymbols",
+        "url": "https://github.com/atlas-engineer/nsymbols",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/LASS",
+        "url": "https://github.com/Shinmera/LASS",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/njson",
+        "url": "https://github.com/atlas-engineer/njson",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/nclasses",
+        "url": "https://github.com/atlas-engineer/nclasses/",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/prompter",
+        "url": "https://github.com/atlas-engineer/prompter",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/chipz",
+        "url": "https://github.com/sharplispers/chipz",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/cl-cffi-gtk",
+        "url": "https://github.com/sharplispers/cl-cffi-gtk",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/cl-json",
+        "url": "https://github.com/sharplispers/cl-json",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/cl-sqlite",
+        "url": "https://github.com/TeMPOraL/cl-sqlite",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/cl-electron",
+        "url": "https://github.com/atlas-engineer/cl-electron/",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/cl-colors-ng",
+        "url": "https://codeberg.org/cage/cl-colors-ng.git",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/cl-interpol",
+        "url": "https://github.com/edicl/cl-interpol",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/symbol-munger",
+        "url": "https://github.com/AccelerationNet/symbol-munger",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/in-nomine",
+        "url": "https://github.com/phoe/in-nomine",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "_build/trivial-arguments",
+        "url": "https://github.com/Shinmera/trivial-arguments.git",
+        "status": "not included in source archive"
+      }
+    ]
+  },
+  {
+    "id": "online-mind2web-2025",
+    "title": "An Illusion of Progress? Assessing the Current State of Web Agents",
+    "source_url": "https://arxiv.org/abs/2504.01382",
+    "kind": "paper",
+    "checked_at": "2026-10-01T21:53:07.671221+00:00",
+    "download_url": "https://arxiv.org/pdf/2504.01382",
+    "artifact": {
+      "path": "papers/pdfs/online-mind2web-2025.pdf",
+      "bytes": 4872960,
+      "sha256": "8c0e6e48539e328dce612c46625043620e76a950c733dd02bf15345908e59ef5"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "osworld-2024",
+    "title": "OSWorld: Benchmarking Multimodal Agents for Open-Ended Tasks in Real Computer Environments",
+    "source_url": "https://arxiv.org/abs/2404.07972",
+    "kind": "paper",
+    "checked_at": "2026-10-01T21:53:16.933681+00:00",
+    "download_url": "https://arxiv.org/pdf/2404.07972",
+    "artifact": {
+      "path": "papers/pdfs/osworld-2024.pdf",
+      "bytes": 36863784,
+      "sha256": "d4c6e20dd59467f005561b1e97199f9842fd3b0e9fdd93e66e06ba0ec09edfdb"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "parasuraman-2000",
+    "title": "A Model for Types and Levels of Human Interaction with Automation",
+    "source_url": "https://doi.org/10.1109/3468.844354",
+    "kind": "paper",
+    "checked_at": "2026-10-01T21:52:28.112515+00:00",
+    "status": "failed",
+    "error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028)>"
+  },
+  {
+    "id": "parasuraman-riley-1997",
+    "title": "Humans and Automation: Use, Misuse, Disuse, Abuse",
+    "source_url": "https://doi.org/10.1518/001872097778543886",
+    "kind": "paper",
+    "checked_at": "2026-10-01T21:52:28.446493+00:00",
+    "download_url": "https://web.mit.edu/16.459/www/parasuraman.pdf",
+    "artifact": {
+      "path": "papers/pdfs/parasuraman-riley-1997.pdf",
+      "bytes": 6807613,
+      "sha256": "e6b127cb604120059f4fc814abda99177844db5a735d3a6d284c074f2def2bba"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "playwright-cdp-doc",
+    "title": "Playwright BrowserType connectOverCDP",
+    "source_url": "https://playwright.dev/docs/api/class-browsertype#browser-type-connect-over-cdp",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T21:51:59.131309+00:00",
+    "download_url": "https://playwright.dev/docs/api/class-browsertype#browser-type-connect-over-cdp",
+    "artifact": {
+      "path": "context/docs/playwright-cdp-doc.html",
+      "bytes": 165952,
+      "sha256": "77495813a0169054f39f3aaacd07499e0be9ac3c8021d2bf8a2327ac487feb3e"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "playwright-mcp",
+    "title": "Playwright MCP release wrapper and integration tests",
+    "source_url": "https://github.com/microsoft/playwright-mcp",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:51:59.105865+00:00",
+    "revision": "f183dad4a52965583e3cc1d59b88cdc279e2e57d",
+    "selected_paths": [],
+    "archive_url": "https://codeload.github.com/microsoft/playwright-mcp/tar.gz/f183dad4a52965583e3cc1d59b88cdc279e2e57d",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/playwright-mcp-f183dad4a52965583e3cc1d59b88cdc279e2e57d.tar.gz",
+      "bytes": 65543,
+      "sha256": "093a7a59e789789bbd0f83588671edd0af2b56e33b937e2e87379fd83ca01d80"
+    },
+    "tree": "quarantine/playwright-mcp",
+    "status": "acquired",
+    "repo": "microsoft/playwright-mcp",
+    "mode": "archive",
+    "submodules_not_acquired": []
+  },
+  {
+    "id": "playwright-source",
+    "title": "Playwright automation, MCP and extension implementation",
+    "source_url": "https://github.com/microsoft/playwright",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:51:59.109491+00:00",
+    "revision": "ec17ddf9cd2ffbac6cacd455c7f236880362220b",
+    "selected_paths": [
+      "README.md",
+      "LICENSE",
+      "packages/playwright-core/src/tools",
+      "packages/playwright-core/src/server/chromium",
+      "packages/playwright-core/src/client",
+      "tests"
+    ],
+    "archive_url": "https://codeload.github.com/microsoft/playwright/tar.gz/ec17ddf9cd2ffbac6cacd455c7f236880362220b",
+    "scope": "full archive; selected extracted paths",
+    "artifact": {
+      "path": "quarantine/archives/playwright-source-ec17ddf9cd2ffbac6cacd455c7f236880362220b.tar.gz",
+      "bytes": 40624893,
+      "sha256": "f5ebde7d55ddfac40aa38b4d852a680a68acdcd3a15e613bd4d63808c7af6856"
+    },
+    "tree": "quarantine/playwright-source",
+    "status": "acquired",
+    "repo": "microsoft/playwright",
+    "mode": "archive",
+    "submodules_not_acquired": []
+  },
+  {
+    "id": "portal-input-capture",
+    "title": "XDG Desktop Portal InputCapture",
+    "source_url": "https://flatpak.github.io/xdg-desktop-portal/docs/doc-org.freedesktop.portal.InputCapture.html",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:31:14.288792+00:00",
+    "status": "acquired",
+    "download_url": "https://flatpak.github.io/xdg-desktop-portal/docs/doc-org.freedesktop.portal.InputCapture.html",
+    "artifact": {
+      "path": "context/docs/portal-input-capture.html",
+      "bytes": 85578,
+      "sha256": "b3984e80838770136aaea96aff93e54c5a0b4c838ddc4c3128ab43aa21d57fa9"
+    }
+  },
+  {
+    "id": "portal-remote-desktop",
+    "title": "XDG Desktop Portal RemoteDesktop",
+    "source_url": "https://flatpak.github.io/xdg-desktop-portal/docs/doc-org.freedesktop.portal.RemoteDesktop.html",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:31:13.705570+00:00",
+    "status": "acquired",
+    "download_url": "https://flatpak.github.io/xdg-desktop-portal/docs/doc-org.freedesktop.portal.RemoteDesktop.html",
+    "artifact": {
+      "path": "context/docs/portal-remote-desktop.html",
+      "bytes": 72819,
+      "sha256": "2f273ba78ef0f1a1f8b2e18531a7f507b04fdd873f10d19f5236eaff37d63036"
+    }
+  },
+  {
+    "id": "puppeteer-bidi",
+    "title": "Puppeteer WebDriver BiDi support",
+    "source_url": "https://pptr.dev/webdriver-bidi",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T21:51:59.932156+00:00",
+    "download_url": "https://pptr.dev/webdriver-bidi",
+    "artifact": {
+      "path": "context/docs/puppeteer-bidi.html",
+      "bytes": 32742,
+      "sha256": "0f7d62921d2517f9b7ffc9c7d0665380fa731ff359d406ed63013c9e40c96926"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "puppeteer-source",
+    "title": "Puppeteer CDP and WebDriver BiDi implementation",
+    "source_url": "https://github.com/puppeteer/puppeteer",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:51:59.927687+00:00",
+    "revision": "f891aaa1f64f9ea72a56ee4b5daf39d8516ecb20",
+    "selected_paths": [
+      "README.md",
+      "LICENSE",
+      "docs",
+      "packages/puppeteer-core/src",
+      "test",
+      "examples"
+    ],
+    "archive_url": "https://codeload.github.com/puppeteer/puppeteer/tar.gz/f891aaa1f64f9ea72a56ee4b5daf39d8516ecb20",
+    "scope": "full archive; selected extracted paths",
+    "artifact": {
+      "path": "quarantine/archives/puppeteer-source-f891aaa1f64f9ea72a56ee4b5daf39d8516ecb20.tar.gz",
+      "bytes": 2117424,
+      "sha256": "0afbe17fedabc5270ae2e826c2e39fbacc4902a413300d3766a0d6f7c82b2d5b"
+    },
+    "tree": "quarantine/puppeteer-source",
+    "status": "acquired",
+    "repo": "puppeteer/puppeteer",
+    "mode": "archive",
+    "submodules_not_acquired": []
+  },
+  {
+    "id": "qt-overview-doc",
+    "title": "Qt WebEngine 6.10 overview",
+    "source_url": "https://doc.qt.io/qt-6.10/qtwebengine-overview.html",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T21:52:12.668002+00:00",
+    "download_url": "https://doc.qt.io/qt-6.10/qtwebengine-overview.html",
+    "artifact": {
+      "path": "context/docs/qt-overview-doc.html",
+      "bytes": 41575,
+      "sha256": "ef6fac07c704ffc665467fe882d4c1c57032aae416fffe5b94301577dddfe9c9"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "qt-page-doc",
+    "title": "Qt WebEngine 6.10 page API",
+    "source_url": "https://doc.qt.io/qt-6.10/qwebenginepage.html",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T21:52:14.267260+00:00",
+    "download_url": "https://doc.qt.io/qt-6.10/qwebenginepage.html",
+    "artifact": {
+      "path": "context/docs/qt-page-doc.html",
+      "bytes": 213335,
+      "sha256": "9db8ab71719248c03a878a3ea653d2414636d2d205dee6255e3b2dc949491d87"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "qt-profile-doc",
+    "title": "Qt WebEngine 6.10 profile API",
+    "source_url": "https://doc.qt.io/qt-6.10/qwebengineprofile.html",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T21:52:13.788501+00:00",
+    "download_url": "https://doc.qt.io/qt-6.10/qwebengineprofile.html",
+    "artifact": {
+      "path": "context/docs/qt-profile-doc.html",
+      "bytes": 104915,
+      "sha256": "034c439d86eb35f6bb6bf0c71ef50b58a0d2d080fe9f3c346015c5ce91c5920e"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "qtwebengine",
+    "title": "Qt WebEngine source and browser samples",
+    "source_url": "https://github.com/qt/qtwebengine",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:52:02.097217+00:00",
+    "revision": "1c8944d4e0388c4829665bf175d5a790bcbdc5f7",
+    "selected_paths": [
+      "src/core/api/qwebenginepage.h",
+      "src/core/api/qwebenginepage.cpp",
+      "src/core/api/qwebengineprofile.h",
+      "src/core/api/qwebengineprofile.cpp",
+      "src/core/api/qwebenginescript.h",
+      "src/core/api/qwebenginepermission.h",
+      "src/core/api/qwebengineurlrequestinterceptor.h",
+      "src/core/web_contents_adapter.cpp",
+      "examples/webenginewidgets/simplebrowser/browserwindow.cpp",
+      "examples/webenginewidgets/simplebrowser/webpage.cpp",
+      "examples/webenginewidgets/permissionbrowser/mainwindow.cpp",
+      "src/core/doc/src/qtwebengine-overview.qdoc"
+    ],
+    "archive_url": "https://codeload.github.com/qt/qtwebengine/tar.gz/1c8944d4e0388c4829665bf175d5a790bcbdc5f7",
+    "scope": "full archive; selected extracted paths",
+    "artifact": {
+      "path": "quarantine/archives/qtwebengine-1c8944d4e0388c4829665bf175d5a790bcbdc5f7.tar.gz",
+      "bytes": 4439299,
+      "sha256": "719e09b2fb396dbae94da4c729372b92a6a933322aea1c25319b7c1ea18fb30d"
+    },
+    "tree": "quarantine/qtwebengine",
+    "status": "acquired",
+    "repo": "qt/qtwebengine",
+    "mode": "archive",
+    "submodules_not_acquired": [
+      {
+        "path": "src/3rdparty",
+        "url": "../qtwebengine-chromium.git",
+        "status": "not included in source archive"
+      }
+    ]
+  },
+  {
+    "id": "quinn-touch-scroll-2013",
+    "title": "Touch Scrolling Transfer Functions",
+    "source_url": "https://doi.org/10.1145/2501988.2501995",
+    "kind": "paper",
+    "checked_at": "2026-10-01T22:28:38.983105+00:00",
+    "status": "acquired",
+    "download_url": "https://hal.inria.fr/hal-02862506/document",
+    "artifact": {
+      "path": "papers/pdfs/quinn-touch-scroll-2013.pdf",
+      "bytes": 121473,
+      "sha256": "fc9b8723bdd43d3095ce8bd8ac167f43df16807be054c898d405eb7c131d7e07"
+    }
+  },
+  {
+    "id": "qutebrowser",
+    "title": "qutebrowser/qutebrowser",
+    "source_url": "https://github.com/qutebrowser/qutebrowser",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:54:45.933258+00:00",
+    "repo": "qutebrowser/qutebrowser",
+    "revision": "2bd75916a372f24d24cfc8fc26b5f8461332d470",
+    "selected_paths": [],
+    "mode": "archive",
+    "archive_url": "https://codeload.github.com/qutebrowser/qutebrowser/tar.gz/2bd75916a372f24d24cfc8fc26b5f8461332d470",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/qutebrowser-2bd75916a372f24d24cfc8fc26b5f8461332d470.tar.gz",
+      "bytes": 5428142,
+      "sha256": "3b287f8e0f18ed1287725efafc69cccecbc63b3f1fc1e033fc1ac8b883e3ce9b"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/qutebrowser",
+    "status": "acquired"
+  },
+  {
+    "id": "ref-agentdojo",
+    "title": "ethz-spylab/agentdojo",
+    "source_url": "https://github.com/ethz-spylab/agentdojo",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:53:37.973137+00:00",
+    "revision": "089ed468cf3ed0322acc66b0211f26d9d90dbf60",
+    "selected_paths": [],
+    "archive_url": "https://codeload.github.com/ethz-spylab/agentdojo/tar.gz/089ed468cf3ed0322acc66b0211f26d9d90dbf60",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/ref-agentdojo-089ed468cf3ed0322acc66b0211f26d9d90dbf60.tar.gz",
+      "bytes": 38536984,
+      "sha256": "d7e0ee021be27a69e7e66647979b5a5e0dd10030d38d04ce4102e18a76a228d8"
+    },
+    "tree": "quarantine/ref-agentdojo",
+    "status": "acquired",
+    "repo": "ethz-spylab/agentdojo",
+    "mode": "archive",
+    "submodules_not_acquired": []
+  },
+  {
+    "id": "ref-agentic-sop",
+    "title": "UWCSESecurityLab/agentic-browser-sop",
+    "source_url": "https://github.com/UWCSESecurityLab/agentic-browser-sop",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:53:38.196035+00:00",
+    "revision": "de27d0cabe122488fa69df9947a6d187bca731f3",
+    "selected_paths": [],
+    "archive_url": "https://codeload.github.com/UWCSESecurityLab/agentic-browser-sop/tar.gz/de27d0cabe122488fa69df9947a6d187bca731f3",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/ref-agentic-sop-de27d0cabe122488fa69df9947a6d187bca731f3.tar.gz",
+      "bytes": 3586,
+      "sha256": "53706edbc931597fcce024c32bb0e725386fec6a73236e1e8bfd582f812bcfc3"
+    },
+    "tree": "quarantine/ref-agentic-sop",
+    "status": "acquired",
+    "repo": "UWCSESecurityLab/agentic-browser-sop",
+    "mode": "archive",
+    "submodules_not_acquired": []
+  },
+  {
+    "id": "ref-agentlab",
+    "title": "ServiceNow/AgentLab",
+    "source_url": "https://github.com/ServiceNow/AgentLab",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:53:36.373085+00:00",
+    "revision": "cbc35a9bc0facaf731bc858c5825edbe757c719f",
+    "selected_paths": [],
+    "archive_url": "https://codeload.github.com/ServiceNow/AgentLab/tar.gz/cbc35a9bc0facaf731bc858c5825edbe757c719f",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/ref-agentlab-cbc35a9bc0facaf731bc858c5825edbe757c719f.tar.gz",
+      "bytes": 2349174,
+      "sha256": "3e3ca5c9eab56b0a4af7145db278ae2f59a0bed59bc33d17fe71a936c4b0e9d8"
+    },
+    "tree": "quarantine/ref-agentlab",
+    "status": "acquired",
+    "repo": "ServiceNow/AgentLab",
+    "mode": "archive",
+    "submodules_not_acquired": []
+  },
+  {
+    "id": "ref-agenttrek",
+    "title": "xlang-ai/AgentTrek",
+    "source_url": "https://github.com/xlang-ai/AgentTrek",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:52:24.386342+00:00",
+    "repo": "xlang-ai/AgentTrek",
+    "revision": "a8924dc31aabf797e25230f23a6b9b723149e513",
+    "selected_paths": [],
+    "mode": "archive",
+    "archive_url": "https://codeload.github.com/xlang-ai/AgentTrek/tar.gz/a8924dc31aabf797e25230f23a6b9b723149e513",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/ref-agenttrek-a8924dc31aabf797e25230f23a6b9b723149e513.tar.gz",
+      "bytes": 226472,
+      "sha256": "16fdf6dc65529f5840d1bf0c296c5637a313db77664dd964c8fde145e3aae74a"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/ref-agenttrek",
+    "status": "acquired"
+  },
+  {
+    "id": "ref-apple-network-cmds",
+    "title": "Apple network_cmds source",
+    "source_url": "https://github.com/apple-oss-distributions/network_cmds",
+    "kind": "repository",
+    "checked_at": "2026-10-01T22:31:53.710076+00:00",
+    "repo": "apple-oss-distributions/network_cmds",
+    "revision": "97e27e6244c16d399bfeb254315ddc5828711c56",
+    "selected_paths": [],
+    "mode": "archive",
+    "archive_url": "https://codeload.github.com/apple-oss-distributions/network_cmds/tar.gz/97e27e6244c16d399bfeb254315ddc5828711c56",
+    "scope": "full source archive",
+    "status": "failed",
+    "error": "TimeoutError: The read operation timed out"
+  },
+  {
+    "id": "ref-browsergym",
+    "title": "ServiceNow/BrowserGym",
+    "source_url": "https://github.com/ServiceNow/BrowserGym",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:53:36.359905+00:00",
+    "revision": "c05d7f38f4f788d6e4ee960512c3d5c8aabc6e42",
+    "selected_paths": [],
+    "archive_url": "https://codeload.github.com/ServiceNow/BrowserGym/tar.gz/c05d7f38f4f788d6e4ee960512c3d5c8aabc6e42",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/ref-browsergym-c05d7f38f4f788d6e4ee960512c3d5c8aabc6e42.tar.gz",
+      "bytes": 574977,
+      "sha256": "4dbec63c3e3cef224a372dd9de7adca4ddc2c00c8a9c8798c5d80de6dc1e6c7c"
+    },
+    "tree": "quarantine/ref-browsergym",
+    "status": "acquired",
+    "repo": "ServiceNow/BrowserGym",
+    "mode": "archive",
+    "submodules_not_acquired": []
+  },
+  {
+    "id": "ref-camel",
+    "title": "google-research/camel-prompt-injection",
+    "source_url": "https://github.com/google-research/camel-prompt-injection",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:53:37.987864+00:00",
+    "revision": "f083b6b396399d3b3c7f2ddaf613a5945eaf32d8",
+    "selected_paths": [],
+    "archive_url": "https://codeload.github.com/google-research/camel-prompt-injection/tar.gz/f083b6b396399d3b3c7f2ddaf613a5945eaf32d8",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/ref-camel-f083b6b396399d3b3c7f2ddaf613a5945eaf32d8.tar.gz",
+      "bytes": 993215,
+      "sha256": "79557f3fa91922d9f93176317221fa9590f6a321b9b749fb0edf0ce7c3c7ff9e"
+    },
+    "tree": "quarantine/ref-camel",
+    "status": "acquired",
+    "repo": "google-research/camel-prompt-injection",
+    "mode": "archive",
+    "submodules_not_acquired": []
+  },
+  {
+    "id": "ref-cellmate",
+    "title": "earlence-security/cellmate",
+    "source_url": "https://github.com/earlence-security/cellmate",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:52:25.857486+00:00",
+    "repo": "earlence-security/cellmate",
+    "revision": "07a99041a2682c4227a93e0dd50a25812c45ab91",
+    "selected_paths": [],
+    "mode": "archive",
+    "archive_url": "https://codeload.github.com/earlence-security/cellmate/tar.gz/07a99041a2682c4227a93e0dd50a25812c45ab91",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/ref-cellmate-07a99041a2682c4227a93e0dd50a25812c45ab91.tar.gz",
+      "bytes": 105800,
+      "sha256": "17e0638785d256898506a7d46507da8a294ada6bd7092a36f0ce7de4f8db1582"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/ref-cellmate",
+    "status": "acquired"
+  },
+  {
+    "id": "ref-hammerspoon",
+    "title": "Hammerspoon native macOS automation",
+    "source_url": "https://github.com/Hammerspoon/hammerspoon",
+    "kind": "repository",
+    "checked_at": "2026-10-01T22:31:20.422199+00:00",
+    "repo": "Hammerspoon/hammerspoon",
+    "status": "failed",
+    "error": "TimeoutError: The read operation timed out",
+    "revision": "23e387e2805a9890066366e0ac96c71b27f0cfd5",
+    "selected_paths": [],
+    "mode": "archive",
+    "archive_url": "https://codeload.github.com/Hammerspoon/hammerspoon/tar.gz/23e387e2805a9890066366e0ac96c71b27f0cfd5",
+    "scope": "full source archive"
+  },
+  {
+    "id": "ref-injecagent",
+    "title": "uiuc-kang-lab/InjecAgent",
+    "source_url": "https://github.com/uiuc-kang-lab/InjecAgent",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:53:37.948524+00:00",
+    "revision": "f19c9f2c79a41046eb13c03c51a24c567a8ffa07",
+    "selected_paths": [],
+    "archive_url": "https://codeload.github.com/uiuc-kang-lab/InjecAgent/tar.gz/f19c9f2c79a41046eb13c03c51a24c567a8ffa07",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/ref-injecagent-f19c9f2c79a41046eb13c03c51a24c567a8ffa07.tar.gz",
+      "bytes": 1640948,
+      "sha256": "299ce57cfeef329dc3f8eb97be0f4f9d35a3226a4613840c9ca93f11972a3a76"
+    },
+    "tree": "quarantine/ref-injecagent",
+    "status": "acquired",
+    "repo": "uiuc-kang-lab/InjecAgent",
+    "mode": "archive",
+    "submodules_not_acquired": []
+  },
+  {
+    "id": "ref-libpointing",
+    "title": "libpointing transfer-function reference",
+    "source_url": "https://github.com/INRIA/libpointing",
+    "kind": "repository",
+    "checked_at": "2026-10-01T22:31:53.488105+00:00",
+    "repo": "INRIA/libpointing",
+    "revision": "ecb67da58145343c9fa64211d629730134fe74ae",
+    "selected_paths": [],
+    "mode": "archive",
+    "archive_url": "https://codeload.github.com/INRIA/libpointing/tar.gz/ecb67da58145343c9fa64211d629730134fe74ae",
+    "scope": "full source archive",
+    "status": "failed",
+    "error": "IncompleteRead: IncompleteRead(16384 bytes read)"
+  },
+  {
+    "id": "ref-mind2web",
+    "title": "OSU-NLP-Group/Mind2Web",
+    "source_url": "https://github.com/OSU-NLP-Group/Mind2Web",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:53:37.603439+00:00",
+    "revision": "33bd95caeee7bba22dd08ecc935845e15c5e5dc7",
+    "selected_paths": [],
+    "archive_url": "https://codeload.github.com/OSU-NLP-Group/Mind2Web/tar.gz/33bd95caeee7bba22dd08ecc935845e15c5e5dc7",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/ref-mind2web-33bd95caeee7bba22dd08ecc935845e15c5e5dc7.tar.gz",
+      "bytes": 6412365,
+      "sha256": "d06e034df8d1ad67836a45de11d3605c61c2938c3b160a83ee27f38aa42dfaf6"
+    },
+    "tree": "quarantine/ref-mind2web",
+    "status": "acquired",
+    "repo": "OSU-NLP-Group/Mind2Web",
+    "mode": "archive",
+    "submodules_not_acquired": []
+  },
+  {
+    "id": "ref-mind2web2",
+    "title": "OSU-NLP-Group/Mind2Web-2",
+    "source_url": "https://github.com/OSU-NLP-Group/Mind2Web-2",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:53:37.861654+00:00",
+    "revision": "1fcbfda98bf5c669daa2ed0a27f1d2f2499475ee",
+    "selected_paths": [],
+    "archive_url": "https://codeload.github.com/OSU-NLP-Group/Mind2Web-2/tar.gz/1fcbfda98bf5c669daa2ed0a27f1d2f2499475ee",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/ref-mind2web2-1fcbfda98bf5c669daa2ed0a27f1d2f2499475ee.tar.gz",
+      "bytes": 2686144,
+      "sha256": "b75f162d0e65802e08b490e3fecc10f2c00d923f1697b2250d63fb8fedb25efe"
+    },
+    "tree": "quarantine/ref-mind2web2",
+    "status": "acquired",
+    "repo": "OSU-NLP-Group/Mind2Web-2",
+    "mode": "archive",
+    "submodules_not_acquired": []
+  },
+  {
+    "id": "ref-miwa",
+    "title": "ferranschen/MIWA",
+    "source_url": "https://github.com/ferranschen/MIWA",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:52:25.911709+00:00",
+    "repo": "ferranschen/MIWA",
+    "revision": "dd4f34cd603e56a57248440feb4a0bc826630f8d",
+    "selected_paths": [],
+    "mode": "archive",
+    "archive_url": "https://codeload.github.com/ferranschen/MIWA/tar.gz/dd4f34cd603e56a57248440feb4a0bc826630f8d",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/ref-miwa-dd4f34cd603e56a57248440feb4a0bc826630f8d.tar.gz",
+      "bytes": 23113393,
+      "sha256": "c8cf8d0eea40597d6a1a6bc6eb166514d9ff2f1c1d13f41cc7f7ba0c37df9ae4"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/ref-miwa",
+    "status": "acquired"
+  },
+  {
+    "id": "ref-online-mind2web",
+    "title": "OSU-NLP-Group/Online-Mind2Web",
+    "source_url": "https://github.com/OSU-NLP-Group/Online-Mind2Web",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:54:51.889589+00:00",
+    "repo": "OSU-NLP-Group/Online-Mind2Web",
+    "revision": "f0d805ee0e9e0b3ea70911e45e5264b72968f3dc",
+    "selected_paths": [
+      "LICENSE",
+      "README.md",
+      "requirements.txt",
+      "script/eval.sh",
+      "src/clean_html.py",
+      "src/methods/agenttrek_eval.py",
+      "src/methods/automomous_eval.py",
+      "src/methods/webjudge_general_eval.py",
+      "src/methods/webjudge_online_mind2web.py",
+      "src/methods/webvoyager_eval.py",
+      "src/run.py",
+      "src/utils.py"
+    ],
+    "mode": "files",
+    "archive_url": "https://raw.githubusercontent.com/OSU-NLP-Group/Online-Mind2Web/f0d805ee0e9e0b3ea70911e45e5264b72968f3dc/",
+    "scope": "listed individual files",
+    "status": "acquired",
+    "artifact": {
+      "path": "quarantine/archives/ref-online-mind2web-f0d805ee0e9e0b3ea70911e45e5264b72968f3dc-00a1e24f3ddc.zip",
+      "bytes": 23747,
+      "sha256": "b2766a69410e38923337b7002c1af5ed39baf699bcee5f3f577ef957350729d5"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/ref-online-mind2web"
+  },
+  {
+    "id": "ref-osworld",
+    "title": "xlang-ai/OSWorld",
+    "source_url": "https://github.com/xlang-ai/OSWorld",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:53:37.890781+00:00",
+    "revision": "b138d348256078fa634fc3b73567a7337c793e6b",
+    "selected_paths": [],
+    "archive_url": "https://codeload.github.com/xlang-ai/OSWorld/tar.gz/b138d348256078fa634fc3b73567a7337c793e6b",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/ref-osworld-b138d348256078fa634fc3b73567a7337c793e6b.tar.gz",
+      "bytes": 10886457,
+      "sha256": "fc430ab878d4a3c1b1ad8f614456dcb771b6e3aa508ef5f0878cee585ffb5b5b"
+    },
+    "tree": "quarantine/ref-osworld",
+    "status": "acquired",
+    "repo": "xlang-ai/OSWorld",
+    "mode": "archive",
+    "submodules_not_acquired": [
+      {
+        "path": "mm_agents/surferH/rdds",
+        "url": "git@github.com:hcompai/remote-desktop-driver-server.git",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "mm_agents/surferH/agp_client",
+        "url": "git@github.com:hcompai/agp_client_public.git",
+        "status": "not included in source archive"
+      }
+    ]
+  },
+  {
+    "id": "ref-seeact",
+    "title": "OSU-NLP-Group/SeeAct",
+    "source_url": "https://github.com/OSU-NLP-Group/SeeAct",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:53:37.719875+00:00",
+    "revision": "2434627b196b33d1b0668a418188dd2f348883bb",
+    "selected_paths": [],
+    "archive_url": "https://codeload.github.com/OSU-NLP-Group/SeeAct/tar.gz/2434627b196b33d1b0668a418188dd2f348883bb",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/ref-seeact-2434627b196b33d1b0668a418188dd2f348883bb.tar.gz",
+      "bytes": 2951388,
+      "sha256": "37f26ccd61019bca0476d0ffbe54a1dff54f75c6c0395b7c98daf853a8bb7965"
+    },
+    "tree": "quarantine/ref-seeact",
+    "status": "acquired",
+    "repo": "OSU-NLP-Group/SeeAct",
+    "mode": "archive",
+    "submodules_not_acquired": []
+  },
+  {
+    "id": "ref-visualwebarena",
+    "title": "web-arena-x/visualwebarena",
+    "source_url": "https://github.com/web-arena-x/visualwebarena",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:53:36.431796+00:00",
+    "revision": "89f5af29305c3d1e9f97ce4421462060a70c9a03",
+    "selected_paths": [],
+    "archive_url": "https://codeload.github.com/web-arena-x/visualwebarena/tar.gz/89f5af29305c3d1e9f97ce4421462060a70c9a03",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/ref-visualwebarena-89f5af29305c3d1e9f97ce4421462060a70c9a03.tar.gz",
+      "bytes": 206490478,
+      "sha256": "75bb4a1abb1c952d036faea7d34e3af86db214479009f1e0fbcca2c6ea0ef028"
+    },
+    "tree": "quarantine/ref-visualwebarena",
+    "status": "acquired",
+    "repo": "web-arena-x/visualwebarena",
+    "mode": "archive",
+    "submodules_not_acquired": []
+  },
+  {
+    "id": "ref-wasp",
+    "title": "facebookresearch/wasp",
+    "source_url": "https://github.com/facebookresearch/wasp",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:53:38.006048+00:00",
+    "revision": "ffee6f41fde76acd14bd792db442479c506260c2",
+    "selected_paths": [],
+    "archive_url": "https://codeload.github.com/facebookresearch/wasp/tar.gz/ffee6f41fde76acd14bd792db442479c506260c2",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/ref-wasp-ffee6f41fde76acd14bd792db442479c506260c2.tar.gz",
+      "bytes": 206930423,
+      "sha256": "5f974ca5a2a34b0b9ebde599b3ec8b4df34c02934c88c6f759a0761d09110f0f"
+    },
+    "tree": "quarantine/ref-wasp",
+    "status": "acquired",
+    "repo": "facebookresearch/wasp",
+    "mode": "archive",
+    "submodules_not_acquired": []
+  },
+  {
+    "id": "ref-webarena",
+    "title": "web-arena-x/webarena",
+    "source_url": "https://github.com/web-arena-x/webarena",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:53:36.397999+00:00",
+    "revision": "dce04686a56253aefba7b18a4fa0937cf1dc987b",
+    "selected_paths": [],
+    "archive_url": "https://codeload.github.com/web-arena-x/webarena/tar.gz/dce04686a56253aefba7b18a4fa0937cf1dc987b",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/ref-webarena-dce04686a56253aefba7b18a4fa0937cf1dc987b.tar.gz",
+      "bytes": 6161890,
+      "sha256": "b038f6d5648d6975166a0d5ba2805cc8c117f2f203487476da45c0a4a6311a98"
+    },
+    "tree": "quarantine/ref-webarena",
+    "status": "acquired",
+    "repo": "web-arena-x/webarena",
+    "mode": "archive",
+    "submodules_not_acquired": []
+  },
+  {
+    "id": "ref-webarena-verified",
+    "title": "ServiceNow/webarena-verified",
+    "source_url": "https://github.com/ServiceNow/webarena-verified",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:53:37.901486+00:00",
+    "revision": "6473f72db5dcefc97b5725b59e734504edc28a21",
+    "selected_paths": [],
+    "archive_url": "https://codeload.github.com/ServiceNow/webarena-verified/tar.gz/6473f72db5dcefc97b5725b59e734504edc28a21",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/ref-webarena-verified-6473f72db5dcefc97b5725b59e734504edc28a21.tar.gz",
+      "bytes": 1130864,
+      "sha256": "90b49097157887f9ea0e50efb4a7f71d98f18b74951296e1e5444ec09356048e"
+    },
+    "tree": "quarantine/ref-webarena-verified",
+    "status": "acquired",
+    "repo": "ServiceNow/webarena-verified",
+    "mode": "archive",
+    "submodules_not_acquired": []
+  },
+  {
+    "id": "ref-weblinx",
+    "title": "McGill-NLP/weblinx",
+    "source_url": "https://github.com/McGill-NLP/weblinx",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:53:37.697101+00:00",
+    "revision": "9a7e814ffaac36d36ae5291dc3407c530055e16f",
+    "selected_paths": [],
+    "archive_url": "https://codeload.github.com/McGill-NLP/weblinx/tar.gz/9a7e814ffaac36d36ae5291dc3407c530055e16f",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/ref-weblinx-9a7e814ffaac36d36ae5291dc3407c530055e16f.tar.gz",
+      "bytes": 17123273,
+      "sha256": "2ebde924e7e21958d874807143d2bf1c5a1c823530cdbb07fe34a50790794467"
+    },
+    "tree": "quarantine/ref-weblinx",
+    "status": "acquired",
+    "repo": "McGill-NLP/weblinx",
+    "mode": "archive",
+    "submodules_not_acquired": []
+  },
+  {
+    "id": "ref-webvoyager",
+    "title": "MinorJerry/WebVoyager",
+    "source_url": "https://github.com/MinorJerry/WebVoyager",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:53:37.756361+00:00",
+    "revision": "5a7896738c10bfb8b9edccce6bb0e0411f8ae569",
+    "selected_paths": [],
+    "archive_url": "https://codeload.github.com/MinorJerry/WebVoyager/tar.gz/5a7896738c10bfb8b9edccce6bb0e0411f8ae569",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/ref-webvoyager-5a7896738c10bfb8b9edccce6bb0e0411f8ae569.tar.gz",
+      "bytes": 27838345,
+      "sha256": "cef51ef321adabae6ffb0650f9193391f444d9d6b7f2e33f06955dac6bc56deb"
+    },
+    "tree": "quarantine/ref-webvoyager",
+    "status": "acquired",
+    "repo": "MinorJerry/WebVoyager",
+    "mode": "archive",
+    "submodules_not_acquired": []
+  },
+  {
+    "id": "ref-workarena",
+    "title": "ServiceNow/WorkArena",
+    "source_url": "https://github.com/ServiceNow/WorkArena",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:53:37.367771+00:00",
+    "revision": "e885130962f61fb64ac305497996a46cfc7d18f0",
+    "selected_paths": [],
+    "archive_url": "https://codeload.github.com/ServiceNow/WorkArena/tar.gz/e885130962f61fb64ac305497996a46cfc7d18f0",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/ref-workarena-e885130962f61fb64ac305497996a46cfc7d18f0.tar.gz",
+      "bytes": 7083509,
+      "sha256": "3e56a95f0438b5aaff108ee1fdb03853386c51f1d3cdfb2021fc5adf0f0dd515"
+    },
+    "tree": "quarantine/ref-workarena",
+    "status": "acquired",
+    "repo": "ServiceNow/WorkArena",
+    "mode": "archive",
+    "submodules_not_acquired": []
+  },
+  {
+    "id": "ringer",
+    "title": "Ringer / webscript",
+    "source_url": "https://github.com/sbarman/webscript",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:52:22.251953+00:00",
+    "revision": "0ecafcbb238ebca106067229530c9cf4ff9f3dfa",
+    "selected_paths": [],
+    "archive_url": "https://codeload.github.com/sbarman/webscript/tar.gz/0ecafcbb238ebca106067229530c9cf4ff9f3dfa",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/ringer-0ecafcbb238ebca106067229530c9cf4ff9f3dfa.tar.gz",
+      "bytes": 6847521,
+      "sha256": "e9a555689b6f6c9e4c51785fd37d72601680cfdd0733d70472f5b6cecfd0d4a0"
+    },
+    "tree": "quarantine/ringer",
+    "status": "acquired",
+    "repo": "sbarman/webscript",
+    "mode": "archive",
+    "submodules_not_acquired": []
+  },
+  {
+    "id": "ringer-oopsla2016",
+    "title": "Ringer: Web Automation by Demonstration",
+    "source_url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/12/oopsla16-web.pdf",
+    "kind": "paper",
+    "checked_at": "2026-10-01T21:52:17.597457+00:00",
+    "download_url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/12/oopsla16-web.pdf",
+    "artifact": {
+      "path": "papers/pdfs/ringer-oopsla2016.pdf",
+      "bytes": 3860575,
+      "sha256": "bfbb69f57aaed39e3a210fae832e1fd98ed62ba1c01217b792238fe57e1a0ad1"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "rousillon-uist2018",
+    "title": "Rousillon: Scraping Distributed Hierarchical Web Data",
+    "source_url": "https://schasins.com/assets/papers/rousillon.pdf",
+    "kind": "paper",
+    "checked_at": "2026-10-01T21:52:22.581330+00:00",
+    "download_url": "https://schasins.com/assets/papers/rousillon.pdf",
+    "artifact": {
+      "path": "papers/pdfs/rousillon-uist2018.pdf",
+      "bytes": 2487047,
+      "sha256": "764dd1f5fe1db398188f403b4b1f6e3658e3238e4d8aac9ceed360dcad87e818"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "schema-tables-2024",
+    "title": "Schema-Driven Information Extraction from Heterogeneous Tables",
+    "source_url": "https://aclanthology.org/2024.findings-emnlp.600/",
+    "kind": "paper",
+    "checked_at": "2026-10-01T22:05:51.484737+00:00",
+    "download_url": "https://aclanthology.org/2024.findings-emnlp.600.pdf",
+    "artifact": {
+      "path": "papers/pdfs/schema-tables-2024.pdf",
+      "bytes": 3194877,
+      "sha256": "2d56a833f9c90934777c10531c7f3ee6bd9d22f87567c70ecffaf487d490d33a"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "scroll-readability-2021",
+    "title": "Predicting Text Readability from Scrolling Interactions",
+    "source_url": "https://arxiv.org/abs/2105.06354",
+    "kind": "paper",
+    "checked_at": "2026-10-01T22:31:07.232117+00:00",
+    "status": "acquired",
+    "download_url": "https://arxiv.org/pdf/2105.06354",
+    "artifact": {
+      "path": "papers/pdfs/scroll-readability-2021.pdf",
+      "bytes": 360187,
+      "sha256": "cf6e80c31e0549829b65bfc0db3c5873fc3454c3e29824b39957f4b937ef8691"
+    }
+  },
+  {
+    "id": "seeact-2024",
+    "title": "GPT-4V(ision) is a Generalist Web Agent, if Grounded",
+    "source_url": "https://arxiv.org/abs/2401.01614v2",
+    "kind": "paper",
+    "checked_at": "2026-10-01T21:52:56.712367+00:00",
+    "download_url": "https://arxiv.org/pdf/2401.01614v2",
+    "artifact": {
+      "path": "papers/pdfs/seeact-2024.pdf",
+      "bytes": 9044518,
+      "sha256": "ac281a3c5cdbda428e14605e9d96035fd35af82073ce46117c27c34792eea041"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "selenium-bidi",
+    "title": "Selenium WebDriver BiDi documentation",
+    "source_url": "https://www.selenium.dev/documentation/webdriver/bidi/",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T21:52:00.063168+00:00",
+    "download_url": "https://www.selenium.dev/documentation/webdriver/bidi/",
+    "artifact": {
+      "path": "context/docs/selenium-bidi.html",
+      "bytes": 86380,
+      "sha256": "fffacb9e6c011d68684120e935bdd31978b089e6c932b7a9f859097c9f6bf868"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "selenium-source",
+    "title": "Selenium WebDriver BiDi implementation and tests",
+    "source_url": "https://github.com/SeleniumHQ/selenium",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:52:00.027352+00:00",
+    "revision": "68d2843e9d031fa5ce8b5a5a74edbc8e42527b0d",
+    "selected_paths": [
+      "README.md",
+      "LICENSE",
+      "py/selenium/webdriver",
+      "py/test",
+      "javascript/selenium-webdriver/bidi",
+      "javascript/selenium-webdriver/test/bidi",
+      "java/src/org/openqa/selenium/bidi",
+      "java/test/org/openqa/selenium/bidi"
+    ],
+    "archive_url": "https://codeload.github.com/SeleniumHQ/selenium/tar.gz/68d2843e9d031fa5ce8b5a5a74edbc8e42527b0d",
+    "scope": "full archive; selected extracted paths",
+    "artifact": {
+      "path": "quarantine/archives/selenium-source-68d2843e9d031fa5ce8b5a5a74edbc8e42527b0d.tar.gz",
+      "bytes": 41885573,
+      "sha256": "52e019595f05307b801e599dcd36ae086a0061cc9a8e4e02084e0e6ab2b42815"
+    },
+    "tree": "quarantine/selenium-source",
+    "status": "acquired",
+    "repo": "SeleniumHQ/selenium",
+    "mode": "archive",
+    "submodules_not_acquired": []
+  },
+  {
+    "id": "servo",
+    "title": "Servo embeddable browser engine",
+    "source_url": "https://github.com/servo/servo",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:52:02.537469+00:00",
+    "revision": "58fee6d54cf3ab598a95d0c9fe6aac59f4e87f28",
+    "selected_paths": [
+      "README.md",
+      "components/servo/lib.rs",
+      "components/servo/webview.rs",
+      "components/servo/servo.rs",
+      "components/shared/embedder/lib.rs",
+      "components/shared/embedder/embedder_controls.rs",
+      "components/constellation/embedder.rs",
+      "components/servo/tests/webview.rs",
+      "ffi/capi/lib.rs",
+      "ffi/capi/webview.rs",
+      "ports/servoshell/running_app_state.rs",
+      "ports/servoshell/window.rs",
+      "components/servo/webview_delegate.rs"
+    ],
+    "archive_url": "https://raw.githubusercontent.com/servo/servo/58fee6d54cf3ab598a95d0c9fe6aac59f4e87f28/",
+    "scope": "listed individual files",
+    "status": "acquired",
+    "repo": "servo/servo",
+    "mode": "files",
+    "artifact": {
+      "path": "quarantine/archives/servo-58fee6d54cf3ab598a95d0c9fe6aac59f4e87f28-e57bff799ca0.zip",
+      "bytes": 83676,
+      "sha256": "aeeb33699a949a20a08ef37397cc35a87b27a6ddd4ad9101180f607f6cacdbc9"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/servo"
+  },
+  {
+    "id": "servo-book",
+    "title": "The Servo Book",
+    "source_url": "https://book.servo.org/",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T21:52:17.166604+00:00",
+    "download_url": "https://book.servo.org/",
+    "artifact": {
+      "path": "context/docs/servo-book.html",
+      "bytes": 24177,
+      "sha256": "aad7c660530a3d94070c18509177a41e09177169b6db9dcdb0d61988ee25b1e0"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "skip-blocks-oopsla2017",
+    "title": "Skip Blocks: Reusing Execution History to Accelerate Web Scripts",
+    "source_url": "https://schasins.com/assets/papers/skipBlocks.pdf",
+    "kind": "paper",
+    "checked_at": "2026-10-01T21:52:23.350618+00:00",
+    "download_url": "https://schasins.com/assets/papers/skipBlocks.pdf",
+    "artifact": {
+      "path": "papers/pdfs/skip-blocks-oopsla2017.pdf",
+      "bytes": 2306541,
+      "sha256": "34c48eda8919391ab67c09e098a95181becaa25a88c849fdfad6ca476b764288"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "st-webagentbench-2024",
+    "title": "ST-WebAgentBench: A Benchmark for Evaluating Safety and Trustworthiness in Web Agents",
+    "source_url": "https://arxiv.org/abs/2410.06703v1",
+    "kind": "paper",
+    "checked_at": "2026-10-01T21:53:27.798704+00:00",
+    "download_url": "https://arxiv.org/pdf/2410.06703v1",
+    "artifact": {
+      "path": "papers/pdfs/st-webagentbench-2024.pdf",
+      "bytes": 917284,
+      "sha256": "05b411aca04156d507e1c68265f21a407c5ecfe6d12feeffe5efabf774c34416"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "stagehand",
+    "title": "Stagehand interaction SDK, browser extension and agent integrations",
+    "source_url": "https://github.com/browserbase/stagehand",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:51:59.365636+00:00",
+    "revision": "5788121e60c2648654c2b36ec7755030f0015fab",
+    "selected_paths": [],
+    "archive_url": "https://codeload.github.com/browserbase/stagehand/tar.gz/5788121e60c2648654c2b36ec7755030f0015fab",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/stagehand-5788121e60c2648654c2b36ec7755030f0015fab.tar.gz",
+      "bytes": 44186647,
+      "sha256": "bf035457c66c5f40d0f5ee956bfc111adec57fa0cb23c6accc5aa86c53e94ce5"
+    },
+    "tree": "quarantine/stagehand",
+    "status": "acquired",
+    "repo": "browserbase/stagehand",
+    "mode": "archive",
+    "submodules_not_acquired": []
+  },
+  {
+    "id": "tauri-webview-versions",
+    "title": "Tauri webview versions",
+    "source_url": "https://v2.tauri.app/reference/webview-versions/",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T21:54:50.830144+00:00",
+    "download_url": "https://v2.tauri.app/reference/webview-versions/",
+    "artifact": {
+      "path": "context/docs/tauri-webview-versions.html",
+      "bytes": 81209,
+      "sha256": "61777a9b36c70a1d700a2b226090da0229cf0d8ba96f14e6dc34889e30574413"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "todorov-jordan-2002",
+    "title": "Optimal feedback control as a theory of motor coordination",
+    "source_url": "https://doi.org/10.1038/nn963",
+    "kind": "paper",
+    "checked_at": "2026-10-01T22:10:58.444000+00:00",
+    "download_url": "https://roboti.us/lab/papers/TodorovNatNeurosci02.pdf",
+    "artifact": {
+      "path": "papers/pdfs/todorov-jordan-2002.pdf",
+      "bytes": 366071,
+      "sha256": "a9f64da9bf7db10f937fee45523a0eca49dbeb8896e0ae054268c2baed878e6a"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "turner-gaze-scroll-2015",
+    "title": "Understanding Gaze and Scrolling Strategies in Text Consumption Tasks",
+    "source_url": "https://www.microsoft.com/en-us/research/publication/understanding-gaze-scrolling-strategies-text-consumption-tasks/",
+    "kind": "paper",
+    "checked_at": "2026-10-01T22:29:04.648912+00:00",
+    "status": "failed",
+    "error": "TimeoutError: The read operation timed out"
+  },
+  {
+    "id": "ua-client-hints",
+    "title": "Chrome User-Agent Client Hints",
+    "source_url": "https://developer.chrome.com/docs/privacy-security/user-agent-client-hints",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:02:32.308118+00:00",
+    "download_url": "https://developer.chrome.com/docs/privacy-security/user-agent-client-hints",
+    "artifact": {
+      "path": "context/docs/ua-client-hints.html",
+      "bytes": 136401,
+      "sha256": "c7a287ef43ed621c5f781f3b2b5e622830881076091801a54bbe5021c4c63d6d"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "visualwebarena-2024",
+    "title": "VisualWebArena: Evaluating Multimodal Agents on Realistic Visual Web Tasks",
+    "source_url": "https://arxiv.org/abs/2401.13649",
+    "kind": "paper",
+    "checked_at": "2026-10-01T21:52:38.799029+00:00",
+    "download_url": "https://arxiv.org/pdf/2401.13649",
+    "artifact": {
+      "path": "papers/pdfs/visualwebarena-2024.pdf",
+      "bytes": 4564902,
+      "sha256": "8674b4ae17290bb797e5988706f765c75a3310a4e9d14cbd32497e40235ff795"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "wasp-2025",
+    "title": "WASP: Benchmarking Web Agent Security Against Prompt Injection Attacks",
+    "source_url": "https://arxiv.org/abs/2504.18575v3",
+    "kind": "paper",
+    "checked_at": "2026-10-01T21:53:34.438616+00:00",
+    "download_url": "https://arxiv.org/pdf/2504.18575v3",
+    "artifact": {
+      "path": "papers/pdfs/wasp-2025.pdf",
+      "bytes": 1194682,
+      "sha256": "460fd2adff8d31a62f7743fc7f30e63f83ac3ed1c0eca2bd957fd2d5ba0b4290"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "webarena-2023",
+    "title": "WebArena: A Realistic Web Environment for Building Autonomous Agents",
+    "source_url": "https://arxiv.org/abs/2307.13854v2",
+    "kind": "paper",
+    "checked_at": "2026-10-01T21:52:37.855631+00:00",
+    "download_url": "https://arxiv.org/pdf/2307.13854v2",
+    "artifact": {
+      "path": "papers/pdfs/webarena-2023.pdf",
+      "bytes": 9810906,
+      "sha256": "a0f672946b4f26240c5d245a4aaa5dedc90916a0bb957c2749da54610c5ffa57"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "webarena-verified-2025",
+    "title": "WebArena Verified: Reliable Evaluation for Web Agents",
+    "source_url": "https://openreview.net/forum?id=94tlGxmqkN",
+    "kind": "paper",
+    "checked_at": "2026-10-01T21:53:18.927497+00:00",
+    "status": "failed",
+    "error": "HTTPError: HTTP Error 403: Forbidden"
+  },
+  {
+    "id": "webdriver-active-flag",
+    "title": "WebDriver automation information",
+    "source_url": "https://www.w3.org/TR/webdriver/#dfn-webdriver-active-flag",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:02:30.456217+00:00",
+    "download_url": "https://www.w3.org/TR/webdriver/#dfn-webdriver-active-flag",
+    "artifact": {
+      "path": "context/docs/webdriver-active-flag.html",
+      "bytes": 1882653,
+      "sha256": "929f2f0be15b73b0b3e33052f115a47fc1561ec42f0a8992d532780591ae919e"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "webdriver-bidi-spec",
+    "title": "W3C WebDriver BiDi specification",
+    "source_url": "https://www.w3.org/TR/webdriver-bidi/",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T21:52:00.110879+00:00",
+    "download_url": "https://www.w3.org/TR/webdriver-bidi/",
+    "artifact": {
+      "path": "context/docs/webdriver-bidi-spec.html",
+      "bytes": 4234285,
+      "sha256": "8a19cd4ebfd8847e9ad72affea56ca4badf9ff72f0e79b56f0e7f7030f115a14"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "webformer-2022",
+    "title": "WebFormer: The Web-page Transformer for Structure Information Extraction",
+    "source_url": "https://research.google/pubs/webformer-the-web-page-transformer-for-structure-information-extraction/",
+    "kind": "paper",
+    "checked_at": "2026-10-01T22:05:46.288976+00:00",
+    "download_url": "https://storage.googleapis.com/gweb-research2023-media/pubtools/6952.pdf",
+    "artifact": {
+      "path": "papers/pdfs/webformer-2022.pdf",
+      "bytes": 1621784,
+      "sha256": "7e41f5745c4750200a73310e2ddfb92b8024823e77c6bd03d44d78333e3f4922"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "webkit",
+    "title": "WebKit embedding and automation internals",
+    "source_url": "https://github.com/WebKit/WebKit",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:52:02.496300+00:00",
+    "revision": "52387f678340de4ab41625639bc4572f6c069a39",
+    "selected_paths": [
+      "ReadMe.md",
+      "Source/WebKit/UIProcess/API/glib/WebKitWebContext.cpp",
+      "Source/WebKit/UIProcess/API/glib/WebKitUserContentManager.cpp",
+      "Source/WebKit/UIProcess/API/glib/WebKitWebView.cpp",
+      "Source/WebKit/UIProcess/API/Cocoa/WKWebView.h",
+      "Source/WebKit/UIProcess/Automation/WebAutomationSession.cpp",
+      "Source/WebKit/WebProcess/InjectedBundle/API/glib/WebKitWebPage.cpp",
+      "Tools/MiniBrowser/gtk/BrowserWindow.c"
+    ],
+    "archive_url": "https://raw.githubusercontent.com/WebKit/WebKit/52387f678340de4ab41625639bc4572f6c069a39/",
+    "scope": "listed individual files",
+    "status": "acquired",
+    "repo": "WebKit/WebKit",
+    "mode": "files",
+    "artifact": {
+      "path": "quarantine/archives/webkit-52387f678340de4ab41625639bc4572f6c069a39-d21cd4cacde9.zip",
+      "bytes": 132009,
+      "sha256": "f0f3d7663dde13f8dae7378f5bfec14a7b20d0426f83757a939d0fe2f1e6df4f"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/webkit"
+  },
+  {
+    "id": "webkit-cocoa-doc",
+    "title": "Apple WKWebView",
+    "source_url": "https://developer.apple.com/documentation/webkit/wkwebview",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T21:52:17.551944+00:00",
+    "download_url": "https://developer.apple.com/documentation/webkit/wkwebview",
+    "artifact": {
+      "path": "context/docs/webkit-cocoa-doc.html",
+      "bytes": 18347,
+      "sha256": "4544105b76d5558c39e4bfc43cee7fde9c7941b97c17f03338c072231362d8c8"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "webkitgtk-content-doc",
+    "title": "WebKitGTK UserContentManager",
+    "source_url": "https://webkitgtk.org/reference/webkit2gtk/stable/class.UserContentManager.html",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T21:52:16.986832+00:00",
+    "download_url": "https://webkitgtk.org/reference/webkit2gtk/stable/class.UserContentManager.html",
+    "artifact": {
+      "path": "context/docs/webkitgtk-content-doc.html",
+      "bytes": 21194,
+      "sha256": "b380203750689ec4af700c4d2d11fac0457f30eac84a5f8c8d9a0538bf5940a0"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "webkitgtk-webview-doc",
+    "title": "WebKitGTK WebView API",
+    "source_url": "https://webkitgtk.org/reference/webkit2gtk/stable/class.WebView.html",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T21:52:16.891238+00:00",
+    "download_url": "https://webkitgtk.org/reference/webkit2gtk/stable/class.WebView.html",
+    "artifact": {
+      "path": "context/docs/webkitgtk-webview-doc.html",
+      "bytes": 170431,
+      "sha256": "af7418015f5d32b78285e7126ef4b4006462ac57cb313673e34271b73309811e"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "weblinx-2024",
+    "title": "WebLINX: Real-World Website Navigation with Multi-Turn Dialogue",
+    "source_url": "https://arxiv.org/abs/2402.05930v1",
+    "kind": "paper",
+    "checked_at": "2026-10-01T21:52:56.076803+00:00",
+    "download_url": "https://arxiv.org/pdf/2402.05930v1",
+    "artifact": {
+      "path": "papers/pdfs/weblinx-2024.pdf",
+      "bytes": 6094791,
+      "sha256": "d27efa475d43e799e4d6b05227512b24c9c157e55cde9eb7f3fd8cb722254c72"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "webrobot-pldi2022",
+    "title": "WebRobot: Web Robotic Process Automation using Interactive Programming-by-Demonstration",
+    "source_url": "https://arxiv.org/abs/2203.09993",
+    "kind": "paper",
+    "checked_at": "2026-10-01T21:52:18.547973+00:00",
+    "download_url": "https://arxiv.org/pdf/2203.09993",
+    "artifact": {
+      "path": "papers/pdfs/webrobot-pldi2022.pdf",
+      "bytes": 5162702,
+      "sha256": "355136af8d9e2dfe104d411b66d55fd7fcd155f3c4ab0379e0796240953a59da"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "webview2-distribution-doc",
+    "title": "WebView2 Runtime distribution",
+    "source_url": "https://learn.microsoft.com/en-us/microsoft-edge/webview2/concepts/distribution",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T21:52:16.794533+00:00",
+    "download_url": "https://learn.microsoft.com/en-us/microsoft-edge/webview2/concepts/distribution",
+    "artifact": {
+      "path": "context/docs/webview2-distribution-doc.html",
+      "bytes": 90075,
+      "sha256": "8d077d115c0bdf82faf1ce48341b6664b6baf8db4b98bea2c2b26efde0ee5794"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "webview2-process-doc",
+    "title": "WebView2 process model",
+    "source_url": "https://learn.microsoft.com/en-us/microsoft-edge/webview2/concepts/process-model",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T21:52:15.171557+00:00",
+    "download_url": "https://learn.microsoft.com/en-us/microsoft-edge/webview2/concepts/process-model",
+    "artifact": {
+      "path": "context/docs/webview2-process-doc.html",
+      "bytes": 54769,
+      "sha256": "a5b8e1b1d846cfeaf6f22571fb1c0d575581c12921fb529635f3f23695b7bac4"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "webview2-samples",
+    "title": "Microsoft Edge WebView2 official samples",
+    "source_url": "https://github.com/MicrosoftEdge/WebView2Samples",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:52:02.214906+00:00",
+    "revision": "bd0048f4adb1b5982e0dfbfa0a3fe525ff34da7d",
+    "selected_paths": [],
+    "archive_url": "https://codeload.github.com/MicrosoftEdge/WebView2Samples/tar.gz/bd0048f4adb1b5982e0dfbfa0a3fe525ff34da7d",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/webview2-samples-bd0048f4adb1b5982e0dfbfa0a3fe525ff34da7d.tar.gz",
+      "bytes": 10345045,
+      "sha256": "38e35f9ab0009fc6fe3f1ca400b50cd1af612726118979a85ff20f433072418b"
+    },
+    "tree": "quarantine/webview2-samples",
+    "status": "acquired",
+    "repo": "MicrosoftEdge/WebView2Samples",
+    "mode": "archive",
+    "submodules_not_acquired": []
+  },
+  {
+    "id": "webview2-security-doc",
+    "title": "WebView2 secure native applications",
+    "source_url": "https://learn.microsoft.com/en-us/microsoft-edge/webview2/concepts/security",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T21:52:14.838002+00:00",
+    "download_url": "https://learn.microsoft.com/en-us/microsoft-edge/webview2/concepts/security",
+    "artifact": {
+      "path": "context/docs/webview2-security-doc.html",
+      "bytes": 58831,
+      "sha256": "a813cec6105fa89b4923edc33dab8b93004d5cfaf561b8fdb7decf39e2c0734f"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "webvoyager-2024",
+    "title": "WebVoyager: Building an End-to-End Web Agent with Large Multimodal Models",
+    "source_url": "https://arxiv.org/abs/2401.13919",
+    "kind": "paper",
+    "checked_at": "2026-10-01T21:53:01.733321+00:00",
+    "download_url": "https://arxiv.org/pdf/2401.13919",
+    "artifact": {
+      "path": "papers/pdfs/webvoyager-2024.pdf",
+      "bytes": 18497629,
+      "sha256": "476ed4a064311f93414f5d5d17d90f10d07d2922bc05e09ee89cea26b617a2cb"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "whatwg-event-trust",
+    "title": "DOM Standard: Event.isTrusted",
+    "source_url": "https://dom.spec.whatwg.org/#dom-event-istrusted",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:31:09.473132+00:00",
+    "status": "acquired",
+    "download_url": "https://dom.spec.whatwg.org/#dom-event-istrusted",
+    "artifact": {
+      "path": "context/docs/whatwg-event-trust.html",
+      "bytes": 2375264,
+      "sha256": "058b98daedf6882b5482c69b0b38dfdf50e370a2f0f96cb8044c3b25a426470f"
+    }
+  },
+  {
+    "id": "whatwg-online",
+    "title": "HTML Standard: navigator.onLine and online/offline",
+    "source_url": "https://html.spec.whatwg.org/multipage/system-state.html#navigator.online",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:31:12.788855+00:00",
+    "status": "acquired",
+    "download_url": "https://html.spec.whatwg.org/multipage/system-state.html#navigator.online",
+    "artifact": {
+      "path": "context/docs/whatwg-online.html",
+      "bytes": 110952,
+      "sha256": "64d4c7ce9bcba6b5ce291795ae8ffe2e221baca2066ebed0bb21cf6df3858dad"
+    }
+  },
+  {
+    "id": "white-task-differences-2012",
+    "title": "Large-Scale Analysis of Individual and Task Differences in Search Result Page Examination Strategies",
+    "source_url": "https://www.microsoft.com/en-us/research/publication/large-scale-analysis-of-individual-and-task-differences-in-search-result-page-examination-strategies/",
+    "kind": "paper",
+    "checked_at": "2026-10-01T22:30:21.400361+00:00",
+    "status": "acquired",
+    "download_url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2012/01/Final_InteractionDifferences_WSDM12.pdf",
+    "artifact": {
+      "path": "papers/pdfs/white-task-differences-2012.pdf",
+      "bytes": 1712983,
+      "sha256": "f416b09973861139c70ed425d255d2ff320f477662b5122b1a69fb04a3bcc5d3"
+    }
+  },
+  {
+    "id": "workarena-2024",
+    "title": "WorkArena: How Capable Are Web Agents at Solving Common Knowledge Work Tasks?",
+    "source_url": "https://arxiv.org/abs/2403.07718",
+    "kind": "paper",
+    "checked_at": "2026-10-01T21:52:44.903746+00:00",
+    "download_url": "https://arxiv.org/pdf/2403.07718",
+    "artifact": {
+      "path": "papers/pdfs/workarena-2024.pdf",
+      "bytes": 7060004,
+      "sha256": "686792a9085d998be3ac3de3e9c126fd0a9256b6ccb313aa006edb62f7645295"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "workarena-plus-2024",
+    "title": "WorkArena++: Towards Compositional Planning and Reasoning-based Common Knowledge Work Tasks",
+    "source_url": "https://arxiv.org/abs/2407.05291",
+    "kind": "paper",
+    "checked_at": "2026-10-01T21:52:48.037487+00:00",
+    "download_url": "https://arxiv.org/pdf/2407.05291",
+    "artifact": {
+      "path": "papers/pdfs/workarena-plus-2024.pdf",
+      "bytes": 24628627,
+      "sha256": "9a3f424bfcdb2e5b2098c9fa00269a4dac371c11dada4bd4eec436bb2b61d479"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "wpe-doc",
+    "title": "WPE WebKit overview",
+    "source_url": "https://wpewebkit.org/about/",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T21:52:17.017255+00:00",
+    "download_url": "https://wpewebkit.org/about/",
+    "artifact": {
+      "path": "context/docs/wpe-doc.html",
+      "bytes": 17603,
+      "sha256": "fda26c064c980706d0d5a2efb769b92f2127a3c55f12b703b581f95282e539e6"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "wry",
+    "title": "tauri-apps/wry",
+    "source_url": "https://github.com/tauri-apps/wry",
+    "kind": "repository",
+    "checked_at": "2026-10-01T21:54:45.352508+00:00",
+    "repo": "tauri-apps/wry",
+    "revision": "cab3eace983007a16f132c14a34d0a220c707bea",
+    "selected_paths": [],
+    "mode": "archive",
+    "archive_url": "https://codeload.github.com/tauri-apps/wry/tar.gz/cab3eace983007a16f132c14a34d0a220c707bea",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/wry-cab3eace983007a16f132c14a34d0a220c707bea.tar.gz",
+      "bytes": 2247131,
+      "sha256": "2de64fe39e7c31480f6af3ded94d349791e66681dfe163cedbe85c8f94beedac"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/wry",
+    "status": "acquired"
+  },
+  {
+    "id": "x11-record",
+    "title": "X Record Extension Library",
+    "source_url": "https://www.x.org/releases/current/doc/libXtst/recordlib.pdf",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:31:16.408168+00:00",
+    "status": "acquired",
+    "download_url": "https://www.x.org/releases/current/doc/libXtst/recordlib.pdf",
+    "artifact": {
+      "path": "context/docs/x11-record.html",
+      "bytes": 114449,
+      "sha256": "021a7bb02e38d08d4c731d0d8dee55e75de2763f446835829f460f899240204a"
+    }
+  },
+  {
+    "id": "x11-xtest",
+    "title": "XTEST Extension Library",
+    "source_url": "https://xorg.freedesktop.org/archive/X11R7.7/doc/libXtst/xtestlib.html",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T22:31:15.930295+00:00",
+    "status": "acquired",
+    "download_url": "https://xorg.freedesktop.org/archive/X11R7.7/doc/libXtst/xtestlib.html",
+    "artifact": {
+      "path": "context/docs/x11-xtest.html",
+      "bytes": 26768,
+      "sha256": "6c2c04622d6b9417973949e7aad8883c9fc96fcb3fbc337b23f2020ccf86869f"
+    }
+  }
+]
