@@ -23,6 +23,7 @@ pub struct Config {
     db: PathBuf,
     probe: PathBuf,
     origin: String,
+    agent: Option<crate::agent::Settings>,
 }
 pub fn configuration() -> Result<Option<Config>, ()> {
     let mut args = std::env::args_os().skip(1);
@@ -41,15 +42,78 @@ pub fn configuration() -> Result<Option<Config>, ()> {
         return Err(());
     }
     let origin = args.next().ok_or(())?.into_string().map_err(|_| ())?;
-    if args.next().is_some()
-        || origin.is_empty()
-        || origin.len() > 128
-        || origin.contains(['\n', '\r', '\0'])
-    {
+    let agent = if let Some(flag) = args.next() {
+        if flag != "--agent-executable" {
+            return Err(());
+        }
+        let executable = PathBuf::from(args.next().ok_or(())?);
+        let mut options = BTreeMap::new();
+        while let Some(flag) = args.next() {
+            let flag = flag.into_string().map_err(|_| ())?;
+            if ![
+                "--agent-cwd",
+                "--agent-model",
+                "--agent-provider",
+                "--agent-home",
+                "--agent-user-home",
+                "--agent-account",
+            ]
+            .contains(&flag.as_str())
+                || options.insert(flag, args.next().ok_or(())?).is_some()
+            {
+                return Err(());
+            }
+        }
+        let cwd = PathBuf::from(options.remove("--agent-cwd").ok_or(())?);
+        let home = PathBuf::from(options.remove("--agent-home").ok_or(())?);
+        let user_home = PathBuf::from(options.remove("--agent-user-home").ok_or(())?);
+        let model = options
+            .remove("--agent-model")
+            .ok_or(())?
+            .into_string()
+            .map_err(|_| ())?;
+        let provider = options
+            .remove("--agent-provider")
+            .ok_or(())?
+            .into_string()
+            .map_err(|_| ())?;
+        let account = options
+            .remove("--agent-account")
+            .map(|v| v.into_string().map_err(|_| ()))
+            .transpose()?;
+        if provider != "openai"
+            || [&executable, &cwd, &home, &user_home]
+                .iter()
+                .any(|p| !p.is_absolute())
+            || [Some(&model), Some(&provider), account.as_ref()]
+                .iter()
+                .flatten()
+                .any(|v| v.is_empty() || v.len() > 128 || v.contains(['\n', '\r', '\0']))
+        {
+            return Err(());
+        }
+        Some(crate::agent::Settings {
+            executable,
+            cwd,
+            home,
+            user_home,
+            model,
+            provider,
+            account,
+        })
+    } else {
+        None
+    };
+    if origin.is_empty() || origin.len() > 128 || origin.contains(['\n', '\r', '\0']) {
         return Err(());
     }
     // Private application-owned paths, never supplied by incoming records.
-    Ok(Some(Config { db, probe, origin }))
+    Ok(Some(Config {
+        db,
+        probe,
+        origin,
+        agent,
+    }))
 }
 enum Incoming {
     Frame(Vec<u8>),
@@ -106,6 +170,7 @@ enum Gate {
     Review(Review),
     Read(String),
     List,
+    AgentStatus(String),
 }
 struct Outbound {
     bytes: Vec<u8>,
@@ -150,6 +215,7 @@ struct Actor {
     closing: Option<u64>,
     finished: Option<bool>,
     last_poll: Instant,
+    agent: crate::agent::Manager,
 }
 impl Actor {
     fn new(config: Option<Config>) -> Self {
@@ -157,6 +223,11 @@ impl Actor {
         let clock = config
             .as_ref()
             .map(|c| clock_worker(c.probe.clone(), clock_owner.clone()));
+        let agent = crate::agent::Manager::new(
+            config.as_ref().and_then(|c| c.agent.clone()),
+            config.as_ref().map(|c| c.probe.clone()).unwrap_or_default(),
+            clock_owner.clone(),
+        );
         Self {
             state: State::new(),
             config,
@@ -173,6 +244,7 @@ impl Actor {
             closing: None,
             finished: None,
             last_poll: Instant::now(),
+            agent,
         }
     }
     fn enqueue(&mut self, bytes: Vec<u8>, id: u64, gate: Option<Gate>) -> Result<(), ()> {
@@ -194,6 +266,7 @@ impl Actor {
         self.table(id, TablePayload::Error { code }, None)
     }
     fn reject(&mut self, code: &'static str) -> Result<(), ()> {
+        self.agent.retire(crate::agent::TaskState::Canceled);
         if let Some(store) = &mut self.store {
             store.stop();
         }
@@ -211,6 +284,7 @@ impl Actor {
     fn incoming(&mut self, event: Incoming) -> Result<(), ()> {
         match event {
             Incoming::Eof => {
+                self.agent.retire(crate::agent::TaskState::Canceled);
                 if let Some(store) = &mut self.store {
                     if store.health() != Health::Closed {
                         store.stop();
@@ -233,6 +307,15 @@ impl Actor {
                     return self.reject(code);
                 }
                 let id = request.id().unwrap_or(0);
+                if matches!(
+                    request,
+                    Request::TableScope { .. }
+                        | Request::TableRevise { .. }
+                        | Request::TableApprove { .. }
+                        | Request::TableClose { .. }
+                ) {
+                    self.agent.retire(crate::agent::TaskState::Canceled);
+                }
                 match request {
                     Request::Initialize { .. } => {
                         self.open_needed = self.config.is_some();
@@ -242,12 +325,14 @@ impl Actor {
                         self.enqueue(self.state.bootstrap("pong", Some(id)), id, None)
                     }
                     Request::StopAll { .. } => {
+                        self.agent.retire(crate::agent::TaskState::Canceled);
                         if let Some(s) = &mut self.store {
                             s.stop();
                         }
                         self.enqueue(self.state.bootstrap("stopped", Some(id)), id, None)
                     }
                     Request::Shutdown { .. } => {
+                        self.agent.shutdown();
                         if self
                             .store
                             .as_ref()
@@ -258,6 +343,59 @@ impl Actor {
                         }
                         self.finished = Some(true);
                         self.enqueue(self.state.bootstrap("shutdown", Some(id)), id, None)
+                    }
+                    Request::AgentMetadata { .. } => self.table(
+                        id,
+                        TablePayload::AgentMetadata {
+                            state: self.agent.metadata_state,
+                            descriptor: self.agent.descriptor.clone(),
+                        },
+                        None,
+                    ),
+                    Request::AgentCancel { task_id, .. } => {
+                        if self
+                            .agent
+                            .task
+                            .as_ref()
+                            .is_none_or(|task| task.id != task_id)
+                        {
+                            return self.table(
+                                id,
+                                TablePayload::AgentError {
+                                    code: "unknown_task",
+                                },
+                                None,
+                            );
+                        }
+                        self.agent.retire(crate::agent::TaskState::Canceled);
+                        self.table(
+                            id,
+                            TablePayload::AgentCanceled {
+                                task_id,
+                                export_disposition: self.agent.status().export_disposition,
+                            },
+                            None,
+                        )
+                    }
+                    Request::AgentStatus { ref task_id, .. } => {
+                        if task_id.as_ref().is_some_and(|id| {
+                            self.agent.task.as_ref().is_none_or(|task| task.id != *id)
+                        }) {
+                            return self.table(
+                                id,
+                                TablePayload::AgentError {
+                                    code: "unknown_task",
+                                },
+                                None,
+                            );
+                        }
+                        let status = self.agent.status();
+                        let gate = status
+                            .publication_guard
+                            .as_ref()
+                            .and(status.task_id.as_ref())
+                            .map(|task_id| Gate::AgentStatus(task_id.clone()));
+                        self.table(id, TablePayload::AgentStatus { status }, gate)
                     }
                     request => {
                         if self.config.is_none() {
@@ -280,6 +418,16 @@ impl Actor {
         let id = pending.request.id().expect("table request");
         if pending.generation != self.state.generation {
             return self.table_error(id, "stopped");
+        }
+        if let Request::AgentStart {
+            review,
+            candidate_ids,
+            objective,
+            ttl_ms,
+            ..
+        } = pending.request
+        {
+            return self.start_agent(id, review, candidate_ids, objective, ttl_ms, witness);
         }
         let Some(store) = &mut self.store else {
             return self.table_error(id, "not_ready");
@@ -405,6 +553,32 @@ impl Actor {
             out.gate = None;
             return Ok(out);
         }
+        if let Some(Gate::AgentStatus(task_id)) = &out.gate {
+            if self
+                .agent
+                .task
+                .as_ref()
+                .is_none_or(|task| task.id != *task_id)
+            {
+                out.bytes = self.state.table(
+                    out.id,
+                    TablePayload::AgentError {
+                        code: "unknown_task",
+                    },
+                );
+                out.gate = None;
+                return Ok(out);
+            }
+            self.check_agent(witness);
+            out.bytes = self.state.table(
+                out.id,
+                TablePayload::AgentStatus {
+                    status: self.agent.status(),
+                },
+            );
+            out.gate = None;
+            return Ok(out);
+        }
         let store = self.store.as_mut().ok_or(())?;
         let result: Result<TablePayload, bow_shock_evidence::Error> =
             match out.gate.take().expect("publication gate") {
@@ -442,6 +616,7 @@ impl Actor {
                             })
                         })
                 }
+                Gate::AgentStatus(_) => unreachable!("handled agent publication"),
             };
         out.bytes = self.state.table(
             out.id,
@@ -455,26 +630,32 @@ impl Actor {
         Ok(out)
     }
     fn start_clock(&mut self, task: ClockTask) -> Result<(), ()> {
-        self.clock
-            .as_ref()
-            .ok_or(())?
-            .0
-            .try_send(())
-            .map_err(|_| ())?;
+        self.clock.as_ref().ok_or(())?.0.try_send(()).map_err(|_| {
+            eprintln!("controller clock command unavailable");
+        })?;
         self.clock_task = Some(task);
         self.clock_age = Some(Age::new());
         Ok(())
     }
     fn send_writer(&mut self, out: Outbound, writer: &SyncSender<Vec<u8>>) -> Result<(), ()> {
-        writer.try_send(out.bytes).map_err(|_| ())?;
+        writer.try_send(out.bytes).map_err(|_| {
+            eprintln!("controller writer command unavailable");
+        })?;
         self.writer_age = Some(Age::new());
         Ok(())
     }
     fn advance(&mut self, writer: &SyncSender<Vec<u8>>, done: &Receiver<bool>) -> Result<(), ()> {
+        self.agent.poll();
         match done.try_recv() {
             Ok(true) => self.writer_age = None,
-            Ok(false) => return Err(()),
-            Err(TryRecvError::Disconnected) => return Err(()),
+            Ok(false) => {
+                eprintln!("controller writer ack failed");
+                return Err(());
+            }
+            Err(TryRecvError::Disconnected) => {
+                eprintln!("controller writer ack disconnected");
+                return Err(());
+            }
             Err(TryRecvError::Empty) => {}
         }
         if self
@@ -482,6 +663,7 @@ impl Actor {
             .as_ref()
             .is_some_and(|a| a.expired(IO_TIMEOUT))
         {
+            eprintln!("controller writer handoff timeout");
             return Err(());
         }
         if self
@@ -489,6 +671,7 @@ impl Actor {
             .as_ref()
             .is_some_and(|a| a.expired(Duration::from_secs(1)))
         {
+            eprintln!("controller clock task timeout");
             return Err(());
         }
         if self.clock_task.is_some() {
@@ -523,11 +706,16 @@ impl Actor {
                         self.open_needed = false;
                     }
                     ClockTask::Poll => {
-                        self.store
-                            .as_mut()
-                            .expect("poll store")
-                            .poll_at(witness)
-                            .map_err(|_| ())?;
+                        // A managed review consumes this unique native witness.
+                        // Never reuse it through a second *_at operation.
+                        if !self.check_agent(witness.clone()) {
+                            self.store
+                                .as_mut()
+                                .expect("poll store")
+                                .poll_at(witness)
+                                .map_err(|_| ())?;
+                        }
+                        self.store.as_mut().expect("poll store").poll();
                         self.last_poll = Instant::now();
                     }
                     ClockTask::Operation(pending) => {
@@ -557,6 +745,7 @@ impl Actor {
         if let Some(store) = &mut self.store {
             store.poll();
             if store.health() == Health::Failed {
+                eprintln!("controller store failed");
                 return Err(());
             }
             if store.health() == Health::Closed
@@ -596,6 +785,100 @@ impl Actor {
             }
         }
         Ok(())
+    }
+}
+impl Actor {
+    fn current_review(
+        &mut self,
+        review: &Review,
+        witness: ClockWitness,
+    ) -> Result<(Batch, bow_shock_evidence::PublicationGuard), ()> {
+        #[derive(serde::Deserialize)]
+        struct Content {
+            batch: Batch,
+            retention_ms: u64,
+        }
+        if review.content.len() > MAX_REVIEW {
+            return Err(());
+        }
+        let content: Content = serde_json::from_str(&review.content).map_err(|_| ())?;
+        let (current, guard) = self
+            .store
+            .as_mut()
+            .ok_or(())?
+            .unapproved_review_guarded_at(&review.staging_id, content.retention_ms, witness)
+            .map_err(|_| ())?;
+        if current != *review {
+            return Err(());
+        }
+        Ok((content.batch, guard))
+    }
+    fn start_agent(
+        &mut self,
+        id: u64,
+        review: Review,
+        ids: Vec<String>,
+        objective: String,
+        ttl: u64,
+        witness: ClockWitness,
+    ) -> Result<(), ()> {
+        let result = (|| {
+            if objective.is_empty() || objective.len() > 2048 || ttl == 0 || ttl > 60000 {
+                return Err(());
+            }
+            let (batch, mut guard) = self.current_review(&review, witness.clone())?;
+            native_batch(&batch, &witness).map_err(|_| ())?;
+            guard.valid_until_ns = guard.valid_until_ns.min(
+                witness
+                    .continuous_ns
+                    .checked_add(ttl.checked_mul(1_000_000).ok_or(())?)
+                    .ok_or(())?,
+            );
+            let fields = crate::agent::projection(&batch, &ids)?;
+            let task_id = format!("agent-{id}");
+            self.agent.start(crate::agent::Task {
+                id: task_id.clone(),
+                review,
+                guard: guard.clone(),
+                fields,
+                objective,
+                generation: self.state.generation,
+            })?;
+            Ok(TablePayload::AgentStarted {
+                task_id,
+                publication_guard: guard,
+                candidate_ids: ids,
+            })
+        })();
+        self.table(
+            id,
+            result.unwrap_or(TablePayload::AgentError {
+                code: "agent_rejected",
+            }),
+            None,
+        )
+    }
+    fn check_agent(&mut self, witness: ClockWitness) -> bool {
+        let Some(task) = self.agent.task.clone() else {
+            return false;
+        };
+        if !matches!(
+            self.agent.task_state,
+            crate::agent::TaskState::Running
+                | crate::agent::TaskState::Candidate
+                | crate::agent::TaskState::NoMatch
+        ) {
+            return false;
+        }
+        let current = self.current_review(&task.review, witness.clone());
+        if witness.boot_id != task.guard.boot_id
+            || witness.continuous_ns >= task.guard.valid_until_ns
+        {
+            self.agent.retire(crate::agent::TaskState::Expired);
+        } else if task.generation != self.state.generation || current.is_err() {
+            self.agent.retire(crate::agent::TaskState::Canceled);
+        }
+        true
     }
 }
 fn native_batch(batch: &Batch, witness: &ClockWitness) -> Result<(), bow_shock_evidence::Error> {
@@ -663,6 +946,7 @@ pub fn serve(config: Option<Config>) -> bool {
                 match incoming.try_recv() {
                     Ok(event) => {
                         if actor.incoming(event).is_err() {
+                            eprintln!("controller incoming branch failed");
                             break 'service failed(&mut actor);
                         }
                     }
@@ -675,6 +959,7 @@ pub fn serve(config: Option<Config>) -> bool {
             }
         }
         if actor.advance(&writer, &done).is_err() {
+            eprintln!("controller advance branch failed");
             break failed(&mut actor);
         }
         if let Some(success) = actor.finished
@@ -688,8 +973,9 @@ pub fn serve(config: Option<Config>) -> bool {
     };
     // Terminal phase only: no authority admissions and no blocking pipe joins.
     actor.clock_owner.cancel();
+    actor.agent.shutdown();
     let mut warning = Some(Age::new());
-    while !actor.clock_owner.is_quiescent() {
+    while !actor.clock_owner.is_quiescent() || !actor.agent.quiescent() {
         if warning
             .as_ref()
             .is_some_and(|age| age.expired(Duration::from_secs(2)))
@@ -702,6 +988,7 @@ pub fn serve(config: Option<Config>) -> bool {
     result
 }
 fn failed(actor: &mut Actor) -> bool {
+    actor.agent.shutdown();
     actor.clock_owner.cancel();
     if let Some(store) = &mut actor.store {
         store.stop();

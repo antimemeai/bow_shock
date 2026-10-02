@@ -1,4 +1,6 @@
-//! Closed trusted-native controller child. No model/input/network/export powers.
+//! Closed trusted-native controller child; explicit grounded proposals, no input powers.
+mod agent;
+mod agent_transport;
 mod protocol;
 mod service;
 use std::process::ExitCode;

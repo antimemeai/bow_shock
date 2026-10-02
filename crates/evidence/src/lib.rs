@@ -405,6 +405,24 @@ impl Store {
             Ok((review, s.guard(stage.expires_ns)?))
         })
     }
+    /// The caller separately owns explicit disclosure authorization. This only
+    /// resolves current unapproved source evidence without minting approval,
+    /// changing retention or refreshing the stage's original expiry.
+    pub fn unapproved_review_guarded_at(
+        &mut self,
+        id: &str,
+        retention_ms: u64,
+        witness: ClockWitness,
+    ) -> Result<(Review, PublicationGuard)> {
+        self.at(witness, |s| {
+            let review = s.review(id, retention_ms)?;
+            let stage = s.stages.get(id).expect("review resolved stage");
+            if stage.approval.is_some() {
+                return Err(Error("approved draft is not proposal source".into()));
+            }
+            Ok((review, s.guard(stage.expires_ns)?))
+        })
+    }
     pub fn committed_ids_guarded_at(
         &mut self,
         witness: ClockWitness,

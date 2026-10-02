@@ -78,6 +78,28 @@ pub enum Request {
         version: u32,
         id: u64,
     },
+    AgentMetadata {
+        version: u32,
+        id: u64,
+    },
+    AgentStart {
+        version: u32,
+        id: u64,
+        review: Review,
+        candidate_ids: Vec<String>,
+        objective: String,
+        ttl_ms: u64,
+    },
+    AgentStatus {
+        version: u32,
+        id: u64,
+        task_id: Option<String>,
+    },
+    AgentCancel {
+        version: u32,
+        id: u64,
+        task_id: String,
+    },
 }
 struct ObjectRequest(Request);
 impl<'de> Deserialize<'de> for ObjectRequest {
@@ -155,7 +177,11 @@ impl Request {
             | Self::TableList { version, .. }
             | Self::TableRead { version, .. }
             | Self::TableDelete { version, .. }
-            | Self::TableClose { version, .. } => *version,
+            | Self::TableClose { version, .. }
+            | Self::AgentMetadata { version, .. }
+            | Self::AgentStart { version, .. }
+            | Self::AgentStatus { version, .. }
+            | Self::AgentCancel { version, .. } => *version,
         }
     }
     pub fn id(&self) -> Option<u64> {
@@ -174,7 +200,11 @@ impl Request {
             | Self::TableList { id, .. }
             | Self::TableRead { id, .. }
             | Self::TableDelete { id, .. }
-            | Self::TableClose { id, .. } => Some(*id),
+            | Self::TableClose { id, .. }
+            | Self::AgentMetadata { id, .. }
+            | Self::AgentStart { id, .. }
+            | Self::AgentStatus { id, .. }
+            | Self::AgentCancel { id, .. } => Some(*id),
         }
     }
 }
@@ -197,21 +227,49 @@ pub struct ErrorReply {
 #[derive(Serialize)]
 #[serde(tag = "op", rename_all = "snake_case")]
 pub enum TablePayload {
+    AgentMetadata {
+        state: &'static str,
+        descriptor: Option<crate::agent::Descriptor>,
+    },
+    AgentStarted {
+        task_id: String,
+        publication_guard: PublicationGuard,
+        candidate_ids: Vec<String>,
+    },
+    AgentStatus {
+        #[serde(flatten)]
+        status: crate::agent::Status,
+    },
+    AgentCanceled {
+        task_id: String,
+        export_disposition: crate::agent::Disclosure,
+    },
+    AgentError {
+        code: &'static str,
+    },
     #[serde(rename = "table_scoped")]
     Scoped,
     #[serde(rename = "table_staged")]
-    Staged { staging_id: String },
+    Staged {
+        staging_id: String,
+    },
     #[serde(rename = "table_revised")]
-    Revised { staging_id: String },
+    Revised {
+        staging_id: String,
+    },
     #[serde(rename = "table_reviewed")]
     Reviewed {
         review: Review,
         publication_guard: PublicationGuard,
     },
     #[serde(rename = "table_approved")]
-    Approved { approval_id: String },
+    Approved {
+        approval_id: String,
+    },
     #[serde(rename = "table_committed")]
-    Committed { commit_id: String },
+    Committed {
+        commit_id: String,
+    },
     #[serde(rename = "table_status")]
     Status {
         health: Health,
@@ -228,11 +286,15 @@ pub enum TablePayload {
         publication_guard: PublicationGuard,
     },
     #[serde(rename = "table_deleted")]
-    Deleted { commit_id: String },
+    Deleted {
+        commit_id: String,
+    },
     #[serde(rename = "table_closed")]
     Closed,
     #[serde(rename = "table_error")]
-    Error { code: &'static str },
+    Error {
+        code: &'static str,
+    },
 }
 #[derive(Serialize)]
 pub struct TableReply<'a> {

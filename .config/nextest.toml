@@ -11,8 +11,8 @@ fail-fast = false
 # production 500ms query deadline. Bound unrelated compiler contention instead
 # of relaxing the clock/retention supervisor or retrying a denied managed call.
 [test-groups.native-clock]
-max-threads = 2
+max-threads = 1
 
 [[profile.default.overrides]]
-filter = 'binary(table_service) | binary(native_clock)'
+filter = 'binary(table_service) | binary(native_clock) | binary(agent_service)'
 test-group = 'native-clock'
