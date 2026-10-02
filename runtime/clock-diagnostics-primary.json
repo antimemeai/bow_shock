@@ -1,0 +1,38 @@
+{
+  "source_role": "read-only diagnostic libproc ABI and wrapper semantics; no copied implementation or new product dependency",
+  "sdk_version": "15.5",
+  "live_os": {
+    "BuildID": "F334B314-860F-11F1-B9ED-F1AE07866189",
+    "ProductBuildVersion": "25G72",
+    "ProductCopyright": "1983-2026 Apple Inc.",
+    "ProductName": "macOS",
+    "ProductUserVisibleVersion": "26.6",
+    "ProductVersion": "26.6",
+    "iOSSupportVersion": "26.6"
+  },
+  "prepare_command": "mkdir -p context/clock-diagnostics-primary",
+  "documents": [
+    {
+      "kind": "installed-sdk-header",
+      "origin": "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/libproc.h",
+      "local_path": "context/clock-diagnostics-primary/sdk-libproc.h",
+      "sha256": "246d87709fc6b9157ce5cf3c475656ac48e0e1ae8bbdc46cf45acd34294448cd",
+      "restore_command": "cp '/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/libproc.h' 'context/clock-diagnostics-primary/sdk-libproc.h'"
+    },
+    {
+      "kind": "installed-sdk-header",
+      "origin": "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/proc_info.h",
+      "local_path": "context/clock-diagnostics-primary/sdk-proc_info.h",
+      "sha256": "e307181fc0a7c4365ff0c0c25837f7a24c8d452e82dbdeaccfc9fb67ae4fa737",
+      "restore_command": "cp '/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/proc_info.h' 'context/clock-diagnostics-primary/sdk-proc_info.h'"
+    },
+    {
+      "kind": "primary-source",
+      "revision": "f6217f891ac0bb64f3d375211650a4c1ff8ca1ea",
+      "url": "https://raw.githubusercontent.com/apple-oss-distributions/xnu/f6217f891ac0bb64f3d375211650a4c1ff8ca1ea/libsyscall/wrappers/libproc/libproc.c",
+      "local_path": "context/clock-diagnostics-primary/libproc.c",
+      "sha256": "5c8a771427e04c5e1d55c4cdf5a077f3b52c5be4a091683b970084bfdda76df2",
+      "restore_command": "curl --fail --location 'https://raw.githubusercontent.com/apple-oss-distributions/xnu/f6217f891ac0bb64f3d375211650a4c1ff8ca1ea/libsyscall/wrappers/libproc/libproc.c' --output context/clock-diagnostics-primary/libproc.c"
+    }
+  ]
+}

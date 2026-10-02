@@ -227,3 +227,34 @@ passed all74 workspace cases in209.472s, plus fmt/Clippy/doctests/deny and locke
 release. No clock/host probe remains active. Root's final canonical native build
 and actual installed proposal/Use/Save gate remain outstanding; earlier startup,
 clock and teardown availability failures retain their stated unresolved scope.
+
+Root stopped blind final joins after two controlled Stop runs and an installed
+run failed before load/capture on the native clock timeout/uncertain-freshness
+label. Wrote a separate startup diagnosis subplan before observer code: direct
+matched-SDK libproc child/path/birth binding,150ms long-clock sampling attempt,
+no ps forks in the discovery loop, no target signal/warm-up/model or product/
+signing/deadline change. Clock supervisor starts freshness timing after spawn
+and conflates mono timeout with backward-wall uncertainty; Foundation producer
+normally emits a tiny bounded witness. Present causal phase remains unknown.
+
+Original observer API red was missing-module; actual acquired-SDK ABI, known
+owned three-level sleeper chain and wrong-path cases passed. Independent review
+found sampler Popen incorrectly ran on the discovery thread; moved launch/wait/
+reap into a separate single-flight worker with start/return mono/wall timings,
+and disclosed controller-limit partial observations. Added a direct delayed-
+sampler-launch oracle: discovery continues while launch is held, then only the
+owned real sampler reaps. Final4cases passed4.905s; no shipping clock, app or
+model was launched. The owned sleeper sampler can itself affect shared caches;
+it is not an availability fix or evidence of an unperturbed cold native run.
+Primary SDK15.5 snapshots and pinned Apple wrapper return-count semantics are
+recorded in runtime/clock-diagnostics-primary.json; actual runtime26.6 ABI is
+checked directly, not asserted to equal the upstream kernel revision. Independent
+final observer review accepted the source and four direct diagnostic cases.
+
+Root's one controlled Stop trace run-y9wgjpbs passed. The exact retained summary
+records34 bound clock identities,131 polls, maximum poll gap17.449208ms, zero
+reported gaps, zero samples and both observer threads ended. No observed bound
+clock reached the150ms first-sighting threshold. Short children may still be
+missed between polls; this healthy trace captured no stalled phase, establishes
+no failure cause and fixes no availability issue. Earlier failed runs remain
+unexplained. No additional clock, model or CEF run was launched in this lane.
