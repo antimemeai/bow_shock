@@ -22,8 +22,10 @@ list(APPEND CMAKE_MODULE_PATH "${CEF_ROOT}/cmake")
 find_package(CEF REQUIRED)
 add_subdirectory("${CEF_LIBCEF_DLL_WRAPPER_PATH}" cef_wrapper)
 
-add_executable(bow_shock MACOSX_BUNDLE main.mm controller_connection.mm observation.mm continuous_clock.mm)
+add_executable(bow_shock MACOSX_BUNDLE main.mm controller_connection.mm observation.mm continuous_clock.mm
+  control_connection.mm table_connection.mm table_projection.mm table_controls.mm)
 SET_EXECUTABLE_TARGET_PROPERTIES(bow_shock)
+target_include_directories(bow_shock PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/../control")
 target_compile_options(bow_shock PRIVATE -fobjc-arc -fobjc-exceptions -Werror)
 target_link_libraries(bow_shock PRIVATE libcef_dll_wrapper ${CEF_STANDARD_LIBS})
 set_target_properties(bow_shock PROPERTIES

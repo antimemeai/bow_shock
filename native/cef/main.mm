@@ -2,6 +2,7 @@
 #import "controller_connection.h"
 #import "observation.h"
 #import "continuous_clock.h"
+#import "table_controls.h"
 
 #include "include/cef_app.h"
 #include "include/base/cef_callback.h"
@@ -37,6 +38,10 @@ static NSString* observationOrigin;
 static NSArray<NSString*>* observationFields;
 static NSArray<NSString*>* observationMarkers;
 static BOOL pauseObservationAtStart;
+static BSOwnedTableControls* tableControls;
+static NSString* tableOrigin;
+static NSString* tableDatabase;
+static NSString* tableSmokeMode;
 
 static void SmokeStage(const char* stage) {
   if (smokeOutput) fprintf(stderr, "BS_LIFETIME %s\n", stage);
@@ -74,18 +79,21 @@ class BrowserClient final : public CefClient,
     CEF_REQUIRE_UI_THREAD();
     SmokeStage("browser_created");
     browsers_.push_back(browser);
+    if (tableControls) [tableControls attachBrowser:browser];
     smokeResult[@"browser_created"] = @YES;
   }
 
   void OnBeforeClose(CefRefPtr<CefBrowser> browser) override {
     CEF_REQUIRE_UI_THREAD();
     SmokeStage("browser_before_close");
+    if (tableControls) [tableControls browserClosing:browser];
     if (observation) { [observation close]; observation = nil; }
     browsers_.erase(std::remove_if(browsers_.begin(), browsers_.end(),
                                   [&](const auto& item) { return item->IsSame(browser); }), browsers_.end());
     if (browsers_.empty()) {
       smokeResult[@"browser_closed"] = @YES;
-      CefQuitMessageLoop();
+      if (tableControls) [tableControls closeWithCompletion:^{ CefQuitMessageLoop(); }];
+      else CefQuitMessageLoop();
     }
   }
 
@@ -99,6 +107,7 @@ class BrowserClient final : public CefClient,
   void OnLoadEnd(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, int status) override {
     CEF_REQUIRE_UI_THREAD();
     if (frame->IsMain()) SmokeStage("main_load_ended");
+    if (frame->IsMain() && tableControls) [tableControls mainLoadEndedForBrowser:browser];
     if (smokeOutput && frame->IsMain() && !smokeScheduled_) {
       smokeScheduled_ = true;
       smokeResult[@"load_status"] = @(status);
@@ -111,18 +120,21 @@ class BrowserClient final : public CefClient,
             secretMarkers:observationMarkers];
         observation.pauseAtFixtureStartForTesting = pauseObservationAtStart;
       }
-      CefPostDelayedTask(TID_UI, CefCreateClosureTask(base::BindOnce([] { [delegate finishSmoke]; })), 1500);
+      if (!tableControls)
+        CefPostDelayedTask(TID_UI, CefCreateClosureTask(base::BindOnce([] { [delegate finishSmoke]; })), 1500);
     }
   }
 
-  void OnLoadStart(CefRefPtr<CefBrowser>, CefRefPtr<CefFrame> frame, TransitionType) override {
+  void OnLoadStart(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, TransitionType) override {
     CEF_REQUIRE_UI_THREAD();
     if (observation && frame->IsMain()) [observation nativeLifecycle:@"native_main_load_started"];
+    if (tableControls && frame->IsMain()) [tableControls mainLoadStartedForBrowser:browser];
   }
 
-  void OnRenderProcessTerminated(CefRefPtr<CefBrowser>, TerminationStatus, int, const CefString&) override {
+  void OnRenderProcessTerminated(CefRefPtr<CefBrowser> browser, TerminationStatus, int, const CefString&) override {
     CEF_REQUIRE_UI_THREAD();
     if (observation) [observation nativeLifecycle:@"native_renderer_terminated"];
+    if (tableControls) [tableControls rendererTerminatedForBrowser:browser];
   }
 
   void CloseAll() {
@@ -185,6 +197,14 @@ class BrowserApp final : public CefApp, public CefBrowserProcessHandler {
 }
 
 - (void)showControls {
+  if (tableOrigin && tableDatabase) {
+    tableControls = [[BSOwnedTableControls alloc] initWithOrigin:tableOrigin
+        databaseURL:[NSURL fileURLWithPath:tableDatabase] smokeMode:tableSmokeMode
+        result:smokeResult quit:^{ [delegate closeBrowsers]; }];
+    self.controls = tableControls.panel;
+    [tableControls start];
+    return;
+  }
   self.controls = [[NSPanel alloc] initWithContentRect:NSMakeRect(1200, 200, 340, 200)
       styleMask:NSWindowStyleMaskTitled | NSWindowStyleMaskClosable
       backing:NSBackingStoreBuffered defer:NO];
@@ -275,6 +295,14 @@ int main(int argc, char** argv) {
     observationFields = [text("bs-observation-fields") componentsSeparatedByString:@","] ?: @[];
     observationMarkers = [text("bs-observation-markers") componentsSeparatedByString:@","] ?: @[];
     pauseObservationAtStart = smokeOutput && command->HasSwitch("bs-observation-pause-start");
+    tableOrigin = text("bs-table-origin");
+    tableDatabase = text("bs-table-db");
+    tableSmokeMode = smokeOutput ? text("bs-table-smoke") : nil;
+    if ((tableOrigin != nil) != (tableDatabase != nil) ||
+        (tableDatabase && !tableDatabase.isAbsolutePath) ||
+        (tableSmokeMode && ![@[@"save", @"reopen", @"drafts", @"workload"] containsObject:tableSmokeMode])) {
+      fprintf(stderr, "Invalid owned table workflow configuration.\n"); return 1;
+    }
     initialURL = text("bs-url") ?: @"about:blank";
     smokeResult = [@{@"browser_created": @NO, @"browser_closed": @NO, @"cef_shutdown": @NO,
                      @"controller_initialized": @NO, @"controller_stop_generation": @0} mutableCopy];
@@ -316,6 +344,7 @@ int main(int argc, char** argv) {
     // The live UI loop is over. Finish owned-child reap before app process exit.
     SmokeStage("controller_join_start");
     [controller waitForTermination];
+    [tableControls finishTermination];
     SmokeStage("controller_join_end");
     if (observation) { [observation close]; observation = nil; }
     client = nullptr;
@@ -333,6 +362,7 @@ int main(int argc, char** argv) {
     NSApp.delegate = nil;
     delegate = nil;
     controller = nil;
+    tableControls = nil;
   }
   return 0;
 }

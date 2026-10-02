@@ -26,6 +26,11 @@ Start with [the synthesis](../docs/research-synthesis.md), then:
 - [Owned-fixture native observation review](native-observation-code-review.md).
 - [Independent control helper review](native-control-helper-code-review.md), and
   [its app packaging review](native-control-packaging-code-review.md).
+- [Independent native control parent review](native-control-connection-code-review.md).
+- [Closed Rust table service review](controller-table-service-code-review.md).
+- [Native table parent review](native-table-connection-code-review.md).
+- [Native table workflow review](native-table-workflow-code-review.md), with
+  [actual catalog join and capture results](../docs/experiments/native-table-workflow.md).
 - [Native source-to-table projection review](native-table-projection-code-review.md).
 - [Matched macOS process policies and identity](native-process-policies.md), with
   [selected-source acquisition manifest](native-matched-source-manifest.json).

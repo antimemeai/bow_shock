@@ -59,7 +59,12 @@ The matched CEF ARM64 runtime, minimal Serde JSON and local SQLite dependencies 
 adopted in [the dependency manifest](docs/dependencies.json). The original
 native shell and control-only Rust child pass their construction/failure
 oracles. Owned-fixture observation and the local reviewed-table library also
-passed direct checks and independent review. Their joined native workflow,
-general capture-work limits and independent control remain the next gates.
+passed direct checks and independent review. The closed table service and
+independent native control parent also pass their direct process checks and
+independent reviews. The joined native catalog workflow now passes actual
+capture/review/Save/SQLite/clean-reopen checks, and its two immutable catalog pages
+meet the chosen capture/Stop servicing target. General native capture, coordinates,
+input, model/Codex and network capabilities retain their later gates. See
+[the POC experiment](docs/experiments/native-table-workflow.md).
 Other dependencies remain candidates for study. The
 operator's detailed requirements are in [the product brief](docs/product-intent.md).
