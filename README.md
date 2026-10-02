@@ -4,9 +4,10 @@ A semi-automatic browser: a person and an agent work in the same visible
 browsing session, with deliberate limits on what the agent can do and a native
 connection to an agent runtime such as Codex.
 
-This repository has progressed from research and reference acquisition into
-[the design phase](docs/design/README.md). Windowed CEF is the working engine
-proposal; there is no browser implementation or adopted engine dependency yet.
+This repository has progressed from research through [reviewed design](docs/design/README.md)
+to [the reviewed implementation plan](docs/plan/README.md). Windowed CEF is the
+working engine proposal; there is no browser implementation or adopted engine
+dependency yet.
 
 Current scope: a dedicated window, macOS first and Linux second. The model reads
 native rendered DOM and proposes work; a separate OS input executor supplies
@@ -55,3 +56,9 @@ workbench, outside-browser interventions, and reviewed tables. Its
 [local controls concept](docs/design/controls.svg) needs no external design tool.
 Blackbird requires adversarial design review before the implementation plan,
 and plan review before product code.
+
+The [implementation plan](docs/plan/README.md) orders native feasibility,
+authority/evidence, grounded tables, model/Codex integration, OS input and the
+network workbench/experiments. Its [tribunal](papers/plan-tribunal.md) resolved
+seven distinct plan findings. The first native sub-plan and dependency proposal
+are concrete; runtime experiments still need execution.

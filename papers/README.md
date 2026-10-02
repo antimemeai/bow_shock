@@ -19,9 +19,12 @@ Start with [the synthesis](../docs/research-synthesis.md), then:
 - [Fingerprint consistency and privacy experiments](fingerprints-and-privacy.md).
 - [Learned rendered-DOM extraction](dom-to-tables.md).
 - [Design tribunal and integrated dispositions](design-tribunal.md).
+- [Implementation-plan tribunal and dispositions](plan-tribunal.md).
 
 The resulting [design specifications](../docs/design/README.md) live in `docs/design/`.
 Independent design reviews and their integrated research conclusions stay here.
+The [implementation plan](../docs/plan/README.md) follows that design; its
+independent plan reviews likewise remain in this corpus.
 
 The `*-sources.json` files are the acquisition catalogs; `acquisition.json`
 records actual local acquisition, pinned commits, byte identities, and failures.

@@ -18,8 +18,11 @@ The [design set](docs/design/README.md) now specifies runtime/observation,
 authority/input, native agent/provider integration, network control, and
 evidence/tables. CEF, the language boundary and local storage remain proposals.
 The [tribunal](papers/design-tribunal.md) records design findings and dispositions;
-an implementation plan, plan review, dependency discussion and native capability
-experiments still follow. Written contracts do not close empirical issues.
+the [implementation plan](docs/plan/README.md) and
+[plan tribunal](papers/plan-tribunal.md) are also complete at the contract level.
+Seven distinct plan findings were integrated and rechecked. Concrete dependency
+proposals are ready for discussion; native capability experiments still follow.
+Written contracts do not close empirical issues.
 
 Provider-neutral local/hosted inference and page comparison/table extraction
 are working assumptions pending optional operator preferences. The dedicated
