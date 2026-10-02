@@ -24,6 +24,9 @@ Start with [the synthesis](../docs/research-synthesis.md), then:
 - [Controller process bootstrap review](controller-bootstrap-code-review.md).
 - [Native shell and private connection review](native-shell-code-review.md).
 - [Owned-fixture native observation review](native-observation-code-review.md).
+- [Independent control helper review](native-control-helper-code-review.md), and
+  [its app packaging review](native-control-packaging-code-review.md).
+- [Native source-to-table projection review](native-table-projection-code-review.md).
 - [Matched macOS process policies and identity](native-process-policies.md), with
   [selected-source acquisition manifest](native-matched-source-manifest.json).
 - [Reviewed-table authority findings](table-evidence-code-review.md).
