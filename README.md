@@ -5,10 +5,15 @@ browsing session, with deliberate limits on what the agent can do and a native
 connection to an agent runtime such as Codex.
 
 This repository has progressed from research through [reviewed design](docs/design/README.md)
-to [the reviewed implementation plan](docs/plan/README.md). The first Rust unit
-implements bounded controller pipe framing with the [basic rigor checks](docs/plan/rust-basics.md).
-Windowed CEF remains the working engine proposal; there is no browser window or
-adopted engine dependency yet.
+to [the reviewed implementation plan](docs/plan/README.md). Rust implements bounded
+controller pipe framing and a [control-only child process](docs/plan/controller-bootstrap.md)
+with the [basic rigor checks](docs/plan/rust-basics.md). The matched CEF runtime
+has been acquired and the owned native shell passes its construction smoke;
+remaining runtime gates are explicit in [the experiment](docs/experiments/native-shell.md).
+The [owned-fixture reader](papers/native-observation-code-review.md) and
+[reviewed-table library](docs/experiments/local-table-evidence.md) also pass
+their direct checks and independent reviews. Their native UI integration and
+general observation workload gates remain open.
 
 Current scope: a dedicated window, macOS first and Linux second. The model reads
 native rendered DOM and proposes work; a separate OS input executor supplies
@@ -33,7 +38,10 @@ Use `scripts/rigor` for formatting, Clippy, nextest, doctests, dependency policy
 and release compilation. If the pinned developer tools are absent, install them
 with `scripts/rigor install-tools`. The workflow repeats these checks on macOS
 ARM64 and Linux x86_64/ARM64; only the local macOS run has been executed so far.
-The portable transport module does not yet connect an app or admit commands.
+The portable child accepts only initialization, ping, Stop generation and
+shutdown records; it has no delegated powers. The native shell connection has
+actual process failure tests and independent review. Runtime adoptions are recorded in [the dependency manifest](docs/dependencies.json)
+and [the matching CEF manifest](runtime/cef-macos-arm64.json).
 Deterministic simulation, mutation runs and heavier verification tiers are
 deferred by operator direction; see [implemented invariants](docs/INVARIANTS.md).
 
@@ -71,4 +79,5 @@ The [implementation plan](docs/plan/README.md) orders native feasibility,
 authority/evidence, grounded tables, model/Codex integration, OS input and the
 network workbench/experiments. Its [tribunal](papers/plan-tribunal.md) resolved
 seven distinct plan findings. The first native sub-plan and dependency proposal
-are concrete; runtime experiments still need execution.
+are concrete; native construction and owned-fixture reader/table units are
+verified at their documented scope. The joined operator workflow follows.

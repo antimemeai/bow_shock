@@ -21,6 +21,12 @@ Start with [the synthesis](../docs/research-synthesis.md), then:
 - [Design tribunal and integrated dispositions](design-tribunal.md).
 - [Implementation-plan tribunal and dispositions](plan-tribunal.md).
 - [First Rust foundation code review](rust-basics-code-review.md).
+- [Controller process bootstrap review](controller-bootstrap-code-review.md).
+- [Native shell and private connection review](native-shell-code-review.md).
+- [Owned-fixture native observation review](native-observation-code-review.md).
+- [Matched macOS process policies and identity](native-process-policies.md), with
+  [selected-source acquisition manifest](native-matched-source-manifest.json).
+- [Reviewed-table authority findings](table-evidence-code-review.md).
 
 The resulting [design specifications](../docs/design/README.md) live in `docs/design/`.
 Independent design reviews and their integrated research conclusions stay here.

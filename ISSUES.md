@@ -24,7 +24,8 @@ Seven distinct plan findings were integrated and rechecked. Concrete dependency
 proposals are ready for discussion; native capability experiments still follow.
 Written contracts do not close empirical issues.
 
-Implementation has begun with the bounded Rust controller-link framing unit
+Implementation has begun with bounded Rust controller-link framing and the
+closed control-only controller process
 and the [basic rigor stack](docs/plan/rust-basics.md). The operator explicitly
 defers detsim, mutation runs and heavier tiers for the POC. Rust local checks
 and independent code review follow each unit; actual CEF/runtime gates are open.
@@ -54,6 +55,11 @@ window and platform order are operator decisions.
 | BS-015 | Trace network-tool confinement, capture and teardown | Source-backed coverage/scope matrix and direct controlled endpoint outcomes |
 | BS-016 | Evaluate Jev on ambiguous real capture differences and field candidates | Held-out reviewed examples, deterministic comparison arm, missed changes and review effort |
 
-Dependencies remain candidates for study. No browser engine/runtime has been
-installed and no product implementation has begun. The operator's detailed
-requirements are in [the product brief](docs/product-intent.md).
+The matched CEF ARM64 runtime, minimal Serde JSON and local SQLite dependencies are now
+adopted in [the dependency manifest](docs/dependencies.json). The original
+native shell and control-only Rust child pass their construction/failure
+oracles. Owned-fixture observation and the local reviewed-table library also
+passed direct checks and independent review. Their joined native workflow,
+general capture-work limits and independent control remain the next gates.
+Other dependencies remain candidates for study. The
+operator's detailed requirements are in [the product brief](docs/product-intent.md).

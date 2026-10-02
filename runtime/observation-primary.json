@@ -1,0 +1,60 @@
+{
+  "chromium_version": "154.0.8037.58",
+  "source_role": "read-only matched primary contracts; no copied implementation",
+  "documents": [
+    {
+      "url": "https://raw.githubusercontent.com/chromium/chromium/a654841425914cbb703a2931e07b70a83aedbafd/third_party/blink/public/devtools_protocol/domains/Accessibility.pdl",
+      "local_path": "context/observation-primary/Accessibility.pdl",
+      "sha256": "dd8f73c3c2a433c2cafe4dd53d8c313861a839c0238f3deeb9e5218fb9636f69",
+      "restore_command": "curl --fail --location 'https://raw.githubusercontent.com/chromium/chromium/a654841425914cbb703a2931e07b70a83aedbafd/third_party/blink/public/devtools_protocol/domains/Accessibility.pdl' --output context/observation-primary/Accessibility.pdl"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/chromium/chromium/a654841425914cbb703a2931e07b70a83aedbafd/third_party/blink/public/devtools_protocol/domains/DOMSnapshot.pdl",
+      "local_path": "context/observation-primary/DOMSnapshot.pdl",
+      "sha256": "6780c930eeeb4b05d5d0f9b81aa410f65c3c05caa59ba4fe5dd5a509b221cece",
+      "restore_command": "curl --fail --location 'https://raw.githubusercontent.com/chromium/chromium/a654841425914cbb703a2931e07b70a83aedbafd/third_party/blink/public/devtools_protocol/domains/DOMSnapshot.pdl' --output context/observation-primary/DOMSnapshot.pdl"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/chromium/chromium/a654841425914cbb703a2931e07b70a83aedbafd/third_party/blink/public/devtools_protocol/domains/Page.pdl",
+      "local_path": "context/observation-primary/Page.pdl",
+      "sha256": "e944a3b19fa2c87b4ed0a84cca85b16b127618725394496ba046a2dfdf9405be",
+      "restore_command": "curl --fail --location 'https://raw.githubusercontent.com/chromium/chromium/a654841425914cbb703a2931e07b70a83aedbafd/third_party/blink/public/devtools_protocol/domains/Page.pdl' --output context/observation-primary/Page.pdl"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/chromium/chromium/a654841425914cbb703a2931e07b70a83aedbafd/third_party/blink/renderer/core/inspector/inspector_dom_snapshot_agent.cc",
+      "local_path": "context/observation-primary/inspector_dom_snapshot_agent.cc",
+      "sha256": "74aeaaaf22b0f5dc4855921dcff09919e93a77b9048991db1439173fab6705e6",
+      "restore_command": "curl --fail --location 'https://raw.githubusercontent.com/chromium/chromium/a654841425914cbb703a2931e07b70a83aedbafd/third_party/blink/renderer/core/inspector/inspector_dom_snapshot_agent.cc' --output context/observation-primary/inspector_dom_snapshot_agent.cc"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/chromium/chromium/a654841425914cbb703a2931e07b70a83aedbafd/third_party/blink/renderer/core/inspector/inspector_page_agent.cc",
+      "local_path": "context/observation-primary/inspector_page_agent.cc",
+      "sha256": "1dd744b58227f8bfac00afdb153a9b71a451494178713a3ba8f14956af49a8cf",
+      "restore_command": "curl --fail --location 'https://raw.githubusercontent.com/chromium/chromium/a654841425914cbb703a2931e07b70a83aedbafd/third_party/blink/renderer/core/inspector/inspector_page_agent.cc' --output context/observation-primary/inspector_page_agent.cc"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/chromium/chromium/a654841425914cbb703a2931e07b70a83aedbafd/third_party/blink/renderer/core/inspector/main_thread_debugger.cc",
+      "local_path": "context/observation-primary/main_thread_debugger.cc",
+      "sha256": "785cede7789c9bfe03efcad085fe69b3528982d9ae40d0aa58162eca6534969a",
+      "restore_command": "curl --fail --location 'https://raw.githubusercontent.com/chromium/chromium/a654841425914cbb703a2931e07b70a83aedbafd/third_party/blink/renderer/core/inspector/main_thread_debugger.cc' --output context/observation-primary/main_thread_debugger.cc"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/chromium/chromium/a654841425914cbb703a2931e07b70a83aedbafd/third_party/blink/renderer/bindings/core/v8/local_window_proxy.cc",
+      "local_path": "context/observation-primary/local_window_proxy.cc",
+      "sha256": "bd093e3dba56c043ccc4a9396b2afca512c96eee9f3697450d8d27c4ccad2189",
+      "restore_command": "curl --fail --location 'https://raw.githubusercontent.com/chromium/chromium/a654841425914cbb703a2931e07b70a83aedbafd/third_party/blink/renderer/bindings/core/v8/local_window_proxy.cc' --output context/observation-primary/local_window_proxy.cc"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/chromium/chromium/a654841425914cbb703a2931e07b70a83aedbafd/third_party/blink/renderer/platform/weborigin/security_origin.cc",
+      "local_path": "context/observation-primary/security_origin.cc",
+      "sha256": "03fbd5d66fec131bbbb9b77bf435121f7b9971f612dd7e67ef44ba85828461f5",
+      "restore_command": "curl --fail --location 'https://raw.githubusercontent.com/chromium/chromium/a654841425914cbb703a2931e07b70a83aedbafd/third_party/blink/renderer/platform/weborigin/security_origin.cc' --output context/observation-primary/security_origin.cc"
+    }
+  ],
+  "chromium_tag_object": {
+    "sha": "a654841425914cbb703a2931e07b70a83aedbafd",
+    "type": "commit",
+    "url": "https://api.github.com/repos/chromium/chromium/git/commits/a654841425914cbb703a2931e07b70a83aedbafd"
+  },
+  "prepare_command": "mkdir -p context/observation-primary"
+}

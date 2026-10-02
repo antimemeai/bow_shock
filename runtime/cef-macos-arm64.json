@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "platform": "macosarm64",
+  "origin": "https://cef-builds.spotifycdn.com/index.html",
+  "index_url": "https://cef-builds.spotifycdn.com/index.json",
+  "cef_version": "154.0.32+g682c378+chromium-154.0.8037.58",
+  "chromium_version": "154.0.8037.58",
+  "sandbox_compat": "265fca9293e6b6ef",
+  "archive": {
+    "last_modified": "2026-09-29T04:11:44.001000Z",
+    "name": "cef_binary_154.0.32+g682c378+chromium-154.0.8037.58_macosarm64.tar.bz2",
+    "sha1": "8147f08ca0a65b21227962c7273fcb3ef7174cae",
+    "size": 307024202,
+    "type": "standard"
+  },
+  "download_url": "https://cef-builds.spotifycdn.com/cef_binary_154.0.32%2Bg682c378%2Bchromium-154.0.8037.58_macosarm64.tar.bz2",
+  "local_sha256": "7371ac1d8b17900e11ab37b8d22505a602336bd7408ad7330104fe532cc2b9b9",
+  "status": "acquired",
+  "restore_command": "python3 scripts/cef-runtime.py acquire",
+  "distribution_dir": "context/runtime/distributions/cef_binary_154.0.32+g682c378+chromium-154.0.8037.58_macosarm64",
+  "cef_revision": "682c378d70d5780061e96644dca16ddd8fd157a9",
+  "api_version": 15400,
+  "api_hash_macos": "e5cd28047fc1f8bbb972e54692fc665040c7f034",
+  "api_range": [
+    13300,
+    15400
+  ],
+  "minimum_deployment_target": "12.0",
+  "sandbox_header_compat_hash": "",
+  "sandbox_compat_note": "Publisher index has a compatibility value; shipped cef_version.h has an empty sandbox compatibility macro. Preserve both rather than equate them."
+}
