@@ -34,3 +34,70 @@ Foundation-parent/compiled-peer cases: green9.439s. Wrote
 papers/native-agent-configuration-code-review.md, accepting startup selection
 only; actual agent child/account/effective settings/export/proposal and UI join
 remain the separately owned future unit. No product edit or CEF/model launch.
+
+Independently reviewed the next closed native proposal wire unit, separately from
+the Rust authority and AppKit join. No blocking finding: exact14-field descriptor,
+bounded named operations, selected-ID/start guard binding, closed status/data-null
+relationships, nativeBatch/count/task/error checks and preserved actual-clock
+write/main-publication gates. Independently built/ran Foundation decoder green.
+Reviewed final four startup and five ordinary transport regressions, plus retained
+exact-path AppleSystemPolicy cold-first-process denial with no first instruction
+marker. No deadline or policy relaxation; external failure stays unavailable,
+not claimed fixed. Wrote papers/native-agent-connection-code-review.md and accepted
+wire scope only. No product edits, CEF/keychain/model launch.
+
+Reviewed the controller proposal unit source independently. Found invalid phase
+type collapse and empty terminal-summary acceptance; owner earned actual child
+reds and corrected the parser. Earned a third direct red ourselves: six bounded
+large A status replies stalled actual stdout; cancel A/start B progressed, then
+an old A request returned B's task. Preserved ignored process artifacts, clean
+exit and independent zero-row SQLite result; owner accepted task-bound guarded
+publication. Wrote papers/controller-agent-proposals-code-review.md with final
+correction/recheck pending. No product edits or live model/CEF launch.
+
+Independently reran the corrected actual blocked-stdout trace: old A status
+returns unknown_task on replacement, never B; new task export progressed and
+clean exit/direct SQL0 passed. Focused actual phase_bool, empty_summary and
+missing_error peers each failed with null proposal, zero actual rows and exact
+owned PIDs absent. All three findings closed; remaining unit qualification is
+private-writer saturation/Stop and terminal-transport owned reap, distinct from
+stalling only after complete export. Preserved ignored red/green artifacts.
+
+Independently reran final focused actual private-writer and terminal stdout-loss
+oracles: green9.33s/6.20s. First proves an actual prefix/partial handoff and still
+Running before Stop, then canceled/partial without complete export; second
+closes the real host reader during an active exported turn and proves provider
+PIDs absent before failed controller exit. Each independently queries real SQL
+rows0. Final review accepted closed proposal-service scope, records source
+hashes and direct-child/clock-check suspension/trusted-peer limitations. Owner
+consolidates tracked correlation regression and affected basics; live inference
+and CEF/UI human Save are subsequent separate gates. No product edits.
+
+Actual joined metadata exposed missing real protocol fields. Independently read
+installed stable/experimental schemas and pinned original serialization/filter
+source: stable optional emittedAtMs is signed int64 emission metadata;
+experimental-export workspaceRouting is still serialized by ordinary account/read
+with experimental false. Ran one bounded actual metadata-only socket probe:
+nonnull exact routing object, ordinary HTTPS chatgpt.com/NO_CONSTRAINT, workspace
+ID equals measured rates account reference; no credentials/email/raw IDs output.
+Actual child killed/reaped, no turn/CEF. Communicated explicit narrow shape/binding
+and unsupported-route proposal, appended preflight evidence; owner compatibility
+subplan/red/correction/review follows before live retry.
+
+Reviewed the source-grounded thread response compatibility policy (selected-cwd
+roots/null profile/explicitRequestOnly/readOnly networkfalse) and implementation;
+the safe actual empty-thread preflight matches it. Found new routing parser
+sequence acceptance despite deny_unknown_fields, earned actual positional-array
+red metadataReady→candidate with cleanexit/realSQL0. Owner has direct objectguard
+finding and negative oracle request. No product edit, no actual model turn/CEF.
+
+Compatibility final source/process review accepted. Objectguard rejects positional
+routing; internal skipped routing remains part of fresh descriptor equality.
+Independent installed-shape four-method run green29.67s and eight-policy-case
+family green15.62s (23 owned fixture cycles), each actual SQL0/cleanclose/reap.
+Caught policy-negative masking by an earlier routing mismatch; corrected peers
+preserve route and assert actual thread/start receipt before failed/not-transmitted
+outcome. Owner actual installed metadata-only service green1.245s/exact14fields/
+healthyclose/reapedPIDs reviewed. Final report hashes updated; no remaining
+compatibility blocker, no deadline/securitypolicy/dependency/nativewire expansion.
+Owner final basics/release and root live synthetic/native UI join follow.

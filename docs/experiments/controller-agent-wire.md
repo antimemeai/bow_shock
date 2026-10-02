@@ -48,6 +48,11 @@ Model/account reference are nonempty ≤128-byte strings without CR/LF/NUL. The
 measured baseline does not establish authentication against a hostile same-UID
 peer, containment or entitlement. Every fresh owned child/thread must match its
 actual home/account/effective settings before selected source disclosure.
+Routing baseline is private: precise workspaceRouting absent/null or the closed
+ordinary https://chatgpt.com / NO_CONSTRAINT object with matching account ID.
+Fresh equality includes routing presence and fields even though they are omitted
+from this fourteen-field serialized descriptor. Other/regional routes remain
+unavailable pending destination policy review.
 
 States: idle, running, candidate, no_match, canceled, expired, failed. Idle has
 null task_id; all other states retain correlation. Only candidate/no_match have

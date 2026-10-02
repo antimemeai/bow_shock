@@ -91,3 +91,48 @@ methods and three strict JSON unit oracles, plus existing controller/evidence
 regressions. Production file hashes exactly match the accepted independent
 review. Parent authorized landing this reviewed unit and owns subsequent actual
 CEF/controlled-peer/live-Codex joins.
+
+After the first authorized actual native join stopped before Ask, root requested
+metadata-only diagnosis without inference or deadline changes. Exact installed
+runtime with the production private socket/environment/argument configuration
+returned valid initialize/home, then emitted optional emittedAtMs on notifications
+and workspaceRouting on account/read; our closed allowlists omitted both.
+Pinned source confirms current timestamped ServerNotificationEnvelope and
+GetAccountResponse serializing workspaceRouting despite experimentalApi false.
+Actual routing has three strings, ordinary https://chatgpt.com/NO_CONSTRAINT,
+account ID equal to backend usage reference. No email/auth storage/raw account
+ID was logged; only shapes, safe fixed policy booleans and a reference hash.
+
+Wrote correction subplan before code; direct actual controlled reds reproduced
+metadata unavailable independently for timestamp and routing. Authorized actual
+fresh thread/start metadata-only (no turn/field export) exposed three additional
+experimental fields, with singleton selected cwd roots, null active profile,
+explicitRequestOnly mode and readOnly networkAccess false. Controlled thread
+red failed before candidate. Source-grounded correction accepts only signed i64
+timestamp transport metadata and the explicit narrow route/thread policy. Internal
+serde-skipped routing participates in fresh Descriptor equality, retaining the
+public fourteen fields. Regional/other backends/profiles/roots remain denied.
+
+Independent review earned another actual positional routing-array bypass: serde
+struct decoding accepted a sequence even with deny_unknown_fields. Added explicit
+object gate before typed routing deserialization. Negative metadata families now
+cover array/type/unknown keys/account mismatch/backend/region and malformed
+timestamp types. Routing present→null/absent is denied before handoff. Thread
+negative fixtures keep routing identical and require an actual thread receipt
+marker, so early destination mismatch cannot stand in for thread-policy denial.
+
+Three compatibility positives passed7.96s, routing/policy focused cases21.33s.
+Actual production debug service metadata-only now reaches ready in1.245s, returns
+exact fourteen fields, healthy close/shutdownexit0, real SQL0rows, and observed
+Codex version/app-server PIDs34810/34814 absent. Separate actual thread preflight
+matched core settings in839ms; no turn or observation bytes were submitted.
+Ignored safe diagnostics are in context/review-controller-agent/metadata-diagnosis.
+Earlier startup availability failures and their exact-PID dyld samples remain
+unresolved; this compatibility correction does not explain or relax them.
+
+Independent compatibility review accepted the final narrow fields after actual
+array red/green and same-policy thread fault markers. Full scripts/rigor passed
+all67 workspace cases in118.811s, plus fmt/Clippy/doctest/deny and locked release.
+Production hashes match the updated review, native descriptor remains fourteen
+fields, and no source/publication deadline was relaxed. Root owns the canonical
+rebuild and synthetic controlled/live joins after this correction lands.

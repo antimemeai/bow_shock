@@ -6,8 +6,12 @@ actual controlled-child oracles. Native startup/wire/panel/CEF joining are
 separate reviewed units. No product edits, actual inference or CEF launch by
 this reviewer.
 
-**Accepted for the closed scoped proposal service. All three findings are closed
+**Accepted for the closed scoped proposal service. All four findings are closed
 by source correction and direct independent recheck; no remaining blocker.**
+
+This includes the subsequent installed-runtime metadata compatibility correction
+below. Actual metadata readiness is earned; actual structured inference and the
+native human-review/Save join remain separate gates.
 
 The intended boundary is narrow: an exact current unapproved Review authorizes
 selected existing fields for one objective, account/model destination and native
@@ -106,8 +110,8 @@ The reviewed production source SHA256 values are:
 
 | File | SHA256 |
 | --- | --- |
-| `agent.rs` | `cdbd7ac5f6f9304327de76acebb74a4e161a9a147477aecf39be3493d3975074` |
-| `agent_transport.rs` | `a32a77ca7836445a6234f3ed12954a9acebcf3cde8b474a85514ba9e0456574c` |
+| `agent.rs` | `eeb5f7ce2f1a36180efd73aa9080f9623c1a5061a608833ee36bb25238cbb18e` |
+| `agent_transport.rs` | `53505c6b17d46a85edc58f51ca3e4592e4f64b9bc550420cc6306aefab0da652` |
 | `service.rs` | `192df7e6774afeb7d1dfb950f1570d80f28b9c0a477d3787665013a281bba9c0` |
 | `protocol.rs` | `275a6cef2e85923a226f9d91d77bf1da591e6d09f454048967b880ae0f3e9669` |
 | evidence `lib.rs` | `2f8ef45e679b4a5721368ae0823669694c179884e22c9be62af5df03e31bd170` |
@@ -121,3 +125,71 @@ syscall. Controlled hosted-peer protocol compatibility is earned here; actual
 model entitlement/structured inference and the native human-review/Save join
 remain root's subsequent oracles. The owner still runs final affected basics
 and tracked regression consolidation before construction is landed.
+
+## Installed-runtime metadata compatibility correction
+
+Actual first-join metadata returned unavailable before any source handoff. A
+metadata-only diagnostic and this reviewer's independent socket/selected-env run
+found two closed allowlist omissions: stable optional outer `emittedAtMs` and
+the runtime-serialized `account/read.workspaceRouting`. The earlier fixture
+omitted both and therefore did not qualify these real protocol shapes. This is
+an availability finding; failure closed before page bytes, not an export bypass.
+
+Pinned stable notification schema/source require an optional signed int64
+emission timestamp. Experimental account schema/source define a precise routing
+object which is serialized even when experimentalApi is false; the outbound
+filter does not strip this account result. Details and sanitized independent
+actual observations are appended to the preflight report. The observed ordinary
+route is HTTPS chatgpt.com/NO_CONSTRAINT and selected account equals the measured
+rate-limit reference.
+
+Reviewed the owner's written correction before implementation: admit precisely
+absent/signed timestamp without authority-clock use; admit absent/null legacy
+routing or the closed ordinary route with account-ID crossbinding. Retain route
+presence/identity in a serde-skipped internal Descriptor and compare fresh child
+equality, preserving the fourteen-field native wire and preventing verified
+object→absent/null downgrade. Unknown keys/types, other backend/regional routes,
+account mismatch and changed routing remain unavailable. Plan, source and direct
+process recheck accepted below.
+
+Fresh thread preflight exposed three further runtime-serialized experimental
+properties and stable readOnly networkAccess. Reviewed the narrow documented
+policy and implementation: absent legacy or empty/singleton selected-cwd roots,
+null permission profile, explicitRequestOnly mode; closed sandbox type readOnly
+and absent/default-false or boolean false networkAccess. Actual safe values
+match this scope. These are effective-setting checks, not containment.
+
+**CA-04, medium — routing positional arrays bypassed the object-only shape.**
+The new derived serde Routing type accepts sequence deserialization even with
+deny_unknown_fields. This reviewer earned an actual controlled-child trace:
+workspaceRouting array `[account,ordinary backend,NO_CONSTRAINT]` yielded ready
+metadata and a candidate proposal, rather than failing the required object
+shape. Clean exit and real SQLite rows0 passed. The red is preserved in
+`context/review-controller-agent/routing-array-red.log`. Require an actual JSON
+object before typed deserialization and add the direct negative; correction and
+direct same-shape green closed this finding. The parser now requires is_object
+before derived deserialization. The independent malformed-metadata process
+family includes this exact positional array and requires unavailable/null
+descriptor, no export, clean exit, real rows0 and owned PIDs absent.
+
+The independent focused compatibility rerun passed four installed-shape methods
+in29.67s and the routing-downgrade/thread-policy family in15.62s: twenty-three
+owned controller fixture cycles. Positives include real integer emission
+timestamps and the schema-valid negative signed integer, ordinary routing and
+legacy null, and the observed thread extras/networkfalse. Negatives include
+timestamp bool/fraction/null/overflow, unknown routing key/account mismatch/
+backend/regional/scalar/array, routing object→null/absent downgrade, foreign
+workspace root, nonnull profile, proactive mode, tool-network true/wrong type and
+unknown sandbox key. The latter cases preserve identical routing and assert an
+actual thread/start receipt, preventing an earlier descriptor mismatch from
+masking the intended policy fault. Logs are
+`context/review-controller-agent/installed-compatibility-independent.log` and
+`thread-policy-independent.log`.
+
+Reviewed the owner's actual installed production-service metadata-only green:
+ready in1.245s, exact fourteen native descriptor fields, healthy table close/
+shutdown/exit0, real rows0 and both recorded version/App Server PIDs absent.
+Its sanitized `metadata-diagnosis/service-green.log` matches independently
+observed schema/source/runtime fields. No actual model turn was needed for this
+compatibility correction. Original task/source/byte-handoff/publication bounds
+remain unchanged; owner runs affected basics/release before the live join retry.

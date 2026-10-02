@@ -38,6 +38,15 @@ pub struct Descriptor {
     pub history: &'static str,
     pub steer: &'static str,
     pub cancellation: &'static str,
+    #[serde(skip)]
+    pub routing: Option<Routing>,
+}
+#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+pub struct Routing {
+    pub chatgpt_account_id: String,
+    pub backend_origin: String,
+    pub account_routing_override: String,
 }
 #[derive(Debug, Clone, Copy, Serialize, PartialEq, Eq)]
 #[serde(rename_all = "snake_case")]

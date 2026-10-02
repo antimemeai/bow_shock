@@ -209,3 +209,61 @@ compatibility case; conflicting finals are negative. Missing backend identity,
 effective configuration mismatch and post-baseline account change are unavailable.
 No model turn has yet established structured inference access. Root's reviewed
 synthetic export/live-turn and native review/Save/SQLite join remain later evidence.
+
+## Actual notification envelope and workspace-routing compatibility
+
+The first actual joined metadata setup exposed two fields that the controlled
+peer had omitted. A fresh metadata-only run with the production socket shape,
+selected argv/environment and `experimentalApi:false` reproduced both safely;
+no turn was submitted, and the owned process was killed/reaped. Sanitized shape
+and binding results are in
+`context/review-controller-agent/metadata-diagnosis/routing-research.log`.
+
+Stable installed `ServerNotification.json` declares optional outer `emittedAtMs`
+as an integer with int64 format. Pinned `ServerNotificationEnvelope` stores
+`Option<i64>` and omits None for older peers; current outgoing notifications
+always populate it. It is emission wall-clock metadata, never native authority
+time. A closed adapter should admit only this optional signed integer in
+addition to method/params, preserving callback direction and all existing
+frame/depth/queue budgets. Unknown extra keys remain unavailable.
+
+Stable installed `GetAccountResponse.json` excludes the `workspaceRouting`
+property, while the experimental export includes optional null or a
+`WorkspaceRouting` object. The pinned account processor nevertheless builds and
+serializes that field for ordinary account/read. The source's outbound
+experimental filter strips command-approval callback fields only; it does not
+strip account responses. Experimental false therefore does not guarantee the
+property's absence on the real wire. This is a schema-export/runtime distinction,
+not permission to request unrelated experimental capabilities.
+
+The exact object has string `chatgptAccountId`, string `backendOrigin` and
+`accountRoutingOverride` enum `NO_CONSTRAINT`, `us`, `us_cr`. The actual selected
+account returned this object: ordinary HTTPS chatgpt.com, no URL userinfo/query/
+fragment, NO_CONSTRAINT, and its account ID matched the separately measured
+rate-limit backend reference. Only shape, safe origin tuple and equality were
+recorded; no email/credentials/raw account reference were printed.
+
+This field can carry selected-account/backend routing policy. The smallest
+proposed compatibility correction accepts absent/null for older peers and a
+closed typed ordinary chatgpt.com/NO_CONSTRAINT object cross-bound to the
+measured account reference. Other backend or regional routing should stay
+unavailable until destination/policy support is explicitly reviewed. Merely
+ignoring arbitrary routing objects would erase a meaningful destination check.
+The controller owner/root decide and review this scoped contract before code;
+the installed actual metadata failure is not an entitlement or inference test.
+
+An authorized fresh empty thread/start preflight (no turn) additionally showed
+runtime-serialized `runtimeWorkspaceRoots`, `activePermissionProfile` and
+`multiAgentMode`, although stable export removes these experimental properties.
+Pinned response source declares an absolute-path vector (default empty), optional
+profile object/null and the deprecated default explicitRequestOnly mode. Actual
+safe values were singleton selected cwd, null profile and explicitRequestOnly;
+the stable readOnly sandbox also returned boolean `networkAccess:false`. These
+observations are retained in `thread-policy.log`, without thread history content.
+
+The owner's narrow accepted policy permits absent legacy fields, empty/singleton
+selected cwd roots, null profile and explicitRequestOnly only. Sandbox is a
+closed readOnly object with optional boolean false networkAccess (absence has
+the source default false). Unknown fields, foreign roots, nonnull named profile,
+other delegation modes and tool-network true are unavailable before page bytes.
+This verifies effective settings; it does not prove coding-peer containment.

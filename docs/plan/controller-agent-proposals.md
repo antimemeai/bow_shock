@@ -98,3 +98,41 @@ Safe nonblocking transport uses standard UnixStream/OwnedFd APIs and pinned Rust
 standard-library socket code; study is not package adoption. Detailed measured
 Codex metadata/notification shapes are supplied by the separate protocol research
 owner before the worker state machine is finalized.
+
+## Installed metadata envelope correction
+
+Actual metadata-only production diagnosis found the adapter's closed allowlist
+omitted installed0.160.0 fields: optional notification emittedAtMs and account
+workspaceRouting. Pinned ServerNotification schema/source defines timestamp as
+signed i64; the source stamps current notifications. Accept precisely an absent
+or signed integer timestamp, never bool/fraction/null/unknown outer fields. It
+is transport metadata, never an authority clock. GetAccountResponse serializes
+experimental workspaceRouting even with experimentalApi false; its stable
+schema omits it. Study the full pinned source and actual safe nullness before
+choosing a closed object policy; nonnull backend routing cannot be silently
+discarded as though destination identity were unchanged.
+
+Actual selected routing is a nonnull closed three-string object whose account ID
+matches backend usage reference, backendOrigin is exactly https://chatgpt.com,
+override NO_CONSTRAINT. Support exactly this ordinary destination, plus absent/
+null legacy routing. Other backend/regional routes remain unavailable pending
+explicit policy review. Preserve routing in a serde-skipped internal Descriptor
+field so fresh child equality binds it without changing fourteen-field native
+wire. Duplicate/unknown routing fields, malformed scalar types, mismatched
+account IDs and changed routing deny before source handoff.
+
+Earn controlled process reds with actual timestamp/routing shapes, implement
+only the source-grounded fields, and require negative timestamp/type/duplicate/
+unknown-key closure. Re-run metadata-only production (no turn), affected proposal
+regressions and basics. Independent protocol/source review precedes landing.
+Native fourteen-field wire and permission/source lifecycle stay unchanged.
+
+Authorized actual fresh thread/start without turn/export also exposed three
+experimental response fields emitted under experimentalApi false:
+runtimeWorkspaceRoots (actual singleton selected cwd), activePermissionProfile
+(null), multiAgentMode (deprecated explicitRequestOnly). Source permits these
+fields. Accept absent legacy fields or precisely the measured narrow policy:
+roots empty/singleton selected cwd, profile null, mode explicitRequestOnly;
+reject malformed/other roots/profile/mode. Validate readOnly networkAccess as
+absent/default-false or actual false, with no unknown sandbox fields. No new
+agent/native capability is inferred from any compatibility metadata.

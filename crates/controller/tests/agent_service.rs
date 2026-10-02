@@ -23,17 +23,43 @@ if mode=='writer_stall':
  s=socket.socket(fileno=0);s.setsockopt(socket.SOL_SOCKET,socket.SO_RCVBUF,1024);s.detach()
 with (base/'pids').open('a') as f:f.write(str(os.getpid())+'\n')
 assert sys.argv[1:4]==['app-server','--stdio','--strict-config']
-def emit(v):print(json.dumps(v,separators=(',',':')),flush=True)
+def emit(v):
+ if 'method' in v and 'id' not in v and mode.startswith('timestamp_'):
+  v['emittedAtMs']={'timestamp_bool':True,'timestamp_float':1.5,'timestamp_null':None,'timestamp_overflow':9223372036854775808,'timestamp_negative':-1}.get(mode,1730000000000)
+ print(json.dumps(v,separators=(',',':')),flush=True)
 thread='thread-'+str(os.getpid());turn='turn-'+str(os.getpid())
 for line in sys.stdin:
  r=json.loads(line);m=r['method']
  if m=='initialized':continue
- if m=='initialize':v={'userAgent':'fixture','platformFamily':'unix','platformOs':'macos','codexHome':os.environ['CODEX_HOME']}
- elif m=='account/read':v={'requiresOpenaiAuth':True,'account':{'type':'chatgpt','email':None,'planType':'pro'}}
+ if m=='initialize':
+  v={'userAgent':'fixture','platformFamily':'unix','platformOs':'macos','codexHome':os.environ['CODEX_HOME']}
+  if mode.startswith('timestamp_'):emit({'method':'remoteControl/status/changed','params':{'status':'disabled'}})
+ elif m=='account/read':
+  v={'requiresOpenaiAuth':True,'account':{'type':'chatgpt','email':None,'planType':'pro'}}
+  if mode.startswith('routing_') or mode.startswith('thread_bad_'):
+   v['workspaceRouting']={'chatgptAccountId':'fixture-account','backendOrigin':'https://chatgpt.com','accountRoutingOverride':'NO_CONSTRAINT'}
+   if mode=='routing_null':v['workspaceRouting']=None
+   if mode=='routing_unknown':v['workspaceRouting']['extra']=False
+   if mode=='routing_bad_id':v['workspaceRouting']['chatgptAccountId']='other-account'
+   if mode=='routing_backend':v['workspaceRouting']['backendOrigin']='https://fixture.test'
+   if mode=='routing_region':v['workspaceRouting']['accountRoutingOverride']='us'
+   if mode=='routing_scalar':v['workspaceRouting']=False
+   if mode=='routing_array':v['workspaceRouting']=['fixture-account','https://chatgpt.com','NO_CONSTRAINT']
+   if mode=='routing_absent':del v['workspaceRouting']
  elif m=='account/rateLimits/read':v={'accountId':'changed-account' if mode=='account_mismatch' else 'fixture-account','rateLimits':{}}
  elif m=='thread/start':
+  (base/'thread_seen').write_text(str(os.getpid()))
   p=r['params'];assert p['model']=='fixture-model' and p['sandbox']=='read-only' and p['ephemeral'] is True
   v={'model':'fixture-model','modelProvider':'openai','cwd':str(base),'approvalPolicy':'never','approvalsReviewer':'user','sandbox':{'type':'readOnly'},'thread':{'id':thread,'ephemeral':True,'cliVersion':'0.160.0','turns':[]}}
+  if mode=='thread_actual':v.update(runtimeWorkspaceRoots=[str(base)],activePermissionProfile=None,multiAgentMode='explicitRequestOnly');v['sandbox']['networkAccess']=False
+  if mode.startswith('thread_bad_'):
+   v.update(runtimeWorkspaceRoots=[str(base)],activePermissionProfile=None,multiAgentMode='explicitRequestOnly');v['sandbox']['networkAccess']=False
+   if mode=='thread_bad_roots':v['runtimeWorkspaceRoots']=['/']
+   if mode=='thread_bad_profile':v['activePermissionProfile']={'id':'other'}
+   if mode=='thread_bad_mode':v['multiAgentMode']='proactive'
+   if mode=='thread_bad_network':v['sandbox']['networkAccess']=True
+   if mode=='thread_bad_network_type':v['sandbox']['networkAccess']=0
+   if mode=='thread_bad_sandbox_key':v['sandbox']['extra']=False
   if mode=='effective_mismatch':v['approvalPolicy']='on-request'
   if mode=='account_change':emit({'method':'account/updated','params':{'authMode':'chatgpt','planType':'pro'}})
   if mode=='before':
@@ -799,4 +825,97 @@ fn queued_status_preserves_original_task_under_actual_stdout_backpressure() {
         "must reach delayed captured-task publication boundary"
     );
     c.clean_close();
+}
+
+fn installed_metadata_projection(mode: &str) {
+    let mut c = Client::open(mode);
+    std::fs::write(c.dir.join("mode"), mode).unwrap();
+    c.ready();
+    let review = c.review();
+    let task = c.start(review);
+    assert_eq!(c.final_status(&task)["state"], "candidate");
+    c.clean_close();
+}
+#[test]
+fn installed_notification_timestamp_preserves_closed_proposal_lifecycle() {
+    installed_metadata_projection("timestamp_actual");
+    installed_metadata_projection("timestamp_negative");
+}
+#[test]
+fn installed_workspace_routing_preserves_bound_proposal_lifecycle() {
+    installed_metadata_projection("routing_actual");
+    installed_metadata_projection("routing_null");
+}
+#[test]
+fn installed_thread_metadata_preserves_narrow_effective_policy() {
+    installed_metadata_projection("thread_actual");
+}
+
+#[test]
+fn malformed_installed_metadata_cannot_establish_readiness() {
+    for mode in [
+        "timestamp_bool",
+        "timestamp_float",
+        "timestamp_null",
+        "timestamp_overflow",
+        "routing_unknown",
+        "routing_bad_id",
+        "routing_backend",
+        "routing_region",
+        "routing_scalar",
+        "routing_array",
+    ] {
+        let mut c = Client::open(mode);
+        std::fs::write(c.dir.join("mode"), mode).unwrap();
+        c.send(json!({"version":1,"op":"initialize","run_id":"agent-owned-run"}));
+        assert_eq!(c.receive()["op"], "initialized");
+        let until = Instant::now() + Duration::from_secs(10);
+        loop {
+            let metadata = c.call("agent_metadata", json!({}));
+            if metadata["state"] != "opening" {
+                assert_eq!(metadata["state"], "unavailable", "{mode}: {metadata}");
+                assert!(metadata["descriptor"].is_null());
+                break;
+            }
+            assert!(Instant::now() < until);
+            std::thread::sleep(Duration::from_millis(10));
+        }
+        while c.call("table_status", json!({"commit_id":null}))["health"] != "ready" {
+            assert!(Instant::now() < until);
+        }
+        assert!(!c.dir.join("export").exists());
+        c.clean_close();
+    }
+}
+
+#[test]
+fn verified_routing_cannot_downgrade_and_thread_policy_cannot_broaden() {
+    for mode in [
+        "routing_null",
+        "routing_absent",
+        "thread_bad_roots",
+        "thread_bad_profile",
+        "thread_bad_mode",
+        "thread_bad_network",
+        "thread_bad_network_type",
+        "thread_bad_sandbox_key",
+    ] {
+        let mut c = Client::open(mode);
+        std::fs::write(c.dir.join("mode"), "routing_actual").unwrap();
+        c.ready();
+        let review = c.review();
+        std::fs::write(c.dir.join("mode"), mode).unwrap();
+        let task = c.start(review);
+        let final_ = c.final_status(&task);
+        assert_eq!(final_["state"], "failed", "{mode}: {final_}");
+        assert_eq!(final_["export_disposition"], "not_transmitted");
+        assert!(!c.dir.join("export").exists());
+        if mode.starts_with("thread_bad_") {
+            assert!(
+                c.dir.join("thread_seen").exists(),
+                "must reach actual thread policy reply: {mode}"
+            );
+        }
+        c.clean_close();
+    }
 }

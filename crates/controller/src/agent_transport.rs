@@ -98,6 +98,18 @@ fn keys(value: &Value, required: &[&str], optional: &[&str]) -> Result<(), ()> {
     }
     Ok(())
 }
+fn notification(value: &Value) -> Result<(), ()> {
+    keys(value, &["method", "params"], &["emittedAtMs"])?;
+    text(&value["method"])?;
+    if !value["params"].is_object()
+        || value
+            .get("emittedAtMs")
+            .is_some_and(|timestamp| timestamp.as_i64().is_none())
+    {
+        return Err(());
+    }
+    Ok(())
+}
 fn text(value: &Value) -> Result<&str, ()> {
     let value = value.as_str().ok_or(())?;
     if value.is_empty() || value.len() > 4096 {
@@ -280,7 +292,7 @@ impl Session {
             if let Some(value) = self.read(stop)? {
                 // Requests and replies have separate ID spaces: method always wins.
                 if value.get("method").is_some() {
-                    keys(&value, &["method", "params"], &[])?;
+                    notification(&value)?;
                     if self.held.len() == 16 {
                         return Err(());
                     }
@@ -385,7 +397,11 @@ fn handshake(
     }
     session.write(json!({"method":"initialized"}), stop)?;
     let account = session.request(2, "account/read", json!({"refreshToken":false}), stop)?;
-    keys(&account, &["requiresOpenaiAuth"], &["account"])?;
+    keys(
+        &account,
+        &["requiresOpenaiAuth"],
+        &["account", "workspaceRouting"],
+    )?;
     if !account["requiresOpenaiAuth"].is_boolean() || account["account"]["type"] != "chatgpt" {
         return Err(());
     }
@@ -405,6 +421,20 @@ fn handshake(
     {
         return Err(());
     }
+    let routing: Option<agent::Routing> = match account.get("workspaceRouting") {
+        None | Some(Value::Null) => None,
+        Some(value) if value.is_object() => {
+            Some(serde_json::from_value(value.clone()).map_err(|_| ())?)
+        }
+        _ => return Err(()),
+    };
+    if routing.as_ref().is_some_and(|route| {
+        route.chatgpt_account_id != account_ref
+            || route.backend_origin != "https://chatgpt.com"
+            || route.account_routing_override != "NO_CONSTRAINT"
+    }) {
+        return Err(());
+    }
     let descriptor = Descriptor {
         runtime: "codex",
         version: "0.160.0",
@@ -420,6 +450,7 @@ fn handshake(
         history: "fresh_only",
         steer: "unsupported",
         cancellation: "host_retirement_and_owned_child_kill",
+        routing,
     };
     // Baseline initialization notifications contain no source data and confer no power.
     while let Some(event) = session.held.pop_front() {
@@ -467,8 +498,27 @@ pub fn propose(
             "instructionSources",
             "reasoningEffort",
             "serviceTier",
+            "runtimeWorkspaceRoots",
+            "activePermissionProfile",
+            "multiAgentMode",
         ],
     )?;
+    keys(&thread["sandbox"], &["type"], &["networkAccess"])?;
+    if thread["sandbox"]
+        .get("networkAccess")
+        .is_some_and(|value| value != false)
+        || thread.get("runtimeWorkspaceRoots").is_some_and(|value| {
+            !value.is_array() || (value != &json!([]) && value != &json!([settings.cwd]))
+        })
+        || thread
+            .get("activePermissionProfile")
+            .is_some_and(|value| !value.is_null())
+        || thread
+            .get("multiAgentMode")
+            .is_some_and(|value| value != "explicitRequestOnly")
+    {
+        return Err(());
+    }
     if thread["model"] != settings.model
         || thread["modelProvider"] != settings.provider
         || thread["cwd"] != settings.cwd.to_str().ok_or(())?
@@ -593,7 +643,7 @@ pub fn propose(
             turn_id = Some(text(&event["result"]["turn"]["id"])?.to_owned());
             continue;
         }
-        keys(&event, &["method", "params"], &[])?;
+        notification(&event)?;
         if turn_id.is_none() {
             if session.held.len() == 16 {
                 return Err(());
