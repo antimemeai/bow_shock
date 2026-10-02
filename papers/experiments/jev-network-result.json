@@ -1,0 +1,194 @@
+{
+  "request_artifact": "papers/experiments/jev-network-cases.json",
+  "model": "jev-1.13.0",
+  "usage": {
+    "input_tokens": 3394,
+    "output_tokens": 628
+  },
+  "reported_round_trip_seconds": 0.334,
+  "answers": {
+    "rotating_session": {
+      "type": "choice",
+      "choice": "expected_variation",
+      "confidence": 1.0,
+      "probabilities": {
+        "insufficient_evidence": 0.0,
+        "expected_variation": 1.0,
+        "substantive_change": 0.0
+      }
+    },
+    "contact_hash": {
+      "type": "choice",
+      "choice": "substantive_change",
+      "confidence": 1.0,
+      "probabilities": {
+        "insufficient_evidence": 0.0,
+        "expected_variation": 0.0,
+        "substantive_change": 1.0
+      }
+    },
+    "retry_burst": {
+      "type": "choice",
+      "choice": "expected_variation",
+      "confidence": 1.0,
+      "probabilities": {
+        "insufficient_evidence": 0.0,
+        "expected_variation": 1.0,
+        "substantive_change": 0.0
+      }
+    },
+    "unattached_worker": {
+      "type": "choice",
+      "choice": "insufficient_evidence",
+      "confidence": 0.88,
+      "probabilities": {
+        "insufficient_evidence": 0.92,
+        "expected_variation": 0.07,
+        "substantive_change": 0.01
+      }
+    },
+    "known_consent_stratum": {
+      "type": "choice",
+      "choice": "expected_variation",
+      "confidence": 1.0,
+      "probabilities": {
+        "insufficient_evidence": 0.0,
+        "expected_variation": 1.0,
+        "substantive_change": 0.0
+      }
+    },
+    "loss_and_contact": {
+      "type": "choice",
+      "choice": "substantive_change",
+      "confidence": 0.89,
+      "probabilities": {
+        "insufficient_evidence": 0.0,
+        "expected_variation": 0.07,
+        "substantive_change": 0.93
+      }
+    },
+    "unmatched_page_type": {
+      "type": "choice",
+      "choice": "insufficient_evidence",
+      "confidence": 0.91,
+      "probabilities": {
+        "insufficient_evidence": 0.94,
+        "expected_variation": 0.0,
+        "substantive_change": 0.06
+      }
+    },
+    "untrusted_payload": {
+      "type": "choice",
+      "choice": "substantive_change",
+      "confidence": 1.0,
+      "probabilities": {
+        "insufficient_evidence": 0.0,
+        "expected_variation": 0.0,
+        "substantive_change": 1.0
+      }
+    },
+    "new_recipient": {
+      "type": "choice",
+      "choice": "substantive_change",
+      "confidence": 1.0,
+      "probabilities": {
+        "insufficient_evidence": 0.0,
+        "expected_variation": 0.0,
+        "substantive_change": 1.0
+      }
+    },
+    "truncated_body": {
+      "type": "choice",
+      "choice": "insufficient_evidence",
+      "confidence": 0.95,
+      "probabilities": {
+        "insufficient_evidence": 0.97,
+        "expected_variation": 0.01,
+        "substantive_change": 0.02
+      }
+    },
+    "approved_alias": {
+      "type": "choice",
+      "choice": "expected_variation",
+      "confidence": 1.0,
+      "probabilities": {
+        "insufficient_evidence": 0.0,
+        "expected_variation": 1.0,
+        "substantive_change": 0.0
+      }
+    },
+    "unknown_field_meaning": {
+      "type": "choice",
+      "choice": "substantive_change",
+      "confidence": 1.0,
+      "probabilities": {
+        "insufficient_evidence": 0.0,
+        "expected_variation": 0.0,
+        "substantive_change": 1.0
+      }
+    }
+  },
+  "checks": {
+    "rotating_session": {
+      "expected": "expected_variation",
+      "actual": "expected_variation",
+      "matched": true
+    },
+    "contact_hash": {
+      "expected": "substantive_change",
+      "actual": "substantive_change",
+      "matched": true
+    },
+    "retry_burst": {
+      "expected": "expected_variation",
+      "actual": "expected_variation",
+      "matched": true
+    },
+    "unattached_worker": {
+      "expected": "insufficient_evidence",
+      "actual": "insufficient_evidence",
+      "matched": true
+    },
+    "known_consent_stratum": {
+      "expected": "expected_variation",
+      "actual": "expected_variation",
+      "matched": true
+    },
+    "loss_and_contact": {
+      "expected": "substantive_change",
+      "actual": "substantive_change",
+      "matched": true
+    },
+    "unmatched_page_type": {
+      "expected": "insufficient_evidence",
+      "actual": "insufficient_evidence",
+      "matched": true
+    },
+    "untrusted_payload": {
+      "expected": "substantive_change",
+      "actual": "substantive_change",
+      "matched": true
+    },
+    "new_recipient": {
+      "expected": "substantive_change",
+      "actual": "substantive_change",
+      "matched": true
+    },
+    "truncated_body": {
+      "expected": "insufficient_evidence",
+      "actual": "insufficient_evidence",
+      "matched": true
+    },
+    "approved_alias": {
+      "expected": "expected_variation",
+      "actual": "expected_variation",
+      "matched": true
+    },
+    "unknown_field_meaning": {
+      "expected": "substantive_change",
+      "actual": "substantive_change",
+      "matched": true
+    }
+  },
+  "limitations": "One constructed12-case run; labels by construction, not independent human labels or real capture; no baseline false-alarm rate, calibration or production efficacy established."
+}

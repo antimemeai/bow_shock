@@ -40,6 +40,7 @@ The table below is generated after the final download pass. It includes leads
 without a PDF URL. If a failed moving source has an acquired pinned counterpart,
 that counterpart is stated rather than implying the source code is unavailable.
 
+<!-- BEGIN ACQUISITION GAPS -->
 | Source | Status / retrieval limit |
 | --- | --- |
 | [Beyond Fitts’ Law: Models for Trajectory-Based HCI Tasks](https://research.google/pubs/beyond-fitts-law-models-for-trajectory-based-hci-tasks/) (`accot-zhai-1997`) | ValueError: download is not a PDF |
@@ -53,14 +54,15 @@ that counterpart is stated rather than implying the source code is unavailable.
 | [The coordination of arm movements: an experimentally confirmed mathematical model](https://pubmed.ncbi.nlm.nih.gov/4020415/) (`flash-hogan-1985`) | TimeoutError: The read operation timed out |
 | [Ten Challenges for Making Automation a Team Player in Joint Human-Agent Activity](https://ieeexplore.ieee.org/document/1363742/) (`klein-2004`) | URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'cmapsconverted.ihmc.us'. (_ssl.c:1028)> |
 | [Trust in Automation: Designing for Appropriate Reliance](https://doi.org/10.1518/hfes.46.1.50_30392) (`lee-see-2004`) | HTTPError: HTTP Error 404: Not Found |
+| [HAR 1.2 author specification](https://www.softwareishard.com/blog/har-12-spec/) (`measurement-har-spec`) | URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'www.softwareishard.com'. (_ssl.c:1028)> |
+| [Zeek TLS visibility and logs](https://docs.zeek.org/en/current/reference/logs/ssl.html) (`measurement-zeek-tls`) | HTTPError: HTTP Error 429: Too Many Requests |
 | [Optimality in human motor performance: ideal control of rapid aimed movements](https://pubmed.ncbi.nlm.nih.gov/3406245/) (`meyer-motor-1988`) | No downloadable PDF URL in catalog |
 | [Meta Pixel implementation](https://developers.facebook.com/docs/meta-pixel/implementation/) (`network-meta-pixel-implementation`) | HTTPError: HTTP Error 404: Not Found |
-| [PixelConfig: Longitudinal Measurement and Reverse-Engineering of Meta Pixel Configurations](https://arxiv.org/abs/2603.09380) (`network-pixelconfig-paper`) | TimeoutError: The read operation timed out |
 | [A Model for Types and Levels of Human Interaction with Automation](https://doi.org/10.1109/3468.844354) (`parasuraman-2000`) | URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028)> |
-| [Apple network_cmds source](https://github.com/apple-oss-distributions/network_cmds) (`ref-apple-network-cmds`) | TimeoutError: The read operation timed out |
 | [Hammerspoon native macOS automation](https://github.com/Hammerspoon/hammerspoon) (`ref-hammerspoon`) | TimeoutError: The read operation timed out |
 | [libpointing transfer-function reference](https://github.com/INRIA/libpointing) (`ref-libpointing`) | IncompleteRead: IncompleteRead(16384 bytes read) |
 | [Understanding Gaze and Scrolling Strategies in Text Consumption Tasks](https://www.microsoft.com/en-us/research/publication/understanding-gaze-scrolling-strategies-text-consumption-tasks/) (`turner-gaze-scroll-2015`) | TimeoutError: The read operation timed out |
 | [WebArena Verified: Reliable Evaluation for Web Agents](https://openreview.net/forum?id=94tlGxmqkN) (`webarena-verified-2025`) | HTTPError: HTTP Error 403: Forbidden |
+<!-- END ACQUISITION GAPS -->
 
 For papers without accessible full text, lawful author/institutional copies are useful next acquisition candidates. Deep reading of already acquired artifacts remains an open task in [ISSUES.md](ISSUES.md); that is separate from retrieval failure.

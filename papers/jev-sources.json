@@ -1,0 +1,65 @@
+[
+  {
+    "id": "jev-index-doc",
+    "title": "TypeSafe Jev index documentation",
+    "url": "https://docs.typesafe.ai/llms.txt",
+    "kind": "documentation",
+    "notes": "Live primary vendor documentation, research snapshot; no SDK adoption. Some recipes use older model versions; experiment uses current explicit version."
+  },
+  {
+    "id": "jev-models-doc",
+    "title": "TypeSafe Jev models documentation",
+    "url": "https://docs.typesafe.ai/models.md",
+    "kind": "documentation",
+    "notes": "Live primary vendor documentation, research snapshot; no SDK adoption. Some recipes use older model versions; experiment uses current explicit version."
+  },
+  {
+    "id": "jev-api-doc",
+    "title": "TypeSafe Jev api documentation",
+    "url": "https://docs.typesafe.ai/api.md",
+    "kind": "documentation",
+    "notes": "Live primary vendor documentation, research snapshot; no SDK adoption. Some recipes use older model versions; experiment uses current explicit version."
+  },
+  {
+    "id": "jev-confidence-doc",
+    "title": "TypeSafe Jev confidence documentation",
+    "url": "https://docs.typesafe.ai/confidence.md",
+    "kind": "documentation",
+    "notes": "Live primary vendor documentation, research snapshot; no SDK adoption. Some recipes use older model versions; experiment uses current explicit version."
+  },
+  {
+    "id": "jev-choice-doc",
+    "title": "TypeSafe Jev choice documentation",
+    "url": "https://docs.typesafe.ai/primitives/choice.md",
+    "kind": "documentation",
+    "notes": "Live primary vendor documentation, research snapshot; no SDK adoption. Some recipes use older model versions; experiment uses current explicit version."
+  },
+  {
+    "id": "jev-noul-doc",
+    "title": "TypeSafe Jev noul documentation",
+    "url": "https://docs.typesafe.ai/primitives/noul.md",
+    "kind": "documentation",
+    "notes": "Live primary vendor documentation, research snapshot; no SDK adoption. Some recipes use older model versions; experiment uses current explicit version."
+  },
+  {
+    "id": "jev-extraction-doc",
+    "title": "TypeSafe Jev extraction documentation",
+    "url": "https://docs.typesafe.ai/cookbooks/pre_parsed_value_extraction_cookbook.md",
+    "kind": "documentation",
+    "notes": "Live primary vendor documentation, research snapshot; no SDK adoption. Some recipes use older model versions; experiment uses current explicit version."
+  },
+  {
+    "id": "jev-citations-doc",
+    "title": "TypeSafe Jev citations documentation",
+    "url": "https://docs.typesafe.ai/cookbooks/citation_check.md",
+    "kind": "documentation",
+    "notes": "Live primary vendor documentation, research snapshot; no SDK adoption. Some recipes use older model versions; experiment uses current explicit version."
+  },
+  {
+    "id": "jev-jaggedness-doc",
+    "title": "TypeSafe Jev jaggedness documentation",
+    "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md",
+    "kind": "documentation",
+    "notes": "Live primary vendor documentation, research snapshot; no SDK adoption. Some recipes use older model versions; experiment uses current explicit version."
+  }
+]

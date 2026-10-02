@@ -1,0 +1,271 @@
+[
+  {
+    "id": "ref-iproute2-netem",
+    "title": "iproute2/iproute2",
+    "url": "https://github.com/iproute2/iproute2",
+    "kind": "repository",
+    "repo": "iproute2/iproute2",
+    "revision": "ac0b672924c8993a2da2cb9b6f97908967095a97",
+    "notes": "D: reviewed tc-netem manual and q_netem parser; Linux qdisc, distributions, burst loss, seed, namespace tooling. Kernel implementation is outside this repo."
+  },
+  {
+    "id": "ref-libpcap",
+    "title": "the-tcpdump-group/libpcap",
+    "url": "https://github.com/the-tcpdump-group/libpcap",
+    "kind": "repository",
+    "repo": "the-tcpdump-group/libpcap",
+    "revision": "e2fe69377b84cf5e963b54946cb616cfbc4a76d4",
+    "notes": "D: reviewed pcap_stats manual; A: portable capture README. Read pcap-bpf.c and pcap-tstamp.manmisc.in for macOS capture/drop/timing behavior."
+  },
+  {
+    "id": "ref-tcpdump",
+    "title": "the-tcpdump-group/tcpdump",
+    "url": "https://github.com/the-tcpdump-group/tcpdump",
+    "kind": "repository",
+    "repo": "the-tcpdump-group/tcpdump",
+    "revision": "eebca9915dc33ce4724ca55010c507c80f519c1b",
+    "notes": "A: official capture CLI and installation/readme documentation; source/manpages reference, no executable adoption."
+  },
+  {
+    "id": "ref-wireshark-capture",
+    "title": "wireshark/wireshark",
+    "url": "https://github.com/wireshark/wireshark",
+    "kind": "repository",
+    "repo": "wireshark/wireshark",
+    "revision": "65d2cd5be4856de64ea82eb2bf4d7c538da2d3b5",
+    "notes": "D: reviewed official timestamp/checksum guide; A: verified selected capture/source/docs paths. Exact files only; no dissector collection or buildable full tree.",
+    "mode": "files",
+    "selected_paths": [
+      "COPYING",
+      "README.md",
+      "README.macos",
+      "dumpcap.c",
+      "capinfos.c",
+      "doc/wsug_src/wsug_capture.adoc",
+      "doc/wsug_src/wsug_advanced.adoc",
+      "doc/wsug_src/wsug_files.adoc"
+    ]
+  },
+  {
+    "id": "ref-toxiproxy",
+    "title": "Shopify/toxiproxy",
+    "url": "https://github.com/Shopify/toxiproxy",
+    "kind": "repository",
+    "repo": "Shopify/toxiproxy",
+    "revision": "40f7fd31bee529d824116bd2a11a9e3425e904ec",
+    "notes": "D: reviewed timeout.go and timeout_test.go, README. TCP stream proxy faults differ from kernel packet loss and link state; cleanup closes existing connection."
+  },
+  {
+    "id": "ref-comcast-network",
+    "title": "tylertreat/comcast",
+    "url": "https://github.com/tylertreat/comcast",
+    "kind": "repository",
+    "repo": "tylertreat/comcast",
+    "revision": "145d02155cffc03bb4ed878c9d6441dc49f3cdaa",
+    "notes": "D: reviewed throttler/pfctl.go and pfctl_test.go. macOS PF/dnctl wrapper has global reload/disable/flush and fixed pipe 1; target mask parameters are not PF selection. Study only."
+  },
+  {
+    "id": "ref-mahimahi",
+    "title": "ravinet/mahimahi",
+    "url": "https://github.com/ravinet/mahimahi",
+    "kind": "repository",
+    "repo": "ravinet/mahimahi",
+    "revision": "f1346c38c415abfc98626dd82450f49a57033603",
+    "notes": "D: paper architecture/isolation/replay sections; A: README and source directory. Linux composable namespace shells, trace-driven links, HTTP replay; historical TLS interception and QUIC experiments are not modern browser support proof."
+  },
+  {
+    "id": "ref-packetdrill",
+    "title": "google/packetdrill",
+    "url": "https://github.com/google/packetdrill",
+    "kind": "repository",
+    "repo": "google/packetdrill",
+    "revision": "83f72d3f9085d0e26eb4d206fe4d7cfab5b6d872",
+    "notes": "D: run_packet.c outbound verifier and paper design; A: README. Timed syscall/packet oracle on supported Linux/BSD stacks, no macOS support inferred; optional submodule not acquired."
+  },
+  {
+    "id": "ref-tcconfig",
+    "title": "thombashi/tcconfig",
+    "url": "https://github.com/thombashi/tcconfig",
+    "kind": "repository",
+    "repo": "thombashi/tcconfig",
+    "revision": "ee55d275603f2cb8c10c3fbe84989ea71149f5de",
+    "notes": "A: README/documented interface-veth selectors and tcshow; Linux tc wrapper, interface-wide all-rule deletion can affect other users."
+  },
+  {
+    "id": "ref-mininet",
+    "title": "mininet/mininet",
+    "url": "https://github.com/mininet/mininet",
+    "kind": "repository",
+    "repo": "mininet/mininet",
+    "revision": "6eb8973c0bfd13c25c244a3871130c5e36b5fbd7",
+    "notes": "D: original paper architecture and limitations; A: README and net.py measurement comments. Linux namespace/veth topology, shared kernel/scheduling; not macOS native."
+  },
+  {
+    "id": "ref-core-emulator",
+    "title": "coreemu/core",
+    "url": "https://github.com/coreemu/core",
+    "kind": "repository",
+    "repo": "coreemu/core",
+    "revision": "a5cff7f99e02a2acf629e19c307926c62c818fd6",
+    "notes": "A: README and verified daemon/core/nodes paths. Linux network topology GUI/Python services/netns; optional routing/radio dependencies excluded from adoption."
+  },
+  {
+    "id": "ref-iperf3",
+    "title": "esnet/iperf",
+    "url": "https://github.com/esnet/iperf",
+    "kind": "repository",
+    "repo": "esnet/iperf",
+    "revision": "49f21b478b1a714afb9d31a40843ea4b7878990d",
+    "notes": "A: official invoking documentation. Controlled peer transport throughput/loss/jitter/JSON measurements, not an HTTP page or reachability oracle."
+  },
+  {
+    "id": "ref-apple-configd-reachability",
+    "title": "apple-oss-distributions/configd",
+    "url": "https://github.com/apple-oss-distributions/configd",
+    "kind": "repository",
+    "repo": "apple-oss-distributions/configd",
+    "revision": "585b7f2fca293f4642d21d15c5daf187f63c4796",
+    "notes": "D: SCNetworkReachability.h contract; A: verified SystemConfiguration and sctest paths. Local exit reachability does not guarantee remote receipt; released source is not current binary identity."
+  },
+  {
+    "id": "ref-apple-xnu-network",
+    "title": "apple-oss-distributions/xnu",
+    "url": "https://github.com/apple-oss-distributions/xnu",
+    "kind": "repository",
+    "repo": "apple-oss-distributions/xnu",
+    "revision": "f6217f891ac0bb64f3d375211650a4c1ff8ca1ea",
+    "notes": "D: selected ip_dummynet.c loss/delay/rate paths; A: verified PF/BPF/pktap/route paths. Exact kernel files only, not buildable XNU. Source revision does not identify running macOS kernel.",
+    "mode": "files",
+    "selected_paths": [
+      "APPLE_LICENSE",
+      "README.md",
+      "bsd/netinet/ip_dummynet.c",
+      "bsd/netinet/ip_dummynet.h",
+      "bsd/net/pf.c",
+      "bsd/net/pf_ioctl.c",
+      "bsd/net/pfvar.h",
+      "bsd/net/bpf.c",
+      "bsd/net/bpf.h",
+      "bsd/net/pktap.c",
+      "bsd/net/pktap.h",
+      "bsd/net/rtsock.c"
+    ]
+  },
+  {
+    "id": "ref-freebsd-dummynet",
+    "title": "freebsd/freebsd-src",
+    "url": "https://github.com/freebsd/freebsd-src",
+    "kind": "repository",
+    "repo": "freebsd/freebsd-src",
+    "revision": "43b0384bc7e87df5bd164ce833617e68824f4828",
+    "notes": "D: dummynet architecture documentation; A: verified current ipfw/dummynet paths. Exact files only; current FreeBSD is a comparison, not a drop-in macOS API.",
+    "mode": "files",
+    "selected_paths": [
+      "COPYRIGHT",
+      "README.md",
+      "sys/netpfil/ipfw/dummynet.txt",
+      "sys/netpfil/ipfw/ip_dummynet.c",
+      "sys/netpfil/ipfw/ip_dn_io.c",
+      "sys/netpfil/ipfw/ip_dn_private.h",
+      "sys/netpfil/ipfw/dn_sched_fifo.c",
+      "sbin/ipfw/dummynet.c",
+      "sbin/ipfw/ipfw.8"
+    ]
+  },
+  {
+    "id": "packetdrill-2013",
+    "title": "packetdrill: Scriptable Network Stack Testing, from Sockets to Packets",
+    "url": "https://www.usenix.org/conference/atc13/technical-sessions/presentation/cardwell",
+    "pdf_url": "https://www.usenix.org/system/files/conference/atc13/atc13-cardwell.pdf",
+    "kind": "paper",
+    "notes": "D: design and current outbound verifier cross-read. Timed syscalls plus expected packets; Linux/BSD stack correctness, no browser/privacy claim."
+  },
+  {
+    "id": "mahimahi-2015",
+    "title": "Mahimahi: Accurate Record-and-Replay for HTTP",
+    "url": "https://www.usenix.org/conference/atc15/technical-session/presentation/netravali",
+    "pdf_url": "https://www.usenix.org/system/files/conference/atc15/atc15-paper-netravali.pdf",
+    "kind": "paper",
+    "notes": "D: sections 1-4 architecture, isolation, replay matching and topology limits; historical protocol experiments not modern QUIC conformance."
+  },
+  {
+    "id": "mininet-2010",
+    "title": "A Network in a Laptop: Rapid Prototyping for Software-Defined Networks",
+    "url": "https://conferences.sigcomm.org/hotnets/2010/papers/a19-lantz.pdf",
+    "pdf_url": "https://conferences.sigcomm.org/hotnets/2010/papers/a19-lantz.pdf",
+    "kind": "paper",
+    "notes": "D: architecture and performance-fidelity limitations; lightweight namespaces share a kernel and CPU scheduler."
+  },
+  {
+    "id": "dummynet-revisited-2010",
+    "title": "Dummynet Revisited",
+    "url": "https://docenti.ing.unipi.it/l.rizzo/research.html",
+    "pdf_url": "https://docenti.ing.unipi.it/l.rizzo/papers/20091201-dummynet.pdf",
+    "kind": "paper",
+    "notes": "D: author November 2009 draft associated with CCR April 2010; sections 1-3. Distinguish packet classifier from dynamic-pipe masks; precision/MAC limits."
+  },
+  {
+    "id": "bpf-1993",
+    "title": "The BSD Packet Filter: A New Architecture for User-level Packet Capture",
+    "url": "https://www.usenix.org/conference/usenix-winter-1993-conference/bsd-packet-filter-new-architecture-user-level-packet",
+    "pdf_url": "https://www.usenix.org/legacy/publications/library/proceedings/sd93/mccanne.pdf",
+    "kind": "paper",
+    "notes": "L/A: original metadata and scanned paper acquired for reading; PDF lacks extracted text, no benchmark inference claimed."
+  },
+  {
+    "id": "netem-man-reviewed",
+    "title": "netem queue discipline manual at reviewed pin",
+    "url": "https://raw.githubusercontent.com/iproute2/iproute2/ac0b672924c8993a2da2cb9b6f97908967095a97/man/man8/tc-netem.8",
+    "kind": "documentation",
+    "notes": "D: distributions, seed, queue placement/timer and TSQ caveats."
+  },
+  {
+    "id": "pcap-stats-reviewed",
+    "title": "pcap_stats manual at reviewed pin",
+    "url": "https://raw.githubusercontent.com/the-tcpdump-group/libpcap/e2fe69377b84cf5e963b54946cb616cfbc4a76d4/pcap_stats.3pcap",
+    "kind": "documentation",
+    "notes": "D: platform dependent recv/drop/ifdrop; zero can mean unavailable, saved pcap lacks live stats."
+  },
+  {
+    "id": "wireshark-time-stamps",
+    "title": "Wireshark capture timestamps",
+    "url": "https://www.wireshark.org/docs/wsug_html_chunked/ChAdvTimestamps.html",
+    "kind": "documentation",
+    "notes": "D: precision differs from accuracy; OS capture system is the timestamp source."
+  },
+  {
+    "id": "wireshark-checksum-offload",
+    "title": "Wireshark checksum validation and offloading",
+    "url": "https://www.wireshark.org/docs/wsug_html_chunked/ChAdvChecksums.html",
+    "kind": "documentation",
+    "notes": "D: host capture before hardware checksum/segmentation can mislead wire-packet interpretation."
+  },
+  {
+    "id": "iperf3-invoking",
+    "title": "ESnet iperf3 invocation and measurement",
+    "url": "https://software.es.net/iperf/invoking.html",
+    "kind": "documentation",
+    "notes": "A: TCP/UDP/reverse/JSON modes and controlled peer measurement; endpoints are part of oracle."
+  },
+  {
+    "id": "apple-network-concurrency-2025",
+    "title": "Use structured concurrency with Network framework, WWDC25",
+    "url": "https://developer.apple.com/videos/play/wwdc2025/250/",
+    "kind": "documentation",
+    "notes": "D: native connection lifecycle sections; waiting/preparing/ready/failed versus path policy. Official code snippets, no sample archive acquired."
+  },
+  {
+    "id": "apple-network-peer-sample-lead",
+    "title": "Building a custom peer-to-peer protocol",
+    "url": "https://developer.apple.com/documentation/Network/building-a-custom-peer-to-peer-protocol",
+    "kind": "documentation",
+    "notes": "L: official sample linked by WWDC25; JavaScript shell in web reader, sample download not resolved; operator/manual follow-up."
+  },
+  {
+    "id": "dummynet-original-1997-lead",
+    "title": "Dummynet: a simple approach to the evaluation of network protocols, author record",
+    "url": "https://arpi.unipi.it/handle/11568/56521",
+    "kind": "documentation",
+    "notes": "A: institutional abstract/title/year; original author copy is PostScript, not read deeply here."
+  }
+]

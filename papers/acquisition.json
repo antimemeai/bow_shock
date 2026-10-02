@@ -193,6 +193,20 @@
     "status": "acquired"
   },
   {
+    "id": "apple-network-concurrency-2025",
+    "title": "Use structured concurrency with Network framework, WWDC25",
+    "source_url": "https://developer.apple.com/videos/play/wwdc2025/250/",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T23:59:34.138916+00:00",
+    "download_url": "https://developer.apple.com/videos/play/wwdc2025/250/",
+    "artifact": {
+      "path": "context/docs/apple-network-concurrency-2025.html",
+      "bytes": 174713,
+      "sha256": "7b6323e58eb762926e62bf79a04188587739179626bd190af37c2cffaf3de1c8"
+    },
+    "status": "acquired"
+  },
+  {
     "id": "apple-network-path-monitor",
     "title": "Apple NWPathMonitor",
     "source_url": "https://developer.apple.com/documentation/network/nwpathmonitor",
@@ -219,6 +233,20 @@
       "bytes": 18547,
       "sha256": "4ca0c0bdf87912307500724dc957c7966d5986373c072450914f02e6d3e44493"
     }
+  },
+  {
+    "id": "apple-network-peer-sample-lead",
+    "title": "Building a custom peer-to-peer protocol",
+    "source_url": "https://developer.apple.com/documentation/Network/building-a-custom-peer-to-peer-protocol",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T23:59:35.394875+00:00",
+    "download_url": "https://developer.apple.com/documentation/Network/building-a-custom-peer-to-peer-protocol",
+    "artifact": {
+      "path": "context/docs/apple-network-peer-sample-lead.html",
+      "bytes": 18991,
+      "sha256": "eb9098030a554bc48f2067dcbe24d455469665ad79e78963cd8d421ffde50f72"
+    },
+    "status": "acquired"
   },
   {
     "id": "apple-pf-man",
@@ -366,6 +394,20 @@
       "path": "context/docs/blink-online-getter-reviewed.html",
       "bytes": 2070,
       "sha256": "6435674b7df7a2555ac38a3ca64af45480be30eb958984bf61d7cf01235f946b"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "bpf-1993",
+    "title": "The BSD Packet Filter: A New Architecture for User-level Packet Capture",
+    "source_url": "https://www.usenix.org/conference/usenix-winter-1993-conference/bsd-packet-filter-new-architecture-user-level-packet",
+    "kind": "paper",
+    "checked_at": "2026-10-01T23:59:26.883670+00:00",
+    "download_url": "https://www.usenix.org/legacy/publications/library/proceedings/sd93/mccanne.pdf",
+    "artifact": {
+      "path": "papers/pdfs/bpf-1993.pdf",
+      "bytes": 1907746,
+      "sha256": "3a7d5b3e35d09f9b2e7d97763457e225506095aca7162d3fbe733aa29493b950"
     },
     "status": "acquired"
   },
@@ -1390,6 +1432,34 @@
     "status": "acquired"
   },
   {
+    "id": "dummynet-original-1997-lead",
+    "title": "Dummynet: a simple approach to the evaluation of network protocols, author record",
+    "source_url": "https://arpi.unipi.it/handle/11568/56521",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T23:59:35.551470+00:00",
+    "download_url": "https://arpi.unipi.it/handle/11568/56521",
+    "artifact": {
+      "path": "context/docs/dummynet-original-1997-lead.html",
+      "bytes": 47113,
+      "sha256": "f1fb7e9762a6eb7500da3795c86661a4bcf5d8a4fd2a2c034d56bb7050406e51"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "dummynet-revisited-2010",
+    "title": "Dummynet Revisited",
+    "source_url": "https://docenti.ing.unipi.it/l.rizzo/research.html",
+    "kind": "paper",
+    "checked_at": "2026-10-01T23:59:24.217709+00:00",
+    "download_url": "https://docenti.ing.unipi.it/l.rizzo/papers/20091201-dummynet.pdf",
+    "artifact": {
+      "path": "papers/pdfs/dummynet-revisited-2010.pdf",
+      "bytes": 339486,
+      "sha256": "3eaa5a1c03ac1ca8edf00af15ce10781f038d973da4e8758123f6432e02cc54d"
+    },
+    "status": "acquired"
+  },
+  {
     "id": "electron",
     "title": "Electron embedding and security source",
     "source_url": "https://github.com/electron/electron",
@@ -1799,6 +1869,20 @@
     "status": "acquired"
   },
   {
+    "id": "iperf3-invoking",
+    "title": "ESnet iperf3 invocation and measurement",
+    "source_url": "https://software.es.net/iperf/invoking.html",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T23:59:31.475582+00:00",
+    "download_url": "https://software.es.net/iperf/invoking.html",
+    "artifact": {
+      "path": "context/docs/iperf3-invoking.html",
+      "bytes": 132265,
+      "sha256": "04fc0b0af16f661f7ddc2289b9d055150d00f0e6bd083fef85a34d298eff40e2"
+    },
+    "status": "acquired"
+  },
+  {
     "id": "jcef",
     "title": "chromiumembedded/java-cef",
     "source_url": "https://github.com/chromiumembedded/java-cef",
@@ -1817,6 +1901,132 @@
     },
     "submodules_not_acquired": [],
     "tree": "quarantine/jcef",
+    "status": "acquired"
+  },
+  {
+    "id": "jev-api-doc",
+    "title": "TypeSafe Jev api documentation",
+    "source_url": "https://docs.typesafe.ai/api.md",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T23:50:42.998300+00:00",
+    "download_url": "https://docs.typesafe.ai/api.md",
+    "artifact": {
+      "path": "context/docs/jev-api-doc.html",
+      "bytes": 11344,
+      "sha256": "6b760275f89341fe15cff80c28aacae94d7d0c0c99afcd987ec0bca680b5713a"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "jev-choice-doc",
+    "title": "TypeSafe Jev choice documentation",
+    "source_url": "https://docs.typesafe.ai/primitives/choice.md",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T23:50:42.998470+00:00",
+    "download_url": "https://docs.typesafe.ai/primitives/choice.md",
+    "artifact": {
+      "path": "context/docs/jev-choice-doc.html",
+      "bytes": 26907,
+      "sha256": "ae9c49b815ee30b28ed851e22b63041130fba50ae41368d41a5d80b571f383bb"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "jev-citations-doc",
+    "title": "TypeSafe Jev citations documentation",
+    "source_url": "https://docs.typesafe.ai/cookbooks/citation_check.md",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T23:50:43.000470+00:00",
+    "download_url": "https://docs.typesafe.ai/cookbooks/citation_check.md",
+    "artifact": {
+      "path": "context/docs/jev-citations-doc.html",
+      "bytes": 15367,
+      "sha256": "76bdeead0640f4963815aba7c4cbafe7812cb619b678606998f1735a808fd3f6"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "jev-confidence-doc",
+    "title": "TypeSafe Jev confidence documentation",
+    "source_url": "https://docs.typesafe.ai/confidence.md",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T23:50:42.998247+00:00",
+    "download_url": "https://docs.typesafe.ai/confidence.md",
+    "artifact": {
+      "path": "context/docs/jev-confidence-doc.html",
+      "bytes": 11509,
+      "sha256": "6602889dfe93f13001eb5f72121b23f11834ff88ee1c80db70dd9edc46b0e025"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "jev-extraction-doc",
+    "title": "TypeSafe Jev extraction documentation",
+    "source_url": "https://docs.typesafe.ai/cookbooks/pre_parsed_value_extraction_cookbook.md",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T23:50:42.999921+00:00",
+    "download_url": "https://docs.typesafe.ai/cookbooks/pre_parsed_value_extraction_cookbook.md",
+    "artifact": {
+      "path": "context/docs/jev-extraction-doc.html",
+      "bytes": 12655,
+      "sha256": "a5242dbf4df6dcae3bbf374047026714c1801cdc126b39bc4bca99212dd1a1c9"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "jev-index-doc",
+    "title": "TypeSafe Jev index documentation",
+    "source_url": "https://docs.typesafe.ai/llms.txt",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T23:50:42.997378+00:00",
+    "download_url": "https://docs.typesafe.ai/llms.txt",
+    "artifact": {
+      "path": "context/docs/jev-index-doc.html",
+      "bytes": 16132,
+      "sha256": "4151e8fd18e5494580571957beff0933e18aecbea2ac7826d3bf53184e8a6a40"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "jev-jaggedness-doc",
+    "title": "TypeSafe Jev jaggedness documentation",
+    "source_url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T23:50:43.000730+00:00",
+    "download_url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13.md",
+    "artifact": {
+      "path": "context/docs/jev-jaggedness-doc.html",
+      "bytes": 10849,
+      "sha256": "c591ecd05ab7b2f6083b397625a6ba5ee49f63038e74a9733b222e50f7ac5345"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "jev-models-doc",
+    "title": "TypeSafe Jev models documentation",
+    "source_url": "https://docs.typesafe.ai/models.md",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T23:50:42.997819+00:00",
+    "download_url": "https://docs.typesafe.ai/models.md",
+    "artifact": {
+      "path": "context/docs/jev-models-doc.html",
+      "bytes": 6684,
+      "sha256": "da8014e39b651b7e7ae21a74826e5437d274257a63a3d5c594474934f7b639df"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "jev-noul-doc",
+    "title": "TypeSafe Jev noul documentation",
+    "source_url": "https://docs.typesafe.ai/primitives/noul.md",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T23:50:42.998521+00:00",
+    "download_url": "https://docs.typesafe.ai/primitives/noul.md",
+    "artifact": {
+      "path": "context/docs/jev-noul-doc.html",
+      "bytes": 26498,
+      "sha256": "bf5d8c6700fbd9272ce27b53a6439d598e7915cdf505704ac7c827c6175ecb88"
+    },
     "status": "acquired"
   },
   {
@@ -1953,6 +2163,20 @@
     "status": "acquired"
   },
   {
+    "id": "mahimahi-2015",
+    "title": "Mahimahi: Accurate Record-and-Replay for HTTP",
+    "source_url": "https://www.usenix.org/conference/atc15/technical-session/presentation/netravali",
+    "kind": "paper",
+    "checked_at": "2026-10-01T23:59:21.001374+00:00",
+    "download_url": "https://www.usenix.org/system/files/conference/atc15/atc15-paper-netravali.pdf",
+    "artifact": {
+      "path": "papers/pdfs/mahimahi-2015.pdf",
+      "bytes": 754753,
+      "sha256": "67b2d0330898b72200c9b66662ad01b3d0f9305f3045678e5792942bf92ec3cb"
+    },
+    "status": "acquired"
+  },
+  {
     "id": "markuplm-2022",
     "title": "MarkupLM: Pre-training of Text and Markup Language for Visually-rich Document Understanding",
     "source_url": "https://arxiv.org/abs/2110.08518",
@@ -2039,6 +2263,496 @@
     "status": "acquired"
   },
   {
+    "id": "measurement-browsertrix-crawler-code",
+    "title": "webrecorder/browsertrix-crawler measurement reference",
+    "source_url": "https://github.com/webrecorder/browsertrix-crawler",
+    "kind": "repository",
+    "checked_at": "2026-10-02T00:01:05.327187+00:00",
+    "repo": "webrecorder/browsertrix-crawler",
+    "revision": "663cd8c41f1e377eb0b719f6705af2b28c7f7863",
+    "selected_paths": [
+      "README.md",
+      "docs/docs/user-guide/outputs.md",
+      "docs/docs/user-guide/qa.md",
+      "src/util/recorder.ts",
+      "src/util/warcwriter.ts",
+      "src/replaycrawler.ts"
+    ],
+    "mode": "files",
+    "archive_url": "https://raw.githubusercontent.com/webrecorder/browsertrix-crawler/663cd8c41f1e377eb0b719f6705af2b28c7f7863/",
+    "scope": "listed individual files",
+    "artifact": {
+      "path": "quarantine/archives/measurement-browsertrix-crawler-code-663cd8c41f1e377eb0b719f6705af2b28c7f7863-3c172d74a394.zip",
+      "bytes": 29222,
+      "sha256": "0969811cf5b37f49e299588861fda60763a0b5fed416be3363c62940aa3acb7b"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/measurement-browsertrix-crawler-code",
+    "status": "acquired"
+  },
+  {
+    "id": "measurement-deepdiff-code",
+    "title": "qlustered/deepdiff measurement reference",
+    "source_url": "https://github.com/qlustered/deepdiff",
+    "kind": "repository",
+    "checked_at": "2026-10-02T00:01:11.330537+00:00",
+    "repo": "qlustered/deepdiff",
+    "revision": "79e4379278b1cfdd8e9e3dccac364956908e8989",
+    "selected_paths": [
+      "README.md",
+      "docs/exclude_paths.rst",
+      "docs/ignore_order.rst",
+      "docs/numbers.rst",
+      "deepdiff/diff.py",
+      "deepdiff/docstrings/exclude_paths.rst",
+      "deepdiff/docstrings/ignore_order.rst",
+      "deepdiff/docstrings/numbers.rst"
+    ],
+    "mode": "archive",
+    "archive_url": "https://codeload.github.com/qlustered/deepdiff/tar.gz/79e4379278b1cfdd8e9e3dccac364956908e8989",
+    "scope": "full archive; selected extracted paths",
+    "artifact": {
+      "path": "quarantine/archives/measurement-deepdiff-code-79e4379278b1cfdd8e9e3dccac364956908e8989.tar.gz",
+      "bytes": 726167,
+      "sha256": "230b7a93f198f86b6ca941f5e1a7d54e113b4d6d61a26e30e3a58f58d6d79561"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/measurement-deepdiff-code",
+    "status": "acquired"
+  },
+  {
+    "id": "measurement-go-httpbin-code",
+    "title": "mccutchen/go-httpbin measurement reference",
+    "source_url": "https://github.com/mccutchen/go-httpbin",
+    "kind": "repository",
+    "checked_at": "2026-10-02T00:01:14.656272+00:00",
+    "repo": "mccutchen/go-httpbin",
+    "revision": "34888fd21d6667e9f0c842db483ba595b9c8c094",
+    "selected_paths": [
+      "README.md",
+      "httpbin/handlers.go"
+    ],
+    "mode": "archive",
+    "archive_url": "https://codeload.github.com/mccutchen/go-httpbin/tar.gz/34888fd21d6667e9f0c842db483ba595b9c8c094",
+    "scope": "full archive; selected extracted paths",
+    "artifact": {
+      "path": "quarantine/archives/measurement-go-httpbin-code-34888fd21d6667e9f0c842db483ba595b9c8c094.tar.gz",
+      "bytes": 165972,
+      "sha256": "415aef83a14986bc76d864f23126c25d211944c90bf768b4fe23ef60019c12d6"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/measurement-go-httpbin-code",
+    "status": "acquired"
+  },
+  {
+    "id": "measurement-har-schema-code",
+    "title": "ahmadnassri/har-schema measurement reference",
+    "source_url": "https://github.com/ahmadnassri/har-schema",
+    "kind": "repository",
+    "checked_at": "2026-10-01T23:59:47.222473+00:00",
+    "repo": "ahmadnassri/har-schema",
+    "revision": "c01b2e49edc33cd2cd22c980c57681be57bbb1f6",
+    "selected_paths": [
+      "README.md",
+      "lib/entry.json",
+      "lib/request.json",
+      "lib/response.json",
+      "lib/content.json",
+      "lib/timings.json"
+    ],
+    "mode": "archive",
+    "archive_url": "https://codeload.github.com/ahmadnassri/har-schema/tar.gz/c01b2e49edc33cd2cd22c980c57681be57bbb1f6",
+    "scope": "full archive; selected extracted paths",
+    "artifact": {
+      "path": "quarantine/archives/measurement-har-schema-code-c01b2e49edc33cd2cd22c980c57681be57bbb1f6.tar.gz",
+      "bytes": 4553,
+      "sha256": "5e558afed4e95d29007897d3d2c472fb26c85ca3dd4e96f8ad037025fbd7e915"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/measurement-har-schema-code",
+    "status": "acquired"
+  },
+  {
+    "id": "measurement-har-spec",
+    "title": "HAR 1.2 author specification",
+    "source_url": "https://www.softwareishard.com/blog/har-12-spec/",
+    "kind": "documentation",
+    "checked_at": "2026-10-02T00:01:32.317187+00:00",
+    "status": "failed",
+    "error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'www.softwareishard.com'. (_ssl.c:1028)>"
+  },
+  {
+    "id": "measurement-haralyzer-code",
+    "title": "haralyzer/haralyzer measurement reference",
+    "source_url": "https://github.com/haralyzer/haralyzer",
+    "kind": "repository",
+    "checked_at": "2026-10-02T00:07:33.997770+00:00",
+    "repo": "haralyzer/haralyzer",
+    "revision": "29ffe0d2e26dc97b2adaa329328beb228ba8c356",
+    "selected_paths": [
+      "README.rst",
+      "LICENSE.txt",
+      "haralyzer/__init__.py",
+      "haralyzer/assets.py",
+      "haralyzer/errors.py",
+      "haralyzer/http.py",
+      "haralyzer/mixins.py",
+      "haralyzer/multihar.py",
+      "tests/conftest.py",
+      "tests/test_entry.py",
+      "tests/data/humanssuck.net.har"
+    ],
+    "mode": "files",
+    "archive_url": "https://raw.githubusercontent.com/haralyzer/haralyzer/29ffe0d2e26dc97b2adaa329328beb228ba8c356/",
+    "scope": "listed individual files",
+    "status": "acquired",
+    "artifact": {
+      "path": "quarantine/archives/measurement-haralyzer-code-29ffe0d2e26dc97b2adaa329328beb228ba8c356-bd6c7a7cd8cd.zip",
+      "bytes": 17745,
+      "sha256": "30d4786114618261fa5080b1475c94284b7aaf70f12c0448c71cf9b6f0aa9b3d"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/measurement-haralyzer-code"
+  },
+  {
+    "id": "measurement-http-echo-code",
+    "title": "hashicorp/http-echo measurement reference",
+    "source_url": "https://github.com/hashicorp/http-echo",
+    "kind": "repository",
+    "checked_at": "2026-10-02T00:01:17.526125+00:00",
+    "repo": "hashicorp/http-echo",
+    "revision": "767bbd9c3d1905acb04891d5c5e208de17b34a71",
+    "selected_paths": [
+      "README.md",
+      "handlers.go",
+      "main.go"
+    ],
+    "mode": "archive",
+    "archive_url": "https://codeload.github.com/hashicorp/http-echo/tar.gz/767bbd9c3d1905acb04891d5c5e208de17b34a71",
+    "scope": "full archive; selected extracted paths",
+    "artifact": {
+      "path": "quarantine/archives/measurement-http-echo-code-767bbd9c3d1905acb04891d5c5e208de17b34a71.tar.gz",
+      "bytes": 13195,
+      "sha256": "bf2e75b491cccbe17b61649a4f9abbf36ab433f04331dd85be2f5f8fc8c17d0b"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/measurement-http-echo-code",
+    "status": "acquired"
+  },
+  {
+    "id": "measurement-httpbin-code",
+    "title": "postmanlabs/httpbin measurement reference",
+    "source_url": "https://github.com/postmanlabs/httpbin",
+    "kind": "repository",
+    "checked_at": "2026-10-02T00:01:13.823974+00:00",
+    "repo": "postmanlabs/httpbin",
+    "revision": "f8ec666b4d1b654e4ff6aedd356f510dcac09f83",
+    "selected_paths": [
+      "README.md",
+      "httpbin/core.py"
+    ],
+    "mode": "archive",
+    "archive_url": "https://codeload.github.com/postmanlabs/httpbin/tar.gz/f8ec666b4d1b654e4ff6aedd356f510dcac09f83",
+    "scope": "full archive; selected extracted paths",
+    "artifact": {
+      "path": "quarantine/archives/measurement-httpbin-code-f8ec666b4d1b654e4ff6aedd356f510dcac09f83.tar.gz",
+      "bytes": 109043,
+      "sha256": "102dd20dc76808ed231aff9baa6c550273e5d577fd7dd74dc753ea202f52d857"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/measurement-httpbin-code",
+    "status": "acquired"
+  },
+  {
+    "id": "measurement-openwpm-ccs16",
+    "title": "Online tracking: A 1-million-site measurement and analysis",
+    "source_url": "https://senglehardt.com/papers/ccs16_online_tracking.pdf",
+    "kind": "paper",
+    "checked_at": "2026-10-02T00:01:34.409471+00:00",
+    "download_url": "https://senglehardt.com/papers/ccs16_online_tracking.pdf",
+    "artifact": {
+      "path": "papers/pdfs/measurement-openwpm-ccs16.pdf",
+      "bytes": 2600830,
+      "sha256": "8d231d077b856db51175ad61558bfb28b46f61f632a3745287ca25bee5445561"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "measurement-openwpm-code",
+    "title": "openwpm/OpenWPM measurement reference",
+    "source_url": "https://github.com/openwpm/OpenWPM",
+    "kind": "repository",
+    "checked_at": "2026-10-01T23:59:37.241390+00:00",
+    "repo": "openwpm/OpenWPM",
+    "revision": "ae85559ac9c500448c3bddeaed0c1380664aea53",
+    "selected_paths": [
+      "README.md",
+      "docs/Schema-Documentation.md",
+      "docs/Configuration.md",
+      "Extension/src/background/http-instrument.ts",
+      "Extension/src/lib/response-body-listener.ts",
+      "openwpm/storage/schema.sql"
+    ],
+    "mode": "archive",
+    "archive_url": "https://codeload.github.com/openwpm/OpenWPM/tar.gz/ae85559ac9c500448c3bddeaed0c1380664aea53",
+    "scope": "full archive; selected extracted paths",
+    "artifact": {
+      "path": "quarantine/archives/measurement-openwpm-code-ae85559ac9c500448c3bddeaed0c1380664aea53.tar.gz",
+      "bytes": 3116383,
+      "sha256": "db9798c5959ec4e3f2c89e80897d55124f72eecd9e7ddedba802f290ebeeda0c"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/measurement-openwpm-code",
+    "status": "acquired"
+  },
+  {
+    "id": "measurement-openwpm-reliability",
+    "title": "Analysing and strengthening OpenWPM reliability",
+    "source_url": "https://arxiv.org/abs/2205.08890",
+    "kind": "paper",
+    "checked_at": "2026-10-02T00:01:40.267390+00:00",
+    "download_url": "https://arxiv.org/pdf/2205.08890",
+    "artifact": {
+      "path": "papers/pdfs/measurement-openwpm-reliability.pdf",
+      "bytes": 588975,
+      "sha256": "ad06dd23c578a1919bd1c3f27fe7f7ff2480811fd87b3928c1d4ed8ce2d0f01a"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "measurement-pywb-code",
+    "title": "webrecorder/pywb measurement reference",
+    "source_url": "https://github.com/webrecorder/pywb",
+    "kind": "repository",
+    "checked_at": "2026-10-02T00:00:44.568572+00:00",
+    "repo": "webrecorder/pywb",
+    "revision": "55cf079c80fe73597689180953992fe5028f0d39",
+    "selected_paths": [
+      "README.rst",
+      "docs/manual/recorder.rst",
+      "pywb/recorder/filters.py",
+      "pywb/recorder/recorderapp.py",
+      "pywb/rewrite/default_rewriter.py",
+      "tests/test_record_replay.py"
+    ],
+    "mode": "archive",
+    "archive_url": "https://codeload.github.com/webrecorder/pywb/tar.gz/55cf079c80fe73597689180953992fe5028f0d39",
+    "scope": "full archive; selected extracted paths",
+    "artifact": {
+      "path": "quarantine/archives/measurement-pywb-code-55cf079c80fe73597689180953992fe5028f0d39.tar.gz",
+      "bytes": 4862535,
+      "sha256": "99269ccc9b8bb13104c02ba901f69ce37862b663c51f36cb6a6c46ae68167ec0"
+    },
+    "submodules_not_acquired": [
+      {
+        "path": "wombat",
+        "url": "https://github.com/webrecorder/wombat",
+        "status": "not included in source archive"
+      }
+    ],
+    "tree": "quarantine/measurement-pywb-code",
+    "status": "acquired"
+  },
+  {
+    "id": "measurement-tracker-radar-code",
+    "title": "duckduckgo/tracker-radar measurement reference",
+    "source_url": "https://github.com/duckduckgo/tracker-radar",
+    "kind": "repository",
+    "checked_at": "2026-10-02T00:07:33.997145+00:00",
+    "repo": "duckduckgo/tracker-radar",
+    "revision": "c958f33e5d892e82d9b150d548793920286d6fc2",
+    "selected_paths": [
+      "README.md",
+      "LICENSE",
+      "docs/CATEGORIES.md",
+      "docs/DATA_MODEL.md",
+      "docs/FAQ.md",
+      "domains/US/facebook.com.json"
+    ],
+    "mode": "files",
+    "archive_url": "https://raw.githubusercontent.com/duckduckgo/tracker-radar/c958f33e5d892e82d9b150d548793920286d6fc2/",
+    "scope": "listed individual files",
+    "status": "acquired",
+    "artifact": {
+      "path": "quarantine/archives/measurement-tracker-radar-code-c958f33e5d892e82d9b150d548793920286d6fc2-f9078d0fb41b.zip",
+      "bytes": 28515,
+      "sha256": "0817647dcf52b86148e338ef6c3867695c3735a561f7c39849166456a0745dc9"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/measurement-tracker-radar-code"
+  },
+  {
+    "id": "measurement-tracker-radar-collector-code",
+    "title": "duckduckgo/tracker-radar-collector measurement reference",
+    "source_url": "https://github.com/duckduckgo/tracker-radar-collector",
+    "kind": "repository",
+    "checked_at": "2026-10-01T23:59:46.075090+00:00",
+    "repo": "duckduckgo/tracker-radar-collector",
+    "revision": "4ad2472b346bf9b544ca4815db29266e3a8369d5",
+    "selected_paths": [
+      "README.md",
+      "collectors/RequestCollector.js",
+      "collectors/APICallCollector.js",
+      "collectors/CookieCollector.js"
+    ],
+    "mode": "archive",
+    "archive_url": "https://codeload.github.com/duckduckgo/tracker-radar-collector/tar.gz/4ad2472b346bf9b544ca4815db29266e3a8369d5",
+    "scope": "full archive; selected extracted paths",
+    "artifact": {
+      "path": "quarantine/archives/measurement-tracker-radar-collector-code-4ad2472b346bf9b544ca4815db29266e3a8369d5.tar.gz",
+      "bytes": 214894,
+      "sha256": "29886dbc12fc9bbac743ffa4d8fad44697680343805d272e3eb1c83ba627110f"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/measurement-tracker-radar-collector-code",
+    "status": "acquired"
+  },
+  {
+    "id": "measurement-wacz-spec",
+    "title": "Web Archive Collection Zipped 1.1.1",
+    "source_url": "https://specs.webrecorder.net/wacz/1.1.1/",
+    "kind": "documentation",
+    "checked_at": "2026-10-02T00:01:31.393645+00:00",
+    "download_url": "https://specs.webrecorder.net/wacz/1.1.1/",
+    "artifact": {
+      "path": "context/docs/measurement-wacz-spec.html",
+      "bytes": 20503,
+      "sha256": "b670dee4b40f19f00975185bc46092c0cb8f94b4a70942734cd59d7078884852"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "measurement-warc-bench",
+    "title": "WARC-Bench: Web Archive Based Benchmark for GUI Subtask Executions",
+    "source_url": "https://arxiv.org/abs/2510.09872",
+    "kind": "paper",
+    "checked_at": "2026-10-02T00:07:33.998719+00:00",
+    "status": "acquired",
+    "download_url": "https://arxiv.org/pdf/2510.09872",
+    "artifact": {
+      "path": "papers/pdfs/measurement-warc-bench.pdf",
+      "bytes": 3838355,
+      "sha256": "fd9f809d11e23425ed9e357abfe663a7d29dc13a4d8ad9ac31d4f6d927106532"
+    }
+  },
+  {
+    "id": "measurement-warc-spec",
+    "title": "WARC 1.1 with community annotations",
+    "source_url": "https://iipc.github.io/warc-specifications/specifications/warc-format/warc-1.1-annotated/",
+    "kind": "documentation",
+    "checked_at": "2026-10-02T00:01:29.967397+00:00",
+    "download_url": "https://iipc.github.io/warc-specifications/specifications/warc-format/warc-1.1-annotated/",
+    "artifact": {
+      "path": "context/docs/measurement-warc-spec.html",
+      "bytes": 117128,
+      "sha256": "974ba54828bca91fc23816645a7709eca20a0eb1721eb75e464d641bd54d3213"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "measurement-warcio-code",
+    "title": "webrecorder/warcio measurement reference",
+    "source_url": "https://github.com/webrecorder/warcio",
+    "kind": "repository",
+    "checked_at": "2026-10-02T00:01:04.321517+00:00",
+    "repo": "webrecorder/warcio",
+    "revision": "2a797aa8c6d67e70966ce9d1a690208ab250fbe7",
+    "selected_paths": [
+      "README.rst",
+      "warcio/warcwriter.py",
+      "warcio/recordloader.py"
+    ],
+    "mode": "archive",
+    "archive_url": "https://codeload.github.com/webrecorder/warcio/tar.gz/2a797aa8c6d67e70966ce9d1a690208ab250fbe7",
+    "scope": "full archive; selected extracted paths",
+    "artifact": {
+      "path": "quarantine/archives/measurement-warcio-code-2a797aa8c6d67e70966ce9d1a690208ab250fbe7.tar.gz",
+      "bytes": 87602,
+      "sha256": "2de778664eda35a5e78b6a5d3e80011c3ac8f1ae8de4ca43d9007ab4b7fd2290"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/measurement-warcio-code",
+    "status": "acquired"
+  },
+  {
+    "id": "measurement-wiremock-code",
+    "title": "wiremock/wiremock measurement reference",
+    "source_url": "https://github.com/wiremock/wiremock",
+    "kind": "repository",
+    "checked_at": "2026-10-02T00:01:17.757099+00:00",
+    "repo": "wiremock/wiremock",
+    "revision": "fafa0a9f76c7086b76d892f0b4c5f22cc8dc4433",
+    "selected_paths": [
+      "README.md",
+      "wiremock-core/src/main/java/com/github/tomakehurst/wiremock/http/Fault.java",
+      "src/test/java/com/github/tomakehurst/wiremock/FaultsAcceptanceTest.java"
+    ],
+    "mode": "archive",
+    "archive_url": "https://codeload.github.com/wiremock/wiremock/tar.gz/fafa0a9f76c7086b76d892f0b4c5f22cc8dc4433",
+    "scope": "full archive; selected extracted paths",
+    "artifact": {
+      "path": "quarantine/archives/measurement-wiremock-code-fafa0a9f76c7086b76d892f0b4c5f22cc8dc4433.tar.gz",
+      "bytes": 4470297,
+      "sha256": "66935ce46dd697827acbf3f54a2aa90fd471537bb8bfd26ad1a4f23fb52c5335"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/measurement-wiremock-code",
+    "status": "acquired"
+  },
+  {
+    "id": "measurement-wiremock-faults",
+    "title": "WireMock fault simulation",
+    "source_url": "https://wiremock.org/docs/simulating-faults/",
+    "kind": "documentation",
+    "checked_at": "2026-10-02T00:01:33.412779+00:00",
+    "download_url": "https://wiremock.org/docs/simulating-faults/",
+    "artifact": {
+      "path": "context/docs/measurement-wiremock-faults.html",
+      "bytes": 105010,
+      "sha256": "1660a5d1b08206d6330a66ef8dce27f8bf5765861ed556ea9cd683314dea4d22"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "measurement-zeek-code",
+    "title": "zeek/zeek measurement reference",
+    "source_url": "https://github.com/zeek/zeek",
+    "kind": "repository",
+    "checked_at": "2026-10-02T00:01:26.398220+00:00",
+    "repo": "zeek/zeek",
+    "revision": "82d9bcbe7756c49bdde666341944d53ff15ee935",
+    "selected_paths": [
+      "README.md",
+      "scripts/base/protocols/conn/main.zeek",
+      "scripts/base/protocols/http/main.zeek",
+      "scripts/base/protocols/dns/main.zeek",
+      "scripts/base/protocols/ssl/main.zeek",
+      "scripts/base/protocols/quic/main.zeek",
+      "scripts/base/frameworks/logging/main.zeek",
+      "scripts/base/frameworks/logging/writers/ascii.zeek"
+    ],
+    "mode": "files",
+    "archive_url": "https://raw.githubusercontent.com/zeek/zeek/82d9bcbe7756c49bdde666341944d53ff15ee935/",
+    "scope": "listed individual files",
+    "artifact": {
+      "path": "quarantine/archives/measurement-zeek-code-82d9bcbe7756c49bdde666341944d53ff15ee935-ffc16e967d5e.zip",
+      "bytes": 37569,
+      "sha256": "aaae881054da7b203ed3be98098d8032186df0e242c65f259fbdd71e776dd6d3"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/measurement-zeek-code",
+    "status": "acquired"
+  },
+  {
+    "id": "measurement-zeek-tls",
+    "title": "Zeek TLS visibility and logs",
+    "source_url": "https://docs.zeek.org/en/current/reference/logs/ssl.html",
+    "kind": "documentation",
+    "checked_at": "2026-10-02T00:07:33.998010+00:00",
+    "status": "failed",
+    "error": "HTTPError: HTTP Error 429: Too Many Requests"
+  },
+  {
     "id": "meyer-motor-1988",
     "title": "Optimality in human motor performance: ideal control of rapid aimed movements",
     "source_url": "https://pubmed.ncbi.nlm.nih.gov/3406245/",
@@ -2097,6 +2811,20 @@
     "status": "acquired"
   },
   {
+    "id": "mininet-2010",
+    "title": "A Network in a Laptop: Rapid Prototyping for Software-Defined Networks",
+    "source_url": "https://conferences.sigcomm.org/hotnets/2010/papers/a19-lantz.pdf",
+    "kind": "paper",
+    "checked_at": "2026-10-01T23:59:21.598698+00:00",
+    "download_url": "https://conferences.sigcomm.org/hotnets/2010/papers/a19-lantz.pdf",
+    "artifact": {
+      "path": "papers/pdfs/mininet-2010.pdf",
+      "bytes": 381244,
+      "sha256": "3f8f5819545224c0a5ed7b3dbcf3fac013bfb31af80a7ff89472178c9740b943"
+    },
+    "status": "acquired"
+  },
+  {
     "id": "miwa-2023",
     "title": "MIWA: Mixed-Initiative Web Automation for Better User Control and Confidence",
     "source_url": "https://doi.org/10.1145/3586183.3606720",
@@ -2148,6 +2876,76 @@
     "repo": "GoogleChrome/chrome-extensions-samples",
     "mode": "archive",
     "submodules_not_acquired": []
+  },
+  {
+    "id": "netem-man-reviewed",
+    "title": "netem queue discipline manual at reviewed pin",
+    "source_url": "https://raw.githubusercontent.com/iproute2/iproute2/ac0b672924c8993a2da2cb9b6f97908967095a97/man/man8/tc-netem.8",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T23:59:27.611906+00:00",
+    "download_url": "https://raw.githubusercontent.com/iproute2/iproute2/ac0b672924c8993a2da2cb9b6f97908967095a97/man/man8/tc-netem.8",
+    "artifact": {
+      "path": "context/docs/netem-man-reviewed.html",
+      "bytes": 10577,
+      "sha256": "59ad7f59fcd3413bc6d4eb4154ca4e5c2f2087056539016fd7f024832f666898"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "network-aioquic",
+    "title": "aiortc/aioquic source for network diagnostics study",
+    "source_url": "https://github.com/aiortc/aioquic",
+    "kind": "repository",
+    "checked_at": "2026-10-01T23:52:34.095731+00:00",
+    "repo": "aiortc/aioquic",
+    "revision": "6d36838d008c2202c337142fa07e8bf80e96bac8",
+    "selected_paths": [
+      "README.rst",
+      "LICENSE",
+      "pyproject.toml",
+      "src",
+      "examples",
+      "tests"
+    ],
+    "mode": "archive",
+    "archive_url": "https://codeload.github.com/aiortc/aioquic/tar.gz/6d36838d008c2202c337142fa07e8bf80e96bac8",
+    "scope": "full archive; selected extracted paths",
+    "artifact": {
+      "path": "quarantine/archives/network-aioquic-6d36838d008c2202c337142fa07e8bf80e96bac8.tar.gz",
+      "bytes": 179728,
+      "sha256": "a5d08c0bc6e78ff6df883addee1c4f8fc5c23d9344a43405fd2f30196b892e7d"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/network-aioquic",
+    "status": "acquired"
+  },
+  {
+    "id": "network-atlantis",
+    "title": "ProxymanApp/atlantis source for network diagnostics study",
+    "source_url": "https://github.com/ProxymanApp/atlantis",
+    "kind": "repository",
+    "checked_at": "2026-10-01T23:52:08.865982+00:00",
+    "repo": "ProxymanApp/atlantis",
+    "revision": "6427600ec87d516a43754e4eaa7762f3271ac77f",
+    "selected_paths": [
+      "README.md",
+      "LICENSE",
+      "Package.swift",
+      "Sources",
+      "Tests",
+      "Example"
+    ],
+    "mode": "archive",
+    "archive_url": "https://codeload.github.com/ProxymanApp/atlantis/tar.gz/6427600ec87d516a43754e4eaa7762f3271ac77f",
+    "scope": "full archive; selected extracted paths",
+    "artifact": {
+      "path": "quarantine/archives/network-atlantis-6427600ec87d516a43754e4eaa7762f3271ac77f.tar.gz",
+      "bytes": 1690472,
+      "sha256": "72bc30d6d11fd283b36b4b04b6d73bcb3c65e24b48d9768db069f406974aa5ca"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/network-atlantis",
+    "status": "acquired"
   },
   {
     "id": "network-cdp-fetch",
@@ -2206,6 +3004,85 @@
     "status": "acquired"
   },
   {
+    "id": "network-curl",
+    "title": "curl/curl source for network diagnostics study",
+    "source_url": "https://github.com/curl/curl",
+    "kind": "repository",
+    "checked_at": "2026-10-02T00:02:33.727641+00:00",
+    "repo": "curl/curl",
+    "revision": "39ad9b0771708c5aff20663a7ef3704bc55510d7",
+    "selected_paths": [
+      "README.md",
+      "COPYING",
+      "docs/HTTP3.md",
+      "docs/cmdline-opts/location.md",
+      "docs/cmdline-opts/location-trusted.md",
+      "docs/cmdline-opts/cookie.md",
+      "docs/cmdline-opts/cookie-jar.md",
+      "docs/cmdline-opts/data-binary.md",
+      "docs/cmdline-opts/http3.md",
+      "docs/cmdline-opts/http3-only.md",
+      "lib/http.c",
+      "lib/http1.c",
+      "lib/http2.c",
+      "lib/http_proxy.c",
+      "lib/cookie.c",
+      "lib/vquic/cf-quiche.c",
+      "lib/vquic/cf-ngtcp2.c",
+      "lib/vquic/cf-ngtcp2-proxy.c",
+      "lib/vtls/keylog.c",
+      "src/tool_operate.c",
+      "tests/http/test_03_goaway.py",
+      "tests/http/test_05_errors.py",
+      "tests/http/test_07_upload.py",
+      "tests/http/test_10_proxy.py",
+      "tests/http/test_13_proxy_auth.py",
+      "tests/http/test_19_shutdown.py",
+      "tests/http/test_20_websockets.py",
+      "tests/http/test_60_h3_proxy.py",
+      "tests/http/testenv/nghttpx.py"
+    ],
+    "mode": "files",
+    "archive_url": "https://raw.githubusercontent.com/curl/curl/39ad9b0771708c5aff20663a7ef3704bc55510d7/",
+    "scope": "listed individual files",
+    "artifact": {
+      "path": "quarantine/archives/network-curl-39ad9b0771708c5aff20663a7ef3704bc55510d7-7face605eb04.zip",
+      "bytes": 180416,
+      "sha256": "23bd25d7cc280ba5f6b6732b93d5b3b37ae8d7350a7b62189f5f9957ab6d69fb"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/network-curl",
+    "status": "acquired",
+    "retained_artifacts": [
+      {
+        "artifact": {
+          "path": "quarantine/archives/network-curl-39ad9b0771708c5aff20663a7ef3704bc55510d7.tar.gz",
+          "bytes": 3730299,
+          "sha256": "ba0eed4995cf6451e75471eafde92f3f9953e8b21b052820dcd590f6fd720bff"
+        },
+        "archive_url": "https://codeload.github.com/curl/curl/tar.gz/39ad9b0771708c5aff20663a7ef3704bc55510d7",
+        "revision": "39ad9b0771708c5aff20663a7ef3704bc55510d7",
+        "scope": "full archive; selected extracted paths",
+        "selected_paths": [
+          "README.md",
+          "COPYING",
+          "docs/HTTP3.md",
+          "docs/cmdline-opts",
+          "docs/libcurl",
+          "lib/http.c",
+          "lib/http1.c",
+          "lib/http2.c",
+          "lib/http_proxy.c",
+          "lib/cookie.c",
+          "lib/vquic",
+          "lib/vtls",
+          "src/tool_operate.c",
+          "tests/data"
+        ]
+      }
+    ]
+  },
+  {
     "id": "network-devtools-overrides",
     "title": "DevTools local response overrides",
     "source_url": "https://developer.chrome.com/docs/devtools/overrides",
@@ -2231,6 +3108,214 @@
       "bytes": 324179,
       "sha256": "1f0b4c6db698ade5e961005a747c2bab437301de79b36b46019eb57d2df45db1"
     },
+    "status": "acquired"
+  },
+  {
+    "id": "network-goproxy",
+    "title": "elazarl/goproxy source for network diagnostics study",
+    "source_url": "https://github.com/elazarl/goproxy",
+    "kind": "repository",
+    "checked_at": "2026-10-01T23:52:26.164841+00:00",
+    "repo": "elazarl/goproxy",
+    "revision": "a05e9220be0b6fd84566bf0d5f5880be94f3db36",
+    "selected_paths": [
+      "README.md",
+      "LICENSE",
+      "go.mod",
+      "https.go",
+      "proxy.go",
+      "dispatcher.go",
+      "responses.go",
+      "internal",
+      "examples/http2-mitm",
+      "examples/certstorage",
+      "examples/goproxy-httpdump",
+      "https_head_test.go",
+      "https_bodiless_test.go",
+      "proxy_test.go"
+    ],
+    "mode": "archive",
+    "archive_url": "https://codeload.github.com/elazarl/goproxy/tar.gz/a05e9220be0b6fd84566bf0d5f5880be94f3db36",
+    "scope": "full archive; selected extracted paths",
+    "artifact": {
+      "path": "quarantine/archives/network-goproxy-a05e9220be0b6fd84566bf0d5f5880be94f3db36.tar.gz",
+      "bytes": 151085,
+      "sha256": "efe8b9352d3efcc6a449bccaae9f59d5db7fe6ac297b41b10d6e4ae6cf9a4e47"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/network-goproxy",
+    "status": "acquired"
+  },
+  {
+    "id": "network-h11",
+    "title": "python-hyper/h11 source for network diagnostics study",
+    "source_url": "https://github.com/python-hyper/h11",
+    "kind": "repository",
+    "checked_at": "2026-10-01T23:53:41.014837+00:00",
+    "repo": "python-hyper/h11",
+    "revision": "62c5068c971579d61fa1b55373390e12f25fd856",
+    "selected_paths": [
+      "README.rst",
+      "LICENSE.txt",
+      "pyproject.toml",
+      "h11",
+      "docs/source"
+    ],
+    "mode": "archive",
+    "archive_url": "https://codeload.github.com/python-hyper/h11/tar.gz/62c5068c971579d61fa1b55373390e12f25fd856",
+    "scope": "full archive; selected extracted paths",
+    "artifact": {
+      "path": "quarantine/archives/network-h11-62c5068c971579d61fa1b55373390e12f25fd856.tar.gz",
+      "bytes": 107826,
+      "sha256": "a6348be54f62a3d19912d8bd393606cf854d36ea79519056137ca4320fca9239"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/network-h11",
+    "status": "acquired"
+  },
+  {
+    "id": "network-h2",
+    "title": "python-hyper/h2 source for network diagnostics study",
+    "source_url": "https://github.com/python-hyper/h2",
+    "kind": "repository",
+    "checked_at": "2026-10-01T23:52:34.506059+00:00",
+    "repo": "python-hyper/h2",
+    "revision": "bc239af1d1b85bc70482804f30a0e0e587d90a08",
+    "selected_paths": [
+      "README.rst",
+      "LICENSE",
+      "pyproject.toml",
+      "src/h2",
+      "docs/source",
+      "tests"
+    ],
+    "mode": "archive",
+    "archive_url": "https://codeload.github.com/python-hyper/h2/tar.gz/bc239af1d1b85bc70482804f30a0e0e587d90a08",
+    "scope": "full archive; selected extracted paths",
+    "artifact": {
+      "path": "quarantine/archives/network-h2-bc239af1d1b85bc70482804f30a0e0e587d90a08.tar.gz",
+      "bytes": 2232480,
+      "sha256": "7ea95a0301361bff1435d9449b9e9f675243d845d5c584e86641038f4b394047"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/network-h2",
+    "status": "acquired"
+  },
+  {
+    "id": "network-httptoolkit-send-doc",
+    "title": "HTTP Toolkit handcrafted requests",
+    "source_url": "https://httptoolkit.com/docs/reference/send-page/",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T23:55:27.222759+00:00",
+    "download_url": "https://httptoolkit.com/docs/reference/send-page/",
+    "artifact": {
+      "path": "context/docs/network-httptoolkit-send-doc.html",
+      "bytes": 330920,
+      "sha256": "d3972348814b716286986aa3088b8f3f617d834e88f7a386c2d773f26239d290"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "network-httptoolkit-server",
+    "title": "httptoolkit/httptoolkit-server source for network diagnostics study",
+    "source_url": "https://github.com/httptoolkit/httptoolkit-server",
+    "kind": "repository",
+    "checked_at": "2026-10-01T23:52:00.515513+00:00",
+    "repo": "httptoolkit/httptoolkit-server",
+    "revision": "14665bbcc39d8ed89ab2e82b5529f0f51b7cd94d",
+    "selected_paths": [
+      "README.md",
+      "package.json",
+      "src",
+      "test"
+    ],
+    "mode": "archive",
+    "archive_url": "https://codeload.github.com/httptoolkit/httptoolkit-server/tar.gz/14665bbcc39d8ed89ab2e82b5529f0f51b7cd94d",
+    "scope": "full archive; selected extracted paths",
+    "artifact": {
+      "path": "quarantine/archives/network-httptoolkit-server-14665bbcc39d8ed89ab2e82b5529f0f51b7cd94d.tar.gz",
+      "bytes": 18940314,
+      "sha256": "ababa1f170e18a91de3b101521842d5a669fcff610a142233cdaa3c8898571e2"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/network-httptoolkit-server",
+    "status": "acquired"
+  },
+  {
+    "id": "network-httptoolkit-ui",
+    "title": "httptoolkit/httptoolkit-ui source for network diagnostics study",
+    "source_url": "https://github.com/httptoolkit/httptoolkit-ui",
+    "kind": "repository",
+    "checked_at": "2026-10-01T23:52:00.515404+00:00",
+    "repo": "httptoolkit/httptoolkit-ui",
+    "revision": "c8e9f7e0b23844ad6e355cc5f4ec771ec7bdff66",
+    "selected_paths": [
+      "README.md",
+      "package.json",
+      "src",
+      "test"
+    ],
+    "mode": "archive",
+    "archive_url": "https://codeload.github.com/httptoolkit/httptoolkit-ui/tar.gz/c8e9f7e0b23844ad6e355cc5f4ec771ec7bdff66",
+    "scope": "full archive; selected extracted paths",
+    "artifact": {
+      "path": "quarantine/archives/network-httptoolkit-ui-c8e9f7e0b23844ad6e355cc5f4ec771ec7bdff66.tar.gz",
+      "bytes": 960606,
+      "sha256": "02f355f11683694894e3d15635f1a0cd4c8fbc7fad9096a7b417519bb88a2953"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/network-httptoolkit-ui",
+    "status": "acquired"
+  },
+  {
+    "id": "network-httptoolkit-view-doc",
+    "title": "HTTP Toolkit inspection and breakpoint semantics",
+    "source_url": "https://httptoolkit.com/docs/reference/view-page/",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T23:55:24.647392+00:00",
+    "download_url": "https://httptoolkit.com/docs/reference/view-page/",
+    "artifact": {
+      "path": "context/docs/network-httptoolkit-view-doc.html",
+      "bytes": 464126,
+      "sha256": "14d739091a67d63c12bae77355a4eb457fc91837633f35747696f3d2f06d5dde"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "network-martian",
+    "title": "google/martian source for network diagnostics study",
+    "source_url": "https://github.com/google/martian",
+    "kind": "repository",
+    "checked_at": "2026-10-01T23:52:27.689450+00:00",
+    "repo": "google/martian",
+    "revision": "0f7e6797a04da412118541344bbe0d65945e24c9",
+    "selected_paths": [
+      "README.md",
+      "LICENSE",
+      "go.mod",
+      "proxy.go",
+      "proxy_test.go",
+      "mitm",
+      "har",
+      "fifo",
+      "h2",
+      "httpspec",
+      "proxyutil",
+      "header",
+      "body",
+      "querystring",
+      "martianlog"
+    ],
+    "mode": "archive",
+    "archive_url": "https://codeload.github.com/google/martian/tar.gz/0f7e6797a04da412118541344bbe0d65945e24c9",
+    "scope": "full archive; selected extracted paths",
+    "artifact": {
+      "path": "quarantine/archives/network-martian-0f7e6797a04da412118541344bbe0d65945e24c9.tar.gz",
+      "bytes": 160417,
+      "sha256": "69f70554675b4946fd32131c17c565ad9825b427717def7995fb2687233e79a3"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/network-martian",
     "status": "acquired"
   },
   {
@@ -2299,6 +3384,48 @@
     "status": "acquired"
   },
   {
+    "id": "network-mitmproxy",
+    "title": "mitmproxy/mitmproxy source for network diagnostics study",
+    "source_url": "https://github.com/mitmproxy/mitmproxy",
+    "kind": "repository",
+    "checked_at": "2026-10-02T00:07:34.227409+00:00",
+    "repo": "mitmproxy/mitmproxy",
+    "revision": "1ef9cec94a53db9e9f76fc9cff84216db7592deb",
+    "selected_paths": [
+      "README.md",
+      "LICENSE",
+      "pyproject.toml",
+      "mitmproxy/addons/clientplayback.py",
+      "mitmproxy/addons/serverplayback.py",
+      "mitmproxy/addons/save.py",
+      "mitmproxy/io/io.py",
+      "mitmproxy/io/har.py",
+      "mitmproxy/proxy/layers/http/_http1.py",
+      "mitmproxy/proxy/layers/http/_http2.py",
+      "mitmproxy/proxy/layers/http/_http3.py",
+      "mitmproxy/proxy/layers/tls.py",
+      "mitmproxy/proxy/layers/websocket.py",
+      "examples/addons/http-stream-modify.py",
+      "examples/addons/http-stream-simple.py",
+      "test/mitmproxy/addons/test_clientplayback.py",
+      "test/mitmproxy/addons/test_serverplayback.py",
+      "test/mitmproxy/addons/test_save.py",
+      "test/mitmproxy/proxy/layers/http/test_http2.py",
+      "test/mitmproxy/proxy/layers/http/test_http3.py"
+    ],
+    "mode": "files",
+    "archive_url": "https://raw.githubusercontent.com/mitmproxy/mitmproxy/1ef9cec94a53db9e9f76fc9cff84216db7592deb/",
+    "scope": "listed individual files",
+    "status": "acquired",
+    "artifact": {
+      "path": "quarantine/archives/network-mitmproxy-1ef9cec94a53db9e9f76fc9cff84216db7592deb-401419a5d3cb.zip",
+      "bytes": 59946,
+      "sha256": "85c3096536b74e565f003da07edd479f0640e5d4ab8a0d29c1bf9f1ef6db6db8"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/network-mitmproxy"
+  },
+  {
     "id": "network-mitmproxy-protocols",
     "title": "mitmproxy protocol limitations",
     "source_url": "https://docs.mitmproxy.org/stable/concepts/protocols/",
@@ -2313,6 +3440,37 @@
     "status": "acquired"
   },
   {
+    "id": "network-mitmproxy-rs",
+    "title": "mitmproxy/mitmproxy_rs source for network diagnostics study",
+    "source_url": "https://github.com/mitmproxy/mitmproxy_rs",
+    "kind": "repository",
+    "checked_at": "2026-10-02T00:02:05.845720+00:00",
+    "repo": "mitmproxy/mitmproxy_rs",
+    "revision": "51fe2b7c5aa8439c162abb665db61c6669d146d6",
+    "selected_paths": [
+      "README.md",
+      "Cargo.toml",
+      "mitmproxy-rs",
+      "mitmproxy-macos",
+      "mitmproxy-linux",
+      "mitmproxy-linux-ebpf",
+      "mitmproxy-linux-ebpf-common",
+      "src",
+      "Cargo.lock"
+    ],
+    "mode": "archive",
+    "archive_url": "https://codeload.github.com/mitmproxy/mitmproxy_rs/tar.gz/51fe2b7c5aa8439c162abb665db61c6669d146d6",
+    "scope": "full archive; selected extracted paths",
+    "artifact": {
+      "path": "quarantine/archives/network-mitmproxy-rs-51fe2b7c5aa8439c162abb665db61c6669d146d6.tar.gz",
+      "bytes": 1439669,
+      "sha256": "d66e59cc41721840eac0aa69964a506f614fb8a1efaacfa4cc6936ba076c7737"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/network-mitmproxy-rs",
+    "status": "acquired"
+  },
+  {
     "id": "network-mitmproxy-tls",
     "title": "How mitmproxy works",
     "source_url": "https://docs.mitmproxy.org/stable/concepts/how-mitmproxy-works/",
@@ -2324,6 +3482,83 @@
       "bytes": 23445,
       "sha256": "07d1420a81d01e126d00f003e6d002eead65f804f48b75fba6112942539d2c9a"
     },
+    "status": "acquired"
+  },
+  {
+    "id": "network-mockttp",
+    "title": "httptoolkit/mockttp source for network diagnostics study",
+    "source_url": "https://github.com/httptoolkit/mockttp",
+    "kind": "repository",
+    "checked_at": "2026-10-01T23:52:05.850022+00:00",
+    "repo": "httptoolkit/mockttp",
+    "revision": "7d03b2d97d1ee82969780d0878dfb744aba2c6ae",
+    "selected_paths": [
+      "README.md",
+      "package.json",
+      "src",
+      "test"
+    ],
+    "mode": "archive",
+    "archive_url": "https://codeload.github.com/httptoolkit/mockttp/tar.gz/7d03b2d97d1ee82969780d0878dfb744aba2c6ae",
+    "scope": "full archive; selected extracted paths",
+    "artifact": {
+      "path": "quarantine/archives/network-mockttp-7d03b2d97d1ee82969780d0878dfb744aba2c6ae.tar.gz",
+      "bytes": 308318,
+      "sha256": "9572b5320908ac1d6960ad4654ba74e1c94df217034a9cb6f07bc91fd07a9032"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/network-mockttp",
+    "status": "acquired"
+  },
+  {
+    "id": "network-nghttp2",
+    "title": "nghttp2/nghttp2 source for network diagnostics study",
+    "source_url": "https://github.com/nghttp2/nghttp2",
+    "kind": "repository",
+    "checked_at": "2026-10-01T23:52:28.785693+00:00",
+    "repo": "nghttp2/nghttp2",
+    "revision": "19d06e62185d93d2398d85241cdbb460349bfe44",
+    "selected_paths": [
+      "README.rst",
+      "COPYING",
+      "lib",
+      "src",
+      "tests",
+      "doc/programmers-guide.rst",
+      "doc/nghttpx.1.rst",
+      "doc/sources"
+    ],
+    "mode": "archive",
+    "archive_url": "https://codeload.github.com/nghttp2/nghttp2/tar.gz/19d06e62185d93d2398d85241cdbb460349bfe44",
+    "scope": "full archive; selected extracted paths",
+    "artifact": {
+      "path": "quarantine/archives/network-nghttp2-19d06e62185d93d2398d85241cdbb460349bfe44.tar.gz",
+      "bytes": 1059552,
+      "sha256": "12ec5f3cca31d6e4d76b158d5bc58a3906b3b336a4b64ad522d4543987e31b70"
+    },
+    "submodules_not_acquired": [
+      {
+        "path": "third-party/mruby",
+        "url": "https://github.com/mruby/mruby",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "third-party/neverbleed",
+        "url": "https://github.com/tatsuhiro-t/neverbleed.git",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "tests/munit",
+        "url": "https://github.com/ngtcp2/munit",
+        "status": "not included in source archive"
+      },
+      {
+        "path": "third-party/urlparse",
+        "url": "https://github.com/ngtcp2/urlparse",
+        "status": "not included in source archive"
+      }
+    ],
+    "tree": "quarantine/network-nghttp2",
     "status": "acquired"
   },
   {
@@ -2360,9 +3595,249 @@
     "title": "PixelConfig: Longitudinal Measurement and Reverse-Engineering of Meta Pixel Configurations",
     "source_url": "https://arxiv.org/abs/2603.09380",
     "kind": "paper",
-    "checked_at": "2026-10-01T22:28:38.982133+00:00",
-    "status": "failed",
-    "error": "TimeoutError: The read operation timed out"
+    "checked_at": "2026-10-02T00:07:38.165018+00:00",
+    "status": "acquired",
+    "download_url": "https://arxiv.org/pdf/2603.09380v1",
+    "artifact": {
+      "path": "papers/pdfs/network-pixelconfig-paper.pdf",
+      "bytes": 3841910,
+      "sha256": "08c3775b30f7657d4adc264ce146bd4225fd18dcd957aec975559241f584c49d"
+    }
+  },
+  {
+    "id": "network-proxy-modes",
+    "title": "mitmproxy capture modes",
+    "source_url": "https://docs.mitmproxy.org/stable/concepts/modes/",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T23:55:24.202912+00:00",
+    "download_url": "https://docs.mitmproxy.org/stable/concepts/modes/",
+    "artifact": {
+      "path": "context/docs/network-proxy-modes.html",
+      "bytes": 35566,
+      "sha256": "09f4ef2a940740dbf1cd42f968317d84358986fbecb2bc7757b91da1fd4bab9b"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "network-proxyman-breakpoint-doc",
+    "title": "Proxyman breakpoint semantics",
+    "source_url": "https://docs.proxyman.com/advanced-features/breakpoint",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T23:55:28.307627+00:00",
+    "download_url": "https://docs.proxyman.com/advanced-features/breakpoint",
+    "artifact": {
+      "path": "context/docs/network-proxyman-breakpoint-doc.html",
+      "bytes": 674656,
+      "sha256": "b0a9074ed6b8ca7d861fc27225d675d87a8816377d24df88c3ec341624c45f33"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "network-proxyman-script-doc",
+    "title": "Proxyman scripting request/response schema",
+    "source_url": "https://docs.proxyman.com/scripting/script",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T23:55:29.940301+00:00",
+    "download_url": "https://docs.proxyman.com/scripting/script",
+    "artifact": {
+      "path": "context/docs/network-proxyman-script-doc.html",
+      "bytes": 839472,
+      "sha256": "6d505533c6d5ee4eaf6d8d29afb8eb15bc3e34f07ce12fb9e9ed0b02d9cc7829"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "network-quiche",
+    "title": "cloudflare/quiche source for network diagnostics study",
+    "source_url": "https://github.com/cloudflare/quiche",
+    "kind": "repository",
+    "checked_at": "2026-10-02T00:07:38.156417+00:00",
+    "repo": "cloudflare/quiche",
+    "revision": "77d50358f98610b7d2329b3ca5450e1131aaf883",
+    "selected_paths": [
+      "README.md",
+      "COPYING",
+      "Cargo.toml",
+      "quiche/src/lib.rs",
+      "quiche/src/flowcontrol.rs",
+      "quiche/src/stream/mod.rs",
+      "quiche/src/h3/mod.rs",
+      "quiche/src/h3/stream.rs",
+      "quiche/src/h3/frame.rs",
+      "quiche/src/h3/qpack/mod.rs",
+      "quiche/src/h3/qpack/decoder.rs",
+      "quiche/src/h3/qpack/encoder.rs",
+      "quiche/src/recovery/mod.rs",
+      "quiche/examples/http3-client.rs",
+      "quiche/examples/http3-server.rs",
+      "apps/src/client.rs",
+      "apps/src/common.rs",
+      "apps/src/lib.rs"
+    ],
+    "mode": "files",
+    "archive_url": "https://raw.githubusercontent.com/cloudflare/quiche/77d50358f98610b7d2329b3ca5450e1131aaf883/",
+    "scope": "listed individual files",
+    "artifact": {
+      "path": "quarantine/archives/network-quiche-77d50358f98610b7d2329b3ca5450e1131aaf883-b2c17f2af4fa.zip",
+      "bytes": 209853,
+      "sha256": "520731209c704bbe2582241063cca43b11710ad317a4f1b5fc71b32fa52aefc0"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/network-quiche",
+    "status": "acquired",
+    "retained_artifacts": [
+      {
+        "artifact": {
+          "path": "quarantine/archives/network-quiche-77d50358f98610b7d2329b3ca5450e1131aaf883.tar.gz",
+          "bytes": 1823551,
+          "sha256": "d756653a6b1f0b0a9807af79af15663254c0367a6b5dc8915c2e9ae40188b8ee"
+        },
+        "archive_url": "https://codeload.github.com/cloudflare/quiche/tar.gz/77d50358f98610b7d2329b3ca5450e1131aaf883",
+        "revision": "77d50358f98610b7d2329b3ca5450e1131aaf883",
+        "scope": "full archive; selected extracted paths",
+        "selected_paths": [
+          "README.md",
+          "COPYING",
+          "Cargo.toml",
+          "quiche/src",
+          "quiche/examples",
+          "apps/src",
+          "qlog/src",
+          "h3i/src",
+          "tokio-quiche/src"
+        ]
+      }
+    ],
+    "subset_construction": "Deterministic ZIP built from the retained same-revision upstream archive; exact selected source bytes, normal ZIP metadata."
+  },
+  {
+    "id": "network-rfc-http2",
+    "title": "RFC9113 HTTP2",
+    "source_url": "https://www.rfc-editor.org/rfc/rfc9113.html",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T23:55:32.089885+00:00",
+    "download_url": "https://www.rfc-editor.org/rfc/rfc9113.html",
+    "artifact": {
+      "path": "context/docs/network-rfc-http2.html",
+      "bytes": 444603,
+      "sha256": "df5a65a455e7060a7e23a361f7bd7ce7bca2685d246b687623ce2c7068d80d42"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "network-rfc-http3",
+    "title": "RFC9114 HTTP3",
+    "source_url": "https://www.rfc-editor.org/rfc/rfc9114.html",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T23:55:33.564411+00:00",
+    "download_url": "https://www.rfc-editor.org/rfc/rfc9114.html",
+    "artifact": {
+      "path": "context/docs/network-rfc-http3.html",
+      "bytes": 388636,
+      "sha256": "9295268c32dacf5298a199016f95d75a7c649f83450eb38905c12de6cd12cd66"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "network-rfc-keylog",
+    "title": "RFC9850 SSLKEYLOGFILE",
+    "source_url": "https://www.rfc-editor.org/rfc/rfc9850.html",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T23:55:36.603518+00:00",
+    "download_url": "https://www.rfc-editor.org/rfc/rfc9850.html",
+    "artifact": {
+      "path": "context/docs/network-rfc-keylog.html",
+      "bytes": 86191,
+      "sha256": "ddef46f62db1e5146fb0b2522c866ffca14d61e912e40fe450d20d7ef493be7e"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "network-rfc-quic",
+    "title": "RFC9000 QUIC",
+    "source_url": "https://www.rfc-editor.org/rfc/rfc9000.html",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T23:55:34.910980+00:00",
+    "download_url": "https://www.rfc-editor.org/rfc/rfc9000.html",
+    "artifact": {
+      "path": "context/docs/network-rfc-quic.html",
+      "bytes": 750350,
+      "sha256": "2606485275c113d6d153d4e7144d8ea56e2dcdd899ccc3659531a40e392f2445"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "network-rfc-tls13",
+    "title": "RFC8446 TLS13",
+    "source_url": "https://www.rfc-editor.org/rfc/rfc8446.html",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T23:55:35.023492+00:00",
+    "download_url": "https://www.rfc-editor.org/rfc/rfc8446.html",
+    "artifact": {
+      "path": "context/docs/network-rfc-tls13.html",
+      "bytes": 419115,
+      "sha256": "370ed8c0e6da22c8b8f4ad0230b6c12e6ec8ae807eca034220070828f25684fb"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "network-rustls",
+    "title": "rustls/rustls source for network diagnostics study",
+    "source_url": "https://github.com/rustls/rustls",
+    "kind": "repository",
+    "checked_at": "2026-10-02T00:02:56.423718+00:00",
+    "repo": "rustls/rustls",
+    "revision": "7dcbe4c1ae12185237d22e9197583329630a2014",
+    "selected_paths": [
+      "README.md",
+      "LICENSE-APACHE",
+      "LICENSE-ISC",
+      "LICENSE-MIT",
+      "Cargo.toml",
+      "rustls/src",
+      "rustls/tests",
+      "rustls-util/src",
+      "examples"
+    ],
+    "mode": "archive",
+    "archive_url": "https://codeload.github.com/rustls/rustls/tar.gz/7dcbe4c1ae12185237d22e9197583329630a2014",
+    "scope": "full archive; selected extracted paths",
+    "status": "acquired",
+    "artifact": {
+      "path": "quarantine/archives/network-rustls-7dcbe4c1ae12185237d22e9197583329630a2014.tar.gz",
+      "bytes": 3737120,
+      "sha256": "aad8196c17300eb6859856b68678cbc60d15b1b45614b7fcab7f5b599efadb97"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/network-rustls"
+  },
+  {
+    "id": "network-whistle",
+    "title": "avwo/whistle source for network diagnostics study",
+    "source_url": "https://github.com/avwo/whistle",
+    "kind": "repository",
+    "checked_at": "2026-10-01T23:52:10.851088+00:00",
+    "repo": "avwo/whistle",
+    "revision": "33820c617df12894bb38a5e8ea9019b96b3c955e",
+    "selected_paths": [
+      "README-en_US.md",
+      "LICENSE",
+      "package.json",
+      "lib",
+      "biz/webui/htdocs/src/js",
+      "test"
+    ],
+    "mode": "archive",
+    "archive_url": "https://codeload.github.com/avwo/whistle/tar.gz/33820c617df12894bb38a5e8ea9019b96b3c955e",
+    "scope": "full archive; selected extracted paths",
+    "artifact": {
+      "path": "quarantine/archives/network-whistle-33820c617df12894bb38a5e8ea9019b96b3c955e.tar.gz",
+      "bytes": 14388978,
+      "sha256": "85cb24287fe477607a62df29063ea62a9eac27e28b426773ac8066e764e5a53f"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/network-whistle",
+    "status": "acquired"
   },
   {
     "id": "nyxt",
@@ -2965,6 +4440,20 @@
     "status": "acquired"
   },
   {
+    "id": "packetdrill-2013",
+    "title": "packetdrill: Scriptable Network Stack Testing, from Sockets to Packets",
+    "source_url": "https://www.usenix.org/conference/atc13/technical-sessions/presentation/cardwell",
+    "kind": "paper",
+    "checked_at": "2026-10-01T23:59:19.948645+00:00",
+    "download_url": "https://www.usenix.org/system/files/conference/atc13/atc13-cardwell.pdf",
+    "artifact": {
+      "path": "papers/pdfs/packetdrill-2013.pdf",
+      "bytes": 115839,
+      "sha256": "286b6a2b3e23a3f41112284fde32e13be0670fb1ecff93e53d30494683704386"
+    },
+    "status": "acquired"
+  },
+  {
     "id": "parasuraman-2000",
     "title": "A Model for Types and Levels of Human Interaction with Automation",
     "source_url": "https://doi.org/10.1109/3468.844354",
@@ -2984,6 +4473,20 @@
       "path": "papers/pdfs/parasuraman-riley-1997.pdf",
       "bytes": 6807613,
       "sha256": "e6b127cb604120059f4fc814abda99177844db5a735d3a6d284c074f2def2bba"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "pcap-stats-reviewed",
+    "title": "pcap_stats manual at reviewed pin",
+    "source_url": "https://raw.githubusercontent.com/the-tcpdump-group/libpcap/e2fe69377b84cf5e963b54946cb616cfbc4a76d4/pcap_stats.3pcap",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T23:59:28.633270+00:00",
+    "download_url": "https://raw.githubusercontent.com/the-tcpdump-group/libpcap/e2fe69377b84cf5e963b54946cb616cfbc4a76d4/pcap_stats.3pcap",
+    "artifact": {
+      "path": "context/docs/pcap-stats-reviewed.html",
+      "bytes": 3550,
+      "sha256": "08ace2887a5b495e6bfc6c05b8a7f3d16aec9a00f077eb9bc71c7bf21848df9d"
     },
     "status": "acquired"
   },
@@ -3322,19 +4825,80 @@
     "status": "acquired"
   },
   {
+    "id": "ref-apple-configd-reachability",
+    "title": "apple-oss-distributions/configd",
+    "source_url": "https://github.com/apple-oss-distributions/configd",
+    "kind": "repository",
+    "checked_at": "2026-10-01T23:59:05.870559+00:00",
+    "repo": "apple-oss-distributions/configd",
+    "revision": "585b7f2fca293f4642d21d15c5daf187f63c4796",
+    "selected_paths": [],
+    "mode": "archive",
+    "archive_url": "https://codeload.github.com/apple-oss-distributions/configd/tar.gz/585b7f2fca293f4642d21d15c5daf187f63c4796",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/ref-apple-configd-reachability-585b7f2fca293f4642d21d15c5daf187f63c4796.tar.gz",
+      "bytes": 1144102,
+      "sha256": "a3abeb68be86a3837576ad6c5e0e5a8307c538c99d9825b498e6e97189a77d3f"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/ref-apple-configd-reachability",
+    "status": "acquired"
+  },
+  {
     "id": "ref-apple-network-cmds",
     "title": "Apple network_cmds source",
     "source_url": "https://github.com/apple-oss-distributions/network_cmds",
     "kind": "repository",
-    "checked_at": "2026-10-01T22:31:53.710076+00:00",
+    "checked_at": "2026-10-02T00:07:40.863080+00:00",
     "repo": "apple-oss-distributions/network_cmds",
     "revision": "97e27e6244c16d399bfeb254315ddc5828711c56",
     "selected_paths": [],
     "mode": "archive",
     "archive_url": "https://codeload.github.com/apple-oss-distributions/network_cmds/tar.gz/97e27e6244c16d399bfeb254315ddc5828711c56",
     "scope": "full source archive",
-    "status": "failed",
-    "error": "TimeoutError: The read operation timed out"
+    "status": "acquired",
+    "artifact": {
+      "path": "quarantine/archives/ref-apple-network-cmds-97e27e6244c16d399bfeb254315ddc5828711c56.tar.gz",
+      "bytes": 353079,
+      "sha256": "0708898680e5b33db1f3728f20f024759327a903db02b27ab19364a4db9be82d"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/ref-apple-network-cmds"
+  },
+  {
+    "id": "ref-apple-xnu-network",
+    "title": "apple-oss-distributions/xnu",
+    "source_url": "https://github.com/apple-oss-distributions/xnu",
+    "kind": "repository",
+    "checked_at": "2026-10-01T23:59:06.361610+00:00",
+    "repo": "apple-oss-distributions/xnu",
+    "revision": "f6217f891ac0bb64f3d375211650a4c1ff8ca1ea",
+    "selected_paths": [
+      "APPLE_LICENSE",
+      "README.md",
+      "bsd/netinet/ip_dummynet.c",
+      "bsd/netinet/ip_dummynet.h",
+      "bsd/net/pf.c",
+      "bsd/net/pf_ioctl.c",
+      "bsd/net/pfvar.h",
+      "bsd/net/bpf.c",
+      "bsd/net/bpf.h",
+      "bsd/net/pktap.c",
+      "bsd/net/pktap.h",
+      "bsd/net/rtsock.c"
+    ],
+    "mode": "files",
+    "archive_url": "https://raw.githubusercontent.com/apple-oss-distributions/xnu/f6217f891ac0bb64f3d375211650a4c1ff8ca1ea/",
+    "scope": "listed individual files",
+    "artifact": {
+      "path": "quarantine/archives/ref-apple-xnu-network-f6217f891ac0bb64f3d375211650a4c1ff8ca1ea-1fedd120f1eb.zip",
+      "bytes": 231217,
+      "sha256": "a74a19b04436d18090cad01b2f6a221c4342de2c55036a11938bcd31dc7bc7bb"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/ref-apple-xnu-network",
+    "status": "acquired"
   },
   {
     "id": "ref-browsergym",
@@ -3400,6 +4964,79 @@
     "status": "acquired"
   },
   {
+    "id": "ref-comcast-network",
+    "title": "tylertreat/comcast",
+    "source_url": "https://github.com/tylertreat/comcast",
+    "kind": "repository",
+    "checked_at": "2026-10-01T23:58:57.726878+00:00",
+    "repo": "tylertreat/comcast",
+    "revision": "145d02155cffc03bb4ed878c9d6441dc49f3cdaa",
+    "selected_paths": [],
+    "mode": "archive",
+    "archive_url": "https://codeload.github.com/tylertreat/comcast/tar.gz/145d02155cffc03bb4ed878c9d6441dc49f3cdaa",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/ref-comcast-network-145d02155cffc03bb4ed878c9d6441dc49f3cdaa.tar.gz",
+      "bytes": 14388,
+      "sha256": "69346e1c41dc13c57b62c97fe056b64563933e347031e705148756bb9c87fb3c"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/ref-comcast-network",
+    "status": "acquired"
+  },
+  {
+    "id": "ref-core-emulator",
+    "title": "coreemu/core",
+    "source_url": "https://github.com/coreemu/core",
+    "kind": "repository",
+    "checked_at": "2026-10-01T23:59:01.864161+00:00",
+    "repo": "coreemu/core",
+    "revision": "a5cff7f99e02a2acf629e19c307926c62c818fd6",
+    "selected_paths": [],
+    "mode": "archive",
+    "archive_url": "https://codeload.github.com/coreemu/core/tar.gz/a5cff7f99e02a2acf629e19c307926c62c818fd6",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/ref-core-emulator-a5cff7f99e02a2acf629e19c307926c62c818fd6.tar.gz",
+      "bytes": 7752922,
+      "sha256": "8a123181dad7124ae8d88505bd908cce0e022bbea866730b9d1116f6bcc5fea0"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/ref-core-emulator",
+    "status": "acquired"
+  },
+  {
+    "id": "ref-freebsd-dummynet",
+    "title": "freebsd/freebsd-src",
+    "source_url": "https://github.com/freebsd/freebsd-src",
+    "kind": "repository",
+    "checked_at": "2026-10-01T23:59:13.026878+00:00",
+    "repo": "freebsd/freebsd-src",
+    "revision": "43b0384bc7e87df5bd164ce833617e68824f4828",
+    "selected_paths": [
+      "COPYRIGHT",
+      "README.md",
+      "sys/netpfil/ipfw/dummynet.txt",
+      "sys/netpfil/ipfw/ip_dummynet.c",
+      "sys/netpfil/ipfw/ip_dn_io.c",
+      "sys/netpfil/ipfw/ip_dn_private.h",
+      "sys/netpfil/ipfw/dn_sched_fifo.c",
+      "sbin/ipfw/dummynet.c",
+      "sbin/ipfw/ipfw.8"
+    ],
+    "mode": "files",
+    "archive_url": "https://raw.githubusercontent.com/freebsd/freebsd-src/43b0384bc7e87df5bd164ce833617e68824f4828/",
+    "scope": "listed individual files",
+    "artifact": {
+      "path": "quarantine/archives/ref-freebsd-dummynet-43b0384bc7e87df5bd164ce833617e68824f4828-a68b68c58f04.zip",
+      "bytes": 115377,
+      "sha256": "30bfbcfc1805130cbd3bdcf1b8070078ecde3ab175c7e0272812017926cc1c50"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/ref-freebsd-dummynet",
+    "status": "acquired"
+  },
+  {
     "id": "ref-hammerspoon",
     "title": "Hammerspoon native macOS automation",
     "source_url": "https://github.com/Hammerspoon/hammerspoon",
@@ -3436,6 +5073,69 @@
     "submodules_not_acquired": []
   },
   {
+    "id": "ref-iperf3",
+    "title": "esnet/iperf",
+    "source_url": "https://github.com/esnet/iperf",
+    "kind": "repository",
+    "checked_at": "2026-10-01T23:59:04.147059+00:00",
+    "repo": "esnet/iperf",
+    "revision": "49f21b478b1a714afb9d31a40843ea4b7878990d",
+    "selected_paths": [],
+    "mode": "archive",
+    "archive_url": "https://codeload.github.com/esnet/iperf/tar.gz/49f21b478b1a714afb9d31a40843ea4b7878990d",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/ref-iperf3-49f21b478b1a714afb9d31a40843ea4b7878990d.tar.gz",
+      "bytes": 854209,
+      "sha256": "d75dc8b452ed3e0c09e962caaaea29f9ff2add469f28d84c3f27a68d17b651ab"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/ref-iperf3",
+    "status": "acquired"
+  },
+  {
+    "id": "ref-iproute2-netem",
+    "title": "iproute2/iproute2",
+    "source_url": "https://github.com/iproute2/iproute2",
+    "kind": "repository",
+    "checked_at": "2026-10-01T23:58:50.819508+00:00",
+    "repo": "iproute2/iproute2",
+    "revision": "ac0b672924c8993a2da2cb9b6f97908967095a97",
+    "selected_paths": [],
+    "mode": "archive",
+    "archive_url": "https://codeload.github.com/iproute2/iproute2/tar.gz/ac0b672924c8993a2da2cb9b6f97908967095a97",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/ref-iproute2-netem-ac0b672924c8993a2da2cb9b6f97908967095a97.tar.gz",
+      "bytes": 1319503,
+      "sha256": "e423a267233da3f7c3db1f213dbb9de96f17804ec83b2a29eeeba2e162dcae00"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/ref-iproute2-netem",
+    "status": "acquired"
+  },
+  {
+    "id": "ref-libpcap",
+    "title": "the-tcpdump-group/libpcap",
+    "source_url": "https://github.com/the-tcpdump-group/libpcap",
+    "kind": "repository",
+    "checked_at": "2026-10-01T23:58:50.819922+00:00",
+    "repo": "the-tcpdump-group/libpcap",
+    "revision": "e2fe69377b84cf5e963b54946cb616cfbc4a76d4",
+    "selected_paths": [],
+    "mode": "archive",
+    "archive_url": "https://codeload.github.com/the-tcpdump-group/libpcap/tar.gz/e2fe69377b84cf5e963b54946cb616cfbc4a76d4",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/ref-libpcap-e2fe69377b84cf5e963b54946cb616cfbc4a76d4.tar.gz",
+      "bytes": 1015428,
+      "sha256": "21f9522e6b464c487b497bc2f53627eddf45d4bfd0f3327842aab2f3370fb17b"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/ref-libpcap",
+    "status": "acquired"
+  },
+  {
     "id": "ref-libpointing",
     "title": "libpointing transfer-function reference",
     "source_url": "https://github.com/INRIA/libpointing",
@@ -3449,6 +5149,27 @@
     "scope": "full source archive",
     "status": "failed",
     "error": "IncompleteRead: IncompleteRead(16384 bytes read)"
+  },
+  {
+    "id": "ref-mahimahi",
+    "title": "ravinet/mahimahi",
+    "source_url": "https://github.com/ravinet/mahimahi",
+    "kind": "repository",
+    "checked_at": "2026-10-01T23:58:58.003920+00:00",
+    "repo": "ravinet/mahimahi",
+    "revision": "f1346c38c415abfc98626dd82450f49a57033603",
+    "selected_paths": [],
+    "mode": "archive",
+    "archive_url": "https://codeload.github.com/ravinet/mahimahi/tar.gz/f1346c38c415abfc98626dd82450f49a57033603",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/ref-mahimahi-f1346c38c415abfc98626dd82450f49a57033603.tar.gz",
+      "bytes": 4679327,
+      "sha256": "c75a3175377ed0f738f1feee93bd613a0c53f54ceb0d61c8b1b0399d22904899"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/ref-mahimahi",
+    "status": "acquired"
   },
   {
     "id": "ref-mind2web",
@@ -3491,6 +5212,27 @@
     "repo": "OSU-NLP-Group/Mind2Web-2",
     "mode": "archive",
     "submodules_not_acquired": []
+  },
+  {
+    "id": "ref-mininet",
+    "title": "mininet/mininet",
+    "source_url": "https://github.com/mininet/mininet",
+    "kind": "repository",
+    "checked_at": "2026-10-01T23:59:01.101022+00:00",
+    "repo": "mininet/mininet",
+    "revision": "6eb8973c0bfd13c25c244a3871130c5e36b5fbd7",
+    "selected_paths": [],
+    "mode": "archive",
+    "archive_url": "https://codeload.github.com/mininet/mininet/tar.gz/6eb8973c0bfd13c25c244a3871130c5e36b5fbd7",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/ref-mininet-6eb8973c0bfd13c25c244a3871130c5e36b5fbd7.tar.gz",
+      "bytes": 246492,
+      "sha256": "6e29b80007c6e1eb16e2f7bbc34b7ec4f008385f336e17271e5a1ee93b656dc0"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/ref-mininet",
+    "status": "acquired"
   },
   {
     "id": "ref-miwa",
@@ -3580,6 +5322,33 @@
     ]
   },
   {
+    "id": "ref-packetdrill",
+    "title": "google/packetdrill",
+    "source_url": "https://github.com/google/packetdrill",
+    "kind": "repository",
+    "checked_at": "2026-10-01T23:58:58.361751+00:00",
+    "repo": "google/packetdrill",
+    "revision": "83f72d3f9085d0e26eb4d206fe4d7cfab5b6d872",
+    "selected_paths": [],
+    "mode": "archive",
+    "archive_url": "https://codeload.github.com/google/packetdrill/tar.gz/83f72d3f9085d0e26eb4d206fe4d7cfab5b6d872",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/ref-packetdrill-83f72d3f9085d0e26eb4d206fe4d7cfab5b6d872.tar.gz",
+      "bytes": 266981,
+      "sha256": "3f527b08eabc40c622d3f7426a0b594ad05e101788cd40f0039c21410a9dab6f"
+    },
+    "submodules_not_acquired": [
+      {
+        "path": "gtests/net/packetdrill/ynl-c",
+        "url": "https://github.com/linux-netdev/ynl-c.git",
+        "status": "not included in source archive"
+      }
+    ],
+    "tree": "quarantine/ref-packetdrill",
+    "status": "acquired"
+  },
+  {
     "id": "ref-seeact",
     "title": "OSU-NLP-Group/SeeAct",
     "source_url": "https://github.com/OSU-NLP-Group/SeeAct",
@@ -3599,6 +5368,69 @@
     "repo": "OSU-NLP-Group/SeeAct",
     "mode": "archive",
     "submodules_not_acquired": []
+  },
+  {
+    "id": "ref-tcconfig",
+    "title": "thombashi/tcconfig",
+    "source_url": "https://github.com/thombashi/tcconfig",
+    "kind": "repository",
+    "checked_at": "2026-10-01T23:58:58.572103+00:00",
+    "repo": "thombashi/tcconfig",
+    "revision": "ee55d275603f2cb8c10c3fbe84989ea71149f5de",
+    "selected_paths": [],
+    "mode": "archive",
+    "archive_url": "https://codeload.github.com/thombashi/tcconfig/tar.gz/ee55d275603f2cb8c10c3fbe84989ea71149f5de",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/ref-tcconfig-ee55d275603f2cb8c10c3fbe84989ea71149f5de.tar.gz",
+      "bytes": 185849,
+      "sha256": "00065f9e1c6f7a1a5cdf645e3d1b9f16410b7a59705946685622867a15e527d6"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/ref-tcconfig",
+    "status": "acquired"
+  },
+  {
+    "id": "ref-tcpdump",
+    "title": "the-tcpdump-group/tcpdump",
+    "source_url": "https://github.com/the-tcpdump-group/tcpdump",
+    "kind": "repository",
+    "checked_at": "2026-10-01T23:58:50.820389+00:00",
+    "repo": "the-tcpdump-group/tcpdump",
+    "revision": "eebca9915dc33ce4724ca55010c507c80f519c1b",
+    "selected_paths": [],
+    "mode": "archive",
+    "archive_url": "https://codeload.github.com/the-tcpdump-group/tcpdump/tar.gz/eebca9915dc33ce4724ca55010c507c80f519c1b",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/ref-tcpdump-eebca9915dc33ce4724ca55010c507c80f519c1b.tar.gz",
+      "bytes": 2171330,
+      "sha256": "3299968cdf7f3099cb1820b43ffbd56c63df96b4e33308687e319ed99487c880"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/ref-tcpdump",
+    "status": "acquired"
+  },
+  {
+    "id": "ref-toxiproxy",
+    "title": "Shopify/toxiproxy",
+    "source_url": "https://github.com/Shopify/toxiproxy",
+    "kind": "repository",
+    "checked_at": "2026-10-01T23:58:56.355186+00:00",
+    "repo": "Shopify/toxiproxy",
+    "revision": "40f7fd31bee529d824116bd2a11a9e3425e904ec",
+    "selected_paths": [],
+    "mode": "archive",
+    "archive_url": "https://codeload.github.com/Shopify/toxiproxy/tar.gz/40f7fd31bee529d824116bd2a11a9e3425e904ec",
+    "scope": "full source archive",
+    "artifact": {
+      "path": "quarantine/archives/ref-toxiproxy-40f7fd31bee529d824116bd2a11a9e3425e904ec.tar.gz",
+      "bytes": 76111,
+      "sha256": "26351cc70792f1c3391bdd1d376974a79a756b349ec1abfa8b8f1524c042b13d"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/ref-toxiproxy",
+    "status": "acquired"
   },
   {
     "id": "ref-visualwebarena",
@@ -3725,6 +5557,36 @@
     "repo": "MinorJerry/WebVoyager",
     "mode": "archive",
     "submodules_not_acquired": []
+  },
+  {
+    "id": "ref-wireshark-capture",
+    "title": "wireshark/wireshark",
+    "source_url": "https://github.com/wireshark/wireshark",
+    "kind": "repository",
+    "checked_at": "2026-10-01T23:58:50.820633+00:00",
+    "repo": "wireshark/wireshark",
+    "revision": "65d2cd5be4856de64ea82eb2bf4d7c538da2d3b5",
+    "selected_paths": [
+      "COPYING",
+      "README.md",
+      "README.macos",
+      "dumpcap.c",
+      "capinfos.c",
+      "doc/wsug_src/wsug_capture.adoc",
+      "doc/wsug_src/wsug_advanced.adoc",
+      "doc/wsug_src/wsug_files.adoc"
+    ],
+    "mode": "files",
+    "archive_url": "https://raw.githubusercontent.com/wireshark/wireshark/65d2cd5be4856de64ea82eb2bf4d7c538da2d3b5/",
+    "scope": "listed individual files",
+    "artifact": {
+      "path": "quarantine/archives/ref-wireshark-capture-65d2cd5be4856de64ea82eb2bf4d7c538da2d3b5-9ba6238f14e7.zip",
+      "bytes": 125475,
+      "sha256": "0288075f28da63c8179d95193f3285a8d6a5daa5dc35373b09fd5ca1d8967428"
+    },
+    "submodules_not_acquired": [],
+    "tree": "quarantine/ref-wireshark-capture",
+    "status": "acquired"
   },
   {
     "id": "ref-workarena",
@@ -4342,6 +6204,34 @@
       "bytes": 1712983,
       "sha256": "f416b09973861139c70ed425d255d2ff320f477662b5122b1a69fb04a3bcc5d3"
     }
+  },
+  {
+    "id": "wireshark-checksum-offload",
+    "title": "Wireshark checksum validation and offloading",
+    "source_url": "https://www.wireshark.org/docs/wsug_html_chunked/ChAdvChecksums.html",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T23:59:30.011544+00:00",
+    "download_url": "https://www.wireshark.org/docs/wsug_html_chunked/ChAdvChecksums.html",
+    "artifact": {
+      "path": "context/docs/wireshark-checksum-offload.html",
+      "bytes": 9492,
+      "sha256": "1ebc7f424894cdf526260f0478413964016047cc78d7b98e380921adc044b260"
+    },
+    "status": "acquired"
+  },
+  {
+    "id": "wireshark-time-stamps",
+    "title": "Wireshark capture timestamps",
+    "source_url": "https://www.wireshark.org/docs/wsug_html_chunked/ChAdvTimestamps.html",
+    "kind": "documentation",
+    "checked_at": "2026-10-01T23:59:29.273104+00:00",
+    "download_url": "https://www.wireshark.org/docs/wsug_html_chunked/ChAdvTimestamps.html",
+    "artifact": {
+      "path": "context/docs/wireshark-time-stamps.html",
+      "bytes": 6384,
+      "sha256": "7f525a04e933dd489ec0c47708104dcad2f87be71dba50bbb83b38c6617d3f26"
+    },
+    "status": "acquired"
   },
   {
     "id": "workarena-2024",

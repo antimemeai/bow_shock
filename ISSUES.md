@@ -30,6 +30,8 @@
 | BS-012 | Define tracker baselines and change alerts | Meta Pixel example, meaningful normalized changes, context, and false-alarm evidence |
 | BS-013 | Define learned page-type extraction into tables | Reviewed examples, field/row semantics, provenance, ambiguity, and layout drift |
 | BS-014 | Assess runtime fingerprint consistency and compatibility | Same-platform/version native browser comparison; no single undetectability score |
+| BS-015 | Trace network-tool confinement, capture and teardown | Source-backed coverage/scope matrix and direct controlled endpoint outcomes |
+| BS-016 | Evaluate Jev on ambiguous real capture differences and field candidates | Held-out reviewed examples, deterministic comparison arm, missed changes and review effort |
 
 Dependencies remain candidates for study. No browser engine/runtime has been
 installed and no product implementation has begun. The operator's detailed

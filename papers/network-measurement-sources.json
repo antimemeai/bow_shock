@@ -1,0 +1,293 @@
+[
+  {
+    "id": "measurement-openwpm-code",
+    "title": "openwpm/OpenWPM measurement reference",
+    "url": "https://github.com/openwpm/OpenWPM",
+    "kind": "repository",
+    "repo": "openwpm/OpenWPM",
+    "revision": "ae85559ac9c500448c3bddeaed0c1380664aea53",
+    "selected_paths": [
+      "README.md",
+      "docs/Schema-Documentation.md",
+      "docs/Configuration.md",
+      "Extension/src/background/http-instrument.ts",
+      "Extension/src/lib/response-body-listener.ts",
+      "openwpm/storage/schema.sql"
+    ],
+    "notes": "Firefox research instrumentation; reviewed HTTP event assembly/schema and response stream listener. First-settling per-chunk content hash is a tentative pinned source observation, not reproduced. No crawl execution."
+  },
+  {
+    "id": "measurement-tracker-radar-code",
+    "title": "duckduckgo/tracker-radar measurement reference",
+    "url": "https://github.com/duckduckgo/tracker-radar",
+    "kind": "repository",
+    "repo": "duckduckgo/tracker-radar",
+    "revision": "c958f33e5d892e82d9b150d548793920286d6fc2",
+    "selected_paths": [
+      "README.md",
+      "LICENSE",
+      "docs/CATEGORIES.md",
+      "docs/DATA_MODEL.md",
+      "docs/FAQ.md",
+      "domains/US/facebook.com.json"
+    ],
+    "notes": "Fallback exact-file subset after raw 5.2MB facebook.net timeout: README/license/model/FAQ/categories and small US facebook.com sample only. facebook.net omitted explicitly; not complete Tracker Radar data, region corpus, current Meta contract or blocklist. Same pinned revision.",
+    "mode": "files"
+  },
+  {
+    "id": "measurement-tracker-radar-collector-code",
+    "title": "duckduckgo/tracker-radar-collector measurement reference",
+    "url": "https://github.com/duckduckgo/tracker-radar-collector",
+    "kind": "repository",
+    "repo": "duckduckgo/tracker-radar-collector",
+    "revision": "4ad2472b346bf9b544ca4815db29266e3a8369d5",
+    "selected_paths": [
+      "README.md",
+      "collectors/RequestCollector.js",
+      "collectors/APICallCollector.js",
+      "collectors/CookieCollector.js"
+    ],
+    "notes": "CDP/Puppeteer measurement reference. Reviewed redirect/event matching, failure and filtered header/body hashing coverage; not lossless traffic archive or native product dependency."
+  },
+  {
+    "id": "measurement-har-schema-code",
+    "title": "ahmadnassri/har-schema measurement reference",
+    "url": "https://github.com/ahmadnassri/har-schema",
+    "kind": "repository",
+    "repo": "ahmadnassri/har-schema",
+    "revision": "c01b2e49edc33cd2cd22c980c57681be57bbb1f6",
+    "selected_paths": [
+      "README.md",
+      "lib/entry.json",
+      "lib/request.json",
+      "lib/response.json",
+      "lib/content.json",
+      "lib/timings.json"
+    ],
+    "notes": "HAR JSON schema maintainer source: structural validation, optional body text, negative/unknown timing sentinels; not capture completeness or redaction."
+  },
+  {
+    "id": "measurement-haralyzer-code",
+    "title": "haralyzer/haralyzer measurement reference",
+    "url": "https://github.com/haralyzer/haralyzer",
+    "kind": "repository",
+    "repo": "haralyzer/haralyzer",
+    "revision": "29ffe0d2e26dc97b2adaa329328beb228ba8c356",
+    "selected_paths": [
+      "README.rst",
+      "LICENSE.txt",
+      "haralyzer/__init__.py",
+      "haralyzer/assets.py",
+      "haralyzer/errors.py",
+      "haralyzer/http.py",
+      "haralyzer/mixins.py",
+      "haralyzer/multihar.py",
+      "tests/conftest.py",
+      "tests/test_entry.py",
+      "tests/data/humanssuck.net.har"
+    ],
+    "notes": "Fallback exact-file subset after full-source archive timeout: README/license, all six package Python source files, one small entry/request/response test file with loader fixture and 8,365-byte recorded HAR fixture. No full upstream test suite, other fixtures, dependency installation or test execution. Same pinned revision.",
+    "mode": "files"
+  },
+  {
+    "id": "measurement-pywb-code",
+    "title": "webrecorder/pywb measurement reference",
+    "url": "https://github.com/webrecorder/pywb",
+    "kind": "repository",
+    "repo": "webrecorder/pywb",
+    "revision": "55cf079c80fe73597689180953992fe5028f0d39",
+    "selected_paths": [
+      "README.rst",
+      "docs/manual/recorder.rst",
+      "pywb/recorder/filters.py",
+      "pywb/recorder/recorderapp.py",
+      "pywb/rewrite/default_rewriter.py",
+      "tests/test_record_replay.py"
+    ],
+    "notes": "Archive recording/replay and rewriting; recorder skip/header filters and replay tests. Replay fidelity and sensitive fields require separate characterization."
+  },
+  {
+    "id": "measurement-warcio-code",
+    "title": "webrecorder/warcio measurement reference",
+    "url": "https://github.com/webrecorder/warcio",
+    "kind": "repository",
+    "repo": "webrecorder/warcio",
+    "revision": "2a797aa8c6d67e70966ce9d1a690208ab250fbe7",
+    "selected_paths": [
+      "README.rst",
+      "warcio/warcwriter.py",
+      "warcio/recordloader.py"
+    ],
+    "notes": "WARC record/payload/digest handling. Raw vs dechunked/decompressed content streams differ; revisit references require dependencies. No execution."
+  },
+  {
+    "id": "measurement-browsertrix-crawler-code",
+    "title": "webrecorder/browsertrix-crawler measurement reference",
+    "url": "https://github.com/webrecorder/browsertrix-crawler",
+    "kind": "repository",
+    "repo": "webrecorder/browsertrix-crawler",
+    "revision": "663cd8c41f1e377eb0b719f6705af2b28c7f7863",
+    "selected_paths": [
+      "README.md",
+      "docs/docs/user-guide/outputs.md",
+      "docs/docs/user-guide/qa.md",
+      "src/util/recorder.ts",
+      "src/util/warcwriter.ts",
+      "src/replaycrawler.ts"
+    ],
+    "notes": "Focused source/docs subset: recorder, payload writer, replay crawler, outputs and QA. Crawl records may be rewritten or refetched; replay evaluation is multiple dimensions, not network identity.",
+    "mode": "files"
+  },
+  {
+    "id": "measurement-deepdiff-code",
+    "title": "qlustered/deepdiff measurement reference",
+    "url": "https://github.com/qlustered/deepdiff",
+    "kind": "repository",
+    "repo": "qlustered/deepdiff",
+    "revision": "79e4379278b1cfdd8e9e3dccac364956908e8989",
+    "selected_paths": [
+      "README.md",
+      "docs/exclude_paths.rst",
+      "docs/ignore_order.rst",
+      "docs/numbers.rst",
+      "deepdiff/diff.py",
+      "deepdiff/docstrings/exclude_paths.rst",
+      "deepdiff/docstrings/ignore_order.rst",
+      "deepdiff/docstrings/numbers.rst"
+    ],
+    "notes": "Canonical repository redirected from seperman/deepdiff at discovery. Structural diff exclusions/order/numeric tolerances are explicit policy; request causality cannot be sorted away."
+  },
+  {
+    "id": "measurement-httpbin-code",
+    "title": "postmanlabs/httpbin measurement reference",
+    "url": "https://github.com/postmanlabs/httpbin",
+    "kind": "repository",
+    "repo": "postmanlabs/httpbin",
+    "revision": "f8ec666b4d1b654e4ff6aedd356f510dcac09f83",
+    "selected_paths": [
+      "README.md",
+      "httpbin/core.py"
+    ],
+    "notes": "Canonical HTTPBin owner verified via GitHub metadata. Controlled HTTP requests/responses/cookies/cache/redirect/stream/drip oracle reference. Local-only future fixture study; no public requests or launch."
+  },
+  {
+    "id": "measurement-go-httpbin-code",
+    "title": "mccutchen/go-httpbin measurement reference",
+    "url": "https://github.com/mccutchen/go-httpbin",
+    "kind": "repository",
+    "repo": "mccutchen/go-httpbin",
+    "revision": "34888fd21d6667e9f0c842db483ba595b9c8c094",
+    "selected_paths": [
+      "README.md",
+      "httpbin/handlers.go"
+    ],
+    "notes": "Maintainer stdlib Go HTTPBin port. Delay/drip/cancellation and telemetry fixture reading; not evidence of browser-native or full protocol coverage."
+  },
+  {
+    "id": "measurement-http-echo-code",
+    "title": "hashicorp/http-echo measurement reference",
+    "url": "https://github.com/hashicorp/http-echo",
+    "kind": "repository",
+    "repo": "hashicorp/http-echo",
+    "revision": "767bbd9c3d1905acb04891d5c5e208de17b34a71",
+    "selected_paths": [
+      "README.md",
+      "handlers.go",
+      "main.go"
+    ],
+    "notes": "Tiny deterministic owned endpoint and access-log reference; log length implementation records last Write length, not general cumulative byte count. Not full request echo/fault system."
+  },
+  {
+    "id": "measurement-wiremock-code",
+    "title": "wiremock/wiremock measurement reference",
+    "url": "https://github.com/wiremock/wiremock",
+    "kind": "repository",
+    "repo": "wiremock/wiremock",
+    "revision": "fafa0a9f76c7086b76d892f0b4c5f22cc8dc4433",
+    "selected_paths": [
+      "README.md",
+      "wiremock-core/src/main/java/com/github/tomakehurst/wiremock/http/Fault.java",
+      "src/test/java/com/github/tomakehurst/wiremock/FaultsAcceptanceTest.java"
+    ],
+    "notes": "HTTP matching/state/fault fixture source. HTTP faults and delays differ from host route/interface interventions; reset behavior requires OS-specific characterization."
+  },
+  {
+    "id": "measurement-zeek-code",
+    "title": "zeek/zeek measurement reference",
+    "url": "https://github.com/zeek/zeek",
+    "kind": "repository",
+    "repo": "zeek/zeek",
+    "revision": "82d9bcbe7756c49bdde666341944d53ff15ee935",
+    "selected_paths": [
+      "README.md",
+      "scripts/base/protocols/conn/main.zeek",
+      "scripts/base/protocols/http/main.zeek",
+      "scripts/base/protocols/dns/main.zeek",
+      "scripts/base/protocols/ssl/main.zeek",
+      "scripts/base/protocols/quic/main.zeek",
+      "scripts/base/frameworks/logging/main.zeek",
+      "scripts/base/frameworks/logging/writers/ascii.zeek"
+    ],
+    "notes": "Focused protocol/logging source subset, no giant full archive/build. Conn/DNS/TLS/QUIC/HTTP log schemas; encrypted HTTP bodies and ECH visibility limits mean complement to browser observation, not replacement.",
+    "mode": "files"
+  },
+  {
+    "id": "measurement-warc-spec",
+    "title": "WARC 1.1 with community annotations",
+    "url": "https://iipc.github.io/warc-specifications/specifications/warc-format/warc-1.1-annotated/",
+    "kind": "documentation",
+    "notes": "Read record model/truncation/revisit/digest semantics; blue annotations are not ratified standard text."
+  },
+  {
+    "id": "measurement-wacz-spec",
+    "title": "Web Archive Collection Zipped 1.1.1",
+    "url": "https://specs.webrecorder.net/wacz/1.1.1/",
+    "kind": "documentation",
+    "notes": "Version-specific archive/index/pages packaging; existing Browsertrix pinned docs cite this version."
+  },
+  {
+    "id": "measurement-har-spec",
+    "title": "HAR 1.2 author specification",
+    "url": "https://www.softwareishard.com/blog/har-12-spec/",
+    "kind": "documentation",
+    "notes": "Original author HAR 1.2 spec lead; HTTP and HTTPS fetch failed HTTP502 in this reading pass. Schemas reviewed separately; do not claim original spec read."
+  },
+  {
+    "id": "measurement-wiremock-faults",
+    "title": "WireMock fault simulation",
+    "url": "https://wiremock.org/docs/simulating-faults/",
+    "kind": "documentation",
+    "notes": "Read delay/chunk/reset behavior; nix reset caveat. No service launch."
+  },
+  {
+    "id": "measurement-zeek-tls",
+    "title": "Zeek TLS visibility and logs",
+    "url": "https://docs.zeek.org/en/current/reference/logs/ssl.html",
+    "kind": "documentation",
+    "notes": "Primary docs explain encrypted HTTP invisibility and ECH/SNI visibility; moving version paired with pinned source."
+  },
+  {
+    "id": "measurement-openwpm-ccs16",
+    "title": "Online tracking: A 1-million-site measurement and analysis",
+    "url": "https://senglehardt.com/papers/ccs16_online_tracking.pdf",
+    "kind": "paper",
+    "pdf_url": "https://senglehardt.com/papers/ccs16_online_tracking.pdf",
+    "notes": "Englehardt and Narayanan CCS 2016; foundational measurement paper, historical results not current browser probabilities."
+  },
+  {
+    "id": "measurement-openwpm-reliability",
+    "title": "Analysing and strengthening OpenWPM reliability",
+    "url": "https://arxiv.org/abs/2205.08890",
+    "kind": "paper",
+    "pdf_url": "https://arxiv.org/pdf/2205.08890",
+    "notes": "Krumnow, Jonker, Karsch 2022; detection and instrumentation integrity. Historical study-specific result, not current version estimate."
+  },
+  {
+    "id": "measurement-warc-bench",
+    "title": "WARC-Bench: Web Archive Based Benchmark for GUI Subtask Executions",
+    "url": "https://arxiv.org/abs/2510.09872",
+    "kind": "paper",
+    "pdf_url": "https://arxiv.org/pdf/2510.09872",
+    "notes": "Read primary HTML environment/data-collection methodology: archived GUI tasks with programmatic evaluators; unrecorded interactions and timestamps/session IDs limit replay. No benchmark execution or metric adoption."
+  }
+]

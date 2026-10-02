@@ -1,0 +1,414 @@
+[
+  {
+    "id": "network-mitmproxy",
+    "title": "mitmproxy/mitmproxy source for network diagnostics study",
+    "url": "https://github.com/mitmproxy/mitmproxy",
+    "kind": "repository",
+    "repo": "mitmproxy/mitmproxy",
+    "revision": "1ef9cec94a53db9e9f76fc9cff84216db7592deb",
+    "selected_paths": [
+      "README.md",
+      "LICENSE",
+      "pyproject.toml",
+      "mitmproxy/addons/clientplayback.py",
+      "mitmproxy/addons/serverplayback.py",
+      "mitmproxy/addons/save.py",
+      "mitmproxy/io/io.py",
+      "mitmproxy/io/har.py",
+      "mitmproxy/proxy/layers/http/_http1.py",
+      "mitmproxy/proxy/layers/http/_http2.py",
+      "mitmproxy/proxy/layers/http/_http3.py",
+      "mitmproxy/proxy/layers/tls.py",
+      "mitmproxy/proxy/layers/websocket.py",
+      "examples/addons/http-stream-modify.py",
+      "examples/addons/http-stream-simple.py",
+      "test/mitmproxy/addons/test_clientplayback.py",
+      "test/mitmproxy/addons/test_serverplayback.py",
+      "test/mitmproxy/addons/test_save.py",
+      "test/mitmproxy/proxy/layers/http/test_http2.py",
+      "test/mitmproxy/proxy/layers/http/test_http3.py"
+    ],
+    "notes": "Fallback for full-archive retrieval failure only. Same verified pinned revision as original catalog. Exact files verified in pinned Git tree. Preserve a deterministic exact-file ZIP; source is deliberately partial and not a buildable checkout. License/readme, reviewed core mechanisms and relevant lifecycle/failure tests included; TLS vendoring and broad fixture trees not acquired. Read depth remains the focused fragments recorded in network-proxies-and-protocols.md; included tests are future study unless journal states otherwise.",
+    "mode": "files"
+  },
+  {
+    "id": "network-mitmproxy-rs",
+    "title": "mitmproxy/mitmproxy_rs source for network diagnostics study",
+    "url": "https://github.com/mitmproxy/mitmproxy_rs",
+    "kind": "repository",
+    "repo": "mitmproxy/mitmproxy_rs",
+    "revision": "51fe2b7c5aa8439c162abb665db61c6669d146d6",
+    "selected_paths": [
+      "README.md",
+      "Cargo.toml",
+      "mitmproxy-rs",
+      "mitmproxy-macos",
+      "mitmproxy-linux",
+      "mitmproxy-linux-ebpf",
+      "mitmproxy-linux-ebpf-common",
+      "src",
+      "Cargo.lock"
+    ],
+    "notes": "Read macOS transparent-provider lifecycle/process selection and redirector docs; Linux eBPF overview. OS redirection is distinct from TLS decryption. Preserve entitlements and IPC source; no privileged helper run. HEAD verified 2026-10-01 with git ls-remote; selected paths verified in pinned Git tree. Preserve full source archive; extracted scope deliberately partial. Read depth is focused fragments, not whole-repository review."
+  },
+  {
+    "id": "network-httptoolkit-ui",
+    "title": "httptoolkit/httptoolkit-ui source for network diagnostics study",
+    "url": "https://github.com/httptoolkit/httptoolkit-ui",
+    "kind": "repository",
+    "repo": "httptoolkit/httptoolkit-ui",
+    "revision": "c8e9f7e0b23844ad6e355cc5f4ec771ec7bdff66",
+    "selected_paths": [
+      "README.md",
+      "package.json",
+      "src",
+      "test"
+    ],
+    "notes": "Read send-store and exchange-breakpoint model fragments. Request composer, encoding/length handling, abort and client/upstream evidence views. UI licensed features are study material, not adoption. HEAD verified 2026-10-01 with git ls-remote; selected paths verified in pinned Git tree. Preserve full source archive; extracted scope deliberately partial. Read depth is focused fragments, not whole-repository review."
+  },
+  {
+    "id": "network-httptoolkit-server",
+    "title": "httptoolkit/httptoolkit-server source for network diagnostics study",
+    "url": "https://github.com/httptoolkit/httptoolkit-server",
+    "kind": "repository",
+    "repo": "httptoolkit/httptoolkit-server",
+    "revision": "14665bbcc39d8ed89ab2e82b5529f0f51b7cd94d",
+    "selected_paths": [
+      "README.md",
+      "package.json",
+      "src",
+      "test"
+    ],
+    "notes": "Read Chromium interceptor launch flags and admin API origin/token checks. Local API can launch applications; do not expose it to page content or invoke startup scripts. HEAD verified 2026-10-01 with git ls-remote; selected paths verified in pinned Git tree. Preserve full source archive; extracted scope deliberately partial. Read depth is focused fragments, not whole-repository review."
+  },
+  {
+    "id": "network-mockttp",
+    "title": "httptoolkit/mockttp source for network diagnostics study",
+    "url": "https://github.com/httptoolkit/mockttp",
+    "kind": "repository",
+    "repo": "httptoolkit/mockttp",
+    "revision": "7d03b2d97d1ee82969780d0878dfb744aba2c6ae",
+    "selected_paths": [
+      "README.md",
+      "package.json",
+      "src",
+      "test"
+    ],
+    "notes": "Read request step handlers and combo server TLS/HTTP classification fragments. Rule engine plus transform tests; no server started. HEAD verified 2026-10-01 with git ls-remote; selected paths verified in pinned Git tree. Preserve full source archive; extracted scope deliberately partial. Read depth is focused fragments, not whole-repository review."
+  },
+  {
+    "id": "network-atlantis",
+    "title": "ProxymanApp/atlantis source for network diagnostics study",
+    "url": "https://github.com/ProxymanApp/atlantis",
+    "kind": "repository",
+    "repo": "ProxymanApp/atlantis",
+    "revision": "6427600ec87d516a43754e4eaa7762f3271ac77f",
+    "selected_paths": [
+      "README.md",
+      "LICENSE",
+      "Package.swift",
+      "Sources",
+      "Tests",
+      "Example"
+    ],
+    "notes": "Read URLSession injector and transporter. Open Proxyman component for app-internal observation, not proprietary proxy core or a Chromium interceptor; no response breakpoints in Atlantis. HEAD verified 2026-10-01 with git ls-remote; selected paths verified in pinned Git tree. Preserve full source archive; extracted scope deliberately partial. Read depth is focused fragments, not whole-repository review."
+  },
+  {
+    "id": "network-whistle",
+    "title": "avwo/whistle source for network diagnostics study",
+    "url": "https://github.com/avwo/whistle",
+    "kind": "repository",
+    "repo": "avwo/whistle",
+    "revision": "33820c617df12894bb38a5e8ea9019b96b3c955e",
+    "selected_paths": [
+      "README-en_US.md",
+      "LICENSE",
+      "package.json",
+      "lib",
+      "biz/webui/htdocs/src/js",
+      "test"
+    ],
+    "notes": "Read request/response inspector fragments. HTTP rules, body/header transforms and capture sizing; study UI/parser boundaries without adopting free-form rule execution. HEAD verified 2026-10-01 with git ls-remote; selected paths verified in pinned Git tree. Preserve full source archive; extracted scope deliberately partial. Read depth is focused fragments, not whole-repository review."
+  },
+  {
+    "id": "network-goproxy",
+    "title": "elazarl/goproxy source for network diagnostics study",
+    "url": "https://github.com/elazarl/goproxy",
+    "kind": "repository",
+    "repo": "elazarl/goproxy",
+    "revision": "a05e9220be0b6fd84566bf0d5f5880be94f3db36",
+    "selected_paths": [
+      "README.md",
+      "LICENSE",
+      "go.mod",
+      "https.go",
+      "proxy.go",
+      "dispatcher.go",
+      "responses.go",
+      "internal",
+      "examples/http2-mitm",
+      "examples/certstorage",
+      "examples/goproxy-httpdump",
+      "https_head_test.go",
+      "https_bodiless_test.go",
+      "proxy_test.go"
+    ],
+    "notes": "Read TLS CONNECT handling and HTTP2 MITM example. Modular Go proxy hooks; example disables upstream verification for its test backend, not a production configuration precedent. HEAD verified 2026-10-01 with git ls-remote; selected paths verified in pinned Git tree. Preserve full source archive; extracted scope deliberately partial. Read depth is focused fragments, not whole-repository review."
+  },
+  {
+    "id": "network-martian",
+    "title": "google/martian source for network diagnostics study",
+    "url": "https://github.com/google/martian",
+    "kind": "repository",
+    "repo": "google/martian",
+    "revision": "0f7e6797a04da412118541344bbe0d65945e24c9",
+    "selected_paths": [
+      "README.md",
+      "LICENSE",
+      "go.mod",
+      "proxy.go",
+      "proxy_test.go",
+      "mitm",
+      "har",
+      "fifo",
+      "h2",
+      "httpspec",
+      "proxyutil",
+      "header",
+      "body",
+      "querystring",
+      "martianlog"
+    ],
+    "notes": "Read MITM config and HAR model fragments. Structured modifiers/HAR unknown fields; library reference, not a complete desktop editor. HEAD verified 2026-10-01 with git ls-remote; selected paths verified in pinned Git tree. Preserve full source archive; extracted scope deliberately partial. Read depth is focused fragments, not whole-repository review."
+  },
+  {
+    "id": "network-nghttp2",
+    "title": "nghttp2/nghttp2 source for network diagnostics study",
+    "url": "https://github.com/nghttp2/nghttp2",
+    "kind": "repository",
+    "repo": "nghttp2/nghttp2",
+    "revision": "19d06e62185d93d2398d85241cdbb460349bfe44",
+    "selected_paths": [
+      "README.rst",
+      "COPYING",
+      "lib",
+      "src",
+      "tests",
+      "doc/programmers-guide.rst",
+      "doc/nghttpx.1.rst",
+      "doc/sources"
+    ],
+    "notes": "Read programmers guide and HTTP2 session lifecycle fragments. Sans-IO protocol library and nghttpx stream/backpressure implementation; selected source not a complete vendored build. HEAD verified 2026-10-01 with git ls-remote; selected paths verified in pinned Git tree. Preserve full source archive; extracted scope deliberately partial. Read depth is focused fragments, not whole-repository review."
+  },
+  {
+    "id": "network-quiche",
+    "title": "cloudflare/quiche source for network diagnostics study",
+    "url": "https://github.com/cloudflare/quiche",
+    "kind": "repository",
+    "repo": "cloudflare/quiche",
+    "revision": "77d50358f98610b7d2329b3ca5450e1131aaf883",
+    "selected_paths": [
+      "README.md",
+      "COPYING",
+      "Cargo.toml",
+      "quiche/src/lib.rs",
+      "quiche/src/flowcontrol.rs",
+      "quiche/src/stream/mod.rs",
+      "quiche/src/h3/mod.rs",
+      "quiche/src/h3/stream.rs",
+      "quiche/src/h3/frame.rs",
+      "quiche/src/h3/qpack/mod.rs",
+      "quiche/src/h3/qpack/decoder.rs",
+      "quiche/src/h3/qpack/encoder.rs",
+      "quiche/src/recovery/mod.rs",
+      "quiche/examples/http3-client.rs",
+      "quiche/examples/http3-server.rs",
+      "apps/src/client.rs",
+      "apps/src/common.rs",
+      "apps/src/lib.rs"
+    ],
+    "notes": "Read QUIC README connection/stream API and H3 module setup fragments. QUIC/H3/QPACK plus app examples; exclude bundled TLS/vendor scope from extraction. QUIC library is not browser/session recorder. HEAD verified 2026-10-01 with git ls-remote; selected paths verified in pinned Git tree. Preserve deterministic exact-file ZIP; vendor dependencies and file modes not acquired. Tests also occur inline in quiche modules. Read depth is focused fragments, not whole-repository review.",
+    "mode": "files"
+  },
+  {
+    "id": "network-aioquic",
+    "title": "aiortc/aioquic source for network diagnostics study",
+    "url": "https://github.com/aiortc/aioquic",
+    "kind": "repository",
+    "repo": "aiortc/aioquic",
+    "revision": "6d36838d008c2202c337142fa07e8bf80e96bac8",
+    "selected_paths": [
+      "README.rst",
+      "LICENSE",
+      "pyproject.toml",
+      "src",
+      "examples",
+      "tests"
+    ],
+    "notes": "Read asyncio connect lifecycle and H3 client stream/event handling. QUIC/TLS/H3 protocol reference and Python examples; body completion and 0RTT assumptions need study. HEAD verified 2026-10-01 with git ls-remote; selected paths verified in pinned Git tree. Preserve full source archive; extracted scope deliberately partial. Read depth is focused fragments, not whole-repository review."
+  },
+  {
+    "id": "network-h2",
+    "title": "python-hyper/h2 source for network diagnostics study",
+    "url": "https://github.com/python-hyper/h2",
+    "kind": "repository",
+    "repo": "python-hyper/h2",
+    "revision": "bc239af1d1b85bc70482804f30a0e0e587d90a08",
+    "selected_paths": [
+      "README.rst",
+      "LICENSE",
+      "pyproject.toml",
+      "src/h2",
+      "docs/source",
+      "tests"
+    ],
+    "notes": "Read advanced usage flow-control guidance and connection/event fragments. Sans-IO HTTP2; padding-inclusive accounting and bounded output are integration responsibilities. HEAD verified 2026-10-01 with git ls-remote; selected paths verified in pinned Git tree. Preserve full source archive; extracted scope deliberately partial. Read depth is focused fragments, not whole-repository review."
+  },
+  {
+    "id": "network-h11",
+    "title": "python-hyper/h11 source for network diagnostics study",
+    "url": "https://github.com/python-hyper/h11",
+    "kind": "repository",
+    "repo": "python-hyper/h11",
+    "revision": "62c5068c971579d61fa1b55373390e12f25fd856",
+    "selected_paths": [
+      "README.rst",
+      "LICENSE.txt",
+      "pyproject.toml",
+      "h11",
+      "docs/source"
+    ],
+    "notes": "Read supported HTTP and connection buffer/state fragments. Sans-IO HTTP1 framing; metadata/extensions and stream completion are not an entire network client. HEAD verified 2026-10-01 with git ls-remote; selected paths verified in pinned Git tree. Preserve full source archive; extracted scope deliberately partial. Read depth is focused fragments, not whole-repository review. Tests live under h11/tests and are included in the h11 selection."
+  },
+  {
+    "id": "network-curl",
+    "title": "curl/curl source for network diagnostics study",
+    "url": "https://github.com/curl/curl",
+    "kind": "repository",
+    "repo": "curl/curl",
+    "revision": "39ad9b0771708c5aff20663a7ef3704bc55510d7",
+    "selected_paths": [
+      "README.md",
+      "COPYING",
+      "docs/HTTP3.md",
+      "docs/cmdline-opts/location.md",
+      "docs/cmdline-opts/location-trusted.md",
+      "docs/cmdline-opts/cookie.md",
+      "docs/cmdline-opts/cookie-jar.md",
+      "docs/cmdline-opts/data-binary.md",
+      "docs/cmdline-opts/http3.md",
+      "docs/cmdline-opts/http3-only.md",
+      "lib/http.c",
+      "lib/http1.c",
+      "lib/http2.c",
+      "lib/http_proxy.c",
+      "lib/cookie.c",
+      "lib/vquic/cf-quiche.c",
+      "lib/vquic/cf-ngtcp2.c",
+      "lib/vquic/cf-ngtcp2-proxy.c",
+      "lib/vtls/keylog.c",
+      "src/tool_operate.c",
+      "tests/http/test_03_goaway.py",
+      "tests/http/test_05_errors.py",
+      "tests/http/test_07_upload.py",
+      "tests/http/test_10_proxy.py",
+      "tests/http/test_13_proxy_auth.py",
+      "tests/http/test_19_shutdown.py",
+      "tests/http/test_20_websockets.py",
+      "tests/http/test_60_h3_proxy.py",
+      "tests/http/testenv/nghttpx.py"
+    ],
+    "notes": "Read location/http3 flags and TLS key-log backend fragments. Manual request/send semantics, cookie jar, protocol/backend choices and direct integration fixtures; selected paths exclude broad unrelated protocols. Not identical to a browser profile. HEAD verified 2026-10-01 with git ls-remote; selected paths verified in pinned Git tree. Preserve deterministic exact-file ZIP; vendor dependencies and file modes not acquired. Tests also occur inline in quiche modules. Read depth is focused fragments, not whole-repository review.",
+    "mode": "files"
+  },
+  {
+    "id": "network-rustls",
+    "title": "rustls/rustls source for network diagnostics study",
+    "url": "https://github.com/rustls/rustls",
+    "kind": "repository",
+    "repo": "rustls/rustls",
+    "revision": "7dcbe4c1ae12185237d22e9197583329630a2014",
+    "selected_paths": [
+      "README.md",
+      "LICENSE-APACHE",
+      "LICENSE-ISC",
+      "LICENSE-MIT",
+      "Cargo.toml",
+      "rustls/src",
+      "rustls/tests",
+      "rustls-util/src",
+      "examples"
+    ],
+    "notes": "Read key-log API and 0RTT client example. TLS peer/secret/early-data boundary; TLS stack is not HTTP recorder. Source tests retained for later study; no build. HEAD verified 2026-10-01 with git ls-remote; selected paths verified in pinned Git tree. Preserve full source archive; extracted scope deliberately partial. Read depth is focused fragments, not whole-repository review."
+  },
+  {
+    "id": "network-proxy-modes",
+    "title": "mitmproxy capture modes",
+    "url": "https://docs.mitmproxy.org/stable/concepts/modes/",
+    "kind": "documentation",
+    "notes": "Read local/regular/transparent/TUN/WireGuard scope and platform limitations. Version-sensitive; no routing changes."
+  },
+  {
+    "id": "network-httptoolkit-view-doc",
+    "title": "HTTP Toolkit inspection and breakpoint semantics",
+    "url": "https://httptoolkit.com/docs/reference/view-page/",
+    "kind": "documentation",
+    "notes": "Read request/response breakpoint UI, encoding, timeout and client-perspective evidence caveat."
+  },
+  {
+    "id": "network-httptoolkit-send-doc",
+    "title": "HTTP Toolkit handcrafted requests",
+    "url": "https://httptoolkit.com/docs/reference/send-page/",
+    "kind": "documentation",
+    "notes": "Human composer precedent; separately sent request differs from browser request context."
+  },
+  {
+    "id": "network-proxyman-breakpoint-doc",
+    "title": "Proxyman breakpoint semantics",
+    "url": "https://docs.proxyman.com/advanced-features/breakpoint",
+    "kind": "documentation",
+    "notes": "Primary product behavior reference only; open Atlantis component cannot provide these breakpoints."
+  },
+  {
+    "id": "network-proxyman-script-doc",
+    "title": "Proxyman scripting request/response schema",
+    "url": "https://docs.proxyman.com/scripting/script",
+    "kind": "documentation",
+    "notes": "Read arbitrary request/response edits and WebSocket message limitation. Product docs do not supply proxy implementation source."
+  },
+  {
+    "id": "network-rfc-http2",
+    "title": "RFC9113 HTTP2",
+    "url": "https://www.rfc-editor.org/rfc/rfc9113.html",
+    "kind": "documentation",
+    "notes": "Primary HTTP2 framing/fields/flow-control specification; read connection-specific header and field translation sections."
+  },
+  {
+    "id": "network-rfc-http3",
+    "title": "RFC9114 HTTP3",
+    "url": "https://www.rfc-editor.org/rfc/rfc9114.html",
+    "kind": "documentation",
+    "notes": "Primary H3 framing, stream completion/cancellation and retry rules; selected sections read."
+  },
+  {
+    "id": "network-rfc-quic",
+    "title": "RFC9000 QUIC",
+    "url": "https://www.rfc-editor.org/rfc/rfc9000.html",
+    "kind": "documentation",
+    "notes": "Primary QUIC transport specification; research corpus reference, not full conformance review."
+  },
+  {
+    "id": "network-rfc-tls13",
+    "title": "RFC8446 TLS13",
+    "url": "https://www.rfc-editor.org/rfc/rfc8446.html",
+    "kind": "documentation",
+    "notes": "Read0RTT replay threat discussion; broad standard retained for study."
+  },
+  {
+    "id": "network-rfc-keylog",
+    "title": "RFC9850 SSLKEYLOGFILE",
+    "url": "https://www.rfc-editor.org/rfc/rfc9850.html",
+    "kind": "documentation",
+    "notes": "Read key-log scope and confidentiality/integrity/privilege consequences. Diagnostic secret source must be explicitly authorized."
+  }
+]

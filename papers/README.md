@@ -14,6 +14,8 @@ Start with [the synthesis](../docs/research-synthesis.md), then:
 - [Native DOM and runtime identity](native-browser-surfaces.md).
 - [OS input and external network interventions](os-input-and-behavior.md).
 - [Network observation, editing, and tracker alerts](network-observatory.md).
+- [Expanded network quarantine and reading map](network-quarantine.md).
+- [Jev for advisory network and extraction judgments](jev-network-judgments.md).
 - [Fingerprint consistency and privacy experiments](fingerprints-and-privacy.md).
 - [Learned rendered-DOM extraction](dom-to-tables.md).
 

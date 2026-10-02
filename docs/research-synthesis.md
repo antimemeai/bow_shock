@@ -132,3 +132,18 @@ and dedicated-session assumptions do not establish tandem safety.
 
 Open work is tracked in [ISSUES.md](../ISSUES.md). Acquisition gaps and deferred
 datasets are in [SHOPPING_LIST.md](../SHOPPING_LIST.md).
+
+## Expanded network source study
+
+The operator requested a substantial network-tool quarantine. The
+[network reading map](../papers/network-quarantine.md) groups the additional
+proxy/protocol, capture/environment, tracker/logging, archive/replay and
+controlled-endpoint references. Source findings reinforce the need to measure
+capture coverage, intervention scope and cleanup before relying on a tool.
+
+The existing workspace Jev client is also available. A
+[12-case constructed pilot](../papers/jev-network-judgments.md) exercised
+advisory interpretation of traffic differences in one batched call. It matched
+the intended labels, including coverage gaps and mixed retry/contact-field
+changes. The proposed role is semantic assistance after deterministic capture,
+normalization and provenance; permissions and execution remain host-owned.

@@ -43,3 +43,8 @@ to select a class. `--restore` rebuilds extracted trees from preserved archives
 and retains previous trees under `context/retired-references/`. Full Chromium
 checkout/build is a separate, future task. Archives omit submodule contents;
 the ledger records those gaps explicitly.
+
+After acquisition, refresh the tracked inventory and gap summaries with
+`python3 scripts/research_inventory.py`. The expanded network collection has
+[its own reading map](papers/network-quarantine.md). The existing workspace
+[Jev tool is available for bounded research judgments](papers/jev-network-judgments.md).
