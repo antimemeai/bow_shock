@@ -136,3 +136,12 @@ all67 workspace cases in118.811s, plus fmt/Clippy/doctest/deny and locked releas
 Production hashes match the updated review, native descriptor remains fourteen
 fields, and no source/publication deadline was relaxed. Root owns the canonical
 rebuild and synthetic controlled/live joins after this correction lands.
+
+Root asked a read-only follow-up before an actual turn: unspecified reasoning
+summary inherits selected/model defaults, with pinned fallback Auto; source
+maps three reasoning delta/section events into the stable App Server stream.
+Recorded precise source lines and optional fixed summary:none path in the
+preflight report. This is not evidence of an actual turn or a guarantee of no
+raw reasoning events. Restored four additional source files from the already
+preserved pinned archive, recording them in the same acquisition manifest.
+No further product edits or deadline/budget changes were made.

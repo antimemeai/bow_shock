@@ -1269,7 +1269,11 @@
       "codex-rs/app-server",
       "codex-rs/app-server-protocol",
       "docs",
-      "sdk"
+      "sdk",
+      "codex-rs/protocol/src/config_types.rs",
+      "codex-rs/core/src/config/mod.rs",
+      "codex-rs/core/src/session/step_settings.rs",
+      "codex-rs/models-manager/src/model_info.rs"
     ],
     "archive_url": "https://codeload.github.com/openai/codex/tar.gz/59f18e8133f2c1d3427677658752ac46697d41b7",
     "scope": "full archive; selected extracted paths",

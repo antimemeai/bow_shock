@@ -267,3 +267,32 @@ closed readOnly object with optional boolean false networkAccess (absence has
 the source default false). Unknown fields, foreign roots, nonnull named profile,
 other delegation modes and tool-network true are unavailable before page bytes.
 This verifies effective settings; it does not prove coding-peer containment.
+
+## Reasoning notices with an unspecified summary
+
+Before the first actual model turn, root asked whether the adapter's unsupported
+reasoning notices can occur under default settings. Pinned source makes them
+possible: `core/src/session/step_settings.rs:59–64` resolves an absent selected
+summary from the model's default; `models-manager/src/model_info.rs:122` sets
+the fallback model default to Auto, as does the protocol enum's Default variant
+in `protocol/src/config_types.rs:65–72`. This does not measure the selected
+account's backend model catalog or a user-config override, nor promise a
+particular live stream.
+
+The app-server forwards ReasoningContentDelta, ReasoningRawContentDelta and
+AgentReasoningSectionBreak in `bespoke_event_handling.rs:1000–1012`. The pinned
+`protocol/event_mapping.rs:378–404` maps these to
+`item/reasoning/summaryTextDelta`, `item/reasoning/textDelta` and
+`item/reasoning/summaryPartAdded`. Their closed typed parameters carry threadId,
+turnId, itemId, signed i64 summaryIndex/contentIndex, and delta text where
+applicable. They are intermediate events, not terminal candidate evidence.
+
+The stable TurnStartParams schema explicitly permits host-fixed `summary:"none"`
+to disable requested reasoning summaries. This is the smallest request-side
+path for a final-only client, but does not prove every raw reasoning notice
+absent. A separately planned adapter extension could accept exactly these three
+correlated read-only notices, discard their content under unchanged byte/record
+budgets, and keep final-item validation as the sole proposal path. No generic
+ignore rule, model-turn observation or product edit was made during this study.
+The added primary files were extracted from the preserved pinned archive and
+listed in the existing acquisition manifest; they remain reference-only.
