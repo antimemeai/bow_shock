@@ -34,6 +34,11 @@ controller_source = ROOT / "target/release/bow-shock-controller"
 controller_destination = app / "Contents/MacOS/bow-shock-controller"
 shutil.copy2(controller_source, controller_destination)
 components = [(controller_source, controller_destination)]
+for name in ["bow-shock-native-control", "bow_shock_clock_probe"]:
+    source = ROOT / "context/build/native" / name
+    destination = app / "Contents/MacOS" / name
+    shutil.copy2(source, destination)
+    components.append((source, destination))
 bundle_plists = [app / "Contents/Info.plist"]
 for helper in (ROOT / "context/build/native/helpers").glob("*.app"):
     destination = app / "Contents/Frameworks" / helper.name
@@ -53,5 +58,11 @@ for source, destination in components:
 print(f"Staged {len(components)} matching controller/helper binaries", flush=True)
 for plist in bundle_plists:
     subprocess.run(["/usr/bin/plutil", "-convert", "xml1", str(plist)], check=True)
+# Sign the standalone owned executables explicitly; the outer resource seal
+# and nested CEF bundles are verified afterward as one complete app.
+for _, destination in components[:3]:
+    subprocess.run(["codesign", "--force", "--sign", "-", str(destination)], check=True)
 subprocess.run(["codesign", "--force", "--deep", "--sign", "-", str(app)], check=True)
 subprocess.run(["codesign", "--verify", "--deep", "--strict", str(app)], check=True)
+for _, destination in components[:3]:
+    subprocess.run(["codesign", "--verify", "--strict", str(destination)], check=True)

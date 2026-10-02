@@ -44,6 +44,14 @@ target_compile_options(bow_shock_clock_probe PRIVATE -fobjc-arc -Wall -Wextra -W
 target_link_libraries(bow_shock_clock_probe PRIVATE "-framework Foundation")
 add_dependencies(bow_shock bow_shock_clock_probe)
 
+# Independent control/expiry only; this target does not link CEF or input APIs.
+add_executable(bow_shock_native_control "../control/main.mm" continuous_clock.mm)
+target_include_directories(bow_shock_native_control PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}")
+target_compile_options(bow_shock_native_control PRIVATE -fobjc-arc -fobjc-exceptions -Wall -Wextra -Werror)
+target_link_libraries(bow_shock_native_control PRIVATE "-framework Foundation")
+set_target_properties(bow_shock_native_control PROPERTIES OUTPUT_NAME "bow-shock-native-control")
+add_dependencies(bow_shock bow_shock_native_control)
+
 foreach(ENTRY IN LISTS CEF_HELPER_APP_SUFFIXES)
   string(REPLACE ":" ";" FIELDS "${ENTRY}")
   list(GET FIELDS 0 NAME_SUFFIX)
@@ -67,6 +75,10 @@ foreach(ENTRY IN LISTS CEF_HELPER_APP_SUFFIXES)
 endforeach()
 
 add_custom_command(TARGET bow_shock POST_BUILD
+  COMMAND "${CMAKE_COMMAND}" -E copy "$<TARGET_FILE:bow_shock_native_control>"
+    "${APP}/Contents/MacOS/bow-shock-native-control"
+  COMMAND "${CMAKE_COMMAND}" -E copy "$<TARGET_FILE:bow_shock_clock_probe>"
+    "${APP}/Contents/MacOS/bow_shock_clock_probe"
   COMMAND "${CMAKE_COMMAND}" -E copy
     "${CMAKE_CURRENT_SOURCE_DIR}/../../target/release/bow-shock-controller"
     "${APP}/Contents/MacOS/bow-shock-controller"
