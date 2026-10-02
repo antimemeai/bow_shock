@@ -4,9 +4,9 @@ A semi-automatic browser: a person and an agent work in the same visible
 browsing session, with deliberate limits on what the agent can do and a native
 connection to an agent runtime such as Codex.
 
-This repository starts with research and reference acquisition. There is no
-browser implementation or selected engine yet. Chromium, CEF, and other
-embedding approaches are candidates to study, not adopted dependencies.
+This repository has progressed from research and reference acquisition into
+[the design phase](docs/design/README.md). Windowed CEF is the working engine
+proposal; there is no browser implementation or adopted engine dependency yet.
 
 Current scope: a dedicated window, macOS first and Linux second. The model reads
 native rendered DOM and proposes work; a separate OS input executor supplies
@@ -48,3 +48,10 @@ After acquisition, refresh the tracked inventory and gap summaries with
 `python3 scripts/research_inventory.py`. The expanded network collection has
 [its own reading map](papers/network-quarantine.md). The existing workspace
 [Jev tool is available for bounded research judgments](papers/jev-network-judgments.md).
+
+The [design specification](docs/design/README.md) connects the research to native
+observation, grants and OS input, agent/provider integration, the human network
+workbench, outside-browser interventions, and reviewed tables. Its
+[local controls concept](docs/design/controls.svg) needs no external design tool.
+Blackbird requires adversarial design review before the implementation plan,
+and plan review before product code.

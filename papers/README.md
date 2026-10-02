@@ -18,6 +18,10 @@ Start with [the synthesis](../docs/research-synthesis.md), then:
 - [Jev for advisory network and extraction judgments](jev-network-judgments.md).
 - [Fingerprint consistency and privacy experiments](fingerprints-and-privacy.md).
 - [Learned rendered-DOM extraction](dom-to-tables.md).
+- [Design tribunal and integrated dispositions](design-tribunal.md).
+
+The resulting [design specifications](../docs/design/README.md) live in `docs/design/`.
+Independent design reviews and their integrated research conclusions stay here.
 
 The `*-sources.json` files are the acquisition catalogs; `acquisition.json`
 records actual local acquisition, pinned commits, byte identities, and failures.

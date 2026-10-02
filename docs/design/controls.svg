@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="980" viewBox="0 0 1440 980" role="img" aria-labelledby="title desc">
+  <title id="title">Bow Shock: human takeover with a useful partial table</title>
+  <desc id="desc">Illustrative dedicated macOS browser window. A suspended delegation shows the human in control, a source page on the left, grounded table review on the right, and a correlated session timeline below. No runtime is implemented.</desc>
+  <defs>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: #202d31; }
+      .small { font-size: 12px; } .body { font-size: 14px; } .muted { fill: #607076; }
+      .label { font-size: 11px; letter-spacing: 1px; font-weight: 600; }
+      .heading { font-size: 19px; font-weight: 600; } .strong { font-weight: 600; }
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    </style>
+  </defs>
+  <rect width="1440" height="980" fill="#e5e9e8"/>
+  <rect x="32" y="32" width="1376" height="896" rx="13" fill="#f9faf9" stroke="#aebbb9"/>
+  <path d="M45 32H1395Q1408 32 1408 45V80H32V45Q32 32 45 32" fill="#eaf0ee"/>
+  <circle cx="53" cy="55" r="6" fill="#ed8b83"/><circle cx="74" cy="55" r="6" fill="#e4c375"/><circle cx="95" cy="55" r="6" fill="#8cbaa0"/>
+  <text x="121" y="60" class="body strong">Bow Shock</text>
+  <rect x="265" y="43" width="241" height="37" rx="7" fill="#f9faf9"/>
+  <text x="281" y="66" class="small">Field notes — collection</text>
+  <text x="527" y="66" class="small muted">Comparison — detail</text>
+  <text x="1290" y="60" class="small muted">Design concept</text>
+  <path d="M32 80H1408M32 126H1408" stroke="#cbd5d2"/>
+  <text x="55" y="108" class="body muted">←</text><text x="87" y="108" class="body muted">→</text><text x="122" y="108" class="body muted">↻</text>
+  <rect x="166" y="90" width="826" height="26" rx="5" fill="#edf1ef" stroke="#d5dedb"/>
+  <text x="181" y="108" class="mono muted">catalog.example / field-notes</text>
+  <text x="1006" y="108" class="small muted">Partial capture</text>
+  <rect x="1119" y="87" width="142" height="32" rx="6" fill="#173e37"/>
+  <text x="1135" y="108" class="small" style="fill:#fff">Session controls</text>
+  <rect x="1271" y="87" width="113" height="32" rx="6" fill="#faf0ed" stroke="#b78374"/>
+  <text x="1304" y="108" class="small strong" style="fill:#8c4334">Stop all</text>
+  <rect x="33" y="127" width="1374" height="61" fill="#f8f1df"/>
+  <rect x="52" y="143" width="121" height="29" rx="14" fill="#e9d19b"/>
+  <text x="67" y="163" class="small strong">SUSPENDED</text>
+  <text x="191" y="151" class="body strong">You took control</text>
+  <text x="191" y="172" class="small muted">Collection paused after your scroll. Review the partial table or renew the task.</text>
+  <text x="930" y="150" class="small muted">4 of 6 gestures used · 1:12 elapsed</text>
+  <text x="930" y="172" class="small muted">No action running · observation enabled</text>
+  <rect x="1202" y="141" width="181" height="34" rx="6" fill="#fffaf0" stroke="#b8a46f"/>
+  <text x="1222" y="163" class="small strong">Review and renew</text>
+  <rect x="33" y="188" width="865" height="572" fill="#fff"/>
+  <path d="M899 188V760M32 760H1408" stroke="#cbd5d2"/>
+  <text x="68" y="225" class="small strong" style="fill:#507765">FIELD NOTES / ILLUSTRATIVE SOURCE PAGE</text>
+  <text x="68" y="273" style="font-size:32px;font-weight:600">Tools for the trail</text>
+  <text x="68" y="302" class="body muted">Compare your shortlist. Prices shown in USD.</text>
+  <rect x="67" y="329" width="795" height="29" rx="4" fill="#f1f5f3"/>
+  <text x="82" y="349" class="small muted">12 items in collection</text>
+  <text x="706" y="349" class="small muted">Sort: name ↑</text>
+  <rect x="67" y="377" width="795" height="101" rx="7" fill="#fbfcfb" stroke="#d7e2de"/>
+  <rect x="84" y="394" width="69" height="67" rx="5" fill="#dce8e1"/>
+  <path d="M109 406h18l8 15v31h-34v-31z" fill="#7f9b8b"/><path d="M109 406v-5h18v5" fill="none" stroke="#597465" stroke-width="3"/>
+  <text x="176" y="414" class="body strong">Alpine pack</text><text x="176" y="440" class="small muted">28 L · 810 g · forest</text>
+  <rect x="704" y="393" width="127" height="34" rx="4" fill="#e9f4ed" stroke="#71947d"/>
+  <text x="719" y="415" class="body strong">$129.00</text><text x="719" y="452" class="small muted">In stock</text>
+  <rect x="67" y="491" width="795" height="101" rx="7" fill="#fbfcfb" stroke="#d7e2de"/>
+  <rect x="84" y="508" width="69" height="67" rx="5" fill="#e5e8dd"/>
+  <path d="M114 519h10v8l7 6v31h-25v-31l8-6z" fill="#9aab83"/>
+  <text x="176" y="528" class="body strong">Ridge flask</text><text x="176" y="554" class="small muted">750 ml · 240 g · moss</text>
+  <text x="719" y="528" class="body strong">$34.00</text><text x="719" y="566" class="small muted">In stock</text>
+  <rect x="67" y="605" width="795" height="101" rx="7" fill="#fbfcfb" stroke="#d7e2de"/>
+  <rect x="84" y="622" width="69" height="67" rx="5" fill="#e4e1d8"/>
+  <path d="M101 676l9-42h8l-6 42m12 0 4-42h8l-3 42" stroke="#8f9181" stroke-width="4" fill="none"/>
+  <text x="176" y="642" class="body strong">Traverse poles</text><text x="176" y="668" class="small muted">Pair · 420 g · slate</text>
+  <text x="719" y="642" class="body strong">$89.00</text><text x="719" y="680" class="small muted">Available next week</text>
+  <text x="68" y="737" class="small muted">Source highlight: Alpine pack → price · captured 8 seconds ago</text>
+  <rect x="900" y="188" width="507" height="572" fill="#f7f9f7"/>
+  <text x="920" y="221" class="body muted">Agent</text><text x="996" y="221" class="body muted">Traffic</text>
+  <text x="1078" y="221" class="body strong">Tables</text><text x="1158" y="221" class="body muted">Experiments</text>
+  <path d="M1077 235h51" stroke="#315e4f" stroke-width="3"/>
+  <path d="M900 239H1407" stroke="#d8e0dc"/>
+  <text x="923" y="273" class="heading">Trail shortlist</text>
+  <text x="923" y="296" class="small muted">6 observed rows · pattern v2 · schema v1</text>
+  <rect x="923" y="314" width="458" height="53" rx="6" fill="#eef2e9" stroke="#d0d9c5"/>
+  <text x="936" y="335" class="small strong">Partial collection</text>
+  <text x="936" y="354" class="small muted">Only rendered rows captured. One field needs review.</text>
+  <rect x="923" y="384" width="458" height="240" rx="5" fill="#fff" stroke="#d5dfd9"/>
+  <rect x="924" y="385" width="456" height="34" fill="#edf2ee"/>
+  <text x="936" y="407" class="small strong">Name</text><text x="1157" y="407" class="small strong">Price USD</text><text x="1270" y="407" class="small strong">Review</text>
+  <rect x="924" y="420" width="456" height="34" fill="#e9f4ed"/>
+  <text x="936" y="442" class="small">Alpine pack</text><text x="1163" y="442" class="mono">129.00</text><text x="1270" y="442" class="small" style="fill:#426c52">Grounded</text>
+  <text x="936" y="476" class="small">Ridge flask</text><text x="1163" y="476" class="mono">34.00</text><text x="1270" y="476" class="small" style="fill:#426c52">Grounded</text>
+  <text x="936" y="510" class="small">Traverse poles</text><text x="1163" y="510" class="mono">89.00</text><text x="1270" y="510" class="small" style="fill:#426c52">Grounded</text>
+  <text x="936" y="544" class="small">Cloud shell</text><text x="1163" y="544" class="mono">—</text><text x="1270" y="544" class="small" style="fill:#916a20">Ambiguous</text>
+  <text x="936" y="578" class="small">Summit mug</text><text x="1163" y="578" class="mono">18.00</text><text x="1270" y="578" class="small" style="fill:#426c52">Grounded</text>
+  <text x="936" y="612" class="small">Trail towel</text><text x="1163" y="612" class="mono">22.00</text><text x="1270" y="612" class="small" style="fill:#426c52">Grounded</text>
+  <text x="923" y="650" class="small muted">Selected: price from visible source text “$129.00”</text>
+  <text x="923" y="674" class="small muted">Inference: local · scope: catalog.example only</text>
+  <rect x="923" y="699" width="222" height="36" rx="6" fill="#173e37"/>
+  <text x="953" y="722" class="small" style="fill:#fff">Review batch for commit</text>
+  <rect x="1157" y="699" width="224" height="36" rx="6" fill="#fff" stroke="#c1cec7"/>
+  <text x="1180" y="722" class="small">Save draft · resolve later</text>
+  <text x="54" y="790" class="label muted">SESSION TIMELINE</text><text x="269" y="790" class="small muted">Shared page, input, traffic and table evidence</text>
+  <text x="1220" y="790" class="small muted">Coverage details ↗</text>
+  <path d="M54 808H1382" stroke="#d4dfd8"/>
+  <text x="54" y="833" class="mono muted">14:32:07</text><text x="163" y="833" class="small">Task granted</text><text x="375" y="833" class="small muted">This tab · 6 scrolls · 2 minutes · no final submission</text>
+  <text x="54" y="860" class="mono muted">14:33:11</text><text x="163" y="860" class="small">Rows staged</text><text x="375" y="860" class="small muted">6 source-grounded candidates · 1 ambiguous field</text>
+  <text x="54" y="887" class="mono muted">14:33:19</text><text x="163" y="887" class="small strong">Human takeover</text><text x="375" y="887" class="small muted">Task revoked · partial table retained · no automatic resume</text>
+  <text x="33" y="957" class="small muted">Illustrative interaction state · local design artifact · no login or external canvas required</text>
+</svg>

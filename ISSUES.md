@@ -12,7 +12,20 @@
   deliberate external network interventions, request/response editing, Meta
   Pixel baselines, fingerprint consistency, and learned DOM extraction.
 
-## Open
+## Design phase
+
+The [design set](docs/design/README.md) now specifies runtime/observation,
+authority/input, native agent/provider integration, network control, and
+evidence/tables. CEF, the language boundary and local storage remain proposals.
+The [tribunal](papers/design-tribunal.md) records design findings and dispositions;
+an implementation plan, plan review, dependency discussion and native capability
+experiments still follow. Written contracts do not close empirical issues.
+
+Provider-neutral local/hosted inference and page comparison/table extraction
+are working assumptions pending optional operator preferences. The dedicated
+window and platform order are operator decisions.
+
+## Remaining decisions and experiments
 
 | ID | Work | Completion evidence |
 | --- | --- | --- |
