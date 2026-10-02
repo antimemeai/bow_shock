@@ -205,3 +205,62 @@ authorized to inspect one bounded actualturn using only already captured owned
 Ambername/price syntheticfields, sameeffective policy and safeprotocol shapes;
 no rawreasoning/credentials/generalpage data. Actualinferencequalification remains
 pending, while the native controlled join unit is source/directtest accepted.
+
+Nativeconceptualunit landed9dde734 with fourcontrolledgreens and actualinference
+gate explicitly open. Safe direct owned turn then completed9.124s/66records/
+24,522bytes/coherent finalsummary/ownedreap. It identifies knownMCPstartup notices
+as a concrete strictdecoder gap; the native failedstage remainsunobserved. Pinned
+schema/source and independentplanreview select narrowthread-correlateddiscard
+at heldthreadACK/preACKturn/activephase, with no callback/tool/grant/UI/SQL effects.
+Root fixture adds threadsetup starting/ready and preACKturn failed/error marker;
+no MCPserver is started. Existing final-beforeACK/grounding/durable gates remain.
+Actual rebuild/joins wait for ownerredgreen/independentreview/fullbasics.
+
+MCPunit committed96f7ede afterindependent21cyclesgreen andfull74/74 basics
+209.472s. Canonicalbuild staged8matchingpayloads/sign/strictverifygreen.
+Newtuple controlledrun-ui11wl9h timesoutbeforemainload; securitydcurrentexact
+PID84090 confirms anotherper-itemkeychainprompt afternewadhocresourcehash.
+RequestedlocalOSaction, thenlaunchednormal --agent ownedcatalog window atfresh
+ignorednative-agent-keychain-approval data/ephemeralport. It stays available
+without an externalacceptance timer; operatorcanapproveandQuitlocally. No Observe
+or Ask is triggered, onlymetadataread; no pagefields/sharedcontext/modeltask.
+Nativeacceptance90s andallproductboundsunchanged. Managedlaunchersession11512
+confirmedlive; finalnewtuplejoinsawaitlocalaction, no completenessclaim.
+
+Operator doneapprovedandQuit; managednormalwindow11512 exited0. CurrentMCPtuple
+controlledpositive _aogskkm passesallnativegrounding/review/durable/reopen gates
+andindependentreview; helperloss27t_qwmr/pendingQuitih43vu9j also pass. Stopfirst
+4rg3bor_ andonerecheck073bq7jb, theninstalledw2jvl7py failBEFOREmainload/capture
+onunchangedclocksupervisor, honestdirty/unknown. Stop/modelnotexercised; failed
+artifactsretained. Rootstoppedretries anddelegatedoneconceptualread-onlyClock
+startuptrace: exactownedPID/path/birth via low-overheadSDKlibproc, conditional
+stackcapture; independent source/planreview. Timeoutlabelconflatesmono/wall/
+backward-wall uncertainty, timerstartsafterspawnreturn; causeunproven. No source/
+signing/clockbudget changes, warmuporavailabilityfixclaim.
+
+Added optional `--clock-observer` integration to the native acceptance driver,
+restricted to one controlled Stop diagnosis. The libproc reader initializes
+before app launch; observation begins inside the owned process cleanup scope.
+Independent review found that a terminate/kill/wait exception could bypass
+observer cleanup. Moved the entire existing process cleanup and artifact write
+under the observer's `finally`. No shipping binary, signing, model turn or
+runtime deadline changed. Syntax and diff checks pass; the controlled trace
+awaits final independent observer and integration review.
+
+Both final reviews accepted the observer/integration. The single controlled
+Stop trace `run-y9wgjpbs` passed actual handoff, retirement, clean empty store
+and close/reap. Observation recorded 34 exact clock identities, 131 polls,
+17.45 ms maximum polling gap, zero reported gaps/samples and no surviving
+workers. No slow clock was caught; no causal diagnosis or availability fix is
+claimed. Proceeded to the distinct actual installed Codex native workflow gate
+on the same approved shipping build, without source/signature changes.
+
+Actual installed run `run-lvmjzmj9` passed the full native workflow with Codex
+0.160.0 / hosted gpt-6.1-sol. It selected only supplied name/price IDs; direct
+SQLite reads before Use and Save were empty. Fresh Review retained the original
+stage/guard and incremented its version; Save and clean reopen retained the
+exact original field values and provenance. Two exact selected-runtime PIDs
+were observed without missed snapshots and reaped; table/CEF shutdown was
+healthy. No extra model turn or production change was needed. Updated current
+status to distinguish the achieved tandem task from the still unexplained
+intermittent clock startup failures. Independent final result review follows.

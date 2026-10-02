@@ -29,12 +29,12 @@ proof is required for the current POC, per the operator's 2026-10-01 direction.
 
 | Reviewed-table invariant | Direct check | Limits / revisit when |
 | --- | --- | --- |
-| Approval binds exact content/version/retention; duplicates preserve one CommitId | Actual SQLite review bytes/rows; changed-retention rejection and exact duplicate | Native extraction and exact UI display must still be joined to this library |
+| Approval binds exact content/version/retention; duplicates preserve one CommitId | Actual SQLite review bytes/rows; changed-retention rejection and exact duplicate | Owned catalog join qualifies exact native Review; general extraction remains unqualified |
 | Ordinary Stop cancels preparation; stronger deletion/expiry deny current access and purge after writer quiescence | Real SQLite lock stalls, actual rows and killed-child restart cases | An admitted ordinary-Stop commit may finish; no browser effect authority follows |
 | Retained clean same-boot rows reopen with original identity/content; unknown or dirty recovery denies | Actual clean child restart, native boot/continuous clock, expiry purge and incompatible boot | No operator-machine suspend was tested; current frontend publication needs its own fresh native witness |
 | Persistence checks actual native time after write-lock acquisition and before COMMIT | Actor-starved actual writer lock held past deadline persists zero rows before actor resumes | Sampling and COMMIT are separate operations; this is no atomic OS-time/durability guarantee |
 | Failed closing cannot mark unresolved storage clean | Real writer timeout followed by release and further polls leaves dirty=1 | Kernel/storage faults can still require explicit conservative recovery |
-| Database IO runs on one bounded worker; managed ownership precedes recovery | Process/lock tests and actual persistent lock file | Trusted controller owns serialized calls; controller's nonblocking integration is still pending |
+| Database IO runs on one bounded worker; managed ownership precedes recovery | Process/lock tests and actual persistent lock file; closed service's urgent Stop under real stalls | Trusted controller owns serialized calls; broader workloads remain unqualified |
 
 The [table experiment](experiments/local-table-evidence.md) and
 [independent review](../papers/table-evidence-code-review.md) record the direct
@@ -53,6 +53,7 @@ the earlier unexplained startup/teardown failures remain open.
 | Only selected whole fields from a current unapproved Review enter one fresh task | Actual private peer receives selected markers and no excluded marker; scope/version/approval/expiry changes deny handoff | Two owned catalog patterns; trusted coding peer and hosted inference, with no containment or erasure claim |
 | Runtime version/home/account/routing/effective thread settings bind before fields leave | Actual installed metadata-only preflight; controlled account/routing/policy changes and closed-shape attacks | Codex 0.160.0, ordinary ChatGPT routing only; metadata does not establish model entitlement |
 | Model result selects native IDs; original retained fields supply values and provenance | Actual conflicting/generated/foreign/malformed final cases; native subset reconstruction before Use | No general learned extraction or model-generated field values |
+| Known intermediate notices cannot supply a proposal or authority | Correlated reasoning/MCP startup cases, foreign/malformed negatives and eligible JSON without a final produce no candidate | Only pinned closed notice shapes; startup status does not disable MCP or contain the trusted coding peer |
 | Revocation fences unsent chunks and terminal transport failure reaps the direct child | Actual private socket saturation with Running → Stop; actual host stdout loss and owned PID absence | Already handed-off content may remain disclosed; arbitrary descendants/forced host death outside cleanup; clock and write are separate operations |
 | Late task replies cannot become another task's proposal | Actual blocked stdout A → replacement B trace returns unknown_task for A | Current run only; no history/resume/retry or durable task reconciliation |
 | Use revises the original draft; Save remains a separate exact Review action | Actual native proposal/Use/Review/Save/SQLite/reopen driver; zero SQL before Use and Save | Programmatic delivery to native actions on owned fixtures, with physical input still unqualified |

@@ -67,13 +67,20 @@ meet the chosen capture/Stop servicing target. General native capture, coordinat
 input and network capabilities retain their later gates. See
 [the POC experiment](docs/experiments/native-table-workflow.md).
 The scoped Codex proposal service and native field-selection panel now pass
-direct checks and independent review; required Rust basics pass all 69 tests.
+direct checks and independent review; required Rust basics pass all 74 tests.
 The joined task keeps Use, fresh Review and Save distinct and copies original
 native values/provenance. Final rebuilt controlled joins now pass exact
 Save/reopen, Stop, helper-loss and Quit checks after operator readiness. The
-installed Codex task remains pending runtime task diagnosis: the first final
-run denied metadata readiness; a later run reached Ask and failed before a
-proposal. Both closed cleanly with no saved rows. Prior launch stalls had an
+installed Codex task now passes native proposal, Use, fresh Review, Save and
+same-boot SQLite reopen with original source values and provenance. Earlier
+runs denied metadata readiness or reached Ask and failed before a proposal,
+with clean empty stores. The resulting
+closed MCP-notice decoder correction passes the Rust checks and controlled
+native Save/reopen. Some current-build Stop and installed attempts failed before
+page capture on intermittent native clock startup/freshness errors, retaining
+dirty/unknown disposition. The single owned-process trace passed Stop without
+catching a slow clock; the subsequent installed workflow passed. No deadline
+has been relaxed or clock cause established. Prior launch stalls had an
 exact owned-process securityd per-item
 prompt; no ACL, encryption or signing identity was changed. See
 [the agent task experiment](docs/experiments/native-agent-workflow.md).

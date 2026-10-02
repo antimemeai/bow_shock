@@ -45,6 +45,10 @@ for line in sys.stdin:
                  'approvalPolicy': 'never', 'approvalsReviewer': 'user', 'sandbox': {'type': 'readOnly', 'networkAccess': False},
                  'runtimeWorkspaceRoots': [str(base)], 'activePermissionProfile': None, 'multiAgentMode': 'explicitRequestOnly',
                  'thread': {'id': thread, 'ephemeral': True, 'cliVersion': '0.160.0', 'turns': []}}
+        for status in ('starting', 'ready'):
+            emit({'method': 'mcpServer/startupStatus/updated', 'params': {
+                'threadId': thread, 'name': 'owned-fixture-server', 'status': status,
+                'error': None, 'failureReason': None}})
         if (base / 'peer-control-loss-mode').exists():
             (base / 'peer-before-export').write_text(str(os.getpid()))
             while True:
@@ -64,6 +68,9 @@ for line in sys.stdin:
             while True:
                 time.sleep(.01)
         scope = {'threadId': thread, 'turnId': turn, 'itemId': 'owned-reasoning'}
+        emit({'method': 'mcpServer/startupStatus/updated', 'params': {
+            'threadId': thread, 'name': 'owned-fixture-server', 'status': 'failed',
+            'error': 'IGNORED_MCP_MARKER', 'failureReason': 'reauthenticationRequired'}})
         emit({'method': 'item/reasoning/summaryPartAdded', 'params': {**scope, 'summaryIndex': 0}})
         emit({'method': 'item/reasoning/summaryTextDelta',
               'params': {**scope, 'summaryIndex': 0, 'delta': 'IGNORED_REASONING_MARKER'}})

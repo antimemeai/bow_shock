@@ -4,8 +4,9 @@
 `try-poc.py`, controlled peer and joined driver against the written agent join
 plan and finalized closed native connection. This review owns no product edits
 and launches no CEF app or inference. Root's canonical matching-payload build and
-strict signed graph passed. Controlled actual joins now qualify the gates below;
-live inference remains pending.
+strict signed graph passed. All four current controlled joins and one installed
+Codex0.160.0/gpt-6.1-sol task now qualify the narrow gates below. Prior failures
+and broader startup/process limits remain explicit.
 
 The startup path accepts agent configuration only from explicit native arguments,
 requires complete runtime/workspace/home/model selections and optional expected
@@ -114,7 +115,8 @@ fingerprint, network-effect, provider-copy recall or broad workload claim follow
 No source blocker remains in the corrected reviewed scope. Actual controlled
 post-handoff Stop passed on the final refinement in run-cltuf9zb, with actual
 export before Stop, cleared native task/publication, validated generation1,
-empty clean store and owned-child absence. Live inference remains pending.
+empty clean store and owned-child absence. Live inference was still pending at
+that stage; its later qualification is recorded below.
 Python parse and diff checks pass. This review has not repeated
 the old native transport suite or launched CEF/inference.
 
@@ -149,7 +151,7 @@ readOnly.networkAccess to false. Fixed model/provider/approval/reviewer/ephemera
 constraints and atomic export remain intact. These synthetic assertions qualify a
 controlled protocol fixture, not real provider authentication or inference. The
 separately reviewed Rust compatibility/reasoning correction is accepted; final
-controlled results are recorded below, while the live gate remains pending.
+controlled results are recorded below; the live gate was still pending then.
 
 The final fixture also emits all three closed reasoning notices, correlated to
 its owned thread/turn, before the turn/start ACK: summaryPartAdded with integer
@@ -209,7 +211,7 @@ closed the table/CEF normally and retained rows0/commits0/dirty0. The recorded
 controller/control PIDs are absent; installed mode retained no provider PID
 list, so this review cannot independently qualify provider-descendant absence
 from those artifacts. Metadata diagnosis belongs to the Rust owner. Live
-inference remains an open gate rather than a completed native-task milestone.
+inference remained an open gate after that unsuccessful attempt.
 
 The subsequent installed driver observation closes the missing recorded-runtime
 oracle for future successful runs at a precise scope: each read-only process
@@ -219,14 +221,103 @@ success requires a nonempty set and their absence after native close. Source and
 Python syntax checks accept this mechanism. Its 100 ms snapshots cannot identify
 the command role from comm, guarantee discovery of short-lived processes or
 cover arbitrary descendants/reparenting. The claim is cleanup of observed direct
-selected-runtime processes, not exhaustive process containment. Actual execution
-of this added oracle remains pending.
+selected-runtime processes, not exhaustive process containment. Its actual
+installed failure-path observation is qualified below.
 
 The observer's first actual run-q2b850c9 failed its new one-second ps timeout
-before a native verdict. The revised source records TimeoutExpired/failed ps
+before an agent result. The revised source records TimeoutExpired/failed ps
 exit as missed_samples with no PID evidence and continues within the unchanged
 90-second driver deadline. Each snapshot remains individually timed out;
 successful qualification still requires observed PIDs and post-close absence.
 Source/syntax recheck accepts this test-only availability correction. It changes
-no product budgets or runtime retry behavior; actual installed success remains
-pending.
+no product budgets or runtime retry behavior; installed success was still pending
+at this source recheck.
+
+The next installed run-qx2iousy reaches typed metadata ready and Ask/running,
+then fails before a candidate. Independent retained-result inspection confirms
+agent_failed, acknowledged generation1 retirement and table/CEF close; read-only
+SQLite remains rows0/commits0/dirty0. No proposal or fresh Review is published.
+The added observer records two direct selected-runtime PIDs with zero missed
+samples; both and the native controller/control PIDs are absent. This qualifies
+cleanup for these observed processes, without qualifying a successful live
+candidate/Use/Save. The native conceptual join is accepted at the four final
+controlled-run scope; the installed inference outcome was still open then.
+
+Retained observer-red run-q2b850c9 also contains an actual native clock freshness
+failure and dirty/unknown disposition alongside the ps timeout. It must not be
+described solely as an observer failure. Their cause remains unestablished.
+
+The next controlled fixture delta adds only correlated MCP startup-status
+metadata: starting/ready with the owned thread, bounded synthetic name and null
+error/reason before thread/start ACK; failed/reauthenticationRequired with an
+excluded error marker before turn/start ACK. The latter joins three reasoning
+notices and coherent item/turn finals in six held records, within the unchanged
+16-record bound. The driver excludes the MCP marker from complete native output;
+exact Review/SQLite equality extends exclusion to persistence. Source/syntax
+review accepts this synthetic protocol oracle without an MCP server, request or
+tool authority. Its new Rust decoder correction and actual rebuilt execution
+were separate pending gates at that source review; the prior four controlled results qualify the
+preceding reviewed tuple. The MCP decoder unit subsequently passed independent
+review and landed as 96f7ede; the canonical bundle rebuilt and strict verification
+passed before operator-local approval.
+
+Current MCP-tuple positive run-_aogskkm is independently accepted from retained
+native artifacts and read-only SQLite. The original Review reconstructs the exact
+selected subset, Use preserves stage/original guard and increments version,
+received export equals those copied fields, and displayed/saved Review equals the
+one durable row. Clean reopen preserves the exact commit, dirty0; MCP/reasoning/
+private markers are absent and recorded native/fixture PIDs are absent. This
+executes the new closed setup/turn notices through the actual joined positive
+path. Current-tuple fault cases and live inference were still pending then.
+
+Current helper-loss run-27t_qwmr independently passes validated retirement,
+no export/proposal, table/CEF close, rows0/commits0/dirty0 and recorded owned PID
+absence. Stop attempt run-4rg3bor_ fails before main load/capture with the existing
+native clock timeout/freshness diagnostic and dirty1. It does not exercise Stop
+or establish a startup cause. Current Quit/Stop qualification and live inference
+were still pending after that attempt.
+
+Current MCP-tuple Quit run-ih43vu9j independently passes pending Rust Stop
+join/authority acknowledgement, no export/proposal/fresh Review, healthy table/
+CEF shutdown, rows0/commits0/dirty0 and all recorded owned PID absence. The
+optional clock observer integration is reviewed separately below; it cannot
+change this task's deadlines or grant authority.
+
+Clock observer integration initially protected stop against artifact-write
+errors but placed process terminate/kill/wait outside that protective finally.
+A cleanup exception could therefore bypass observer.stop. Root corrected this
+by protecting the entire process cleanup and artifact write with the observer-stop
+finally. Source/syntax recheck accepts the correction. Constructor-before-Popen,
+start-inside-try and CLI restriction to controlled Stop preserve the intended
+scope and unchanged 90-second deadline. The observer utility's independent
+review remains separate; this acceptance covers integration only.
+
+Current-tuple diagnostic Stop run-y9wgjpbs independently passes: actual selected
+export precedes generation1 retirement/native clearing, no proposal/fresh Review,
+table/CEF close, rows0/commits0/dirty0 and all recorded owned PID absence. The
+clock observer summary records 34 clocks/131 polls, no gaps, maximum17.45 ms
+poll gap, no triggered sample, and both worker threads stopped. This does not
+diagnose the earlier slow-clock failures or earn an availability fix. All four
+current MCP-tuple controlled paths are independently accepted. The installed
+live candidate/Use/Save gate was still open before the following run.
+
+The subsequent installed native task run-lvmjzmj9 passes that final gate and is
+independently accepted. Its typed metadata identifies the selected Codex0.160.0,
+gpt-6.1-sol, OpenAI trusted coding peer. The selected r0f0/r0f1 fields reconstruct
+exactly from the original native Review with every state/source identity intact;
+Use preserves original stage and guard, increments Review version and presents
+the exact revised content. Actual displayed Review, saved batch, durable SQLite
+commit and row agree exactly, including normalized price12.00/rawUSD12.00 and
+normalization provenance. The driver checked zero SQL before Use and Save;
+retained store has one row/dirty0 and clean reopen preserves the exact Review.
+No excluded marker appears. Recorded native controller/control PIDs and the two
+observed direct selected-runtime PIDs95280/95349 are absent; no process sample
+was missed. Account reference and raw reasoning were not printed by review.
+
+This closes one owned installed-runtime proposal→Use→fresh Review→Save workflow
+alongside the four current controlled fault/positive traces. It does not establish
+broad startup reliability, arbitrary descendant containment, physical input,
+general-site extraction or recall of hosted content. Earlier clock failures,
+authorization gates and unsuccessful installed attempts remain retained. No
+application, inference, input, signing, credential or permission action was
+performed by this independent review.

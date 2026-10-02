@@ -137,3 +137,70 @@ missed_samples beside actual PIDs even in failure finally, supplies no evidence
 from the missed sample, and retries only under the same90s driver loop. Snapshot
 timeout1s/nonempty observed success requirement remain. Source/syntax accepted;
 no product deadlines, grants or retry change. Actual installed task still pending.
+
+Independently inspected installed run-qx2iousy: typed-ready→requesting→running→
+failed before candidate, actual agent_failed result, acknowledged Rust generation1
+retirement, healthy table/CEF close and rows0/commits0/dirty0. No proposal/Review
+artifacts. The observer records two direct selected-runtime PIDs/no misses, both
+absent along with native controller/control. Accept native join at its four final
+controlled-green scope while live candidate/Use/Save remains open. Confirmed
+q2b850c9 stderr also has actual clock freshness failure/dirtyunknown alongside ps
+timeout; do not reduce it to an observer-only issue. Root experiment accurately
+records these limits; suggested historical wording for earlier pending paragraphs.
+
+Source accepted the next synthetic peer's pinned MCP startup-status notices:
+owned thread/name, starting/ready/null before thread ACK; failed with excluded
+error marker/reauthenticationRequired before turn ACK. Six held turn records
+including reasoning/finals stay below16. Driver marker exclusion plus exact
+native Review/SQLite equality covers durable output. Syntax checks green; no
+actual server/tool/authority added or launch performed. Separate Rust correction
+and new actual joined execution remain pending; earlier four controlled greens
+qualify the preceding tuple only.
+
+After independently accepted MCP unit96f7ede, canonical build and local approval,
+current positive run-_aogskkm independently passes retained-result/read-onlySQL/
+PID inspection: exact original selected subset, stage/version+1/original guard,
+export/copied-field and displayed/durable Review equality, one row/dirty0/clean
+reopen, MCP/reasoning/private markers excluded and all recorded children absent.
+The extended fixture positive is qualified; current fault cases/live pending.
+No launch/inference/input/keychain/signing action by review.
+
+Current helper-loss run-27t_qwmr independently accepted from actual result/SQL/
+PID evidence: retirement, no export/proposal, clean table/CEF close, empty clean
+SQL and all recorded children absent. Failed Stop run-4rg3bor_ stderr lacks main
+load/capture and reports clock freshness timeout; SQLite dirty1. Stop was not
+exercised and startup cause remains unresolved. Await current Quit/Stop/live.
+
+Current Quit run-ih43vu9j independently accepted: pending Rust Stop joined and
+authority acknowledged, no export/proposal/fresh Review, clean table/CEF close,
+rows0/commits0/dirty0 and all recorded owned PIDs absent. Optional clock observer
+integration review found stop-finally protected artifact-write errors but not
+exceptions from preceding terminate/kill/wait cleanup. Requested one encompassing
+try/finally so observer.stop always runs after start. CLI scope/start/deadline
+placement otherwise correct. No diagnostic/test process launched by review.
+
+Root corrected the cleanup finding: process terminate/kill/wait and artifact
+write now share one try whose finally stops the observer. Source/syntax recheck
+accepted, with unchanged90s deadline and controlled-Stop-only CLI scope. This
+reviews integration only; utility's separate independent acceptance precedes
+the one authorized diagnostic run. No launch by review.
+
+One diagnostic Stop run-y9wgjpbs independently accepted from actual export,
+result/read-only SQL/PID checks: selected handoff, generation1 retirement/cleared
+native publication, no proposal/fresh Review, clean table/CEF close and empty
+clean SQL, all recorded children absent. Clock summary34/131/gaps0/max17.45ms/
+samples0/boththreadsdead provides no prior slow-clock cause or availability fix.
+All four current MCP-tuple controlled paths now accepted; live gate remains open.
+
+Installed native task run-lvmjzmj9 independently accepted from retained proposal/
+fresh Review/result, read-only SQLite/reopen and PID inspection. Typed descriptor
+Codex0.160.0/gpt-6.1-sol/OpenAI/trustedcodingpeer checked without printing account.
+Exact selected subset reconstructs original native fields/states/provenance;
+stage/guard preserved, version+1, displayed/saved/durable Review and row equal,
+normalized/raw price correct, one row/dirty0/clean reopen. Excluded markers absent.
+Observed direct runtime95280/95349/no misses and native controller/control PIDs
+all absent. Driver's pre-Use/pre-Save zeroSQL gates passed. One owned installed
+proposal→Use→freshReview→Save gate now closes alongside current four controlled
+paths. Startup reliability/arbitrary descendants/general sites/physical input
+remain unqualified; earlier failures retained. No launch/model/credential/input/
+signing/permission action by review.

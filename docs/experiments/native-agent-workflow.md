@@ -7,6 +7,20 @@ field IDs. The host copies their original values and provenance. **Use proposal*
 revises the original unapproved draft and presents a fresh exact Review. **Save**
 remains a separate native action.
 
+The final approved build passes all four controlled joins and the actual
+installed Codex workflow. Live run `run-lvmjzmj9` used Codex 0.160.0 with hosted
+`gpt-6.1-sol`, selected exactly the supplied name/price IDs, preserved their
+original values/provenance through fresh Review and Save, and recovered the
+exact durable table on clean reopen. Before Use and Save, actual SQLite
+rows/commits were zero. Both directly observed Codex runtime PIDs exited, with
+no missed process snapshots. Required Rust basics passed 74/74 tests.
+
+Intermittent native clock startup failures remain unexplained. The single
+owned-clock trace passed Stop without catching a slow child; it establishes no
+availability fix. Retained failed runs and the execution history below bound
+the successful result. General browsing, physical OS input and network powers
+remain outside this milestone.
+
 The direct acceptance driver is `tests/native_agent_workflow.py`. Controlled
 mode uses an original synthetic stdio process and cannot establish inference
 availability. Default mode invokes the explicitly selected installed Codex with
@@ -142,3 +156,60 @@ closes CEF/table cleanly, with rows0/commits0/dirty0. Two directly observed sele
 Codex runtime processes are absent afterward; no observation snapshot was missed.
 The direct-child sampler binds exact app/controller/executable paths; it does
 not claim exhaustive descendant discovery. Actual turn diagnosis remains open.
+
+One same-policy direct owned synthetic turn subsequently completes in9.124s
+(66records/24,522bytes): one final_answer item agrees with terminal summary,
+completed/errornull, ownedCodexPID reaped. The diagnostic stores protocol shapes,
+not raw reasoning/account text, and does not establish native selection or Save.
+It exposes the concrete unsupported method mcpServer/startupStatus/updated:
+thread-scoped startup notifications arrive around fresh-thread setup. Pinned
+source/schema confirm the closed shape and four statuses. The adapter correction
+will validate/discard these only for the acknowledged active thread, including
+deferred setup notices before any source export; it adds no tool/callback powers.
+Final rebuilt native execution follows independent review and required basics.
+
+The closed startup-notice correction landed96f7ede after21 independent fixture
+cycles passed. Required basics passed74/74 in209.472s plus formatting, Clippy,
+doctests, dependency policy and locked release build. Final canonical rebuild
+again staged8 matching payloads and passed strict signing verification
+(`native-agent-mcp-final-build.log`). First new-tuple controlledrun-ui11wl9h
+reached browser creation but timed out before main load; fresh read-only
+securityd logs confirm a new authorization prompt for exactownedPID84090.
+No source or signing identity was changed afterward. A normal opt-in owned
+catalog window was launched without timed acceptance mode for the operator's
+local authorization and Quit. It queried only connection metadata; no page
+was observed/shared or model task started. Timed acceptance retained its90s
+limit and resumed after this OS step.
+
+After the operator approved and Quit, the normal launcher exited0. The current
+MCP tuple positive `run-_aogskkm` then passed exact selected-field proposal,
+Use/fresh Review/Save/durable equality and clean reopen; both intermediate
+markers are excluded. Helper-loss `run-27t_qwmr` and pending-Quit `run-ih43vu9j`
+also pass their pre-export revocation/noexport/clean-store gates. Current Stop
+attempts `run-4rg3bor_` and `run-073bq7jb`, and installed attempt `run-w2jvl7py`,
+all failed before main load/capture on clock timeout/uncertain freshness. Those
+dirty/unknown stores and failed logs remain retained. They do not exercise Stop
+or a model turn. Root stopped retries and planned one low-overhead owned-clock
+trace; source/phase/predicate evidence must precede any correction. Limits remain
+unchanged; at that point current-tuple Stop/live gates were incomplete.
+
+The independently reviewed owned-clock observer then ran once with controlled
+Stop (`run-y9wgjpbs`). Stop, clean close, empty SQL and owned-child reap passed.
+The observer recorded 34 exact clock identities over 131 polls, a maximum
+17.45 ms polling gap, no reported gaps or capped artifacts, no long-child
+sampling, and no surviving observer workers. It did not catch the intermittent
+failure and therefore establishes neither its cause nor an availability fix.
+This exercised current-build controlled Stop; actual live proposal/Save
+remained a separate gate until the following run.
+
+Actual installed run `run-lvmjzmj9` then passed the entire native workflow
+(`context/runtime/native-agent-mcp-live-after-trace.log`): measured connection,
+Ask, supplied IDs `r0f0`/`r0f1`, exact original native fields, Use, fresh Review,
+Save, durable SQLite equality, clean same-boot reopen and owned-child absence.
+The normalized price is `12.00`, with source/fragment `USD 12.00`; no model
+value replaces a captured field. The original draft identity and guard survive
+Use, while Review version increments once. Installed-process observation
+recorded two exact selected-runtime children, zero missed snapshots and absence
+after close. No shipping source/signature/deadline changed between the trace
+and this live result. This closes the first native tandem task gate, with the
+documented clock/startup and scope limits retained.

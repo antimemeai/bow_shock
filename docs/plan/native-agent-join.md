@@ -100,3 +100,11 @@ still requires a nonempty observed set and every observed PID absent. The origin
 90-second driver deadline and all product deadlines stay unchanged.
 Controlled mode retains its peer-owned PID oracle. This supplies direct runtime
 lifecycle evidence where installed mode previously checked only native children.
+
+The final controlled peer also emits pinned MCP startup-status notices before
+thread/start ACK and before turn/start ACK. Each has the actual active thread,
+bounded synthetic server name, known status and nullable typed error/reason.
+A later failed-status notice carries an excluded synthetic error marker; the
+valid coherent final still selects copied source IDs. This exercises discard
+across the native join without starting any MCP server or granting tool power.
+Require the marker absent from the entire native result and exact durable Review.

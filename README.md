@@ -45,11 +45,12 @@ Codex and hosted model `gpt-6.1-sol`; the panel shows the measured connection
 before Ask is available. Credentials remain with Codex.
 
 The controller and panel passed their direct checks and independent reviews;
-all 69 Rust tests and required basics pass. Final rebuilt controlled native joins
+all 74 Rust tests and required basics pass. Reviewed controlled native joins
 passed Save/reopen, Stop, helper-loss and Quit checks after operator readiness.
-The installed-model task remains pending diagnosis of a runtime task failure;
-see [the agent task experiment](docs/experiments/native-agent-workflow.md).
-No completed live inference is claimed yet.
+The installed Codex 0.160.0 / `gpt-6.1-sol` workflow also passes native proposal,
+Use, Review, Save and SQLite reopen. Intermittent native clock startup failures
+remain unresolved; passing runs do not establish a fix. See
+[the agent task experiment](docs/experiments/native-agent-workflow.md).
 
 Current scope: a dedicated window, macOS first and Linux second. The model reads
 native rendered DOM and proposes work; a separate OS input executor supplies

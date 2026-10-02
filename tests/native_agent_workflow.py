@@ -25,7 +25,7 @@ def zero_rows(data):
         assert db.execute('select count(*) from commits').fetchone() == (0,)
 
 
-def run(data, origin, executable, model, controlled=False, stop=False, control_loss=False, close=False):
+def run(data, origin, executable, model, controlled=False, stop=False, control_loss=False, close=False, clock_observer=False):
     output = data / 'agent.json'
     mode = 'agent-close' if close else 'agent-control-loss' if control_loss else 'agent-stop' if stop else 'agent'
     args = arguments(APP, data, origin) + [f'--bs-smoke-output={output}', f'--bs-table-smoke={mode}',
@@ -37,11 +37,18 @@ def run(data, origin, executable, model, controlled=False, stop=False, control_l
     agent_pids = set()
     missed_process_samples = 0
     next_process_sample = 0
+    observer = None
+    if clock_observer:
+        from clock_startup_observer import ClockStartupObserver
+        observer = ClockStartupObserver(APP, APP.parent / 'bow-shock-controller',
+                                        APP.parent / 'bow_shock_clock_probe', data / 'clock-observation')
     errors = data / 'agent.stderr'
     with errors.open('wb') as stream:
         process = subprocess.Popen(args, stdout=subprocess.DEVNULL, stderr=stream)
         limit = time.monotonic() + 90
         try:
+            if observer:
+                observer.start(process.pid)
             while process.poll() is None and time.monotonic() < limit:
                 if not controlled and time.monotonic() >= next_process_sample:
                     next_process_sample = time.monotonic() + .1
@@ -103,17 +110,22 @@ def run(data, origin, executable, model, controlled=False, stop=False, control_l
                 time.sleep(.01)
             assert process.poll() is not None, 'native tandem acceptance deadline'
         finally:
-            if process.poll() is None:
-                process.terminate()
-                try: process.wait(timeout=5)
-                except subprocess.TimeoutExpired:
-                    process.kill(); process.wait(timeout=5)
-            if not controlled:
-                (data / 'observed-agent-pids.json').write_text(json.dumps({
-                    'pids': sorted(agent_pids), 'missed_samples': missed_process_samples}) + '\n')
+            try:
+                if process.poll() is None:
+                    process.terminate()
+                    try: process.wait(timeout=5)
+                    except subprocess.TimeoutExpired:
+                        process.kill(); process.wait(timeout=5)
+                if not controlled:
+                    (data / 'observed-agent-pids.json').write_text(json.dumps({
+                        'pids': sorted(agent_pids), 'missed_samples': missed_process_samples}) + '\n')
+            finally:
+                if observer:
+                    observer.stop()
     assert process.returncode == 0, errors.read_text(errors='replace')[-5000:]
     result = json.loads(output.read_text())
     assert 'IGNORED_REASONING_MARKER' not in json.dumps(result), 'intermediate reasoning was published'
+    assert 'IGNORED_MCP_MARKER' not in json.dumps(result), 'MCP startup status was published'
     assert result['table_workflow'] == 'pass' and result['table_closed'] and result['cef_shutdown'], result
     for key in ('controller_pid', 'control_pid'):
         try: os.kill(result[key], 0)
@@ -188,11 +200,15 @@ def main():
     parser.add_argument('--stop', action='store_true', help='Controlled actual native Stop after field handoff.')
     parser.add_argument('--control-loss', action='store_true', help='Controlled actual helper death before field handoff.')
     parser.add_argument('--close', action='store_true', help='Controlled actual native Quit before field handoff.')
+    parser.add_argument('--clock-observer', action='store_true',
+                        help='Read-only owned-clock diagnosis during controlled Stop; no runtime deadline changes.')
     options = parser.parse_args()
     if (options.stop or options.control_loss or options.close) and not options.controlled:
         parser.error('--stop/--control-loss/--close requires --controlled.')
     if sum([options.stop, options.control_loss, options.close]) > 1:
         parser.error('Choose one controlled fault per run.')
+    if options.clock_observer and not (options.controlled and options.stop):
+        parser.error('--clock-observer requires --controlled --stop.')
     artifacts = ROOT / 'context/runtime/native-agent-workflow'
     artifacts.mkdir(parents=True, exist_ok=True)
     data = Path(tempfile.mkdtemp(prefix='run-', dir=artifacts))
@@ -210,7 +226,7 @@ def main():
                 (data / 'peer-stop-mode').write_text('hold after actual handoff\n')
             if options.control_loss or options.close:
                 (data / 'peer-control-loss-mode').write_text('hold before actual handoff\n')
-        run(data, f'http://127.0.0.1:{server.server_port}', executable, model, options.controlled, options.stop, options.control_loss, options.close)
+        run(data, f'http://127.0.0.1:{server.server_port}', executable, model, options.controlled, options.stop, options.control_loss, options.close, options.clock_observer)
     finally:
         server.shutdown(); server.server_close()
 
