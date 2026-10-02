@@ -2,6 +2,22 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Trusted startup selection. No credentials or page-controlled configuration.
+@interface BSAgentConfiguration : NSObject
+@property(nonatomic, readonly) NSURL* executableURL;
+@property(nonatomic, readonly) NSURL* workingDirectoryURL;
+@property(nonatomic, readonly) NSURL* userHomeURL;
+@property(nonatomic, readonly) NSURL* codexHomeURL;
+@property(nonatomic, readonly) NSString* model;
+@property(nonatomic, readonly, nullable) NSString* expectedAccountID;
+- (instancetype)initWithExecutableURL:(NSURL*)executableURL
+    workingDirectoryURL:(NSURL*)workingDirectoryURL userHomeURL:(NSURL*)userHomeURL
+    codexHomeURL:(NSURL*)codexHomeURL model:(NSString*)model
+    expectedAccountID:(NSString* _Nullable)expectedAccountID NS_DESIGNATED_INITIALIZER;
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
+@end
+
 /// Closed trusted-parent table service link. No generic RPC, model or input power.
 @interface BSTableConnection : NSObject
 @property(nonatomic, readonly) NSString* runId;
@@ -18,7 +34,11 @@ NS_ASSUME_NONNULL_BEGIN
 #endif
 - (instancetype)initWithExecutableURL:(NSURL*)executableURL
     databaseURL:(NSURL*)databaseURL clockProbeURL:(NSURL*)clockProbeURL
-    ownedOrigin:(NSString*)ownedOrigin NS_DESIGNATED_INITIALIZER;
+    ownedOrigin:(NSString*)ownedOrigin;
+- (instancetype)initWithExecutableURL:(NSURL*)executableURL
+    databaseURL:(NSURL*)databaseURL clockProbeURL:(NSURL*)clockProbeURL
+    ownedOrigin:(NSString*)ownedOrigin agentConfiguration:(BSAgentConfiguration* _Nullable)agentConfiguration
+    NS_DESIGNATED_INITIALIZER;
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)new NS_UNAVAILABLE;
 /// Initializes only. Caller polls status until Ready, then explicitly scopes.

@@ -11,6 +11,21 @@
 #include <sys/wait.h>
 #include <unistd.h>
 #include <initializer_list>
+#include <vector>
+
+@implementation BSAgentConfiguration
+- (instancetype)initWithExecutableURL:(NSURL*)executable workingDirectoryURL:(NSURL*)working
+    userHomeURL:(NSURL*)userHome codexHomeURL:(NSURL*)codexHome model:(NSString*)model
+    expectedAccountID:(NSString*)account {
+  self = [super init];
+  if (self) {
+    _executableURL = [executable copy]; _workingDirectoryURL = [working copy];
+    _userHomeURL = [userHome copy]; _codexHomeURL = [codexHome copy];
+    _model = [model copy]; _expectedAccountID = [account copy];
+  }
+  return self;
+}
+@end
 
 namespace {
 double Now() {
@@ -52,7 +67,8 @@ void TerminateAndReap(pid_t& pid) {
     poll(nullptr, 0, 20);
   }
 }
-bool Launch(NSString* path, NSString* database, NSString* clock, NSString* origin, int& input, int& output, pid_t& pid) {
+bool Launch(NSString* path, NSString* database, NSString* clock, NSString* origin,
+    BSAgentConfiguration* agent, int& input, int& output, pid_t& pid) {
   int toChild[2] = {-1, -1}, fromChild[2] = {-1, -1}, stderrCopy = -1;
   bool success = false, haveActions = false, haveAttributes = false;
   posix_spawn_file_actions_t actions;
@@ -82,13 +98,21 @@ bool Launch(NSString* path, NSString* database, NSString* clock, NSString* origi
       if (posix_spawn_file_actions_addclose(&actions, fd) != 0) closed = false;
     if (!closed) break;
     const char* executable = path.fileSystemRepresentation;
-    char* argv[] = {const_cast<char*>(executable), const_cast<char*>("--table-db"),
-        const_cast<char*>(database.fileSystemRepresentation), const_cast<char*>("--clock-probe"),
-        const_cast<char*>(clock.fileSystemRepresentation), const_cast<char*>("--owned-origin"),
-        const_cast<char*>(origin.UTF8String), nullptr};
+    NSMutableArray<NSString*>* arguments = [@[@"--table-db", database, @"--clock-probe", clock,
+        @"--owned-origin", origin] mutableCopy];
+    if (agent) {
+      [arguments addObjectsFromArray:@[@"--agent-executable", agent.executableURL.path,
+          @"--agent-cwd", agent.workingDirectoryURL.path, @"--agent-user-home", agent.userHomeURL.path,
+          @"--agent-home", agent.codexHomeURL.path, @"--agent-model", agent.model,
+          @"--agent-provider", @"openai"]];
+      if (agent.expectedAccountID) [arguments addObjectsFromArray:@[@"--agent-account", agent.expectedAccountID]];
+    }
+    std::vector<char*> argv{const_cast<char*>(executable)};
+    for (NSString* argument in arguments) argv.push_back(const_cast<char*>(argument.UTF8String));
+    argv.push_back(nullptr);
     char lang[] = "LANG=en_US.UTF-8";
     char* environment[] = {lang, nullptr};
-    if (posix_spawn(&pid, executable, &actions, &attributes, argv, environment) != 0) break;
+    if (posix_spawn(&pid, executable, &actions, &attributes, argv.data(), environment) != 0) break;
     input = toChild[1]; toChild[1] = -1;
     output = fromChild[0]; fromChild[0] = -1;
     success = true;
@@ -273,6 +297,7 @@ NSDictionary* Decode(NSData* bytes, BSTablePending* pending, NSString* run, uint
   NSURL* _databaseURL;
   NSURL* _clockProbeURL;
   NSString* _origin;
+  BSAgentConfiguration* _agentConfiguration;
   NSLock* _lock;
   dispatch_queue_t _worker;
   dispatch_group_t _finished;
@@ -285,9 +310,15 @@ NSDictionary* Decode(NSData* bytes, BSTablePending* pending, NSString* run, uint
 }
 - (instancetype)initWithExecutableURL:(NSURL*)url databaseURL:(NSURL*)database
     clockProbeURL:(NSURL*)clock ownedOrigin:(NSString*)origin {
+  return [self initWithExecutableURL:url databaseURL:database clockProbeURL:clock
+      ownedOrigin:origin agentConfiguration:nil];
+}
+- (instancetype)initWithExecutableURL:(NSURL*)url databaseURL:(NSURL*)database
+    clockProbeURL:(NSURL*)clock ownedOrigin:(NSString*)origin agentConfiguration:(BSAgentConfiguration*)agent {
   self = [super init];
   if (self) {
     _executableURL = [url copy]; _databaseURL = [database copy]; _clockProbeURL = [clock copy]; _origin = [origin copy];
+    _agentConfiguration = agent;
     _runId = NSUUID.UUID.UUIDString; _pid = -1; _lock = [NSLock new];
     _worker = dispatch_queue_create("dev.bowshock.table-io", DISPATCH_QUEUE_SERIAL); _finished = dispatch_group_create();
   }
@@ -340,6 +371,13 @@ NSDictionary* Decode(NSData* bytes, BSTablePending* pending, NSString* run, uint
 - (void)startWithCompletion:(void (^)(NSDictionary*))completion {
   BOOL paths = _executableURL.isFileURL && _databaseURL.isFileURL && _clockProbeURL.isFileURL &&
       _executableURL.path.isAbsolutePath && _databaseURL.path.isAbsolutePath && _clockProbeURL.path.isAbsolutePath && Identity(_origin);
+  if (_agentConfiguration) {
+    for (NSURL* url in @[_agentConfiguration.executableURL, _agentConfiguration.workingDirectoryURL,
+        _agentConfiguration.userHomeURL, _agentConfiguration.codexHomeURL])
+      paths = paths && url.isFileURL && url.path.isAbsolutePath && Identity(url.path, 8192);
+    paths = paths && Identity(_agentConfiguration.model) &&
+        (!_agentConfiguration.expectedAccountID || Identity(_agentConfiguration.expectedAccountID));
+  }
   [self admit:@"initialize" fields:@{@"run_id": _runId} valid:paths completion:completion];
 }
 - (void)scopeOrigin:(NSString*)origin completion:(void (^)(NSDictionary*))completion { [self admit:@"table_scope" fields:@{@"origin": origin ?: @""} valid:[origin isEqual:_origin] completion:completion]; }
@@ -406,7 +444,8 @@ NSDictionary* Decode(NSData* bytes, BSTablePending* pending, NSString* run, uint
   [_lock lock]; BOOL expiredStart = _invalid || (_ordinary && Now() >= _ordinary.deadline); [_lock unlock];
   if (expiredStart) { [self disconnect]; return; }
   int input = -1, output = -1; pid_t pid = -1;
-  if (!Launch(_executableURL.path, _databaseURL.path, _clockProbeURL.path, _origin, input, output, pid)) { [self disconnect]; return; }
+  if (!Launch(_executableURL.path, _databaseURL.path, _clockProbeURL.path, _origin,
+      _agentConfiguration, input, output, pid)) { [self disconnect]; return; }
   [_lock lock]; _pid = pid; [_lock unlock];
   BSTablePending* writing = nil; NSUInteger offset = 0;
   NSMutableData* frame = [NSMutableData dataWithCapacity:65536];
