@@ -5,6 +5,12 @@ including its [16 integrated tribunal dispositions](../../papers/design-tribunal
 It is a proposed execution sequence, not evidence of a working browser. Plan
 review is recorded in [the plan tribunal](../../papers/plan-tribunal.md).
 
+The operator's subsequent [Rust-basics direction](rust-basics.md) establishes
+the pinned hygiene/test/dependency gates and defers deterministic simulation,
+mutation runs and heavier proof/model-checking tools for the POC. Direct failure
+tests and independent review remain required. The first implemented unit is
+bounded controller pipe framing; native runtime capabilities remain unearned.
+
 The first useful outcome is a dedicated macOS window that the person can browse
 normally, inspect through native observations, and use to review a small grounded
 table. Native feasibility experiments run alongside that path. Automation is
@@ -21,7 +27,7 @@ native agent collaboration and learned page patterns in scope.
 | Network | [Capture, workbench, external environment and baselines](network-roadmap.md) |
 | Agent and extraction | [Provider bridge, grounded fields and tandem task](agent-and-extraction.md) |
 
-One owner integrates the host authority across powers; no lane implements a
+One owner integrates the controller authority across powers; no lane implements a
 second grant manager. Independent native/data/endpoint oracles attack different
 fault classes. A conceptual task owns its red oracle, implementation, green
 results and code review. Integration starts when usable contracts exist, not
@@ -38,7 +44,7 @@ basis; reference acquisition has not adopted anything.
 | --- | --- | --- |
 | Matching stable macOS ARM64 CEF standard distribution | Browser runtime, native local inspector and first diagnostic HTTP adapter | Acquire from the upstream-linked build service with its matching headers/wrapper/framework/helpers; exact tuple and supported API belong in a tracked runtime manifest. Qt WebEngine is a separately reviewed fallback if the CEF viability gate fails. |
 | Installed Clang/CMake and AppKit/Quartz | Small Objective-C++ engine shell/native input helper and normal macOS controls | Start from studied packaging patterns; no copied reference app or broad automation framework. Swift is available but an extra helper language is unnecessary initially. |
-| Rust host plus serde/serde_json | Typed authority, bounded native/agent IPC and evidence coordination | Explicitly sized JSONL envelopes initially, no generic RPC forwarder or async-framework dependency by default. Closed payloads, bounded queues and generation identity are part of admission. |
+| Rust controller plus serde/serde_json | Typed authority, bounded native/agent IPC and evidence coordination | Explicitly sized JSONL envelopes initially, no generic RPC forwarder or async-framework dependency by default. Closed payloads, bounded queues and generation identity are part of admission. |
 | SQLite through a narrow Rust adapter such as rusqlite | Real evidence/row transactions and lifecycle reconciliation | Proposed bundled matching SQLite for reproducible semantics, subject to adoption; system SQLite is a separately recorded alternative. SQL schemas and transactions are application-owned. |
 | Installed Codex App Server | Trusted coding-agent conversation over owned stdio | Start with the inspected 0.160.0 schema, verify version/capabilities at connection; no SDK or generic command exposure. It remains a trusted peer when it has ambient shell. |
 | Existing workspace Jev tool | Small nonprivate advisory evaluation before any product SDK choice | Do not copy parent credentials. Product inference transport/provider and local inference runtime remain separate adoption decisions. |
@@ -108,7 +114,7 @@ requiring the whole evidence subsystem before independent Stop tests.
 ```mermaid
 flowchart LR
     P0[Plan review / adoption discussion] --> P1[Native window and feasibility]
-    P0 --> Core[Minimal transition model]
+    P0 --> Core[Explicit authority transition traces]
     P1 --> P2[Authority + actual evidence slice]
     Core --> P2
     P2 --> P3[Human grounded table]
@@ -177,6 +183,11 @@ native gates trigger a concrete adapter/topology/criteria sub-plan and review,
 or an explicit operator-reviewed scope amendment. An unresolved deployment
 decision or honest unsupported matrix cannot satisfy this full-scope join.
 
+Following the operator's Rust-basics direction, deterministic simulation and
+mutation runs are deferred for the current POC. Use explicit expected transition
+traces and actual adapter/store/transport outcomes for each construction unit.
+The following deeper methods remain future escalation guidance:
+
 Use one small executable authority/lifecycle model where transitions have a
 useful reference interpretation. Enumerate/reorder actual failure events and
 compare production admission state; do not build a general simulator or formal
@@ -210,7 +221,7 @@ scope, without production payments or repeated irreversible fixture actions.
 ## Decisions exposed to the operator
 
 Recommended first adoption is the matched CEF/AppKit/CMake runtime plus the
-small Rust/JSON/SQLite host boundary. No browser binding framework, automation
+small Rust/JSON/SQLite controller boundary. No browser binding framework, automation
 framework, TLS interception CA, system packet filter, model SDK or VM is bundled
 into that decision. Codex initially remains a trusted coding peer; an inference-
 only provider can serve the constrained browser role. A local-only provider

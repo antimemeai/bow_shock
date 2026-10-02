@@ -1,0 +1,31 @@
+name: Rust basics
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  basics:
+    name: Rust / ${{ matrix.runner }}
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [macos-15, ubuntu-24.04, ubuntu-24.04-arm]
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+      - name: Install the repository toolchain
+        run: |
+          rustup show active-toolchain
+          rustc --version
+      - name: Install pinned developer tools
+        run: scripts/rigor install-tools
+      - name: Check Rust basics
+        run: scripts/rigor

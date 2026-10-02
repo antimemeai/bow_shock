@@ -7,6 +7,10 @@ and [evidence/table contract](../design/evidence-and-tables.md), including
 [tribunal](../../papers/design-tribunal.md) AD-1 through AD-5, NE-2, NE-4 and
 BR-01. The native and bridge lanes own their actual platform/transport adapters.
 This document plans future work; it adds no implementation or dependency.
+The subsequent [operator direction](rust-basics.md) defers deterministic
+simulation, mutation runs and heavier verification for the POC. Keep explicit
+specification-derived admission traces and real DB/transport failure tests;
+the simulator/model escalation below is future work, not a POC prerequisite.
 
 ## Build a useful slice before a framework
 
@@ -26,7 +30,9 @@ event, durable transaction or confirmed server effect.
 
 ## The smallest executable contract
 
-Before production code in this lane, write a small, executable transition model
+For the basic POC, begin with explicit expected transition traces; the executable
+model and deterministic scheduler described here are deferred. On escalation,
+write a small, executable transition model
 for the reviewed semantic records. Keep it independent of the host's reducer,
 IPC codecs and SQL implementation: a straightforward state table with explicit
 transitions and expected observations is enough. Use the repository's existing
@@ -74,8 +80,8 @@ oracle for a behavior, replace that part with the simpler oracle.
 
 | Task | Build/artifact | Dependency | Exit and direct evidence |
 | --- | --- | --- | --- |
-| A1: transition contract | Executable state model plus the small fault traces below | Reviewed plan; chosen implementation tools after operator dependency discussion | The model rejects the original tribunal counterexamples; admitted-before-revoke and unrelated-power survival have explicit allowed outcomes |
-| A2: local authority | One owner, identity/generation checks, reservations, per-power cause matrix and finite deadlines | A1 | Production transition traces agree with the independent model; repeated IDs return known results; stale/opaque origins cannot acquire authority |
+| A1: transition contract | Explicit specification-derived fault traces below; executable model deferred for the basic POC | Reviewed plan; chosen implementation tools after operator dependency discussion | Expected traces reject the original tribunal counterexamples; admitted-before-revoke and unrelated-power survival have explicit allowed outcomes |
+| A2: local authority | One owner, identity/generation checks, reservations, per-power cause matrix and finite deadlines | A1 | Production transitions match explicit expected traces; repeated IDs return known results; stale/opaque origins cannot acquire authority |
 | A3: exact table transaction | Staging/approval content versions, immutable CommitId, admission handshake and atomic rows + commit-result record | A2; native snapshot fixture; selected SQLite integration | Real database contains exactly the reviewed batch or zero rows; lost reply reconciles the actual hash/version; changed approval cannot obtain success for an old commit |
 | A4: lifecycle and recovery | Policy lineage, access fences, durable deletion intent, affected-writer tracking, startup reconciliation and bounded cleanup | A3; real blob storage only if this slice uses blobs | A controlled marker cannot become usable after expiry or reappear after completed deletion; paused writer/crash traces inspect actual tables/blobs/writer inputs |
 | A5: native effect admissions | Add input, workbench, environment and export adapters one vertical slice at a time | A2/A4; each adapter's measured capability contract | Fake-IPC tests establish ordering; real receiver/server/resource/outbound-payload oracles separately establish actual adapter effects |
@@ -202,7 +208,8 @@ merely assert that a mocked “permission checked” function was called.
 | Disk full during reservation/result/gap persistence | Effect requiring durable evidence starts or appears successful without that evidence | New dependent effects unavailable; capture unhealthy/gap visible; no invented durable commit; ordinary human browsing remains possible |
 | Save/promote under restrictive parent, then close session | Save extends forbidden expiry or expired evidence becomes an empty/valid field | Disallowed retention transition rejected; authorized survivors and unavailable dependencies match actual managed artifacts |
 
-Run a deterministic schedule simulator for admission/IPC/writer races, process
+On escalation beyond the current POC, run a deterministic schedule simulator
+for admission/IPC/writer races. For the POC, retain process
 kill/restart against the real DB, and real native/server integration tests for
 effects outside the simulator. These attack different fault classes. Reusing
 the production transition function as the simulator's expected result would

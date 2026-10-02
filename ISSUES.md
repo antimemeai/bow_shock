@@ -24,6 +24,11 @@ Seven distinct plan findings were integrated and rechecked. Concrete dependency
 proposals are ready for discussion; native capability experiments still follow.
 Written contracts do not close empirical issues.
 
+Implementation has begun with the bounded Rust controller-link framing unit
+and the [basic rigor stack](docs/plan/rust-basics.md). The operator explicitly
+defers detsim, mutation runs and heavier tiers for the POC. Rust local checks
+and independent code review follow each unit; actual CEF/runtime gates are open.
+
 Provider-neutral local/hosted inference and page comparison/table extraction
 are working assumptions pending optional operator preferences. The dedicated
 window and platform order are operator decisions.

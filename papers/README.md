@@ -20,6 +20,7 @@ Start with [the synthesis](../docs/research-synthesis.md), then:
 - [Learned rendered-DOM extraction](dom-to-tables.md).
 - [Design tribunal and integrated dispositions](design-tribunal.md).
 - [Implementation-plan tribunal and dispositions](plan-tribunal.md).
+- [First Rust foundation code review](rust-basics-code-review.md).
 
 The resulting [design specifications](../docs/design/README.md) live in `docs/design/`.
 Independent design reviews and their integrated research conclusions stay here.

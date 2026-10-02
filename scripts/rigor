@@ -1,0 +1,49 @@
+#!/usr/bin/env python3
+"""Run the POC's basic Rust checks; no optional verification tiers."""
+
+import argparse
+from pathlib import Path
+import subprocess
+import tomllib
+
+ROOT = Path(__file__).resolve().parent.parent
+
+
+def run(command):
+    if command[0] == "cargo":
+        channel = tomllib.loads((ROOT / "rust-toolchain.toml").read_text())["toolchain"]["channel"]
+        command = ["cargo", f"+{channel}", *command[1:]]
+    print("+ " + " ".join(command), flush=True)
+    subprocess.run(command, cwd=ROOT, check=True)
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("mode", nargs="?", choices=["check", "install-tools"], default="check")
+    args = parser.parse_args()
+    tools = tomllib.loads((ROOT / "rust-tools.toml").read_text())["tools"]
+    if args.mode == "install-tools":
+        for name, version in tools.items():
+            run(["cargo", "install", "--locked", "--version", version, name])
+        return
+    for name, version in tools.items():
+        try:
+            actual = subprocess.check_output([name, "--version"], cwd=ROOT, text=True).split()
+        except FileNotFoundError:
+            raise SystemExit(f"{name} {version} required; run scripts/rigor install-tools") from None
+        if len(actual) < 2 or actual[1] != version:
+            raise SystemExit(f"{name} {version} required; run scripts/rigor install-tools")
+    commands = [
+        ["cargo", "fmt", "--all", "--check"],
+        ["cargo", "clippy", "--workspace", "--all-targets", "--all-features", "--locked", "--", "-D", "warnings"],
+        ["cargo", "nextest", "run", "--workspace", "--all-features", "--locked", "--profile", "ci"],
+        ["cargo", "test", "--workspace", "--all-features", "--locked", "--doc"],
+        ["cargo", "deny", "--locked", "check"],
+        ["cargo", "build", "--workspace", "--all-features", "--locked", "--release"],
+    ]
+    for command in commands:
+        run(command)
+
+
+if __name__ == "__main__":
+    main()

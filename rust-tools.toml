@@ -1,0 +1,4 @@
+# Developer tools, not controller runtime dependencies.
+[tools]
+cargo-nextest = "0.9.137"
+cargo-deny = "0.20.2"

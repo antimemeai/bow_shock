@@ -5,9 +5,10 @@ browsing session, with deliberate limits on what the agent can do and a native
 connection to an agent runtime such as Codex.
 
 This repository has progressed from research through [reviewed design](docs/design/README.md)
-to [the reviewed implementation plan](docs/plan/README.md). Windowed CEF is the
-working engine proposal; there is no browser implementation or adopted engine
-dependency yet.
+to [the reviewed implementation plan](docs/plan/README.md). The first Rust unit
+implements bounded controller pipe framing with the [basic rigor checks](docs/plan/rust-basics.md).
+Windowed CEF remains the working engine proposal; there is no browser window or
+adopted engine dependency yet.
 
 Current scope: a dedicated window, macOS first and Linux second. The model reads
 native rendered DOM and proposes work; a separate OS input executor supplies
@@ -26,6 +27,15 @@ to the agent, and how the person takes control back. Engine embedding,
 observation, actuation, and agent conversation are distinct decisions.
 
 ## Local setup
+
+For the Rust POC foundation, the repository pins Rust 1.94.1 and its components.
+Use `scripts/rigor` for formatting, Clippy, nextest, doctests, dependency policy
+and release compilation. If the pinned developer tools are absent, install them
+with `scripts/rigor install-tools`. The workflow repeats these checks on macOS
+ARM64 and Linux x86_64/ARM64; only the local macOS run has been executed so far.
+The portable transport module does not yet connect an app or admit commands.
+Deterministic simulation, mutation runs and heavier verification tiers are
+deferred by operator direction; see [implemented invariants](docs/INVARIANTS.md).
 
 Python 3.13+ and Git suffice for the research utilities; no package installation
 is needed. `pdftotext` is optional for reading downloaded papers. Source archives,
