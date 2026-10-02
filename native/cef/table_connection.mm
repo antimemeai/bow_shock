@@ -171,6 +171,33 @@ BOOL CurrentGuard(id guard) {
   return witness && [witness[@"boot_id"] isEqual:guard[@"boot_id"]] &&
       [witness[@"continuous_ns"] unsignedLongLongValue] < [guard[@"valid_until_ns"] unsignedLongLongValue];
 }
+BOOL CandidateIDs(id value) {
+  if (![value isKindOfClass:NSArray.class] || [value count] == 0 || [value count] > 12) return NO;
+  NSMutableSet* seen = [NSMutableSet set];
+  for (id token in value) {
+    if (!Text(token, 4) || [token length] != 4 || [token characterAtIndex:0] != 'r' ||
+        [token characterAtIndex:1] < '0' || [token characterAtIndex:1] > '1' ||
+        [token characterAtIndex:2] != 'f' || [token characterAtIndex:3] < '0' ||
+        [token characterAtIndex:3] > '5' || [seen containsObject:token]) return NO;
+    [seen addObject:token];
+  }
+  return YES;
+}
+BOOL AgentDescriptor(id value) {
+  return Keys(value, @[@"runtime", @"version", @"role", @"placement", @"model", @"provider", @"account_ref", @"account_type",
+      @"protocol_version", @"account_verification", @"structured_output", @"history", @"steer", @"cancellation"]) &&
+      [value[@"runtime"] isEqual:@"codex"] && [value[@"version"] isEqual:@"0.160.0"] &&
+      [value[@"role"] isEqual:@"trusted_coding_peer"] && [value[@"placement"] isEqual:@"hosted"] &&
+      [value[@"provider"] isEqual:@"openai"] && [value[@"account_type"] isEqual:@"chatgpt"] &&
+      UInt(value[@"protocol_version"]) && [value[@"protocol_version"] unsignedLongLongValue] == 1 &&
+      [value[@"account_verification"] isEqual:@"measured_backend_reference"] &&
+      [value[@"structured_output"] isEqual:@"unverified"] && [value[@"history"] isEqual:@"fresh_only"] &&
+      [value[@"steer"] isEqual:@"unsupported"] && [value[@"cancellation"] isEqual:@"host_retirement_and_owned_child_kill"] &&
+      Identity(value[@"model"]) && Identity(value[@"account_ref"]);
+}
+BOOL ExportDisposition(id value) {
+  return [@[@"not_transmitted", @"transport_handoff_started", @"partially_transmitted", @"provider_retained_unknown"] containsObject:value];
+}
 BOOL Batch(id batch, BOOL native) {
   if (!Keys(batch, @[@"schema_version", @"pattern_version", @"partial", @"rows"]) ||
       !Identity(batch[@"schema_version"]) || !Identity(batch[@"pattern_version"]) || !Boolean(batch[@"partial"]) ||
@@ -246,7 +273,7 @@ NSDictionary* Decode(NSData* bytes, BSTablePending* pending, NSString* run, uint
   NSDictionary* reply = [NSJSONSerialization JSONObjectWithData:bytes options:0 error:nil];
   uint64_t got = 0;
   if (!Keys(reply, @[@"version", @"op", @"run_id", @"stop_generation"],
-      @[@"id", @"active_powers", @"staging_id", @"review", @"publication_guard", @"approval_id", @"commit_id", @"health", @"state", @"commit_ids", @"batch", @"code"]) ||
+      @[@"id", @"active_powers", @"staging_id", @"review", @"publication_guard", @"approval_id", @"commit_id", @"health", @"state", @"commit_ids", @"batch", @"code", @"descriptor", @"task_id", @"candidate_ids", @"export_disposition", @"proposal"]) ||
       !UInt(reply[@"version"]) || [reply[@"version"] unsignedLongLongValue] != 1 || ![reply[@"run_id"] isEqual:run] ||
       !UInt(reply[@"stop_generation"], &got) || got > ceiling) return nil;
   NSString* request = pending.request[@"op"];
@@ -263,9 +290,47 @@ NSDictionary* Decode(NSData* bytes, BSTablePending* pending, NSString* run, uint
     return [bytes isEqual:canonical] ? reply : nil;
   }
   NSArray* extras = nil;
+  BOOL agentRequest = [@[@"agent_metadata", @"agent_start", @"agent_status", @"agent_cancel"] containsObject:request];
   if ([op isEqual:@"table_error"]) {
     extras = @[@"code"];
     if (![@[@"table_rejected", @"not_ready", @"stopped", @"publication_unavailable"] containsObject:reply[@"code"]]) return nil;
+  } else if ([op isEqual:@"agent_error"] && agentRequest) {
+    extras = @[@"code"];
+    if (![@[@"agent_rejected", @"unknown_task"] containsObject:reply[@"code"]]) return nil;
+  } else if (agentRequest) {
+    NSDictionary* operations = @{@"agent_metadata": @"agent_metadata", @"agent_start": @"agent_started", @"agent_status": @"agent_status", @"agent_cancel": @"agent_canceled"};
+    if (![op isEqual:operations[request]]) return nil;
+    if ([op isEqual:@"agent_metadata"]) {
+      extras = @[@"state", @"descriptor"];
+      if (![@[@"opening", @"ready", @"unavailable"] containsObject:reply[@"state"]]) return nil;
+      if ([reply[@"state"] isEqual:@"ready"] ? !AgentDescriptor(reply[@"descriptor"]) : reply[@"descriptor"] != NSNull.null) return nil;
+    } else if ([op isEqual:@"agent_started"]) {
+      extras = @[@"task_id", @"publication_guard", @"candidate_ids"];
+      id guard = reply[@"publication_guard"];
+      if (!Identity(reply[@"task_id"]) || !CandidateIDs(reply[@"candidate_ids"]) ||
+          ![reply[@"candidate_ids"] isEqual:pending.request[@"candidate_ids"]] || !Guard(guard) ||
+          !Guard(pending.approvalGuard) || ![guard[@"boot_id"] isEqual:pending.approvalGuard[@"boot_id"]] ||
+          [guard[@"valid_until_ns"] unsignedLongLongValue] > [pending.approvalGuard[@"valid_until_ns"] unsignedLongLongValue]) return nil;
+    } else if ([op isEqual:@"agent_canceled"]) {
+      extras = @[@"task_id", @"export_disposition"];
+      if (!Identity(reply[@"task_id"]) || ![reply[@"task_id"] isEqual:pending.request[@"task_id"]] || !ExportDisposition(reply[@"export_disposition"])) return nil;
+    } else {
+      extras = @[@"task_id", @"state", @"export_disposition", @"publication_guard", @"proposal", @"code"];
+      id task = reply[@"task_id"], state = reply[@"state"], proposal = reply[@"proposal"], guard = reply[@"publication_guard"], code = reply[@"code"];
+      BOOL idle = [state isEqual:@"idle"], candidate = [state isEqual:@"candidate"], data = candidate || [state isEqual:@"no_match"];
+      if (![@[@"idle", @"running", @"candidate", @"no_match", @"canceled", @"expired", @"failed"] containsObject:state] ||
+          (idle ? task != NSNull.null : !Identity(task)) || !ExportDisposition(reply[@"export_disposition"]) ||
+          (pending.request[@"task_id"] != NSNull.null && ![task isEqual:pending.request[@"task_id"]]) ||
+          (data ? !Guard(guard) : guard != NSNull.null) ||
+          ([state isEqual:@"failed"] ? ![code isEqual:@"provider_unavailable"] : code != NSNull.null)) return nil;
+      if (candidate) {
+        if (!Keys(proposal, @[@"candidate_ids", @"batch", @"explanation"]) || !CandidateIDs(proposal[@"candidate_ids"]) ||
+            !Batch(proposal[@"batch"], YES) || ![proposal[@"batch"][@"partial"] boolValue] || !Text(proposal[@"explanation"], 2048, YES)) return nil;
+        NSUInteger count = 0;
+        for (id row in proposal[@"batch"][@"rows"]) count += [row[@"fields"] count];
+        if (count != [proposal[@"candidate_ids"] count]) return nil;
+      } else if (proposal != NSNull.null) return nil;
+    }
   } else {
     NSDictionary* operations = @{@"table_scope": @"table_scoped", @"table_stage": @"table_staged", @"table_revise": @"table_revised", @"table_review": @"table_reviewed", @"table_approve": @"table_approved", @"table_commit": @"table_committed", @"table_status": @"table_status", @"table_list": @"table_listed", @"table_read": @"table_read", @"table_delete": @"table_deleted", @"table_close": @"table_closed"};
     if (![op isEqual:operations[request]]) return nil;
@@ -390,6 +455,13 @@ NSDictionary* Decode(NSData* bytes, BSTablePending* pending, NSString* run, uint
 - (void)listWithCompletion:(void (^)(NSDictionary*))completion { [self admit:@"table_list" fields:@{} valid:YES completion:completion]; }
 - (void)readCommit:(NSString*)commit completion:(void (^)(NSDictionary*))completion { [self admit:@"table_read" fields:@{@"commit_id": commit ?: @""} valid:Identity(commit) completion:completion]; }
 - (void)deleteCommit:(NSString*)commit completion:(void (^)(NSDictionary*))completion { [self admit:@"table_delete" fields:@{@"commit_id": commit ?: @""} valid:Identity(commit) completion:completion]; }
+- (void)agentMetadataWithCompletion:(void (^)(NSDictionary*))completion { [self admit:@"agent_metadata" fields:@{} valid:YES completion:completion]; }
+- (void)startAgentReview:(NSDictionary*)review candidateIDs:(NSArray<NSString*>*)ids objective:(NSString*)objective ttlMs:(uint64_t)ttl publicationGuard:(NSDictionary*)guard completion:(void (^)(NSDictionary*))completion {
+  [self admit:@"agent_start" fields:@{@"review": review ?: @{}, @"candidate_ids": ids ?: @[], @"objective": objective ?: @"", @"ttl_ms": @(ttl)}
+      valid:_agentConfiguration && Review(review) && CandidateIDs(ids) && Text(objective, 2048) && ttl > 0 && ttl <= 60000 && CurrentGuard(guard) guard:guard completion:completion];
+}
+- (void)statusAgent:(NSString*)task completion:(void (^)(NSDictionary*))completion { [self admit:@"agent_status" fields:@{@"task_id": task ?: NSNull.null} valid:!task || Identity(task) completion:completion]; }
+- (void)cancelAgent:(NSString*)task completion:(void (^)(NSDictionary*))completion { [self admit:@"agent_cancel" fields:@{@"task_id": task ?: @""} valid:Identity(task) completion:completion]; }
 - (void)closeWithCompletion:(void (^)(NSDictionary*))completion { [self admit:@"table_close" fields:@{} valid:YES completion:completion]; }
 - (void)pingWithCompletion:(void (^)(NSDictionary*))completion { [self admit:@"ping" fields:@{} valid:YES completion:completion]; }
 - (void)stopAllWithCompletion:(void (^)(NSDictionary*))completion { [self admit:@"stop_all" fields:@{} valid:YES completion:completion]; }
@@ -416,7 +488,7 @@ NSDictionary* Decode(NSData* bytes, BSTablePending* pending, NSString* run, uint
     if (invalid && !lifecycle) result = [self withheld:pending reason:@"disconnected" reply:reply];
     else if (!lifecycle && [reply[@"stop_generation"] unsignedLongLongValue] != generation)
       result = [self withheld:pending reason:@"stopped" reply:reply];
-    else if (reply[@"publication_guard"] && !CurrentGuard(reply[@"publication_guard"]))
+    else if (reply[@"publication_guard"] && reply[@"publication_guard"] != NSNull.null && !CurrentGuard(reply[@"publication_guard"]))
       result = [self withheld:pending reason:@"stale_guard" reply:reply];
     pending.completion(result);
   });
@@ -498,7 +570,7 @@ NSDictionary* Decode(NSData* bytes, BSTablePending* pending, NSString* run, uint
             }
             if (failed || !matched || Now() >= matched.deadline) { failed = YES; break; }
             NSDictionary* published = reply;
-            if (reply[@"publication_guard"] && !CurrentGuard(reply[@"publication_guard"]))
+            if (reply[@"publication_guard"] && reply[@"publication_guard"] != NSNull.null && !CurrentGuard(reply[@"publication_guard"]))
               published = [self withheld:matched reason:@"stale_guard" reply:reply];
             if (![self deliver:matched reply:published]) { failed = YES; break; }
             shutdown = [reply[@"op"] isEqual:@"shutdown"];

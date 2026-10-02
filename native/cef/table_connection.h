@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)new NS_UNAVAILABLE;
 @end
 
-/// Closed trusted-parent table service link. No generic RPC, model or input power.
+/// Closed trusted-parent table and proposal link. No generic RPC or input power.
 @interface BSTableConnection : NSObject
 @property(nonatomic, readonly) NSString* runId;
 /// Thread-safe, short-lock getter; cleared by worker before UI disconnection.
@@ -57,6 +57,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)listWithCompletion:(void (^)(NSDictionary* _Nullable))completion;
 - (void)readCommit:(NSString*)commitID completion:(void (^)(NSDictionary* _Nullable))completion;
 - (void)deleteCommit:(NSString*)commitID completion:(void (^)(NSDictionary* _Nullable))completion;
+/// Metadata is cached by the controller; no page or credential export.
+- (void)agentMetadataWithCompletion:(void (^)(NSDictionary* _Nullable))completion;
+/// Explicitly selected field IDs from this exact, still-current Review only.
+- (void)startAgentReview:(NSDictionary*)review candidateIDs:(NSArray<NSString*>*)candidateIDs
+    objective:(NSString*)objective ttlMs:(uint64_t)ttlMs publicationGuard:(NSDictionary*)guard
+    completion:(void (^)(NSDictionary* _Nullable))completion;
+- (void)statusAgent:(NSString* _Nullable)taskID completion:(void (^)(NSDictionary* _Nullable))completion;
+- (void)cancelAgent:(NSString*)taskID completion:(void (^)(NSDictionary* _Nullable))completion;
 - (void)closeWithCompletion:(void (^)(NSDictionary* _Nullable))completion;
 - (void)pingWithCompletion:(void (^)(NSDictionary* _Nullable))completion;
 /// One urgent slot may coexist with one ordinary table operation.

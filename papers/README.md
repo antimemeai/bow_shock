@@ -12,6 +12,7 @@ Start with [the synthesis](../docs/research-synthesis.md), then:
 - [Agent connections and automation plumbing](agent-connections.md).
 - [Installed Codex 0.160.0 protocol/configuration preflight](codex-0.160.0-preflight.md).
 - [Native trusted agent startup configuration review](native-agent-configuration-code-review.md).
+- [Closed native proposal connection review](native-agent-connection-code-review.md).
 - [End-user browser automation predecessors](browser-predecessors.md).
 - [Native DOM and runtime identity](native-browser-surfaces.md).
 - [OS input and external network interventions](os-input-and-behavior.md).
