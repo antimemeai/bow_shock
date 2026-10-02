@@ -59,7 +59,15 @@ Root independently reviews this source/result before landing the conceptual unit
 
 Final source SHA256: header
 `747e403dfca7e4f277bf51ff8198ef442add84933398cc9cc5d87469999a1cb2`;
-implementation `e4f40972bbbe053388a65addad2d66174e28384cda566afc9f2e636b0792e27c`.
+implementation `f7193cb7ced8a0728b5175e53d7b04cc157378710ce3d7dafd36fc4ff71c13fa`.
 Root added the bounded named objective setter for the joined explicit two-field
 task and independently reran the final actual-class oracle successfully; see
 [the independent review](native-agent-panel-code-review.md).
+
+The first live join exposed source replacement turning a terminal metadata denial
+into opening with no remaining setup worker. A direct actual-class red earned
+that correction; final denial remains unavailable, and new fields retain the
+typed ready destination caption. The actual-class suite passes with this case in
+`context/runtime/native-agent-panel-metadata-retire-green.log`; its earlier red
+is retained separately. Independent recheck of this correction is recorded in
+the panel review.

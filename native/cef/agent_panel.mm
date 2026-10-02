@@ -130,7 +130,11 @@ NSButton* Button(NSView* view, NSString* title, id target, SEL action, NSRect fr
     NSButton* check=[NSButton checkboxWithTitle:[NSString stringWithFormat:@"Row %lu · %@",(unsigned long)r+1,names[f]] target:self action:@selector(selectionChanged:)];
     check.frame=NSMakeRect(16+r*260,540-f*21,255,21); _checks[id]=check; [_panel.contentView addSubview:check]; if (f<2) [defaults addObject:id];
   }
-  _state=_metadata?@"ready":(_configuration?@"opening":@"unconfigured"); [self applySelection:defaults];
+  _state=_metadata?@"ready":(_configuration?(_metadataFinished?@"unavailable":@"opening"):@"unconfigured");
+  if (_metadata) [self showReadyMetadata];
+  else _status.stringValue=_metadataFinished?@"Agent unavailable. Deterministic controls remain available.":
+      (_configuration?@"Agent metadata opening; captured fields remain local until Ask.":@"Agent unconfigured. Deterministic controls remain available.");
+  [self applySelection:defaults];
   __weak BSAgentPanel* weakSelf=self;
   _expiryTimer=[NSTimer timerWithTimeInterval:.1 repeats:YES block:^(NSTimer*) { [weakSelf watch]; }];
   [NSRunLoop.mainRunLoop addTimer:_expiryTimer forMode:NSRunLoopCommonModes];
@@ -188,10 +192,13 @@ NSButton* Button(NSView* view, NSString* title, id target, SEL action, NSRect fr
     self->_metadataFinished=YES;
     if ([reply[@"op"] isEqual:@"agent_metadata"] && [reply[@"state"] isEqual:@"ready"] && Descriptor(reply[@"descriptor"],self->_configuration)) {
       self->_metadata=Snapshot(reply[@"descriptor"],4096); self->_state=@"ready";
-      self->_status.stringValue=[NSString stringWithFormat:@"Codex %@ · trusted coding peer · hosted OpenAI\nModel: %@ · ChatGPT account: %@\nFresh task only; source selection is explicit.",self->_metadata[@"version"],self->_metadata[@"model"],self->_metadata[@"account_ref"]];
+      [self showReadyMetadata];
     } else { self->_state=@"unavailable"; self->_status.stringValue=@"Agent unavailable. Deterministic controls remain available."; }
     [self busyValue:NO];
   }];
+}
+- (void)showReadyMetadata {
+  _status.stringValue=[NSString stringWithFormat:@"Codex %@ · trusted coding peer · hosted OpenAI\nModel: %@ · ChatGPT account: %@\nFresh task only; source selection is explicit.",_metadata[@"version"],_metadata[@"model"],_metadata[@"account_ref"]];
 }
 - (BOOL)taskCurrent:(NSDictionary*)guard {
   return [self current] && [BSTableConnection publicationGuardIsCurrent:guard] && [guard[@"boot_id"] isEqual:_guard[@"boot_id"]] &&

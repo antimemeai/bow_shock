@@ -5,6 +5,12 @@ without owning CEF, deterministic table controls, transport or provider behavior
 Root owns that join. The existing reader/Save path remains available when the
 agent is unconfigured or unavailable.
 
+A terminal metadata denial remains unavailable when fresh source is assigned;
+source replacement cannot turn a finished setup into an opening state with no
+pending worker. Retain the measured ready destination caption when installing
+fresh fields. The actual controlled metadata-denial/source-replacement oracle
+must earn the red before this state correction.
+
 Retain immutable copies of one exact Review, its original publication guard and
 the matching native batch. Generate at most twelve native checkboxes from up to
 two six-field rows; default to name/price. Preview only explicitly selected copied

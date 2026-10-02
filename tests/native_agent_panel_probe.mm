@@ -155,6 +155,9 @@ int main(void) { @autoreleasepool {
     if ([key isEqual:@"floating_version"]) descriptor[@"protocol_version"]=@1.0;
     else descriptor[key]=[key isEqual:@"protocol_version"]?@YES:@"wrong";
     [peer reply:@{@"op":@"agent_metadata",@"state":@"ready",@"descriptor":descriptor}]; Require(!panel.canAsk && !panel.busy && !panel.metadata,"untrusted metadata actionable");
+    [panel setReview:Review(batch) publicationGuard:guard batch:batch];
+    Require([panel.state isEqual:@"unavailable"] && !panel.canAsk && !peer.pending,
+        "fresh source turned final metadata denial into permanent opening");
   }
 
   // Completed terminal task consumption permits a deterministic action without

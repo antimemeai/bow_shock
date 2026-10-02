@@ -35,3 +35,14 @@ grounding checks. It does not establish transport export, CEF capture, model
 inference, durable storage or physical input. The separate actual joins attack
 those first four boundaries. Final product hashes are recorded in the
 [construction report](native-agent-panel.md).
+
+Root subsequently found a real terminal-state hole while diagnosing the first
+live join: setReview treated absent metadata as opening even after final metadata
+denial, although metadataFinished prevented another setup request. The earned
+actual-class red replaces denied metadata with fresh source and requires final
+unavailable, never a permanent opening. Corrected branch preserves that state;
+ready source replacement also restores the measured destination caption. The
+focused actual-class suite passes with this addition. The separate native-shell
+reviewer independently rechecked the correction, caption and retained intended
+red/green at hash`f7193cb7…`, accepting it without a remaining source blocker.
+No retry or budget change is introduced.

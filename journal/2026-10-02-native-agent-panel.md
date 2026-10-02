@@ -62,3 +62,13 @@ on a generic useful-fields objective. Its direct boundary check and final strict
 actual-class run pass in context/runtime/native-agent-panel-independent-final.log.
 Independent review accepts this panel scope; transport/CEF/model/storage join
 remain separate. Updated final hashes after this small reviewed interface change.
+
+The first live joined fixture hung after capture with no owned agent process.
+Root studied metadata/source assignment and earned a direct actual-class red:
+after final typed metadata denial, fresh setReview replaced unavailable with
+opening although metadataFinished meant no worker/request could run. Fixed that
+state distinction, preserved unavailable across source replacement and restored
+the typed ready-destination caption for new fields. No runtime deadline/retry was
+introduced. Added only named owned-smoke transition diagnostics in the join to
+identify remaining real runtime setup failure; metadata-only production diagnosis
+is separate and no successful live inference claim follows yet.
