@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)mainLoadEndedForBrowser:(CefRefPtr<CefBrowser>)browser;
 - (void)rendererTerminatedForBrowser:(CefRefPtr<CefBrowser>)browser;
 - (void)browserClosing:(CefRefPtr<CefBrowser>)browser;
+/// Owned loopback lifecycle smoke only; ignored in the ordinary catalog POC.
+- (void)configureLifecycleReleasePath:(NSString*)path;
 /// Keep the live CEF loop until healthy table close/shutdown or visible failure.
 - (void)closeWithCompletion:(void (^)(void))completion;
 /// After the live CEF loop, reconcile actual owned processes.

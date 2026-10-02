@@ -2,7 +2,10 @@
 #import "observation.h"
 #import "table_projection.h"
 #import "continuous_clock.h"
+#include "include/cef_client.h"
+#include "include/cef_application_mac.h"
 #include <algorithm>
+#include <unistd.h>
 
 namespace {
 bool Reply(NSDictionary* reply, NSString* op) { return [reply[@"op"] isEqual:op]; }
@@ -73,8 +76,20 @@ NSString* JSON(id value) {
   uint64_t _captureStart, _lastTick, _maxTickGap, _stopTarget;
   NSUInteger _smokeObservations;
   BOOL _retentionChangedInSmoke, _captureCompleted;
+  BOOL _selectedBrowserChosen;
   NSMutableArray* _smokeReviews;
   NSMutableDictionary<NSString*, NSValue*>* _sourceRanges;
+  NSInteger _lifecycleStep;
+  int _lifecycleFirstBrowser, _lifecycleExtraBrowser, _lifecycleLaterBrowser;
+  CefRefPtr<CefClient> _lifecycleClient;
+  NSDictionary* _lifecycleFirstObservation;
+  NSMutableArray* _lifecycleSamples;
+  NSMutableArray* _lifecycleReadGuards;
+  NSTimer* _lifecycleTimer;
+  NSString* _lifecycleReleasePath;
+  void (^_lifecycleHeldOrdinary)(void);
+  uint64_t _lifecycleStartNs;
+  BOOL _lifecycleOldOrdinary;
 }
 - (instancetype)initWithOrigin:(NSString*)origin databaseURL:(NSURL*)databaseURL
     smokeMode:(NSString*)smokeMode result:(NSMutableDictionary*)result quit:(void (^)(void))quit {
@@ -142,17 +157,19 @@ NSString* JSON(id value) {
 }
 - (void)clearList {
   _commitIDs = nil; _listGuard = nil; [_saved removeAllItems]; [_saved addItemWithTitle:@"Saved tables"];
+  [self updateButtons];
 }
 - (void)unavailable:(NSString*)message {
   _busy = NO; [self retireDisplay]; _status.stringValue = message;
-  if (_smokeMode && !_closing) { _result[@"table_workflow"] = @"failed"; _quit(); }
+  if (_smokeMode && !_closing && ![self lifecycle]) { _result[@"table_workflow"] = @"failed"; _quit(); }
 }
 - (void)start {
   [_panel orderFront:nil];
   _result[@"table_panel_visible"] = @(_panel.isVisible);
   __weak BSOwnedTableControls* weakSelf = self;
-  void (^activation)(NSNotification*) = ^(NSNotification*) {
+  void (^activation)(NSNotification*) = ^(NSNotification* notification) {
     BSOwnedTableControls* controls = weakSelf; if (!controls || controls->_closing) return;
+    if ([controls lifecycle]) [controls lifecycleSnapshot:[@"notification_" stringByAppendingString:notification.name]];
     [controls retireDisplay]; [controls clearList];
     if (controls->_ready) controls->_status.stringValue = @"Session activated. Observe or refresh to inspect source again.";
   };
@@ -220,32 +237,51 @@ NSString* JSON(id value) {
   }];
 }
 - (void)attachBrowser:(CefRefPtr<CefBrowser>)browser {
+  if ([_smokeMode isEqual:@"lifecycle-browser"]) {
+    if (!_lifecycleFirstBrowser) { _lifecycleFirstBrowser = browser->GetIdentifier(); _lifecycleClient = browser->GetHost()->GetClient(); }
+    else if (_lifecycleStep == 1) _lifecycleExtraBrowser = browser->GetIdentifier();
+    else if (_lifecycleStep == 5) _lifecycleLaterBrowser = browser->GetIdentifier();
+  }
   // This POC controls one explicitly identified browser; popups are manual.
-  if (_browser) return;
-  _browser = browser; _loaded = NO;
+  if (_selectedBrowserChosen) return;
+  _selectedBrowserChosen = YES; _browser = browser; _loaded = NO;
   _panel.title = [NSString stringWithFormat:@"Bow Shock · browser %d · observed tables", browser->GetIdentifier()];
 }
 - (void)mainLoadStartedForBrowser:(CefRefPtr<CefBrowser>)browser {
   if (!_browser || !_browser->IsSame(browser)) return;
-  _loaded = NO; if (_reader) [_reader nativeLifecycle:@"native_main_load_started"];
-  [self retireDisplay]; [self updateButtons];
+  _loaded = NO; [self retireDisplay];
+  // Reader invalidation can synchronously complete an outstanding capture.
+  // Retire its UI decision before that callback can inspect the old epoch.
+  if (_reader) [_reader nativeLifecycle:@"native_main_load_started"];
+  [self updateButtons];
+  if ([_smokeMode isEqual:@"lifecycle-browser"] && _lifecycleStep == 2) [self lifecycleSnapshot:@"navigation_started"];
 }
 - (void)mainLoadEndedForBrowser:(CefRefPtr<CefBrowser>)browser {
-  if (!_browser || !_browser->IsSame(browser)) return;
-  _loaded = YES; [self updateButtons]; [self maybeSmoke];
+  if (_browser && _browser->IsSame(browser)) { _loaded = YES; [self updateButtons]; [self maybeSmoke]; }
+  [self lifecycleBrowserLoaded:browser];
 }
 - (void)rendererTerminatedForBrowser:(CefRefPtr<CefBrowser>)browser {
   if (!_browser || !_browser->IsSame(browser)) return;
-  _loaded = NO; if (_reader) [_reader nativeLifecycle:@"native_renderer_terminated"];
-  [self retireDisplay]; _status.stringValue = @"Renderer ended. Load the catalog again before observing.";
+  _loaded = NO; [self retireDisplay];
+  if (_reader) [_reader nativeLifecycle:@"native_renderer_terminated"];
+  _status.stringValue = @"Renderer ended. Load the catalog again before observing.";
+  if ([_smokeMode isEqual:@"lifecycle-browser"] && _lifecycleStep == 4 && ![_result[@"native_lifecycle"] isEqual:@"failed"]) {
+    NSDictionary* sample = [self lifecycleSnapshot:@"renderer_terminated"];
+    if (![self lifecycleRequire:!_observe.enabled && [sample[@"source_length"] unsignedLongLongValue] == 0 reason:@"renderer_not_retired"]) return;
+    browser->GetHost()->CloseBrowser(false);
+  }
 }
 - (void)browserClosing:(CefRefPtr<CefBrowser>)browser {
   if (!_browser || !_browser->IsSame(browser)) return;
   _loaded = NO; [self retireDisplay];
   if (_reader) { [_reader close]; _reader = nil; }
   _browser = nullptr; _status.stringValue = @"Observed browser closed. Other browser windows remain manual.";
+  if ([_smokeMode isEqual:@"lifecycle-browser"] && _lifecycleStep == 4 && ![_result[@"native_lifecycle"] isEqual:@"failed"]) {
+    [self lifecycleSnapshot:@"selected_closed"]; _lifecycleStep = 5; [self lifecycleCreateBrowser:@"amber"];
+  }
 }
 - (uint64_t)retentionMs {
+  if ([_smokeMode isEqual:@"lifecycle-display"]) return 5000;
   const uint64_t values[] = {600000, 3600000, 86400000};
   NSInteger selected = _retention.indexOfSelectedItem; return values[selected >= 0 && selected < 3 ? selected : 0];
 }
@@ -267,7 +303,13 @@ NSString* JSON(id value) {
       self->_result[@"ui_max_gap_ns"] = @(self->_maxTickGap);
       [self finishWorkloadProbe]; return;
     }
-    if (epoch != self->_epoch || self->_closing) { [self updateButtons]; return; }
+    if (epoch != self->_epoch || self->_closing) {
+      if ([self->_smokeMode isEqual:@"lifecycle-browser"]) {
+        self->_result[@"retired_capture_callbacks"] = @([self->_result[@"retired_capture_callbacks"] unsignedLongLongValue] + 1);
+        self->_result[@"retired_capture_status"] = record[@"status"] ?: @"unavailable";
+      }
+      [self updateButtons]; return;
+    }
     NSDictionary* batch = BSFixtureTableBatch(record, self->_tableConnection.runId, self->_origin);
     if (!batch) { [self unavailable:@"Observation withheld or not a supported owned catalog capture."]; return; }
     self->_batch = batch; self->_busy = YES;
@@ -318,7 +360,7 @@ NSString* JSON(id value) {
         self->_result[@"observations"] = @(self->_smokeObservations);
         [self stop:nil];
       }
-    }
+    } else [self lifecycleReviewed];
   }];
 }
 - (BOOL)displayBatch:(NSDictionary*)batch saved:(BOOL)saved {
@@ -365,14 +407,24 @@ NSString* JSON(id value) {
   }
 }
 - (void)retentionChanged:(id)sender {
-  if (_busy || !_stage || !_batch || _closing) return;
+  if (_busy || !_stage || !_batch || _closing || _stopping) return;
   ++_epoch; uint64_t epoch = _epoch; _review = nil; _exact.string = @"";
   _busy = YES; [self updateButtons];
   [_tableConnection reviseStaging:_stage batch:_batch completion:^(NSDictionary* reply) {
-    self->_busy = NO;
-    if (epoch != self->_epoch || self->_closing) { [self updateButtons]; return; }
-    if (!Reply(reply, @"table_revised")) { [self unavailable:@"Retention change needs a new observation."]; return; }
-    [self requestReview:epoch];
+    void (^continuation)(void) = ^{
+      self->_busy = NO;
+      if (epoch != self->_epoch || self->_closing) { [self updateButtons]; return; }
+      if (!Reply(reply, @"table_revised")) { [self unavailable:@"Retention change needs a new observation."]; return; }
+      [self requestReview:epoch];
+    };
+    if ([self->_smokeMode isEqual:@"lifecycle-stop"] && self->_lifecycleStep == 1 && Reply(reply, @"table_revised")) {
+      // Defer the actual validated ordinary UI continuation, not its wire reply.
+      // The app and independent worker continue serving while the driver holds
+      // only the exact owned Rust child, then releases this fixture barrier.
+      self->_lifecycleHeldOrdinary = [continuation copy];
+      [self lifecycleSnapshot:@"ordinary_ack_received"];
+      fprintf(stderr, "BS_LIFECYCLE stop_ready app=%d rust=%d\n", getpid(), self->_tableConnection.childPid); fflush(stderr);
+    } else continuation();
   }];
 }
 - (void)save:(id)sender {
@@ -430,14 +482,17 @@ NSString* JSON(id value) {
     self->_status.stringValue = @"Saved table acknowledged; original captured source shown.";
     [self updateButtons];
     if (self->_smokeMode) {
-      self->_result[@"table_workflow"] = @"pass";
-      if (smokeSave) { self->_result[@"commit_id"] = commit; self->_result[@"saved_batch"] = self->_batch; }
-      self->_quit();
+      if ([self lifecycle]) [self lifecycleSavedRead:commit];
+      else {
+        self->_result[@"table_workflow"] = @"pass";
+        if (smokeSave) { self->_result[@"commit_id"] = commit; self->_result[@"saved_batch"] = self->_batch; }
+        self->_quit();
+      }
     }
   }];
 }
 - (void)refreshSaved:(id)sender {
-  if (_busy || !_ready || _closing) return;
+  if (_busy || !_ready || _closing || _stopping) return;
   [self retireDisplay]; [self clearList]; uint64_t epoch = _epoch; _busy = YES; [self updateButtons];
   [_tableConnection listWithCompletion:^(NSDictionary* reply) {
     self->_busy = NO;
@@ -454,11 +509,14 @@ NSString* JSON(id value) {
       self->_result[@"commit_ids"] = self->_commitIDs;
       if (self->_commitIDs.count == 0) { [self unavailable:@"No same-boot retained rows reopened."]; return; }
       [self->_saved selectItemAtIndex:1]; [self selectSaved:nil];
+    } else if ([self->_smokeMode isEqual:@"lifecycle-display"]) {
+      if (![self lifecycleRequire:self->_commitIDs.count == 1 reason:@"saved_list_missing"]) return;
+      [self->_saved selectItemAtIndex:1]; [self selectSaved:nil];
     }
   }];
 }
 - (void)selectSaved:(id)sender {
-  if (_busy || _closing || ![BSTableConnection publicationGuardIsCurrent:_listGuard]) return;
+  if (_busy || _closing || _stopping || ![BSTableConnection publicationGuardIsCurrent:_listGuard]) return;
   NSInteger index = _saved.indexOfSelectedItem - 1;
   if (index < 0 || static_cast<NSUInteger>(index) >= _commitIDs.count) return;
   NSString* commit = _commitIDs[static_cast<NSUInteger>(index)];
@@ -506,6 +564,7 @@ NSString* JSON(id value) {
     }
     if ([self->_smokeMode isEqual:@"workload"]) self->_result[@"stop_helper_ack_ns"] = BSContinuousClockWitness()[@"continuous_ns"] ?: @0;
     self->_helperStopped = YES; [self finishStop];
+    [self lifecycleHeldStopReady];
   }];
 }
 - (void)finishStop {
@@ -517,6 +576,10 @@ NSString* JSON(id value) {
     _result[@"stop_cleared_review"] = @(!_review && _source.string.length == 0 && _exact.string.length == 0);
     _result[@"table_workflow"] = @"pass"; _quit();
   } else if ([_smokeMode isEqual:@"workload"]) [self finishWorkloadProbe];
+  else if ([_smokeMode isEqual:@"lifecycle-stop"] && _lifecycleStep == 3) {
+    [self lifecycleSnapshot:@"stop_reconciled"];
+    [self lifecycleFinish];
+  }
 }
 - (BOOL)beginWorkloadProbe {
   NSDictionary* sample = BSContinuousClockWitness();
@@ -541,6 +604,163 @@ NSString* JSON(id value) {
   if (!_captureCompleted || !_rustStopped || !_helperStopped || _closing) return;
   _result[@"capture_workload"] = @"recorded"; _result[@"table_workflow"] = @"pass"; _quit();
 }
+- (BOOL)lifecycle { return [_smokeMode hasPrefix:@"lifecycle-"]; }
+- (void)configureLifecycleReleasePath:(NSString*)path {
+  if ([self lifecycle] && path.isAbsolutePath) _lifecycleReleasePath = [path copy];
+}
+- (NSDictionary*)lifecycleSnapshot:(NSString*)name {
+  NSDictionary* sample = @{@"stage": name, @"clock": BSContinuousClockWitness() ?: @{},
+      @"browser_id": @(_browser ? _browser->GetIdentifier() : 0), @"epoch": @(_epoch),
+      @"source_length": @(_source.string.length), @"exact_length": @(_exact.string.length),
+      @"review_present": @(_review != nil), @"list_count": @(_commitIDs.count),
+      @"observe": @(_observe.enabled), @"save": @(_save.enabled), @"retention": @(_retention.enabled),
+      @"refresh": @(_refresh.enabled), @"saved": @(_saved.enabled), @"delete": @(_delete.enabled),
+      @"stop": @(_stop.enabled), @"busy": @(_busy), @"stopping": @(_stopping),
+      @"rust_generation": @(_tableConnection.stopGeneration),
+      @"helper_generation": @(_controlConnection.acknowledgedGeneration)};
+  if (!_lifecycleSamples) _lifecycleSamples = [NSMutableArray array];
+  [_lifecycleSamples addObject:sample]; _result[@"lifecycle_samples"] = _lifecycleSamples;
+  return sample;
+}
+- (BOOL)lifecycleRequire:(BOOL)condition reason:(NSString*)reason {
+  if (condition) return YES;
+  _result[@"native_lifecycle"] = @"failed"; _result[@"lifecycle_failure"] = reason;
+  _status.stringValue = @"Owned lifecycle fixture failed.";
+  fprintf(stderr, "BS_LIFECYCLE failed %s\n", reason.UTF8String); fflush(stderr);
+  _quit(); return NO;
+}
+- (void)lifecycleFinish {
+  _result[@"native_lifecycle"] = @"pass";
+  [_lifecycleTimer invalidate]; _lifecycleTimer = nil;
+  _quit();
+}
+- (void)lifecycleStartTimer {
+  if (_lifecycleTimer) return;
+  _lifecycleStartNs = [BSContinuousClockWitness()[@"continuous_ns"] unsignedLongLongValue];
+  __weak BSOwnedTableControls* weakSelf = self;
+  _lifecycleTimer = [NSTimer timerWithTimeInterval:0.01 repeats:YES block:^(NSTimer*) { [weakSelf lifecycleTick]; }];
+  [NSRunLoop.mainRunLoop addTimer:_lifecycleTimer forMode:NSRunLoopCommonModes];
+}
+- (void)lifecycleReviewed {
+  if (![self lifecycle]) return;
+  [self lifecycleStartTimer];
+  if ([_smokeMode isEqual:@"lifecycle-browser"] && _lifecycleStep == 0) {
+    if (![self lifecycleRequire:[_source.string containsString:@"Value: Amber"] reason:@"initial_amber_missing"]) return;
+    _lifecycleFirstObservation = _batch[@"rows"][0][@"fields"][0][@"source"][@"observation"];
+    [self lifecycleSnapshot:@"amber_reviewed"]; _lifecycleStep = 1; [self lifecycleCreateBrowser:@"birch"];
+  } else if ([_smokeMode isEqual:@"lifecycle-browser"] && _lifecycleStep == 10) {
+    if (![self lifecycleRequire:_browser && _browser->GetIdentifier() == _lifecycleFirstBrowser &&
+        [_source.string containsString:@"Value: Amber"] reason:@"extra_browser_capture_wrong_surface"]) return;
+    _lifecycleFirstObservation = _batch[@"rows"][0][@"fields"][0][@"source"][@"observation"];
+    [self lifecycleSnapshot:@"extra_reviewed"];
+    _lifecycleStep = 2; [self observe:nil];
+    _browser->GetMainFrame()->LoadURL([_origin stringByAppendingString:@"/birch"].UTF8String);
+  } else if ([_smokeMode isEqual:@"lifecycle-browser"] && _lifecycleStep == 3) {
+    NSDictionary* ref = _batch[@"rows"][0][@"fields"][0][@"source"][@"observation"];
+    BOOL correct = [_source.string containsString:@"Value: Birch"] && [ref[@"surface_id"] isEqual:_lifecycleFirstObservation[@"surface_id"]] &&
+        ![ref[@"document_id"] isEqual:_lifecycleFirstObservation[@"document_id"]];
+    if (![self lifecycleRequire:correct reason:@"navigation_provenance_wrong"]) return;
+    _result[@"navigation_refs"] = @[_lifecycleFirstObservation, ref];
+    [self lifecycleSnapshot:@"birch_reviewed"]; _lifecycleStep = 4;
+    // Matched Page.pdl: Page.crash crashes the owned renderer and generates a
+    // minidump. This fixed fault command is unavailable to normal POC/model UI.
+    int id = _browser->GetHost()->ExecuteDevToolsMethod(0, "Page.crash", CefDictionaryValue::Create());
+    [self lifecycleRequire:id > 0 reason:@"crash_command_not_accepted"];
+  } else if ([_smokeMode isEqual:@"lifecycle-stop"] && _lifecycleStep == 0) {
+    _lifecycleStep = 1; [_retention selectItemAtIndex:1]; [self retentionChanged:nil];
+  } else if ([_smokeMode isEqual:@"lifecycle-display"] && _lifecycleStep == 0) {
+    [self lifecycleSnapshot:@"before_review_activation"];
+    if (![self lifecycleRequire:_review && _save.enabled reason:@"review_activation_fixture_missing"]) return;
+    [NSNotificationCenter.defaultCenter postNotificationName:NSApplicationDidBecomeActiveNotification object:NSApp];
+    [self lifecycleSnapshot:@"after_review_activation"];
+    if (![self lifecycleRequire:!_review && !_save.enabled && _source.string.length == 0 && _exact.string.length == 0
+        reason:@"review_activation_not_retired"]) return;
+    _lifecycleStep = -1; [self observe:nil];
+  } else if ([_smokeMode isEqual:@"lifecycle-display"] && _lifecycleStep == -1) [self save:nil];
+}
+- (void)lifecycleCreateBrowser:(NSString*)page {
+  CefWindowInfo window; window.runtime_style = CEF_RUNTIME_STYLE_CHROME;
+  window.bounds = CefRect(160, 140, 900, 650); CefBrowserSettings settings;
+  BOOL created = CefBrowserHost::CreateBrowser(window, _lifecycleClient,
+      [_origin stringByAppendingFormat:@"/%@", page].UTF8String, settings, nullptr, nullptr);
+  [self lifecycleRequire:created reason:@"extra_browser_create_failed"];
+}
+- (void)lifecycleBrowserLoaded:(CefRefPtr<CefBrowser>)browser {
+  if (![_smokeMode isEqual:@"lifecycle-browser"] || _closing || [_result[@"native_lifecycle"] isEqual:@"failed"]) return;
+  NSView* view = CAST_CEF_WINDOW_HANDLE_TO_NSVIEW(browser->GetHost()->GetWindowHandle());
+  if (!_result[@"lifecycle_windows"]) _result[@"lifecycle_windows"] = [NSMutableArray array];
+  [_result[@"lifecycle_windows"] addObject:@{@"browser_id": @(browser->GetIdentifier()), @"visible": @([view.window isVisible])}];
+  if (_lifecycleStep == 1 && browser->GetIdentifier() == _lifecycleExtraBrowser) {
+    _result[@"browser_ids"] = @[@(_lifecycleFirstBrowser), @(_lifecycleExtraBrowser)];
+    [self lifecycleSnapshot:@"extra_loaded"];
+    if (![self lifecycleRequire:_browser && _browser->GetIdentifier() == _lifecycleFirstBrowser && _observe.enabled
+        reason:@"extra_browser_retargeted"]) return;
+    // Another native window may legitimately activate the app and retire its
+    // cached display. A fresh real capture must still read selected Amber.
+    _lifecycleStep = 10; [self observe:nil];
+  } else if (_lifecycleStep == 5 && browser->GetIdentifier() == _lifecycleLaterBrowser) {
+    _result[@"later_browser_id"] = @(_lifecycleLaterBrowser);
+    [self lifecycleSnapshot:@"later_browser_loaded"];
+    if (![self lifecycleRequire:!_browser && !_observe.enabled && _source.string.length == 0 &&
+        _exact.string.length == 0 reason:@"retired_browser_implicitly_reselected"]) return;
+    [self lifecycleFinish];
+  }
+}
+- (void)lifecycleSavedRead:(NSString*)commit {
+  if (![_smokeMode isEqual:@"lifecycle-display"]) return;
+  if (!_lifecycleReadGuards) _lifecycleReadGuards = [NSMutableArray array];
+  [_lifecycleReadGuards addObject:_guard]; _result[@"lifecycle_read_guards"] = _lifecycleReadGuards;
+  if (_lifecycleStep == -1) {
+    _result[@"lifecycle_commit_id"] = commit; _result[@"lifecycle_original_guard"] = _guard;
+    _lifecycleStep = 1; [self refreshSaved:nil]; return;
+  }
+  if (_lifecycleStep == 1 || _lifecycleStep == 2) {
+    NSString* stage = _lifecycleStep == 1 ? @"activation" : @"session";
+    [self lifecycleSnapshot:[@"before_" stringByAppendingString:stage]];
+    if (_lifecycleStep == 1) [NSNotificationCenter.defaultCenter postNotificationName:NSApplicationDidBecomeActiveNotification object:NSApp];
+    else [NSWorkspace.sharedWorkspace.notificationCenter postNotificationName:NSWorkspaceSessionDidBecomeActiveNotification object:nil];
+    [self lifecycleSnapshot:[@"after_" stringByAppendingString:stage]];
+    if (![self lifecycleRequire:_source.string.length == 0 && _exact.string.length == 0 && !_review &&
+        _commitIDs.count == 0 && !_saved.enabled && !_save.enabled reason:@"activation_display_or_list_not_retired"]) return;
+    ++_lifecycleStep; [self refreshSaved:nil];
+  } else if (_lifecycleStep == 3) {
+    if (![self lifecycleRequire:[_guard isEqual:_result[@"lifecycle_original_guard"]] reason:@"saved_deadline_extended"]) return;
+    [_expiryTimer invalidate]; _expiryTimer = nil;
+    [self lifecycleSnapshot:@"before_expiry_wait"]; _lifecycleStep = 4;
+  }
+}
+- (void)lifecycleHeldStopReady {
+  if (![_smokeMode isEqual:@"lifecycle-stop"] || _lifecycleStep != 2 || !_helperStopped || !_lifecycleOldOrdinary) return;
+  NSDictionary* sample = [self lifecycleSnapshot:@"stop_while_rust_held"];
+  BOOL disabled = !_observe.enabled && !_save.enabled && !_retention.enabled && !_refresh.enabled && !_saved.enabled && !_delete.enabled;
+  if (![self lifecycleRequire:disabled && _stopping && !_rustStopped && _tableConnection.stopGeneration == 0 &&
+      _controlConnection.acknowledgedGeneration == 1 && [sample[@"source_length"] unsignedLongLongValue] == 0 &&
+      [sample[@"exact_length"] unsignedLongLongValue] == 0 reason:@"held_stop_or_old_callback_unsafe"]) return;
+  _lifecycleStep = 3;
+  fprintf(stderr, "BS_LIFECYCLE stop_held rust=%d\n", _tableConnection.childPid); fflush(stderr);
+}
+- (void)lifecycleTick {
+  if (_closing || [_result[@"native_lifecycle"] isEqual:@"failed"]) return;
+  NSDictionary* witness = BSContinuousClockWitness(); uint64_t now = [witness[@"continuous_ns"] unsignedLongLongValue];
+  if (![self lifecycleRequire:witness && now >= _lifecycleStartNs && now - _lifecycleStartNs < 20000000000 reason:@"lifecycle_deadline"]) return;
+  if ([_smokeMode isEqual:@"lifecycle-browser"] && _lifecycleStep == 2 && _loaded && _observe.enabled) {
+    _lifecycleStep = 3; [self observe:nil];
+  } else if ([_smokeMode isEqual:@"lifecycle-stop"] && _lifecycleStep == 1 && _lifecycleHeldOrdinary &&
+      [[NSFileManager defaultManager] fileExistsAtPath:_lifecycleReleasePath]) {
+    _lifecycleStep = 2; [self stop:nil];
+    void (^old)(void) = _lifecycleHeldOrdinary; _lifecycleHeldOrdinary = nil;
+    old(); _lifecycleOldOrdinary = YES; [self lifecycleSnapshot:@"old_ordinary_callback"]; [self lifecycleHeldStopReady];
+  } else if ([_smokeMode isEqual:@"lifecycle-display"] && _lifecycleStep == 4 &&
+      now >= [_guard[@"valid_until_ns"] unsignedLongLongValue]) {
+    [self lifecycleSnapshot:@"expired_before_wake"];
+    if (![self lifecycleRequire:_source.string.length > 0 reason:@"wake_fixture_did_not_hold_display"]) return;
+    [NSWorkspace.sharedWorkspace.notificationCenter postNotificationName:NSWorkspaceDidWakeNotification object:nil];
+    [self lifecycleSnapshot:@"expired_after_wake"];
+    if (![self lifecycleRequire:_source.string.length == 0 && _exact.string.length == 0 && !_save.enabled &&
+        !_saved.enabled && _commitIDs.count == 0 reason:@"wake_expired_display_not_retired"]) return;
+    [self lifecycleFinish];
+  }
+}
 - (void)quit:(id)sender { _quit(); }
 - (void)maybeSmoke {
   if (!_smokeMode || _smokeStarted || !_loaded || !_ready || _closing) return;
@@ -556,6 +776,7 @@ NSString* JSON(id value) {
   _closing = YES; _closed = [completion copy]; [self retireDisplay]; [self clearList];
   [_expiryTimer invalidate]; _expiryTimer = nil;
   [_workloadTimer invalidate]; _workloadTimer = nil;
+  [_lifecycleTimer invalidate]; _lifecycleTimer = nil; _lifecycleHeldOrdinary = nil; _lifecycleClient = nullptr;
   [NSNotificationCenter.defaultCenter removeObserver:_activationObserver]; _activationObserver = nil;
   [NSWorkspace.sharedWorkspace.notificationCenter removeObserver:_wakeObserver]; _wakeObserver = nil;
   [NSWorkspace.sharedWorkspace.notificationCenter removeObserver:_sessionObserver]; _sessionObserver = nil;

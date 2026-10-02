@@ -131,8 +131,12 @@ class BrowserClient final : public CefClient,
     if (tableControls && frame->IsMain()) [tableControls mainLoadStartedForBrowser:browser];
   }
 
-  void OnRenderProcessTerminated(CefRefPtr<CefBrowser> browser, TerminationStatus, int, const CefString&) override {
+  void OnRenderProcessTerminated(CefRefPtr<CefBrowser> browser, TerminationStatus status, int, const CefString&) override {
     CEF_REQUIRE_UI_THREAD();
+    if ([tableSmokeMode hasPrefix:@"lifecycle-"]) {
+      if (!smokeResult[@"lifecycle_renderer_events"]) smokeResult[@"lifecycle_renderer_events"] = [NSMutableArray array];
+      [smokeResult[@"lifecycle_renderer_events"] addObject:@{@"browser_id": @(browser->GetIdentifier()), @"crashed": @(status == TS_PROCESS_CRASHED)}];
+    }
     if (observation) [observation nativeLifecycle:@"native_renderer_terminated"];
     if (tableControls) [tableControls rendererTerminatedForBrowser:browser];
   }
@@ -201,6 +205,8 @@ class BrowserApp final : public CefApp, public CefBrowserProcessHandler {
     tableControls = [[BSOwnedTableControls alloc] initWithOrigin:tableOrigin
         databaseURL:[NSURL fileURLWithPath:tableDatabase] smokeMode:tableSmokeMode
         result:smokeResult quit:^{ [delegate closeBrowsers]; }];
+    if ([tableSmokeMode hasPrefix:@"lifecycle-"])
+      [tableControls configureLifecycleReleasePath:[smokeOutput stringByAppendingString:@".release"]];
     self.controls = tableControls.panel;
     [tableControls start];
     return;
@@ -300,10 +306,18 @@ int main(int argc, char** argv) {
     tableSmokeMode = smokeOutput ? text("bs-table-smoke") : nil;
     if ((tableOrigin != nil) != (tableDatabase != nil) ||
         (tableDatabase && !tableDatabase.isAbsolutePath) ||
-        (tableSmokeMode && ![@[@"save", @"reopen", @"drafts", @"workload"] containsObject:tableSmokeMode])) {
+        (tableSmokeMode && ![@[@"save", @"reopen", @"drafts", @"workload", @"lifecycle-browser", @"lifecycle-stop", @"lifecycle-display"] containsObject:tableSmokeMode])) {
       fprintf(stderr, "Invalid owned table workflow configuration.\n"); return 1;
     }
     initialURL = text("bs-url") ?: @"about:blank";
+    if ([tableSmokeMode hasPrefix:@"lifecycle-"]) {
+      NSURL* owned = [NSURL URLWithString:tableOrigin];
+      if (![owned.scheme isEqual:@"http"] || ![owned.host isEqual:@"127.0.0.1"] || !owned.port ||
+          owned.user || owned.password || owned.query || owned.fragment || owned.path.length ||
+          ![initialURL isEqual:[tableOrigin stringByAppendingString:@"/amber"]]) {
+        fprintf(stderr, "Lifecycle smoke requires the owned loopback Amber catalog.\n"); return 1;
+      }
+    }
     smokeResult = [@{@"browser_created": @NO, @"browser_closed": @NO, @"cef_shutdown": @NO,
                      @"controller_initialized": @NO, @"controller_stop_generation": @0} mutableCopy];
     if (smokeOutput) smokeResult[@"clock_start"] = BSContinuousClockWitness() ?: @{};
