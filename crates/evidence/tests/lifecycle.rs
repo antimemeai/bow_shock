@@ -78,11 +78,14 @@ fn field(state: FieldState) -> Field {
                 activation_generation: 1,
                 node_generation: 1,
                 capture_id: "capture-1".into(),
+                capture_start_ns: None,
+                capture_end_ns: None,
                 security_origin: "https://one.test".into(),
             },
             node_id,
             visibility: "layout-present-occlusion-unknown".into(),
             normalization: "identity".into(),
+            fragment: None,
         },
     }
 }

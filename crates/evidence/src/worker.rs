@@ -1,4 +1,4 @@
-use crate::{ClockWitness, MAX_BATCH_BYTES, MAX_COMMITS, Reviewed, clock};
+use crate::{ClockOwner, ClockWitness, MAX_BATCH_BYTES, MAX_COMMITS, Reviewed};
 use rusqlite::{Connection, OptionalExtension, TransactionBehavior, params};
 use std::{
     fs::{File, OpenOptions},
@@ -50,7 +50,7 @@ pub(crate) struct Restored {
 pub(crate) fn run(
     path: PathBuf,
     run_id: String,
-    native: Option<(ClockWitness, PathBuf)>,
+    native: Option<(ClockWitness, PathBuf, ClockOwner)>,
     rx: Receiver<Job>,
     tx: SyncSender<Completion>,
 ) {
@@ -116,7 +116,7 @@ pub(crate) fn run(
 fn open(
     path: PathBuf,
     run_id: &str,
-    native: Option<&(ClockWitness, PathBuf)>,
+    native: Option<&(ClockWitness, PathBuf, ClockOwner)>,
 ) -> Result<(Connection, File, bool, Vec<Restored>), String> {
     // Private application-owned path only. Canonicalize its parent to prevent
     // a spelling/symlink alias from choosing another ownership file.
@@ -192,8 +192,8 @@ fn open(
         .query_row("SELECT count(*) FROM deletions", [], |r| r.get(0))
         .map_err(|e| e.to_string())?;
     let actual = native
-        .map(|(expected, probe)| {
-            let current = clock::query(probe)?;
+        .map(|(expected, probe, owner)| {
+            let current = owner.query(probe)?;
             if current.boot_id != expected.boot_id || current.continuous_ns < expected.continuous_ns
             {
                 return Err(crate::Error("native startup boot/clock mismatch".into()));
@@ -287,7 +287,7 @@ fn open(
         }
     }
     let final_clock = native
-        .map(|(_, probe)| clock::query(probe))
+        .map(|(_, probe, owner)| owner.query(probe))
         .transpose()
         .map_err(|e| e.to_string())?;
     if let (Some(first), Some(last)) = (&actual, &final_clock) {
@@ -315,7 +315,7 @@ fn execute(
     conn: &mut Connection,
     job: &Job,
     run_id: &str,
-    native: Option<&(ClockWitness, PathBuf)>,
+    native: Option<&(ClockWitness, PathBuf, ClockOwner)>,
 ) -> rusqlite::Result<()> {
     if job.work == Work::Delete {
         // Durable processed intent precedes actual purge. If the second
@@ -400,13 +400,14 @@ fn execute(
 fn native_gate(
     tx: &rusqlite::Transaction<'_>,
     job: &Job,
-    native: Option<&(ClockWitness, PathBuf)>,
+    native: Option<&(ClockWitness, PathBuf, ClockOwner)>,
 ) -> rusqlite::Result<bool> {
-    let Some((expected, probe)) = native else {
+    let Some((expected, probe, owner)) = native else {
         return Ok(true);
     };
-    let actual =
-        clock::query(probe).map_err(|e| rusqlite::Error::InvalidParameterName(e.to_string()))?;
+    let actual = owner
+        .query(probe)
+        .map_err(|e| rusqlite::Error::InvalidParameterName(e.to_string()))?;
     if actual.boot_id != expected.boot_id
         || job.boot_id.as_ref() != Some(&actual.boot_id)
         || actual.continuous_ns < expected.continuous_ns

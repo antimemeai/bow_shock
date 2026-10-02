@@ -6,3 +6,13 @@ slow-timeout = { period = "30s", terminate-after = 2 }
 
 [profile.ci]
 fail-fast = false
+
+# These process oracles compile/use actual SDK clock producers and enforce the
+# production 500ms query deadline. Bound unrelated compiler contention instead
+# of relaxing the clock/retention supervisor or retrying a denied managed call.
+[test-groups.native-clock]
+max-threads = 2
+
+[[profile.default.overrides]]
+filter = 'binary(table_service) | binary(native_clock)'
+test-group = 'native-clock'

@@ -96,3 +96,13 @@ and Cargo.lock. Source contracts: [rusqlite](https://docs.rs/rusqlite/0.40.2/rus
 [SQLite WAL/FULL](https://www.sqlite.org/wal.html), [transactions](https://www.sqlite.org/lang_transaction.html),
 [standard-library lifetime lock](https://doc.rust-lang.org/std/fs/struct.File.html#method.try_lock),
 and the original [native clock producer](../../native/cef/continuous_clock.mm).
+
+Controller integration shares a ClockOwner with the Store via
+`open_with_clock_owner`, while the dedicated control sampler uses that same
+owner. Atomic cancel and active-query tracking keep owned clock subprocesses
+reconciled before terminal service exit; registration precedes cancellation
+checking, and active counts release only after actual child reap. Healthy
+authority operations remain nonblocking. The convenience open/query entry points
+remain for standalone tests; applications requiring terminal ownership must
+retain the shared owner and drain it. Forced process death and producer
+descendants retaining stdout remain explicit limitations.

@@ -13,6 +13,8 @@ name = "bow-shock-controller"
 version = "0.1.0"
 dependencies = [
  "bow-shock-controller-link",
+ "bow-shock-evidence",
+ "rusqlite",
  "serde",
  "serde_json",
 ]

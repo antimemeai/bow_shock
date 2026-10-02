@@ -8,7 +8,8 @@
 
 mod clock;
 mod worker;
-pub use clock::ClockWitness;
+pub use clock::query as query_native_clock;
+pub use clock::{ClockOwner, ClockWitness};
 
 use serde::{Deserialize, Serialize};
 use std::{
@@ -39,6 +40,11 @@ pub struct ObservationRef {
     pub activation_generation: u64,
     pub node_generation: u64,
     pub capture_id: String,
+    /// Legacy retained records omit intervals; native deployment never invents one.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub capture_start_ns: Option<u64>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub capture_end_ns: Option<u64>,
     pub security_origin: String,
 }
 
@@ -49,6 +55,10 @@ pub struct Source {
     pub node_id: Option<i64>,
     pub visibility: String,
     pub normalization: String,
+    /// Actual rendered fragment, including whitespace for an observed Empty.
+    /// Missing/withheld sources have no fragment, rather than a fabricated empty.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub fragment: Option<String>,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
@@ -111,9 +121,24 @@ pub struct Review {
     pub content: String,
 }
 
+/// Native UI checks this actual lifecycle deadline against a fresh OS witness
+/// immediately before publishing, and invalidates at expiry/activation.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct PublicationGuard {
+    pub boot_id: String,
+    pub valid_until_ns: u64,
+}
+
 #[derive(Debug, Clone)]
 pub struct Approval {
     id: String,
+}
+impl Approval {
+    /// Correlation identity only; constructing an Approval remains private.
+    pub fn id(&self) -> &str {
+        &self.id
+    }
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize)]
@@ -232,20 +257,34 @@ impl Store {
         witness: ClockWitness,
         probe: impl AsRef<Path>,
     ) -> Result<Self> {
+        Self::open_with_clock_owner(path, run_id, witness, probe, ClockOwner::default())
+    }
+    /// Controller passes the same owner to its clock worker and SQLite worker.
+    pub fn open_with_clock_owner(
+        path: impl AsRef<Path>,
+        run_id: &str,
+        witness: ClockWitness,
+        probe: impl AsRef<Path>,
+        owner: ClockOwner,
+    ) -> Result<Self> {
         witness.validate()?;
-        Self::open_inner(path, run_id, Some((witness, probe.as_ref().to_path_buf())))
+        Self::open_inner(
+            path,
+            run_id,
+            Some((witness, probe.as_ref().to_path_buf(), owner)),
+        )
     }
     fn open_inner(
         path: impl AsRef<Path>,
         run_id: &str,
-        native: Option<(ClockWitness, std::path::PathBuf)>,
+        native: Option<(ClockWitness, std::path::PathBuf, ClockOwner)>,
     ) -> Result<Self> {
         small_id(run_id)?;
         let (tx, work_rx) = mpsc::sync_channel(1);
         let (done_tx, rx) = mpsc::sync_channel(1);
         let path = path.as_ref().to_path_buf();
         let run = run_id.to_owned();
-        let clock = native.as_ref().map(|(w, _)| w.clone());
+        let clock = native.as_ref().map(|(w, _, _)| w.clone());
         std::thread::Builder::new()
             .name("bow-shock-sqlite".into())
             .spawn(move || worker::run(path, run, native, work_rx, done_tx))
@@ -342,6 +381,73 @@ impl Store {
     }
     pub fn read_at(&mut self, id: &str, witness: ClockWitness) -> Result<Batch> {
         self.at(witness, |s| s.read(id))
+    }
+    pub fn read_guarded_at(
+        &mut self,
+        id: &str,
+        witness: ClockWitness,
+    ) -> Result<(Batch, PublicationGuard)> {
+        self.at(witness, |s| {
+            let batch = s.read(id)?;
+            let c = s.commits.get(id).expect("read resolved commit");
+            Ok((batch, s.guard(c.expires_ns)?))
+        })
+    }
+    pub fn review_guarded_at(
+        &mut self,
+        id: &str,
+        retention_ms: u64,
+        witness: ClockWitness,
+    ) -> Result<(Review, PublicationGuard)> {
+        self.at(witness, |s| {
+            let review = s.review(id, retention_ms)?;
+            let stage = s.stages.get(id).expect("review resolved staging");
+            Ok((review, s.guard(stage.expires_ns)?))
+        })
+    }
+    pub fn committed_ids_guarded_at(
+        &mut self,
+        witness: ClockWitness,
+    ) -> Result<(Vec<String>, PublicationGuard)> {
+        self.at(witness, |s| {
+            s.require_ready()?;
+            let ids: Vec<_> = s
+                .commits
+                .keys()
+                .filter(|id| s.read(id).is_ok())
+                .cloned()
+                .collect();
+            let deadline = ids
+                .iter()
+                .filter_map(|id| s.commits[id].expires_ns)
+                .min()
+                .or_else(|| s.clock.as_ref().and_then(|clock| clock.deadline(250).ok()));
+            Ok((ids, s.guard(deadline)?))
+        })
+    }
+    fn guard(&self, deadline: Option<u64>) -> Result<PublicationGuard> {
+        let clock = self
+            .clock
+            .as_ref()
+            .ok_or_else(|| Error("native publication clock required".into()))?;
+        let deadline = deadline
+            .filter(|n| *n > clock.continuous_ns)
+            .ok_or_else(|| Error("native publication deadline unavailable".into()))?;
+        Ok(PublicationGuard {
+            boot_id: clock.boot_id.clone(),
+            valid_until_ns: deadline,
+        })
+    }
+    /// Acknowledged, presently permitted identities; no replay/approval handles.
+    pub fn committed_ids_at(&mut self, witness: ClockWitness) -> Result<Vec<String>> {
+        self.at(witness, |s| {
+            s.require_ready()?;
+            Ok(s.commits
+                .keys()
+                .filter(|id| s.read(id).is_ok())
+                .cloned()
+                .collect())
+        })
     }
     pub fn close_at(&mut self, witness: ClockWitness) -> Result<()> {
         self.at(witness, |s| s.close())
@@ -940,10 +1046,20 @@ impl Store {
                     small_id(id)?;
                 }
                 if r.attachment_generation == 0
+                    || r.activation_generation == 0
                     || r.node_generation == 0
                     || source.node_id.is_some_and(|id| id <= 0)
                 {
                     return Err(Error("invalid observation generation/node".into()));
+                }
+                match (r.capture_start_ns, r.capture_end_ns) {
+                    (None, None) => {}
+                    (Some(start), Some(end))
+                        if start > 0 && start <= end && end <= i64::MAX as u64 => {}
+                    _ => return Err(Error("invalid capture interval".into())),
+                }
+                if source.fragment.as_ref().is_some_and(|f| f.len() > 4096) {
+                    return Err(Error("raw fragment byte limit".into()));
                 }
                 match &field.state {
                     FieldState::Value { source, .. } if source.is_empty() => {

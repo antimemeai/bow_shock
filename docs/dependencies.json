@@ -10,7 +10,7 @@
     },
     "controller": {
       "adopted_on": "2026-10-01",
-      "purpose": "Closed typed JSONL for the control-only Rust child process",
+      "purpose": "Closed typed JSONL bootstrap and trusted-native local reviewed-table service",
       "operator_context": "Reviewed Rust controller/Serde proposal; operator accepts POC and asks to execute it with basic Rust rigor, deferring detsim/mutants",
       "direct_dependencies": [
         {
@@ -30,6 +30,12 @@
           ],
           "origin": "https://crates.io/crates/serde_json/1.0.151",
           "docs": "https://docs.rs/serde_json/1.0.151/serde_json/"
+        },
+        {
+          "name": "bow-shock-evidence",
+          "version": "0.1.0",
+          "path": "../crates/evidence",
+          "adoption": "Original local library; reuses already-adopted exact SQLite/Serde graph in local_table_evidence"
         }
       ],
       "exact_graph_and_registry_checksums": "../Cargo.lock",
@@ -51,7 +57,18 @@
         "cargo build --workspace --locked"
       ],
       "policy_check": "cargo deny --locked check",
-      "reference_adoption_boundary": "These are explicit runtime library adoptions, not copies of quarantined browser/agent reference implementations. No SQLite or async framework is adopted by this unit."
+      "reference_adoption_boundary": "Original application modules and explicit prior library adoptions, no quarantined source copy. Controller table service reuses adopted evidence/Serde and bundled SQLite graph; no additional package or async framework.",
+      "test_dependencies": [
+        {
+          "name": "rusqlite",
+          "version": "0.40.2",
+          "default_features": false,
+          "features": [
+            "bundled"
+          ],
+          "adoption": "Reuses local_table_evidence adoption for independent actual DB oracles; no new registry package"
+        }
+      ]
     },
     "local_table_evidence": {
       "adopted_on": "2026-10-02",
