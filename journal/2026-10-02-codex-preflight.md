@@ -119,3 +119,21 @@ JSON. Single actual corrected-case probe failed/nullproposal with cleanexit/
 SQL0/reap. Updated final transport/test hashes and report; owner fullbasics/release
 then root canonical native build follow. No product edit or inference/CEF/OS
 permission work by reviewer.
+
+Reviewed the next closed MCP startup-metadata plan against pinned stable schemas
+and source. Root/owner single authorized direct synthetic turn (not ours) exposed
+thread-scoped startup notices before/after ACK; no raw reasoning/final/account
+text retained. Plan accepted: exact ownednonnullthread, closedtypedstatus/name/
+nullableerror/failureReason, sharedvalidator in3phases, postthreadACK checksbefore
+export, unchangedbudgets/no newauthority. No MCP-disabled/containment or exact
+native-failure cause claim. Await code/directreds/greens; no product edit/model/
+CEF/Keychain action by reviewer.
+
+MCP startup extension final independent review accepted: pure sharedvalidator in
+setup/preACK/active phases, all5actualmethods green48.27s/21fixturecycles. Three
+phasepositives preserve exactgroundedfinal only;18foreign/malformed/metadata-only
+negatives failnull, setupforeign deniesbeforeexport, eachfixtureSQL0/healthyclose/
+ownedreap. Eligible finalJSON in metadata-onlyerror doesnotcreatecandidate. Final
+transport6cf84bec.../peer-test1ff940c0... hashes recorded inreport; no finding,
+budget/deadline/wire/capability change. Owner required basics/release and root
+canonicalnativebuild follow. No reviewer model/CEF/Keychain/identity action.

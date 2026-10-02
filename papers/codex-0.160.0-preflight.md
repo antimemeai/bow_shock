@@ -1,8 +1,9 @@
 # Codex 0.160.0 native tandem preflight
 
-2026-10-02. Research and metadata-only measurements for the first owned-catalog
-tandem milestone. No model turn, SDK/package adoption, credential copying,
-browser launch or product-source edit occurred. Read Blackbird, the reviewed
+2026-10-02. Research for the first owned-catalog tandem milestone. Initial
+preflight measurements were metadata-only; the final follow-up records one
+explicitly authorized synthetic turn. No SDK/package adoption, credential
+copying or browser launch occurred in this research lane. Read Blackbird, the reviewed
 agent bridge/B1–B3 plan and native tandem/control plans. The separately owned
 Rust unit is `docs/plan/controller-agent-proposals.md`.
 
@@ -296,3 +297,66 @@ budgets, and keep final-item validation as the sole proposal path. No generic
 ignore rule, model-turn observation or product edit was made during this study.
 The added primary files were extracted from the preserved pinned archive and
 listed in the existing acquisition manifest; they remain reference-only.
+## Final packaged metadata-only startup comparison
+
+After the final controlled native joins passed, one actual installed native run
+(`run-ypmfldne`) reported metadata unavailable before Ask. The app loaded its
+owned fixture and closed cleanly without Save; that provider failure remains
+unexplained. No raw provider stderr or handshake trace exists for that run, so
+its exact failing stage cannot be reconstructed from the native state label.
+
+Repeated the already-owned metadata-only driver with current explicit settings,
+cleared environment and private socket stdio. Exact installed version remained
+0.160.0; direct initialize/account/rates/thread replies arrived at34/435/941/1008ms
+and matched the reviewed home, measured account/routing and effective policy.
+No turn or page data was submitted; owned provider PID63731 was killed/reaped.
+The current debug controller reached metadata ready in1062ms, then healthy
+close/shutdown/exit0 with independently queried SQL0 and observed provider
+PIDs63741/63745 absent. The exact signed packaged controller and packaged clock
+reached ready in2134ms with the same fourteen fields, healthy exit0, SQL0 and
+observed provider PIDs64094/64098 absent. Safe shape-only logs are
+`context/review-controller-agent/metadata-diagnosis/final-direct.log`,
+`final-debug-service.log` and `final-packaged-service.log`. These successes do
+not explain the failed native startup or qualify live-turn availability.
+
+Source-only context check: native table Launch explicitly resets SIGCHLD
+disposition but does not set a signal mask; pinned Rust1.94.1 Command source
+(`process/unix/unix.rs:727`) explicitly inherits the spawning thread's mask in
+its posix_spawn path, and resets SIGPIPE disposition by default. Exact source
+origin/hash/restoration is appended to `runtime/rust-agent-primary.json`.
+Darwin ps exposes sigmask/blocked, which could describe an exact observed child
+on a future native attempt. No mask snapshot exists for the failed provider;
+there is no causal mask finding or requested source/deadline change here.
+
+## One owned installed turn and startup-notice gap
+
+The later installed native retry reached Ready and Ask, then failed before
+candidate. Root authorized one direct installed turn on only the prior owned
+Amber name/price candidates, copied and asserted from the controlled export.
+Fresh thread, production model/provider/home/cwd/readOnly/never/tool-disable
+settings and exact proposal outputSchema were retained. The diagnostic consumed
+only safe protocol shapes, discarding raw reasoning/account/final text from its
+log. It completed in9124ms (66records/24522bytes), terminal completed/error-null,
+one final_answer with identical item/completed and terminal summary text. It
+did not validate that final JSON's candidate semantics, so this is protocol-turn
+evidence, not a grounded proposal or native Use/Save success. Owned PID67812 was
+killed/reaped and absent; failed native database independently contained0rows
+and0commits. Safe log: `metadata-diagnosis/final-turn-shapes.log`.
+
+The first unsupported name was mcpServer/startupStatus/updated: four records at
+0/2/270/1843ms, each with matching threadId and name/status strings, null error
+and failureReason. No other unknown names occurred in the direct trace. The
+native failed provider's private trace was unavailable; this establishes a
+concrete adapter gap without claiming its exact native failure stage.
+
+Pinned source `app-server-protocol/src/protocol/v2/mcp.rs:355–373` and stable
+ServerNotification.json:2826–2875 specify starting/ready/failed/cancelled,
+optional nullable threadId/error and only reauthenticationRequired nullable
+failureReason. `app-server/src/bespoke_event_handling.rs:202–227` maps the core
+startup event and supplies the actual conversation ID. The selected App Server
+trees are already covered by the preserved acquisition manifest/archive.
+The project's narrower adapter requires a matching nonnull owned thread and
+closed typed fields; it discards metadata during acknowledged thread setup,
+bounded turn pre-ACK replay and active stream. It accepts no unbound baseline,
+tool callback, account operation or generated row, and preserves all original
+stream/source/deadline/Save limits and trusted-peer containment limitations.

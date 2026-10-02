@@ -173,3 +173,57 @@ and owned PID absence. Review accepted the final transport/test hashes. Required
 scripts/rigor passed all69 workspace cases, fmt/Clippy/doctests/deny and locked
 release. Root owns final canonical rebuild, operator local per-item keychain
 acknowledgement and controlled/live native gates; this lane performed none.
+Final installed native startup reported agent unavailable before Ask after the
+controlled joins passed. Narrow metadata-only diagnosis reproduced no failure:
+installed direct socket version/home/account/routing/thread policy remained
+valid, debug controller ready1062ms and exact signed packaged controller ready
+2134ms. Both controllers closed cleanly, direct SQLite query found0rows, and
+recorded direct provider PIDs were absent. No model turn/export/CEF/signing or
+keychain/identity modification occurred in this lane. Preserved safe shape-only
+logs and recorded the failed native run as unexplained, rather than treating the
+later successes as its diagnosis.
+
+Read pinned std Command child-process source: it inherits the spawning thread
+signal mask; native table parent resets SIGCHLD disposition but not mask. Added
+the original study file to the existing Rust primary manifest with revision,
+hash and restoration. Failed provider's mask was not captured; this is a source
+context difference to measure if it recurs, not a causal finding or product fix.
+
+Observed native retry reached actual Ready/Ask then failed before candidate.
+Root authorized one bounded direct installed turn on only prior owned Amber
+name/price synthetic fields; wrote research subplan before executing. Preserve
+only closed protocol shapes/types/correlation/error codes, discard reasoning
+and account text; fresh thread, exact production settings/schema and owned reap.
+No product correction or native rebuild until a concrete mismatch is studied.
+
+One authorized direct installed turn completed in9124ms (66records/24522bytes),
+completed/error-null, one final_answer with identical completed/summary text.
+Only safe shapes were retained; final JSON candidate semantics were not checked,
+so no grounded-proposal/native success is claimed. First unsupported method was
+mcpServer/startupStatus/updated, four active-thread records at0/2/270/1843ms.
+Pinned source confirms closed startup metadata and conversation identity; no
+raw reasoning/account/error text was persisted. Exact owned child67812 absent;
+independent failed-native SQLite query found0rows/0commits.
+
+Root authorized the smallest correlated metadata discard across held thread
+setup, pre-ACK turn and active stream. Wrote precise contract/subplan from the
+pinned schema/source before tests or code; no unbound baseline acceptance or
+callback/tool grant, budget/deadline/export/Save change is proposed.
+
+Direct controlled old-source red earned for all three valid phases: held setup
+failed/not_transmitted before export, pre-ACK and active failed after handoff.
+Shared strict validator now checks acknowledged owned thread and exact typed
+status metadata, then discards. Focused5methods passed50.60s, with valid nullable/
+omitted fields and all four statuses, foreign thread failures in each phase,
+malformed/duplicate/positional/server-request shapes and eligible selection JSON
+in MCP error alone without final message. Every case directly checks SQL0 and
+provider reap. Split thread-provenance versus shape/no-final fault families
+under the same process oracle to fit the existing CI60s test supervisor; no
+production limit was changed. Independent final review/basic checks follow.
+
+Independent5methods passed48.27s across21actual fixture cycles and accepted the
+final source/test hashes, with no remaining finding. Required scripts/rigor
+passed all74 workspace cases in209.472s, plus fmt/Clippy/doctests/deny and locked
+release. No clock/host probe remains active. Root's final canonical native build
+and actual installed proposal/Use/Save gate remain outstanding; earlier startup,
+clock and teardown availability failures retain their stated unresolved scope.

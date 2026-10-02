@@ -1,7 +1,7 @@
 {
   "rust_version": "1.94.1",
   "revision": "e408947bfd200af42db322daf0fadfe7e26d3bd1",
-  "source_role": "standard-library private socket contracts, study only; no copied implementation or new dependency",
+  "source_role": "standard-library private socket and child process contracts, study only; no copied implementation or new dependency",
   "prepare_command": "mkdir -p context/rust-agent-primary",
   "documents": [
     {
@@ -9,6 +9,12 @@
       "local_path": "context/rust-agent-primary/unix.rs",
       "sha256": "0a196515a392a124277b9d5f13e7585e8d3a79beb223f10192d901440c118fd0",
       "restore_command": "curl --fail --location 'https://raw.githubusercontent.com/rust-lang/rust/e408947bfd200af42db322daf0fadfe7e26d3bd1/library/std/src/sys/net/connection/socket/unix.rs' --output context/rust-agent-primary/unix.rs"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/rust-lang/rust/e408947bfd200af42db322daf0fadfe7e26d3bd1/library/std/src/sys/process/unix/unix.rs",
+      "local_path": "context/rust-agent-primary/process-unix.rs",
+      "sha256": "b1cbb22bf9cfa57be9968e46137f8289e36948289a3f55948d6aadbe422cc302",
+      "restore_command": "curl --fail --location 'https://raw.githubusercontent.com/rust-lang/rust/e408947bfd200af42db322daf0fadfe7e26d3bd1/library/std/src/sys/process/unix/unix.rs' --output context/rust-agent-primary/process-unix.rs"
     }
   ]
 }

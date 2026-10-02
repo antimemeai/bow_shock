@@ -29,6 +29,31 @@ def emit(v):
   v['emittedAtMs']={'timestamp_bool':True,'timestamp_float':1.5,'timestamp_null':None,'timestamp_overflow':9223372036854775808,'timestamp_negative':-1}.get(mode,1730000000000)
  print(json.dumps(v,separators=(',',':')),flush=True)
 thread='thread-'+str(os.getpid());turn='turn-'+str(os.getpid())
+def mcp_events():
+ notices=[{'method':'mcpServer/startupStatus/updated','params':{'threadId':thread,'name':'fixture-mcp','status':'starting','error':None,'failureReason':None}},
+          {'method':'mcpServer/startupStatus/updated','params':{'threadId':thread,'name':'fixture-mcp','status':'ready'}},
+          {'method':'mcpServer/startupStatus/updated','params':{'threadId':thread,'name':'fixture-mcp','status':'failed','error':'DISCARDED_MCP_ERROR','failureReason':'reauthenticationRequired'}},
+          {'method':'mcpServer/startupStatus/updated','params':{'threadId':thread,'name':'fixture-mcp','status':'cancelled','error':'','failureReason':None}}]
+ p=notices[0]['params']
+ if mode.endswith('foreign'):p['threadId']='foreign'
+ if mode=='mcp_thread_null':p['threadId']=None
+ if mode=='mcp_thread_missing':del p['threadId']
+ if mode=='mcp_thread_type':p['threadId']=False
+ if mode=='mcp_name_empty':p['name']=''
+ if mode=='mcp_name_type':p['name']=False
+ if mode=='mcp_status_unknown':p['status']='enabled'
+ if mode=='mcp_status_type':p['status']=False
+ if mode=='mcp_error_type':p['error']={}
+ if mode=='mcp_reason_type':p['failureReason']=False
+ if mode=='mcp_reason_unknown':p['failureReason']='other'
+ if mode=='mcp_only':notices[2]['params']['error']=text
+ if mode=='mcp_unknown':p['extra']=False
+ if mode=='mcp_positional':notices[0]['params']=[thread,'fixture-mcp','starting',None,None]
+ if mode=='mcp_callback':notices[0]['id']=5
+ for notice in notices:notice['emittedAtMs']=1
+ if mode=='mcp_duplicate':notices[0]=json.dumps(notices[0],separators=(',',':')).replace('"status":"starting"','"status":"starting","status":"ready"')
+ (base/'mcp_seen').write_text(str(os.getpid()))
+ return notices
 for line in sys.stdin:
  r=json.loads(line);m=r['method']
  if m=='initialized':continue
@@ -63,6 +88,8 @@ for line in sys.stdin:
    if mode=='thread_bad_sandbox_key':v['sandbox']['extra']=False
   if mode=='effective_mismatch':v['approvalPolicy']='on-request'
   if mode=='account_change':emit({'method':'account/updated','params':{'authMode':'chatgpt','planType':'pro'}})
+  if mode.startswith('mcp_setup'):
+   for event in mcp_events():emit(event)
   if mode=='before':
    (base/'before').write_text(str(os.getpid()))
    while not (base/'release').exists():time.sleep(.005)
@@ -81,6 +108,7 @@ for line in sys.stdin:
   item={'type':'agentMessage','id':'final-1','text':text,'phase':'final_answer' if mode=='competing' else None}
   if mode=='phase_bool':item['phase']=True
   events=[{'method':'item/completed','params':{'threadId':thread,'turnId':turn,'completedAtMs':1,'item':item}}]
+  if mode.startswith('mcp_') and not mode.startswith('mcp_setup'):events=mcp_events()+([] if mode=='mcp_only' else events)
   if mode.startswith('reasoning_'):
    delta=json.dumps(dict(final,candidate_ids=['r0f0'] if mode=='reasoning_only' else ['r0f1']),separators=(',',':'))
    notices=[{'method':'item/reasoning/summaryTextDelta','params':{'threadId':thread,'turnId':turn,'itemId':'reason-1','delta':delta,'summaryIndex':-1}},
@@ -110,13 +138,14 @@ for line in sys.stdin:
   if mode=='callback':events=[{'id':5,'method':'item/commandExecution/requestApproval','params':{'threadId':thread,'turnId':turn}}]
   events.append({'method':'turn/completed','params':{'threadId':thread,'turn':{'id':turn,'status':'completed','error':None,'items':[item],'itemsView':'summary'}}})
   if mode=='reasoning_only':events[-1]['params']['turn'].update(items=[],itemsView='notLoaded')
+  if mode=='mcp_only':events[-1]['params']['turn'].update(items=[],itemsView='notLoaded')
   if mode=='empty_summary':events[-1]['params']['turn']['items']=[]
   if mode=='not_loaded':events[-1]['params']['turn'].update(items=[],itemsView='notLoaded')
   if mode=='missing_error':del events[-1]['params']['turn']['error']
-  if mode in ('early','reasoning_early'):
+  if mode in ('early','reasoning_early') or mode.startswith('mcp_pre_ack'):
    for event in events:emit(event)
   emit({'id':r['id'],'result':{'turn':{'id':turn,'status':'inProgress','items':[]}}})
-  if mode not in ('early','reasoning_early'):
+  if mode not in ('early','reasoning_early') and not mode.startswith('mcp_pre_ack'):
    for event in events:emit(event)
   continue
  else:raise AssertionError(m)
@@ -1001,5 +1030,87 @@ fn foreign_malformed_or_only_reasoning_never_yields_a_candidate() {
         assert_eq!(status["state"], "failed", "{mode}: {status}");
         assert!(status["proposal"].is_null());
         c.clean_close();
+    }
+}
+
+fn mcp_projection(mode: &str) {
+    let mut c = Client::open(mode);
+    std::fs::write(c.dir.join("mode"), mode).unwrap();
+    c.ready();
+    let review = c.review();
+    let task = c.start(review);
+    let status = c.final_status(&task);
+    assert!(c.dir.join("mcp_seen").exists());
+    assert_eq!(status["state"], "candidate", "{mode}: {status}");
+    let fields = status["proposal"]["batch"]["rows"][0]["fields"]
+        .as_array()
+        .unwrap();
+    assert_eq!(fields.len(), 1);
+    assert_eq!(fields[0]["state"]["value"], "SELECTED_MARKER");
+    assert!(!status.to_string().contains("DISCARDED_MCP_ERROR"));
+    assert!(!status.to_string().contains("fixture-mcp"));
+    c.clean_close();
+}
+#[test]
+fn mcp_startup_setup_metadata_preserves_grounded_final_only() {
+    mcp_projection("mcp_setup");
+}
+#[test]
+fn mcp_startup_pre_ack_metadata_preserves_grounded_final_only() {
+    mcp_projection("mcp_pre_ack");
+}
+#[test]
+fn mcp_startup_active_metadata_preserves_grounded_final_only() {
+    mcp_projection("mcp_active");
+}
+fn mcp_denied(mode: &str) {
+    let mut c = Client::open(mode);
+    std::fs::write(c.dir.join("mode"), mode).unwrap();
+    c.ready();
+    let review = c.review();
+    let task = c.start(review);
+    let status = c.final_status(&task);
+    assert!(
+        c.dir.join("mcp_seen").exists(),
+        "must reach MCP metadata phase: {mode}"
+    );
+    assert_eq!(status["state"], "failed", "{mode}: {status}");
+    assert!(status["proposal"].is_null());
+    if mode.starts_with("mcp_setup") {
+        assert_eq!(status["export_disposition"], "not_transmitted");
+        assert!(!c.dir.join("export").exists());
+    }
+    c.clean_close();
+}
+#[test]
+fn mcp_startup_unbound_thread_never_yields_candidate() {
+    for mode in [
+        "mcp_setup_foreign",
+        "mcp_pre_ack_foreign",
+        "mcp_active_foreign",
+        "mcp_thread_null",
+        "mcp_thread_missing",
+        "mcp_thread_type",
+    ] {
+        mcp_denied(mode);
+    }
+}
+#[test]
+fn mcp_startup_malformed_or_only_metadata_never_yields_candidate() {
+    for mode in [
+        "mcp_name_empty",
+        "mcp_name_type",
+        "mcp_status_unknown",
+        "mcp_status_type",
+        "mcp_error_type",
+        "mcp_reason_type",
+        "mcp_reason_unknown",
+        "mcp_unknown",
+        "mcp_positional",
+        "mcp_callback",
+        "mcp_duplicate",
+        "mcp_only",
+    ] {
+        mcp_denied(mode);
     }
 }

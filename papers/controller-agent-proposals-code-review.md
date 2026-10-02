@@ -111,7 +111,7 @@ The reviewed production source SHA256 values are:
 | File | SHA256 |
 | --- | --- |
 | `agent.rs` | `eeb5f7ce2f1a36180efd73aa9080f9623c1a5061a608833ee36bb25238cbb18e` |
-| `agent_transport.rs` | `76629bb75fe94fdfbe09a35d9f74486440ba07195e0db864104b5244f0d12783` |
+| `agent_transport.rs` | `6cf84bec2770fc9aa4716d5e0bb1b6790b86df2cb204b09f152faad38d29f287` |
 | `service.rs` | `192df7e6774afeb7d1dfb950f1570d80f28b9c0a477d3787665013a281bba9c0` |
 | `protocol.rs` | `275a6cef2e85923a226f9d91d77bf1da591e6d09f454048967b880ae0f3e9669` |
 | evidence `lib.rs` | `2f8ef45e679b4a5721368ae0823669694c179884e22c9be62af5df03e31bd170` |
@@ -239,3 +239,47 @@ SHA256 is `e7a1cd4ccff95da44a1a7a07cf03a5be1f0d66c4293350283f1c9d3deee2c068`.
 Owner runs required affected basics/release before the canonical native rebuild.
 No actual inference, CEF launch, credential/Keychain or OS identity change occurred
 in this review, and these tests make no live-provider availability claim.
+
+## Closed MCP startup metadata follow-up
+
+The owner's single explicitly authorized installed synthetic turn completed in
+9.124s with66 records/24,522bytes, a coherent completed/summary final and actual
+owned reap. Its shape-only trace exposed `mcpServer/startupStatus/updated` as the
+first unsupported method. This is not claimed as the exact cause of the earlier
+native failed task, nor as native workflow acceptance.
+
+Independently read pinned stable schema and original source. The notification
+has required name/status, optional nullable threadId/error/failureReason, four
+states starting/ready/failed/cancelled and sole failure enum
+reauthenticationRequired. The source emits the current conversation ID. It has
+no turn ID: this is thread-scoped metadata, not turn-scoped authority.
+
+Reviewed the owner's written subplan before code: require matching nonnull
+fresh acknowledged thread and bounded nonempty name; closed typed fields and
+nullable error string under original budgets. One validator must cover held
+thread-start notices after its ACK and before export, pre-turn-ACK held notices
+and the active stream. No unbound baseline notices, generic ignore, login/tool
+approval, history, Store/UI write or new authority. The plan and final pure
+validator/source diff are accepted. Discarding a startup status does not disable
+MCP or prove trusted coding-peer containment.
+
+Independent actual process rerun passed five methods in48.27s: three arrival-
+phase positives and eighteen foreign/malformed/metadata-only fixture cycles.
+All four states and nullable/absent/string errors are accepted without leaking
+server names/error text into the proposal. The same validator handles the held
+setup queue after thread ACK and before page export, the original pre-turn-ACK
+replay and active stream. Foreign setup identity fails with not_transmitted and
+no export; pre-ACK/active foreign identity, missing/null/wrong-type thread,
+empty/wrong-type name, unknown/wrong-type status/failure reason/error, unknown/
+positional/duplicate fields and method/id callback confusion fail/null proposal.
+Metadata-only error text carries eligible selection JSON but has no final
+agentMessage; it remains failed/null proposal. Every fixture asserts an actual
+metadata-phase marker, real rows0, healthy close and owned PID absence.
+The log is `context/review-controller-agent/mcp-startup-independent.log`.
+
+**MCP startup-metadata extension accepted; no remaining finding.** Final product
+hash is recorded above; the final persisted peer/test SHA256 is
+`1ff940c0cf8290f2f6bbf23e935b881bf2c8d1bbdb2b0a5e37a3ed6f54756630`.
+Required affected basics/release and root's canonical native build remain the
+next gates. This reviewer made no product edits, actual model turn, CEF launch
+or Keychain/OS identity change.

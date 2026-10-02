@@ -157,3 +157,45 @@ unknown/duplicate fields before the final: require failed/null proposal and
 SQL0/reap. Implement only the pinned shapes, run focused greens and independent
 protocol/source/process review, then required Rust basics. No live model turn,
 CEF launch, generic-ignore rule or summary-only suppression substitute.
+
+## One owned installed-turn diagnosis
+
+The observed installed native retry reached Ready/Ask but failed before a
+candidate. Run one bounded direct private-socket turn using only the prior
+owned Amber name/price candidates copied from run-i9lt9_nc's retained controlled
+export. Keep exact production explicit runtime/home/cwd/model/provider/readOnly/
+never/no-network-tool/disabled shell/unified-exec/multi-agent configuration,
+fresh thread and output schema. No general page/task, browser launch, account
+change or automatic table write. Require version/effective metadata first.
+
+The diagnostic driver retains only method/envelope/parameter keys and types,
+item type/phase, correlations and error codes; discard all raw reasoning/account
+text and stop after terminal/unsupported callback or at60s/512KiB/512records,
+with64KiB frames. Kill/reap the sole owned child in every outcome and inspect
+the already-owned failed native database independently for zero saved rows.
+Identify the first concrete strict-parser mismatch against pinned primary
+source/schema before proposing a product correction. A correction needs its
+own direct controlled red/green, independent review and required Rust basics;
+do not infer native success from a direct turn or relax existing deadlines.
+
+## Closed correlated MCP startup metadata
+
+The one installed turn exposed mcpServer/startupStatus/updated as the first
+unsupported name. Pinned ServerNotification.json:2847 and v2/mcp.rs:355–373
+define name/status, optional nullable threadId/error/failureReason, four states
+starting/ready/failed/cancelled and only reauthenticationRequired failure reason.
+bespoke_event_handling.rs:202–227 publishes actual conversation identity. Require
+threadId present and exactly the fresh acknowledged thread, bounded nonempty
+name, exact state enum, error absent/null/string and failureReason absent/null/
+reauthenticationRequired; deny unknown/duplicate/positional fields, malformed
+types and absent/null/foreign thread identity. Discard all metadata text without
+restoring powers, approving callbacks, retaining history, SQL or UI output.
+
+Use one closed validator at the held thread/start drain after its ACK, the
+existing turn pre-ACK held queue after turn ACK and the active turn stream.
+No acceptance of unbound baseline metadata; all existing frame/byte/event/held/
+clock/export/source/Save bounds remain. Actual controlled positives first must
+fail old source for each phase, then pass with only exact grounded final fields.
+Foreign-phase and malformed peers must fail/null proposal with SQL0/owned reap;
+setup failures additionally prove no source export. Independent source/process
+review and required Rust basics precede root's next native build/live gate.

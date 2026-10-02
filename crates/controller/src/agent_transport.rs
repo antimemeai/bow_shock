@@ -117,6 +117,30 @@ fn text(value: &Value) -> Result<&str, ()> {
     }
     Ok(value)
 }
+fn discard_mcp_startup(params: &Value, thread_id: &str) -> Result<(), ()> {
+    keys(
+        params,
+        &["threadId", "name", "status"],
+        &["error", "failureReason"],
+    )?;
+    if params["threadId"] != thread_id
+        || !matches!(
+            params["status"].as_str(),
+            Some("starting" | "ready" | "failed" | "cancelled")
+        )
+        || params
+            .get("error")
+            .is_some_and(|value| !value.is_null() && !value.is_string())
+        || params.get("failureReason").is_some_and(|value| {
+            !value.is_null() && value.as_str() != Some("reauthenticationRequired")
+        })
+    {
+        return Err(());
+    }
+    text(&params["name"])?;
+    // This read-only status never grants a tool, resumes authority or supplies a final.
+    Ok(())
+}
 fn phase(item: &Value) -> Result<Option<String>, ()> {
     match item.get("phase") {
         None | Some(Value::Null) => Ok(None),
@@ -533,8 +557,12 @@ pub fn propose(
     }
     let thread_id = text(&thread["thread"]["id"])?.to_owned();
     while let Some(event) = session.held.pop_front() {
-        if event["method"] != "thread/started" {
-            return Err(());
+        match event["method"].as_str() {
+            Some("thread/started") => {}
+            Some("mcpServer/startupStatus/updated") => {
+                discard_mcp_startup(&event["params"], &thread_id)?
+            }
+            _ => return Err(()),
         }
     }
     let prompt=serde_json::to_string(&json!({"request_id":task.id,"operator_objective":task.objective,"page_evidence":task.fields,"partial":true,
@@ -655,6 +683,7 @@ pub fn propose(
         let params = &event["params"];
         let turn = turn_id.as_ref().expect("acknowledged");
         match method {
+            "mcpServer/startupStatus/updated" => discard_mcp_startup(params, &thread_id)?,
             "account/updated" | "config/updated" => return Err(()),
             "account/rateLimits/updated" => {
                 if params
