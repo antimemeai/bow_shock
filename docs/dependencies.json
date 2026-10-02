@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "runtime_units": {
+    "native_browser": {
+      "adopted_on": "2026-10-02",
+      "purpose": "Owned macOS Chrome-style CEF window and native local reader foundation",
+      "matching_acquisition_manifest": "../runtime/cef-macos-arm64.json",
+      "build": "python3 scripts/build-native.py (from repository root)",
+      "boundary": "Matched standard distribution wrapper/framework/helpers, explicit stable API15400, original application source; sandbox/default browser behavior retained. No browser binding framework, TLS interception CA or OS input library adopted."
+    },
+    "controller": {
+      "adopted_on": "2026-10-01",
+      "purpose": "Closed typed JSONL for the control-only Rust child process",
+      "operator_context": "Reviewed Rust controller/Serde proposal; operator accepts POC and asks to execute it with basic Rust rigor, deferring detsim/mutants",
+      "direct_dependencies": [
+        {
+          "name": "serde",
+          "version": "1.0.229",
+          "features": [
+            "derive"
+          ],
+          "origin": "https://crates.io/crates/serde/1.0.229",
+          "docs": "https://serde.rs/container-attrs.html"
+        },
+        {
+          "name": "serde_json",
+          "version": "1.0.151",
+          "features": [
+            "default"
+          ],
+          "origin": "https://crates.io/crates/serde_json/1.0.151",
+          "docs": "https://docs.rs/serde_json/1.0.151/serde_json/"
+        }
+      ],
+      "exact_graph_and_registry_checksums": "../Cargo.lock",
+      "resolved_registry_packages": [
+        "serde",
+        "serde_core",
+        "serde_derive",
+        "serde_json",
+        "itoa",
+        "memchr",
+        "zmij",
+        "proc-macro2",
+        "quote",
+        "syn",
+        "unicode-ident"
+      ],
+      "restore_commands": [
+        "cargo fetch --locked",
+        "cargo build --workspace --locked"
+      ],
+      "policy_check": "cargo deny --locked check",
+      "reference_adoption_boundary": "These are explicit runtime library adoptions, not copies of quarantined browser/agent reference implementations. No SQLite or async framework is adopted by this unit."
+    },
+    "local_table_evidence": {
+      "adopted_on": "2026-10-02",
+      "purpose": "Human reviewed local tables, one bounded SQLite worker and conservative lifecycle/restart",
+      "operator_context": "Operator accepted concrete CEF/AppKit/Rust/JSON/SQLite POC; detsim, mutants and heavier tiers explicitly deferred",
+      "direct_dependencies": [
+        {
+          "name": "rusqlite",
+          "version": "0.40.2",
+          "default_features": false,
+          "features": [
+            "bundled"
+          ],
+          "origin": "https://crates.io/crates/rusqlite/0.40.2",
+          "docs": "https://docs.rs/rusqlite/0.40.2/rusqlite/"
+        },
+        {
+          "name": "serde",
+          "version": "1.0.229",
+          "features": [
+            "derive"
+          ],
+          "adoption": "Reuses controller adoption"
+        },
+        {
+          "name": "serde_json",
+          "version": "1.0.151",
+          "features": [
+            "default"
+          ],
+          "adoption": "Reuses controller adoption"
+        }
+      ],
+      "bundled_engine": {
+        "adapter": "libsqlite3-sys 0.38.2",
+        "sqlite_version": "3.53.2",
+        "source_id": "2026-06-03 19:12:13 d6e03d8c777cfa2d35e3b60d8ec3e0187f3e9f99d8e2ee9cac695fd6fcdf1a24",
+        "origin": "https://crates.io/crates/libsqlite3-sys/0.38.2",
+        "verification": "Actual downloaded sqlite3/sqlite3.h; Cargo.lock registry digest"
+      },
+      "exact_graph_and_registry_checksums": "../Cargo.lock",
+      "new_resolved_registry_packages": [
+        "rusqlite 0.40.2",
+        "libsqlite3-sys 0.38.2",
+        "bitflags 2.13.2",
+        "cc 1.5.1",
+        "fallible-iterator 0.3.0",
+        "fallible-streaming-iterator 0.1.9",
+        "find-msvc-tools 0.1.14",
+        "pkg-config 0.3.34",
+        "shlex 2.0.1",
+        "smallvec 1.16.2",
+        "vcpkg 0.2.15"
+      ],
+      "restore_commands": [
+        "cargo fetch --locked",
+        "cargo build -p bow-shock-evidence --locked"
+      ],
+      "primary_storage_contracts": [
+        "https://www.sqlite.org/wal.html",
+        "https://www.sqlite.org/lang_transaction.html",
+        "https://doc.rust-lang.org/std/fs/struct.File.html#method.try_lock"
+      ],
+      "boundary": "Original application code; no blob store, general policy language, async framework, model SDK, input/network/export capability. File::try_lock lifetime ownership checked on pinned Rust1.94.1; SQLite IO remains on worker. Managed logical deletion is not forensic disk erasure.",
+      "native_retention_clock": {
+        "producer": "../native/cef/continuous_clock.mm",
+        "probe": "../tests/native_clock_probe.mm",
+        "source": "Installed Apple SDK mach/mach_time.h and actual kern.bootsessionuuid",
+        "boundary": "Trusted host-configured original executable; native per-operation witness and worker actual query after DB lock/before commit. No Rust unsafe/new crate or model-command path. Native sleep/independent-control gate remains before general enablement."
+      }
+    }
+  }
+}
