@@ -14,6 +14,9 @@ Start with [the synthesis](../docs/research-synthesis.md), then:
 - [Native trusted agent startup configuration review](native-agent-configuration-code-review.md).
 - [Closed native proposal connection review](native-agent-connection-code-review.md).
 - [Controller scoped agent proposal review](controller-agent-proposals-code-review.md).
+- [Native selected-source proposal panel review](native-agent-panel-code-review.md).
+- [Native tandem join review](native-agent-join-code-review.md), with
+  [the joined agent task experiment](../docs/experiments/native-agent-workflow.md).
 - [End-user browser automation predecessors](browser-predecessors.md).
 - [Native DOM and runtime identity](native-browser-surfaces.md).
 - [OS input and external network interventions](os-input-and-behavior.md).

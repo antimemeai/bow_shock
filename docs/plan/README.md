@@ -25,7 +25,7 @@ native agent collaboration and learned page patterns in scope.
 | Native runtime | [Owned CEF window, observation and native-input feasibility](native-runtime.md) |
 | Effect admission and local evidence | [Shared authority and conformance](authority-conformance.md) |
 | Network | [Capture, workbench, external environment and baselines](network-roadmap.md) |
-| Agent and extraction | [Provider bridge, grounded fields and tandem task](agent-and-extraction.md) |
+| Agent and extraction | [Provider bridge, grounded fields and tandem task](agent-and-extraction.md); [closed controller proposals](controller-agent-proposals.md), [native panel](native-agent-panel.md) and [tandem join](native-agent-join.md) |
 
 One owner integrates the controller authority across powers; no lane implements a
 second grant manager. Independent native/data/endpoint oracles attack different

@@ -31,6 +31,26 @@ restart. `--page birch` opens the ambiguous-price example. Build first with
 `python3 scripts/build-native.py` if needed. The dedicated profile and local
 SQLite table store live in ignored `context/runtime/poc`.
 
+The reviewed native agent controls are available with:
+
+```sh
+python3 scripts/try-poc.py --agent
+```
+
+Observe the owned page, choose the fields to share, and **Ask**. **Use proposal**
+creates a fresh Review from the original captured fields; **Save reviewed table**
+is a separate action. The model can select supplied field IDs and cannot change
+their values, save a table, or operate the page. This mode selects installed
+Codex and hosted model `gpt-6.1-sol`; the panel shows the measured connection
+before Ask is available. Credentials remain with Codex.
+
+The controller and panel passed their direct checks and independent reviews;
+all 69 Rust tests and required basics pass. Final rebuilt controlled native joins
+passed Save/reopen, Stop, helper-loss and Quit checks after operator readiness.
+The installed-model task remains pending diagnosis of a runtime task failure;
+see [the agent task experiment](docs/experiments/native-agent-workflow.md).
+No completed live inference is claimed yet.
+
 Current scope: a dedicated window, macOS first and Linux second. The model reads
 native rendered DOM and proposes work; a separate OS input executor supplies
 keyboard/mouse/scroll events. Request/response editing, traffic baselines and

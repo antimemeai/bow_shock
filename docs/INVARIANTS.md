@@ -1,9 +1,9 @@
 # Implemented construction invariants
 
 Pipe framing, a control-only controller child, an owned native shell/fixture
-reader and the local reviewed-table library are implemented at the scope below.
-Native integration, general capture workload limits and delegated effects remain
-future work. See [the construction sub-plan](plan/rust-basics.md).
+reader, reviewed-table storage and scoped agent proposals are implemented at the
+scope below. General capture, OS input and network effects retain their later
+gates. See [the construction sub-plan](plan/rust-basics.md).
 
 | Invariant | Direct check | Limits / revisit when |
 | --- | --- | --- |
@@ -47,3 +47,18 @@ do not bound Blink traversal work. General observation stays disabled. Explicit
 root context metadata verifies the tested effective origin; child frames and
 sensitive fields are withheld. Broader lifecycle/workload/servicing gates and
 the earlier unexplained startup/teardown failures remain open.
+
+| Scoped agent invariant | Direct check | Limits / revisit when |
+| --- | --- | --- |
+| Only selected whole fields from a current unapproved Review enter one fresh task | Actual private peer receives selected markers and no excluded marker; scope/version/approval/expiry changes deny handoff | Two owned catalog patterns; trusted coding peer and hosted inference, with no containment or erasure claim |
+| Runtime version/home/account/routing/effective thread settings bind before fields leave | Actual installed metadata-only preflight; controlled account/routing/policy changes and closed-shape attacks | Codex 0.160.0, ordinary ChatGPT routing only; metadata does not establish model entitlement |
+| Model result selects native IDs; original retained fields supply values and provenance | Actual conflicting/generated/foreign/malformed final cases; native subset reconstruction before Use | No general learned extraction or model-generated field values |
+| Revocation fences unsent chunks and terminal transport failure reaps the direct child | Actual private socket saturation with Running → Stop; actual host stdout loss and owned PID absence | Already handed-off content may remain disclosed; arbitrary descendants/forced host death outside cleanup; clock and write are separate operations |
+| Late task replies cannot become another task's proposal | Actual blocked stdout A → replacement B trace returns unknown_task for A | Current run only; no history/resume/retry or durable task reconciliation |
+| Use revises the original draft; Save remains a separate exact Review action | Actual native proposal/Use/Review/Save/SQLite/reopen driver; zero SQL before Use and Save | Programmatic delivery to native actions on owned fixtures, with physical input still unqualified |
+| Active native Quit joins its pending Rust revocation before healthy close | Actual pre-export Quit requires pending-fence join, exact ACK, no export and clean empty SQL | Wrong/missing ACK leaves close unclean; OS clock startup and broader concurrency availability remain unresolved |
+
+The [controller review](../papers/controller-agent-proposals-code-review.md),
+[native panel review](../papers/native-agent-panel-code-review.md) and
+[joined experiment](experiments/native-agent-workflow.md) distinguish controlled
+protocol, native lifecycle, installed metadata and live inference evidence.

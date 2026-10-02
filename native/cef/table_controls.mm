@@ -2,6 +2,7 @@
 #import "observation.h"
 #import "table_projection.h"
 #import "continuous_clock.h"
+#import "agent_panel.h"
 #include "include/cef_client.h"
 #include "include/cef_application_mac.h"
 #include <algorithm>
@@ -75,7 +76,7 @@ NSString* JSON(id value) {
   uint64_t _requestedStop;
   uint64_t _captureStart, _lastTick, _maxTickGap, _stopTarget;
   NSUInteger _smokeObservations;
-  BOOL _retentionChangedInSmoke, _captureCompleted;
+  BOOL _retentionChangedInSmoke, _captureCompleted, _smokeScheduled;
   BOOL _selectedBrowserChosen;
   NSMutableArray* _smokeReviews;
   NSMutableDictionary<NSString*, NSValue*>* _sourceRanges;
@@ -90,9 +91,22 @@ NSString* JSON(id value) {
   void (^_lifecycleHeldOrdinary)(void);
   uint64_t _lifecycleStartNs;
   BOOL _lifecycleOldOrdinary;
+  BSAgentPanel* _agentPanel;
+  BOOL _agentBusy;
+  NSTimer* _agentSmokeTimer;
+  NSString* _agentSmokePath;
+  NSInteger _agentSmokeStep;
+  BOOL _controlFaultPending;
+  BOOL _rustStopPending, _closeWaitingRustStop;
+  NSString* _agentSmokeTrace;
 }
 - (instancetype)initWithOrigin:(NSString*)origin databaseURL:(NSURL*)databaseURL
     smokeMode:(NSString*)smokeMode result:(NSMutableDictionary*)result quit:(void (^)(void))quit {
+  return [self initWithOrigin:origin databaseURL:databaseURL smokeMode:smokeMode result:result agentConfiguration:nil quit:quit];
+}
+- (instancetype)initWithOrigin:(NSString*)origin databaseURL:(NSURL*)databaseURL
+    smokeMode:(NSString*)smokeMode result:(NSMutableDictionary*)result
+    agentConfiguration:(BSAgentConfiguration*)agentConfiguration quit:(void (^)(void))quit {
   self = [super init];
   if (!self) return nil;
   _origin = [origin copy]; _smokeMode = [smokeMode copy]; _result = result; _quit = [quit copy];
@@ -100,7 +114,7 @@ NSString* JSON(id value) {
   _tableConnection = [[BSTableConnection alloc]
       initWithExecutableURL:[directory URLByAppendingPathComponent:@"bow-shock-controller"]
       databaseURL:databaseURL clockProbeURL:[directory URLByAppendingPathComponent:@"bow_shock_clock_probe"]
-      ownedOrigin:origin];
+      ownedOrigin:origin agentConfiguration:agentConfiguration];
   NSRect screen = NSScreen.mainScreen.visibleFrame;
   NSRect controlsFrame = NSMakeRect(std::max(NSMinX(screen) + 10, NSMaxX(screen) - 600),
       std::max(NSMinY(screen) + 10, NSMaxY(screen) - 820), 580, 780);
@@ -136,24 +150,41 @@ NSString* JSON(id value) {
   Button(content, @"Quit Bow Shock", self, @selector(quit:), NSMakeRect(395, 27, 165, 38));
   NSTextField* limit = [NSTextField labelWithString:@"Catalog only · up to 4 retained tables · no delegated effects"];
   limit.font = [NSFont systemFontOfSize:11]; limit.frame = NSMakeRect(20, 68, 540, 16); [content addSubview:limit];
+  if (agentConfiguration) {
+    _agentPanel = [[BSAgentPanel alloc] initWithConnection:_tableConnection configuration:agentConfiguration];
+    __weak BSOwnedTableControls* weakSelf = self;
+    _agentPanel.busyChanged = ^(BOOL busy) {
+      BSOwnedTableControls* controls = weakSelf; if (!controls) return;
+      controls->_agentBusy = busy; [controls updateButtons];
+    };
+    _agentPanel.requestRevocation = ^{
+      BSOwnedTableControls* controls = weakSelf;
+      if (controls && !controls->_closing && !controls->_stopping && controls->_stop.enabled) [controls stop:nil];
+    };
+    _agentPanel.proposalHandler = ^(NSDictionary* batch, NSDictionary* guard, NSArray<NSString*>* ids) {
+      [weakSelf useAgentBatch:batch publicationGuard:guard candidateIDs:ids];
+    };
+  }
   [self updateButtons];
   return self;
 }
 - (void)updateButtons {
   BOOL available = _ready && _tableConnection.connected && _controlConnection.connected && !_closing && !_stopping;
-  _observe.enabled = available && _loaded && !_busy;
-  _retention.enabled = available && !_busy;
-  _save.enabled = available && !_busy && _review && [BSTableConnection publicationGuardIsCurrent:_guard];
-  _refresh.enabled = available && !_busy;
-  _saved.enabled = available && !_busy && _commitIDs.count > 0 && [BSTableConnection publicationGuardIsCurrent:_listGuard];
-  _delete.enabled = available && !_busy && _commit != nil;
+  _observe.enabled = available && _loaded && !_busy && !_agentBusy;
+  _retention.enabled = available && !_busy && !_agentBusy;
+  _save.enabled = available && !_busy && !_agentBusy && _review && [BSTableConnection publicationGuardIsCurrent:_guard];
+  _refresh.enabled = available && !_busy && !_agentBusy;
+  _saved.enabled = available && !_busy && !_agentBusy && _commitIDs.count > 0 && [BSTableConnection publicationGuardIsCurrent:_listGuard];
+  _delete.enabled = available && !_busy && !_agentBusy && _commit != nil;
   _stop.enabled = !_closing && !_stopping && _tableConnection.connected && _controlConnection.connected;
+  [_agentPanel updateAvailability:available && !_busy && !_agentBusy];
 }
 - (void)retireDisplay {
   ++_epoch; _review = nil; _batch = nil; _stage = nil; _guard = nil; _commit = nil;
   _source.string = @""; _exact.string = @""; [self updateButtons];
   _sourceRanges = nil;
   [_fields removeAllItems];
+  [_agentPanel retire];
 }
 - (void)clearList {
   _commitIDs = nil; _listGuard = nil; [_saved removeAllItems]; [_saved addItemWithTitle:@"Saved tables"];
@@ -161,10 +192,11 @@ NSString* JSON(id value) {
 }
 - (void)unavailable:(NSString*)message {
   _busy = NO; [self retireDisplay]; _status.stringValue = message;
-  if (_smokeMode && !_closing && ![self lifecycle]) { _result[@"table_workflow"] = @"failed"; _quit(); }
+  if (_smokeMode && !_closing && ![self lifecycle] && !([_smokeMode isEqual:@"agent-control-loss"] && _controlFaultPending)) { _result[@"table_workflow"] = @"failed"; _quit(); }
 }
 - (void)start {
   [_panel orderFront:nil];
+  [_agentPanel.panel orderFront:nil];
   _result[@"table_panel_visible"] = @(_panel.isVisible);
   __weak BSOwnedTableControls* weakSelf = self;
   void (^activation)(NSNotification*) = ^(NSNotification* notification) {
@@ -191,6 +223,7 @@ NSString* JSON(id value) {
     }
     if (strongSelf->_listGuard && ![BSTableConnection publicationGuardIsCurrent:strongSelf->_listGuard]) [strongSelf clearList];
     [strongSelf updateButtons];
+    [strongSelf maybeSmoke];
   }];
   [NSRunLoop.mainRunLoop addTimer:_expiryTimer forMode:NSRunLoopCommonModes];
   [_tableConnection startWithCompletion:^(NSDictionary* reply) {
@@ -218,7 +251,10 @@ NSString* JSON(id value) {
         __weak BSOwnedTableControls* weakControls = self;
         self->_controlConnection.disconnectHandler = ^{
           BSOwnedTableControls* controls = weakControls;
-          if (controls && !controls->_closing) { controls->_ready = NO; [controls unavailable:@"Independent control unavailable. Observation disabled."]; }
+          if (controls && !controls->_closing) {
+            controls->_ready = NO; [controls revokeControllerForControlFault];
+            [controls unavailable:@"Independent control unavailable. Delegated work is stopping; manual browsing remains available."];
+          }
         };
         [self->_controlConnection startWithCompletion:^(NSDictionary* controlReply) {
           if (!controlReply || self->_closing) { [self unavailable:@"Independent control could not initialize."]; return; }
@@ -288,7 +324,8 @@ NSString* JSON(id value) {
 - (void)observe:(id)sender {
   if (!_observe.enabled || !_browser) return;
   ++_smokeObservations;
-  [self retireDisplay]; _busy = YES; uint64_t epoch = _epoch;
+  [self retireDisplay]; if (_stopping || _agentBusy) return;
+  _busy = YES; uint64_t epoch = _epoch;
   _status.stringValue = @"Observing the rendered root document…"; [self updateButtons];
   if (!_reader) _reader = [[BSNativeObservation alloc] initWithBrowser:_browser
       runId:_tableConnection.runId surfaceId:[NSString stringWithFormat:@"browser-%d", _browser->GetIdentifier()]
@@ -344,6 +381,7 @@ NSString* JSON(id value) {
     self->_exact.string = self->_review[@"content"];
     if (![self displayBatch:self->_batch saved:NO]) return;
     self->_status.stringValue = @"Partial table ready for review. Check field states, literal sources and retention, then Save.";
+    [self->_agentPanel setReview:self->_review publicationGuard:self->_guard batch:self->_batch];
     [self updateButtons];
     if ([self->_smokeMode isEqual:@"save"]) {
       // NSTextView exposes its mutable backing string. Freeze what the person
@@ -360,7 +398,8 @@ NSString* JSON(id value) {
         self->_result[@"observations"] = @(self->_smokeObservations);
         [self stop:nil];
       }
-    } else [self lifecycleReviewed];
+    } else if ([self->_smokeMode hasPrefix:@"agent"]) [self agentSmokeReviewed];
+    else [self lifecycleReviewed];
   }];
 }
 - (BOOL)displayBatch:(NSDictionary*)batch saved:(BOOL)saved {
@@ -407,7 +446,8 @@ NSString* JSON(id value) {
   }
 }
 - (void)retentionChanged:(id)sender {
-  if (_busy || !_stage || !_batch || _closing || _stopping) return;
+  if (_busy || _agentBusy || !_stage || !_batch || _closing || _stopping) return;
+  [_agentPanel consumeProposal]; [_agentPanel retire]; if (_stopping) return;
   ++_epoch; uint64_t epoch = _epoch; _review = nil; _exact.string = @"";
   _busy = YES; [self updateButtons];
   [_tableConnection reviseStaging:_stage batch:_batch completion:^(NSDictionary* reply) {
@@ -429,6 +469,7 @@ NSString* JSON(id value) {
 }
 - (void)save:(id)sender {
   if (!_save.enabled) return;
+  [_agentPanel consumeProposal]; [_agentPanel retire]; if (_stopping || !_review) return;
   uint64_t epoch = _epoch; NSDictionary* exactReview = _review; NSDictionary* guard = _guard;
   // After dispatch an approval may have been accepted even if its ACK is lost.
   // Never revise that stage automatically and risk deleting an admitted save.
@@ -492,8 +533,9 @@ NSString* JSON(id value) {
   }];
 }
 - (void)refreshSaved:(id)sender {
-  if (_busy || !_ready || _closing || _stopping) return;
+  if (_busy || _agentBusy || !_ready || _closing || _stopping) return;
   [self retireDisplay]; [self clearList]; uint64_t epoch = _epoch; _busy = YES; [self updateButtons];
+  if (_stopping || _agentBusy) { _busy = NO; [self updateButtons]; return; }
   [_tableConnection listWithCompletion:^(NSDictionary* reply) {
     self->_busy = NO;
     if (epoch != self->_epoch || self->_closing) { [self updateButtons]; return; }
@@ -516,11 +558,12 @@ NSString* JSON(id value) {
   }];
 }
 - (void)selectSaved:(id)sender {
-  if (_busy || _closing || _stopping || ![BSTableConnection publicationGuardIsCurrent:_listGuard]) return;
+  if (_busy || _agentBusy || _closing || _stopping || ![BSTableConnection publicationGuardIsCurrent:_listGuard]) return;
   NSInteger index = _saved.indexOfSelectedItem - 1;
   if (index < 0 || static_cast<NSUInteger>(index) >= _commitIDs.count) return;
   NSString* commit = _commitIDs[static_cast<NSUInteger>(index)];
-  [self retireDisplay]; [self read:commit epoch:_epoch smokeSave:NO];
+  [self retireDisplay]; if (_stopping || _agentBusy) return;
+  [self read:commit epoch:_epoch smokeSave:NO];
 }
 - (void)deleteSaved:(id)sender {
   if (!_delete.enabled) return;
@@ -546,18 +589,25 @@ NSString* JSON(id value) {
   // Sole UI Stop caller mirrors the next Rust fence conservatively before its
   // ACK. This grants no effect; disagreement closes both connections.
   _requestedStop = _tableConnection.stopGeneration + 1;
-  _rustStopped = NO; _helperStopped = NO;
+  _rustStopped = NO; _helperStopped = NO; _rustStopPending = YES;
   _stopping = YES; [self retireDisplay]; [self clearList]; _status.stringValue = @"Stopping new delegated work…";
   [_tableConnection stopAllWithCompletion:^(NSDictionary* reply) {
+    self->_rustStopPending = NO;
     if (!Reply(reply, @"stopped") || [reply[@"stop_generation"] unsignedLongLongValue] != self->_requestedStop) {
       [self->_controlConnection invalidate]; [self->_tableConnection invalidate];
+      if (self->_closing) { [self finishPendingCloseFence:NO]; return; }
       [self unavailable:@"Stop acknowledgement unavailable. Connections have been closed."]; return;
     }
     self->_result[@"controller_stop_generation"] = reply[@"stop_generation"];
     if ([self->_smokeMode isEqual:@"workload"]) self->_result[@"stop_rust_ack_ns"] = BSContinuousClockWitness()[@"continuous_ns"] ?: @0;
-    self->_rustStopped = YES; [self finishStop];
+    self->_rustStopped = YES;
+    if (self->_closing) { [self finishPendingCloseFence:YES]; return; }
+    [self finishStop];
   }];
   [_controlConnection fenceToGeneration:_requestedStop completion:^(NSDictionary* fence) {
+    // Close intentionally retires the helper; its old fence cannot invalidate
+    // the still-live Rust acknowledgement being joined for healthy close.
+    if (self->_closing) return;
     if (!fence || [fence[@"stop_generation"] unsignedLongLongValue] != self->_requestedStop) {
       [self->_controlConnection invalidate]; [self->_tableConnection invalidate];
       [self unavailable:@"Control fence acknowledgement unavailable. Connections have been closed."]; return;
@@ -565,6 +615,32 @@ NSString* JSON(id value) {
     if ([self->_smokeMode isEqual:@"workload"]) self->_result[@"stop_helper_ack_ns"] = BSContinuousClockWitness()[@"continuous_ns"] ?: @0;
     self->_helperStopped = YES; [self finishStop];
     [self lifecycleHeldStopReady];
+  }];
+}
+- (void)revokeControllerForControlFault {
+  // Helper liveness is a separate authority prerequisite. Its loss must still
+  // reach the live Rust fence even though the two-channel Stop button is off.
+  if (_controlFaultPending || !_tableConnection.connected) return;
+  _controlFaultPending = YES; _stopping = YES;
+  [self retireDisplay]; [self clearList];
+  uint64_t generation = _tableConnection.stopGeneration;
+  if (generation == UINT64_MAX) { [_tableConnection invalidate]; _controlFaultPending = NO; return; }
+  _rustStopped = NO; _rustStopPending = YES;
+  [_tableConnection stopAllWithCompletion:^(NSDictionary* reply) {
+    BOOL stopped = Reply(reply, @"stopped") && [reply[@"stop_generation"] unsignedLongLongValue] == generation + 1;
+    self->_controlFaultPending = NO;
+    self->_rustStopPending = NO; self->_rustStopped = stopped;
+    if (!stopped) [self->_tableConnection invalidate];
+    if (self->_closing) { [self finishPendingCloseFence:stopped]; return; }
+    self->_status.stringValue = stopped ? @"Independent control unavailable. Delegated work stopped; restart to observe again." :
+        @"Independent control unavailable. Agent connection closed; handed-off fields may remain disclosed.";
+    [self updateButtons];
+    if ([self->_smokeMode isEqual:@"agent-control-loss"]) {
+      self->_result[@"control_fault_rust_stopped"] = @(stopped);
+      self->_result[@"control_fault_cleared"] = @(!self->_review && !self->_batch && !self->_agentPanel.taskID && !self->_agentPanel.proposal);
+      self->_result[@"table_workflow"] = stopped && [self->_result[@"control_fault_cleared"] boolValue] ? @"pass" : @"failed";
+      self->_quit();
+    }
   }];
 }
 - (void)finishStop {
@@ -579,6 +655,11 @@ NSString* JSON(id value) {
   else if ([_smokeMode isEqual:@"lifecycle-stop"] && _lifecycleStep == 3) {
     [self lifecycleSnapshot:@"stop_reconciled"];
     [self lifecycleFinish];
+  } else if ([_smokeMode isEqual:@"agent-stop"] && _agentSmokeStep == 6) {
+    _result[@"agent_stop_cleared"] = @(!_review && !_batch && !_agentPanel.proposal && !_agentPanel.taskID &&
+        _source.string.length == 0 && _exact.string.length == 0);
+    _result[@"table_workflow"] = [_result[@"agent_stop_cleared"] boolValue] ? @"pass" : @"failed";
+    _quit();
   }
 }
 - (BOOL)beginWorkloadProbe {
@@ -762,12 +843,107 @@ NSString* JSON(id value) {
   }
 }
 - (void)quit:(id)sender { _quit(); }
+- (void)useAgentBatch:(NSDictionary*)batch publicationGuard:(NSDictionary*)guard candidateIDs:(NSArray<NSString*>*)ids {
+  if (_busy || _agentBusy || _closing || _stopping || !_review || !_stage || !_draftStage ||
+      ![_stage isEqual:_draftStage] || ![BSTableConnection publicationGuardIsCurrent:_guard] ||
+      ![BSTableConnection publicationGuardIsCurrent:guard] || ![guard[@"boot_id"] isEqual:_guard[@"boot_id"]] ||
+      [guard[@"valid_until_ns"] unsignedLongLongValue] > [_guard[@"valid_until_ns"] unsignedLongLongValue]) return;
+  ++_epoch; uint64_t epoch = _epoch;
+  _review = nil; _exact.string = @""; _batch = batch;
+  _busy = YES; [self updateButtons];
+  [_tableConnection reviseStaging:_stage batch:batch completion:^(NSDictionary* reply) {
+    self->_busy = NO;
+    if (epoch != self->_epoch || self->_closing || self->_stopping) { [self updateButtons]; return; }
+    if (!Reply(reply, @"table_revised")) { [self unavailable:@"Proposal source retired. Observe again before review."]; return; }
+    [self requestReview:epoch];
+  }];
+  (void)ids;
+}
+- (void)configureAgentSmokePath:(NSString*)path {
+  if ([_smokeMode hasPrefix:@"agent"] && path.isAbsolutePath) _agentSmokePath = [path copy];
+}
+- (BOOL)writeAgentSmoke:(NSDictionary*)record suffix:(NSString*)suffix {
+  NSData* bytes = [NSJSONSerialization dataWithJSONObject:record options:NSJSONWritingSortedKeys error:nil];
+  return bytes && [bytes writeToFile:[_agentSmokePath stringByAppendingString:suffix] options:NSDataWritingAtomic error:nil];
+}
+- (void)agentSmokeFail:(NSString*)reason {
+  _result[@"table_workflow"] = @"failed"; _result[@"agent_failure"] = reason; _quit();
+}
+- (void)agentSmokeReviewed {
+  if (_agentSmokeStep == 3) {
+    _result[@"displayed_review_content"] = [_exact.string copy];
+    if (![self writeAgentSmoke:@{@"review": _review, @"publication_guard": _guard} suffix:@".review-ready"]) {
+      [self agentSmokeFail:@"review_gate_write_failed"]; return;
+    }
+    _agentSmokeStep = 4;
+  }
+  if (!_agentSmokeTimer) {
+    __weak BSOwnedTableControls* weakSelf = self;
+    _agentSmokeTimer = [NSTimer timerWithTimeInterval:.05 repeats:YES block:^(NSTimer*) { [weakSelf agentSmokeTick]; }];
+    [NSRunLoop.mainRunLoop addTimer:_agentSmokeTimer forMode:NSRunLoopCommonModes];
+  }
+}
+- (void)agentSmokeTick {
+  if (_closing || !_agentSmokePath) return;
+  NSString* trace = [NSString stringWithFormat:@"step=%ld state=%@ agent_busy=%d table_busy=%d ready=%d stopping=%d rust_pending=%d source=%d",
+      (long)_agentSmokeStep, _agentPanel.state, _agentBusy, _busy, _ready, _stopping, _rustStopPending, _guard != nil];
+  if (![_agentSmokeTrace isEqual:trace]) {
+    _agentSmokeTrace = trace;
+    fprintf(stderr, "BS_AGENT_SMOKE %s\n", trace.UTF8String);
+  }
+  if (_stopping) return;
+  if ([_smokeMode isEqual:@"agent"] && _agentSmokeStep == 1 && !_agentBusy &&
+      [_agentPanel.state isEqual:@"retired"] && !_guard) {
+    [self agentSmokeFail:@"source_retired"]; return;
+  }
+  if (_agentSmokeStep <= 1 && !_agentBusy && [@[@"unavailable", @"no_match", @"failed", @"canceled", @"expired"] containsObject:_agentPanel.state]) {
+    [self agentSmokeFail:[@"agent_" stringByAppendingString:_agentPanel.state]]; return;
+  }
+  if (_agentSmokeStep < 5 && _guard && ![BSTableConnection publicationGuardIsCurrent:_guard]) {
+    [self agentSmokeFail:@"source_expired"]; return;
+  }
+  if (_agentSmokeStep == 0 && _agentPanel.canAsk) {
+    if (![_agentPanel setSelectedCandidateIDs:@[@"r0f0", @"r0f1"]]) { [self agentSmokeFail:@"selection_unavailable"]; return; }
+    if (![_agentPanel setObjective:@"Select both supplied fields: name and price. Return both supplied candidate IDs; copy no generated values."]) {
+      [self agentSmokeFail:@"objective_unavailable"]; return;
+    }
+    _result[@"agent_metadata"] = _agentPanel.metadata ?: @{};
+    if ([_smokeMode isEqual:@"agent-control-loss"] && ![self writeAgentSmoke:@{
+        @"controller_pid": @(_tableConnection.childPid), @"control_pid": @(_controlConnection.childPid)} suffix:@".runtime-ready"]) {
+      [self agentSmokeFail:@"runtime_gate_write_failed"]; return;
+    }
+    _agentSmokeStep = 1; [_agentPanel ask:nil];
+  } else if ([_smokeMode isEqual:@"agent-stop"] && _agentSmokeStep == 1 &&
+      [NSFileManager.defaultManager fileExistsAtPath:[_agentSmokePath stringByAppendingString:@".stop"]]) {
+    _agentSmokeStep = 6; [self stop:nil];
+  } else if ([_smokeMode isEqual:@"agent-close"] && _agentSmokeStep == 1 &&
+      [NSFileManager.defaultManager fileExistsAtPath:[_agentSmokePath stringByAppendingString:@".close"]]) {
+    _agentSmokeStep = 7; _result[@"table_workflow"] = @"pass"; [self quit:nil];
+  } else if (_agentSmokeStep == 1 && _agentPanel.proposal && !_agentBusy) {
+    NSDictionary* proposal = _agentPanel.proposal;
+    _result[@"agent_candidate_ids"] = proposal[@"candidate_ids"];
+    if (![self writeAgentSmoke:@{@"candidate_ids": proposal[@"candidate_ids"], @"batch": proposal[@"batch"],
+        @"review": _review, @"source_guard": _guard} suffix:@".proposal-ready"]) {
+      [self agentSmokeFail:@"proposal_gate_write_failed"]; return;
+    }
+    _agentSmokeStep = 2;
+  } else if (_agentSmokeStep == 2 && [NSFileManager.defaultManager fileExistsAtPath:[_agentSmokePath stringByAppendingString:@".use"]]) {
+    _agentSmokeStep = 3; [_agentPanel useProposal:nil];
+  } else if (_agentSmokeStep == 4 && [NSFileManager.defaultManager fileExistsAtPath:[_agentSmokePath stringByAppendingString:@".save"]]) {
+    _agentSmokeStep = 5; [self save:nil];
+  }
+}
 - (void)maybeSmoke {
-  if (!_smokeMode || _smokeStarted || !_loaded || !_ready || _closing) return;
-  _smokeStarted = YES;
+  if (!_smokeMode || _smokeStarted || _smokeScheduled || !_loaded || !_ready || _closing) return;
+  BOOL reopen = [_smokeMode isEqual:@"reopen"];
+  if (reopen ? !_refresh.enabled : !_observe.enabled) return;
+  _smokeScheduled = YES;
   // Actual native actions; no synthetic keyboard/mouse or page evaluate.
   [self later:^{
-    if ([self->_smokeMode isEqual:@"reopen"]) [self refreshSaved:nil];
+    self->_smokeScheduled = NO;
+    if (self->_closing || self->_smokeStarted || (reopen ? !self->_refresh.enabled : !self->_observe.enabled)) return;
+    self->_smokeStarted = YES;
+    if (reopen) [self refreshSaved:nil];
     else [self observe:nil];
   }];
 }
@@ -777,6 +953,8 @@ NSString* JSON(id value) {
   [_expiryTimer invalidate]; _expiryTimer = nil;
   [_workloadTimer invalidate]; _workloadTimer = nil;
   [_lifecycleTimer invalidate]; _lifecycleTimer = nil; _lifecycleHeldOrdinary = nil; _lifecycleClient = nullptr;
+  [_agentSmokeTimer invalidate]; _agentSmokeTimer = nil;
+  [_agentPanel.panel orderOut:nil];
   [NSNotificationCenter.defaultCenter removeObserver:_activationObserver]; _activationObserver = nil;
   [NSWorkspace.sharedWorkspace.notificationCenter removeObserver:_wakeObserver]; _wakeObserver = nil;
   [NSWorkspace.sharedWorkspace.notificationCenter removeObserver:_sessionObserver]; _sessionObserver = nil;
@@ -784,7 +962,36 @@ NSString* JSON(id value) {
   NSDictionary* witness = BSContinuousClockWitness();
   uint64_t now = [witness[@"continuous_ns"] unsignedLongLongValue];
   _closeDeadline = witness && now <= UINT64_MAX - 5000000000 ? now + 5000000000 : 0;
-  _status.stringValue = @"Closing the table store cleanly…"; [self attemptClose];
+  _status.stringValue = @"Closing the table store cleanly…";
+  if (_agentPanel && _tableConnection.connected) {
+    // Retire provider authority urgently before an occupied ordinary slot can
+    // delay clean table close. A close cannot merely clear its UI decision.
+    [_controlConnection invalidate];
+    if (_rustStopPending) {
+      _closeWaitingRustStop = YES;
+      _result[@"close_joined_pending_stop"] = @YES;
+      return;
+    }
+    if (_stopping && _rustStopped) {
+      _result[@"close_authority_stopped"] = @YES;
+      [self attemptClose]; return;
+    }
+    uint64_t generation = _tableConnection.stopGeneration;
+    if (generation == UINT64_MAX) { [_tableConnection invalidate]; [self finishClose:NO]; return; }
+    [_tableConnection stopAllWithCompletion:^(NSDictionary* reply) {
+      BOOL stopped = Reply(reply, @"stopped") && [reply[@"stop_generation"] unsignedLongLongValue] == generation + 1;
+      self->_result[@"close_authority_stopped"] = @(stopped);
+      if (!stopped) { [self->_tableConnection invalidate]; [self finishClose:NO]; return; }
+      [self attemptClose];
+    }];
+  } else [self attemptClose];
+}
+- (void)finishPendingCloseFence:(BOOL)stopped {
+  if (!_closing || !_closeWaitingRustStop || _closeFinished) return;
+  _closeWaitingRustStop = NO;
+  _result[@"close_authority_stopped"] = @(stopped);
+  if (!stopped) { [_tableConnection invalidate]; [self finishClose:NO]; return; }
+  [self attemptClose];
 }
 - (void)finishClose:(BOOL)clean {
   if (_closeFinished) return; _closeFinished = YES;

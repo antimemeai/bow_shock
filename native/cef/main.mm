@@ -42,6 +42,7 @@ static BSOwnedTableControls* tableControls;
 static NSString* tableOrigin;
 static NSString* tableDatabase;
 static NSString* tableSmokeMode;
+static BSAgentConfiguration* agentConfiguration;
 
 static void SmokeStage(const char* stage) {
   if (smokeOutput) fprintf(stderr, "BS_LIFETIME %s\n", stage);
@@ -204,9 +205,10 @@ class BrowserApp final : public CefApp, public CefBrowserProcessHandler {
   if (tableOrigin && tableDatabase) {
     tableControls = [[BSOwnedTableControls alloc] initWithOrigin:tableOrigin
         databaseURL:[NSURL fileURLWithPath:tableDatabase] smokeMode:tableSmokeMode
-        result:smokeResult quit:^{ [delegate closeBrowsers]; }];
+        result:smokeResult agentConfiguration:agentConfiguration quit:^{ [delegate closeBrowsers]; }];
     if ([tableSmokeMode hasPrefix:@"lifecycle-"])
       [tableControls configureLifecycleReleasePath:[smokeOutput stringByAppendingString:@".release"]];
+    if ([tableSmokeMode hasPrefix:@"agent"]) [tableControls configureAgentSmokePath:smokeOutput];
     self.controls = tableControls.panel;
     [tableControls start];
     return;
@@ -304,18 +306,40 @@ int main(int argc, char** argv) {
     tableOrigin = text("bs-table-origin");
     tableDatabase = text("bs-table-db");
     tableSmokeMode = smokeOutput ? text("bs-table-smoke") : nil;
+    NSArray<NSString*>* agentKeys = @[@"bs-agent-executable", @"bs-agent-cwd", @"bs-agent-user-home", @"bs-agent-home", @"bs-agent-model"];
+    NSMutableArray<NSString*>* selections = [NSMutableArray array];
+    BOOL anyAgent = command->HasSwitch("bs-agent-account");
+    for (NSString* key in agentKeys) {
+      NSString* selection = text(key.UTF8String);
+      anyAgent = anyAgent || command->HasSwitch(key.UTF8String);
+      if (selection) [selections addObject:selection];
+    }
+    if (anyAgent) {
+      BOOL valid = tableOrigin && selections.count == agentKeys.count &&
+          (!command->HasSwitch("bs-agent-account") || text("bs-agent-account"));
+      if (valid) for (NSUInteger index = 0; index < 4; ++index)
+        valid = valid && selections[index].isAbsolutePath;
+      if (!valid) { fprintf(stderr, "Agent startup requires explicit local runtime, workspace, homes and model.\n"); return 1; }
+      agentConfiguration = [[BSAgentConfiguration alloc]
+          initWithExecutableURL:[[NSURL fileURLWithPath:selections[0]] URLByResolvingSymlinksInPath]
+          workingDirectoryURL:[[NSURL fileURLWithPath:selections[1]] URLByResolvingSymlinksInPath]
+          userHomeURL:[[NSURL fileURLWithPath:selections[2]] URLByResolvingSymlinksInPath]
+          codexHomeURL:[[NSURL fileURLWithPath:selections[3]] URLByResolvingSymlinksInPath]
+          model:selections[4] expectedAccountID:text("bs-agent-account")];
+    }
     if ((tableOrigin != nil) != (tableDatabase != nil) ||
         (tableDatabase && !tableDatabase.isAbsolutePath) ||
-        (tableSmokeMode && ![@[@"save", @"reopen", @"drafts", @"workload", @"lifecycle-browser", @"lifecycle-stop", @"lifecycle-display"] containsObject:tableSmokeMode])) {
+        (tableSmokeMode && ![@[@"save", @"reopen", @"drafts", @"workload", @"lifecycle-browser", @"lifecycle-stop", @"lifecycle-display", @"agent", @"agent-stop", @"agent-control-loss", @"agent-close"] containsObject:tableSmokeMode]) ||
+        ([tableSmokeMode hasPrefix:@"agent"] && !agentConfiguration)) {
       fprintf(stderr, "Invalid owned table workflow configuration.\n"); return 1;
     }
     initialURL = text("bs-url") ?: @"about:blank";
-    if ([tableSmokeMode hasPrefix:@"lifecycle-"]) {
+    if ([tableSmokeMode hasPrefix:@"lifecycle-"] || [tableSmokeMode hasPrefix:@"agent"]) {
       NSURL* owned = [NSURL URLWithString:tableOrigin];
       if (![owned.scheme isEqual:@"http"] || ![owned.host isEqual:@"127.0.0.1"] || !owned.port ||
           owned.user || owned.password || owned.query || owned.fragment || owned.path.length ||
           ![initialURL isEqual:[tableOrigin stringByAppendingString:@"/amber"]]) {
-        fprintf(stderr, "Lifecycle smoke requires the owned loopback Amber catalog.\n"); return 1;
+        fprintf(stderr, "Lifecycle/agent smoke requires the owned loopback Amber catalog.\n"); return 1;
       }
     }
     smokeResult = [@{@"browser_created": @NO, @"browser_closed": @NO, @"cef_shutdown": @NO,

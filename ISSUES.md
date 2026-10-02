@@ -64,7 +64,18 @@ independent native control parent also pass their direct process checks and
 independent reviews. The joined native catalog workflow now passes actual
 capture/review/Save/SQLite/clean-reopen checks, and its two immutable catalog pages
 meet the chosen capture/Stop servicing target. General native capture, coordinates,
-input, model/Codex and network capabilities retain their later gates. See
+input and network capabilities retain their later gates. See
 [the POC experiment](docs/experiments/native-table-workflow.md).
+The scoped Codex proposal service and native field-selection panel now pass
+direct checks and independent review; required Rust basics pass all 69 tests.
+The joined task keeps Use, fresh Review and Save distinct and copies original
+native values/provenance. Final rebuilt controlled joins now pass exact
+Save/reopen, Stop, helper-loss and Quit checks after operator readiness. The
+installed Codex task remains pending runtime task diagnosis: the first final
+run denied metadata readiness; a later run reached Ask and failed before a
+proposal. Both closed cleanly with no saved rows. Prior launch stalls had an
+exact owned-process securityd per-item
+prompt; no ACL, encryption or signing identity was changed. See
+[the agent task experiment](docs/experiments/native-agent-workflow.md).
 Other dependencies remain candidates for study. The
 operator's detailed requirements are in [the product brief](docs/product-intent.md).
