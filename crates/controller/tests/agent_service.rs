@@ -24,6 +24,7 @@ if mode=='writer_stall':
 with (base/'pids').open('a') as f:f.write(str(os.getpid())+'\n')
 assert sys.argv[1:4]==['app-server','--stdio','--strict-config']
 def emit(v):
+ if isinstance(v,str):print(v,flush=True);return
  if 'method' in v and 'id' not in v and mode.startswith('timestamp_'):
   v['emittedAtMs']={'timestamp_bool':True,'timestamp_float':1.5,'timestamp_null':None,'timestamp_overflow':9223372036854775808,'timestamp_negative':-1}.get(mode,1730000000000)
  print(json.dumps(v,separators=(',',':')),flush=True)
@@ -80,17 +81,42 @@ for line in sys.stdin:
   item={'type':'agentMessage','id':'final-1','text':text,'phase':'final_answer' if mode=='competing' else None}
   if mode=='phase_bool':item['phase']=True
   events=[{'method':'item/completed','params':{'threadId':thread,'turnId':turn,'completedAtMs':1,'item':item}}]
+  if mode.startswith('reasoning_'):
+   delta=json.dumps(dict(final,candidate_ids=['r0f0'] if mode=='reasoning_only' else ['r0f1']),separators=(',',':'))
+   notices=[{'method':'item/reasoning/summaryTextDelta','params':{'threadId':thread,'turnId':turn,'itemId':'reason-1','delta':delta,'summaryIndex':-1}},
+            {'method':'item/reasoning/summaryPartAdded','params':{'threadId':thread,'turnId':turn,'itemId':'reason-1','summaryIndex':1}},
+            {'method':'item/reasoning/textDelta','params':{'threadId':thread,'turnId':turn,'itemId':'reason-1','delta':'','contentIndex':0}}]
+   p=notices[0]['params']
+   if mode=='reasoning_foreign_thread':p['threadId']='foreign'
+   if mode=='reasoning_foreign_turn':p['turnId']='foreign'
+   if mode=='reasoning_index_bool':p['summaryIndex']=True
+   if mode=='reasoning_index_float':p['summaryIndex']=.5
+   if mode=='reasoning_index_overflow':p['summaryIndex']=9223372036854775808
+   if mode=='reasoning_delta_type':p['delta']=False
+   if mode=='reasoning_item_empty':p['itemId']=''
+   if mode=='reasoning_item_type':p['itemId']=False
+   if mode=='reasoning_unknown':p['extra']=False
+   if mode=='reasoning_part_delta':notices[1]['params']['delta']='unexpected'
+   if mode=='reasoning_part_foreign':notices[1]['params']['threadId']='foreign'
+   if mode=='reasoning_text_index':notices[2]['params']['contentIndex']=None
+   if mode=='reasoning_text_foreign':notices[2]['params']['turnId']='foreign'
+   if mode=='reasoning_positional':notices[0]['params']=[thread,turn,'reason-1',delta,0]
+   for notice in notices:notice['emittedAtMs']=1
+   if mode=='reasoning_duplicate':notices[0]=json.dumps(notices[0],separators=(',',':')).replace('"summaryIndex":-1','"summaryIndex":-1,"summaryIndex":0')
+   events=notices+([] if mode=='reasoning_only' else events)
+   (base/'reasoning_seen').write_text(str(os.getpid()))
   if mode=='competing':events.append({'method':'item/completed','params':{'threadId':thread,'turnId':turn,'completedAtMs':2,'item':dict(item,id='final-2',phase='final_answer')}});item=dict(item,id='final-2',phase='final_answer')
   if mode=='conflicting':item=dict(item,text='{}')
   if mode=='callback':events=[{'id':5,'method':'item/commandExecution/requestApproval','params':{'threadId':thread,'turnId':turn}}]
   events.append({'method':'turn/completed','params':{'threadId':thread,'turn':{'id':turn,'status':'completed','error':None,'items':[item],'itemsView':'summary'}}})
+  if mode=='reasoning_only':events[-1]['params']['turn'].update(items=[],itemsView='notLoaded')
   if mode=='empty_summary':events[-1]['params']['turn']['items']=[]
   if mode=='not_loaded':events[-1]['params']['turn'].update(items=[],itemsView='notLoaded')
   if mode=='missing_error':del events[-1]['params']['turn']['error']
-  if mode=='early':
+  if mode in ('early','reasoning_early'):
    for event in events:emit(event)
   emit({'id':r['id'],'result':{'turn':{'id':turn,'status':'inProgress','items':[]}}})
-  if mode!='early':
+  if mode not in ('early','reasoning_early'):
    for event in events:emit(event)
   continue
  else:raise AssertionError(m)
@@ -916,6 +942,64 @@ fn verified_routing_cannot_downgrade_and_thread_policy_cannot_broaden() {
                 "must reach actual thread policy reply: {mode}"
             );
         }
+        c.clean_close();
+    }
+}
+
+#[test]
+fn discarded_reasoning_notices_preserve_only_grounded_final_selection() {
+    for mode in ["reasoning_normal", "reasoning_early"] {
+        let mut c = Client::open(mode);
+        std::fs::write(c.dir.join("mode"), mode).unwrap();
+        c.ready();
+        let review = c.review();
+        let task = c.start(review);
+        let status = c.final_status(&task);
+        assert!(c.dir.join("reasoning_seen").exists());
+        assert_eq!(status["state"], "candidate", "{mode}: {status}");
+        let fields = status["proposal"]["batch"]["rows"][0]["fields"]
+            .as_array()
+            .unwrap();
+        assert_eq!(fields.len(), 1);
+        assert_eq!(fields[0]["name"], "name");
+        assert_eq!(fields[0]["state"]["value"], "SELECTED_MARKER");
+        assert!(!status.to_string().contains("EXCLUDED_MARKER"));
+        c.clean_close();
+    }
+}
+
+#[test]
+fn foreign_malformed_or_only_reasoning_never_yields_a_candidate() {
+    for mode in [
+        "reasoning_foreign_thread",
+        "reasoning_foreign_turn",
+        "reasoning_index_bool",
+        "reasoning_index_float",
+        "reasoning_index_overflow",
+        "reasoning_delta_type",
+        "reasoning_item_empty",
+        "reasoning_item_type",
+        "reasoning_unknown",
+        "reasoning_part_delta",
+        "reasoning_part_foreign",
+        "reasoning_text_index",
+        "reasoning_text_foreign",
+        "reasoning_positional",
+        "reasoning_duplicate",
+        "reasoning_only",
+    ] {
+        let mut c = Client::open(mode);
+        std::fs::write(c.dir.join("mode"), mode).unwrap();
+        c.ready();
+        let review = c.review();
+        let task = c.start(review);
+        let status = c.final_status(&task);
+        assert!(
+            c.dir.join("reasoning_seen").exists(),
+            "must reach reasoning phase: {mode}"
+        );
+        assert_eq!(status["state"], "failed", "{mode}: {status}");
+        assert!(status["proposal"].is_null());
         c.clean_close();
     }
 }

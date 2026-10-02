@@ -145,3 +145,31 @@ preflight report. This is not evidence of an actual turn or a guarantee of no
 raw reasoning events. Restored four additional source files from the already
 preserved pinned archive, recording them in the same acquisition manifest.
 No further product edits or deadline/budget changes were made.
+
+Root chose a narrow robust adapter for the three pinned reasoning notices before
+the next final application rebuild. Written subplan reviewed by plan_authority;
+actual controlled positive red supplied the three known correlated records and
+failed/provider_unavailable instead of yielding the expected grounded final
+(2.11s, ignored reasoning-red.log). Added closed exact field/type checks and
+active thread/acknowledged-turn correlation, then discard. Delta text is never
+retained as message, proposal, UI data or evidence; existing stream/pre-ACK and
+source/task/export bounds are unchanged.
+
+Actual positives exercise normal and pre-ACK delivery, signed negative index,
+empty delta and a competing selection-shaped delta, then require the one exact
+original name field. Negatives require actual peer reasoning-stage marker before
+failed/null proposal, including foreign identity on all three notice kinds,
+typed/index bounds, unknown/positional/duplicate fields and reasoning-only final
+absence. Every case independently checks SQLite0rows and owned provider reap.
+No live model turn, CEF launch or keychain operation was performed in this lane.
+
+Independent review noted that reasoning-only delta initially selected an
+unselected field, allowing foreign-ID rejection to mask mistaken promotion.
+Changed only that fixture to carry the eligible selected ID and exact request
+identity; positive competing deltas retain the unselected ID. Production remains
+unchanged. Owner focused methods passed37.09s and independent methods38.07s;
+the corrected eligible-delta case independently failed/null proposal with SQL0
+and owned PID absence. Review accepted the final transport/test hashes. Required
+scripts/rigor passed all69 workspace cases, fmt/Clippy/doctests/deny and locked
+release. Root owns final canonical rebuild, operator local per-item keychain
+acknowledgement and controlled/live native gates; this lane performed none.

@@ -675,6 +675,34 @@ pub fn propose(
                     return Err(());
                 }
             }
+            "item/reasoning/summaryTextDelta"
+            | "item/reasoning/textDelta"
+            | "item/reasoning/summaryPartAdded" => {
+                let index = if method == "item/reasoning/textDelta" {
+                    "contentIndex"
+                } else {
+                    "summaryIndex"
+                };
+                if method == "item/reasoning/summaryPartAdded" {
+                    keys(params, &["threadId", "turnId", "itemId", index], &[])?;
+                } else {
+                    keys(
+                        params,
+                        &["threadId", "turnId", "itemId", "delta", index],
+                        &[],
+                    )?;
+                    if !params["delta"].is_string() {
+                        return Err(());
+                    }
+                }
+                if params["threadId"] != thread_id || params["turnId"] != *turn {
+                    return Err(());
+                }
+                text(&params["itemId"])?;
+                params[index].as_i64().ok_or(())?;
+                // Known intermediate read-only notices consume the existing stream
+                // budgets, then are discarded; only terminal agentMessage selects.
+            }
             "item/completed" => {
                 if params["threadId"] != thread_id || params["turnId"] != *turn {
                     return Err(());

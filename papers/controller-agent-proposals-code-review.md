@@ -111,7 +111,7 @@ The reviewed production source SHA256 values are:
 | File | SHA256 |
 | --- | --- |
 | `agent.rs` | `eeb5f7ce2f1a36180efd73aa9080f9623c1a5061a608833ee36bb25238cbb18e` |
-| `agent_transport.rs` | `53505c6b17d46a85edc58f51ca3e4592e4f64b9bc550420cc6306aefab0da652` |
+| `agent_transport.rs` | `76629bb75fe94fdfbe09a35d9f74486440ba07195e0db864104b5244f0d12783` |
 | `service.rs` | `192df7e6774afeb7d1dfb950f1570d80f28b9c0a477d3787665013a281bba9c0` |
 | `protocol.rs` | `275a6cef2e85923a226f9d91d77bf1da591e6d09f454048967b880ae0f3e9669` |
 | evidence `lib.rs` | `2f8ef45e679b4a5721368ae0823669694c179884e22c9be62af5df03e31bd170` |
@@ -193,3 +193,49 @@ Its sanitized `metadata-diagnosis/service-green.log` matches independently
 observed schema/source/runtime fields. No actual model turn was needed for this
 compatibility correction. Original task/source/byte-handoff/publication bounds
 remain unchanged; owner runs affected basics/release before the live join retry.
+
+## Closed reasoning-notice extension
+
+Reviewed the written subplan against the installed stable schemas and pinned
+item.rs/event-mapping source before implementation. Three known notifications
+may occur with inherited Auto reasoning settings: summaryTextDelta, textDelta
+and summaryPartAdded. They do not constitute terminal proposal evidence.
+The source diff admits only these names, closed required parameter keys,
+exact active thread/acknowledged turn, bounded nonempty item ID, signed i64
+index and string delta where applicable (including empty strings). Part-added
+has no delta field. All original frame/total-byte/record/pre-ACK/task-clock
+bounds and final-item rules remain unchanged. The branch neither appends to
+final messages nor creates an outbound reply, Store call or reasoning history.
+No blocking source finding.
+
+The owner's direct positive red showed a valid reasoning notice followed by a
+valid final failing the old adapter. The new peer's delta deliberately contains
+valid-looking selection JSON for the excluded field; positive final selection
+must still copy only the retained selected field. Negative reasoning-only input
+has no agentMessage final and must never produce a candidate. Foreign IDs,
+types/unknown/duplicate keys are actual process fault cases, with a receipt
+marker proving the reasoning phase was reached rather than failing at setup.
+Independent final actual process rerun passed both methods in38.07s: two normal/
+pre-ACK positives and sixteen foreign/malformed/reasoning-only fixture cycles.
+The positives retained only the exact selected source despite a competing-looking
+delta. Foreign thread/turn cases reach each notice kind; type/range, empty/wrong
+item identity, unknown/duplicate/positional fields and inappropriate part-added
+delta all fail with null proposal. Each fixture proves the reasoning phase was
+reached and independently checks real rows0, healthy close and owned PID absence.
+The log is `context/review-controller-agent/reasoning-independent.log`.
+
+Caught and corrected one test-input masking issue: reasoning-only originally
+carried an unselected candidate ID, so an accidental delta promotion could be
+hidden by the downstream grounding rejection. The persisted fixture now uses
+valid selected-ID/request-ID JSON in that case; competing-delta positives still
+use the excluded ID. A final independent single-mode actual child probe with
+that corrected eligible JSON failed/null proposal, clean exit, real rows0 and
+owned PIDs absent (`reasoning-only-independent.log`). The source discards that
+text because it is a reasoning notice, not because its candidate would be invalid.
+
+**Reasoning-notice extension accepted; no remaining source or oracle finding.**
+Final production transport hash is recorded above; the final persisted fixture
+SHA256 is `e7a1cd4ccff95da44a1a7a07cf03a5be1f0d66c4293350283f1c9d3deee2c068`.
+Owner runs required affected basics/release before the canonical native rebuild.
+No actual inference, CEF launch, credential/Keychain or OS identity change occurred
+in this review, and these tests make no live-provider availability claim.

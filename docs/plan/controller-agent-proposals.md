@@ -136,3 +136,24 @@ roots empty/singleton selected cwd, profile null, mode explicitRequestOnly;
 reject malformed/other roots/profile/mode. Validate readOnly networkAccess as
 absent/default-false or actual false, with no unknown sandbox fields. No new
 agent/native capability is inferred from any compatibility metadata.
+
+## Closed discarded reasoning notices
+
+The final-only adapter must tolerate the pinned three read-only intermediate
+events without promoting any delta to evidence. Support exactly
+item/reasoning/summaryTextDelta and textDelta with closed threadId/turnId/itemId/
+delta/index parameters, and summaryPartAdded with no delta. Require exact active
+thread and acknowledged turn, nonempty bounded item identity, string delta and
+signed i64 summaryIndex/contentIndex. Reject positional/malformed/duplicate/
+unknown parameter fields and foreign correlation. Discard all text immediately;
+no reasoning state, UI callback, history, candidate or database write is created.
+Existing 64KiB frame, 512KiB/512-record, 16 pre-ACK event, native source/task
+deadline, final-text and final-item rules remain unchanged.
+
+Earn an actual controlled-peer positive red with these notices before a valid
+final, then preserve that final's exact copied source and SQL0/reap oracle.
+Direct negative peers send foreign thread/turn, wrong index/delta/item types,
+unknown/duplicate fields before the final: require failed/null proposal and
+SQL0/reap. Implement only the pinned shapes, run focused greens and independent
+protocol/source/process review, then required Rust basics. No live model turn,
+CEF launch, generic-ignore rule or summary-only suppression substitute.

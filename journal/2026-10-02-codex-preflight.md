@@ -101,3 +101,21 @@ outcome. Owner actual installed metadata-only service green1.245s/exact14fields/
 healthyclose/reapedPIDs reviewed. Final report hashes updated; no remaining
 compatibility blocker, no deadline/securitypolicy/dependency/nativewire expansion.
 Owner final basics/release and root live synthetic/native UI join follow.
+
+Reviewed root-requested final-only reasoning-notice extension plan/source against
+installed stable typed schemas and pinned source event mapping. Three known
+read-only notices require exact active thread/turn and closed item/delta/i64
+index shapes, then discard under original budgets; no candidate/history/SQL/UI
+path. Positive red reached reasoning and failed old adapter despite valid final.
+Owner direct positives/foreign and malformed/reasoning-only cases green; final
+independent process rerun pending. No product edit/inference/CEF/keychain action.
+
+Final reasoning extension review accepted: two actual method families green
+38.07s (18 fixture cycles), all3 notice kinds/foreigncorrelation, typed/unknown/
+duplicate/positional negatives, normal/preACK final selected-source copies,
+realSQL0/healthyclose/exactownedreap. Caught reasoning-only input using unselected
+ID that could mask accidental promotion; owner changed it to eligible selected-ID
+JSON. Single actual corrected-case probe failed/nullproposal with cleanexit/
+SQL0/reap. Updated final transport/test hashes and report; owner fullbasics/release
+then root canonical native build follow. No product edit or inference/CEF/OS
+permission work by reviewer.
