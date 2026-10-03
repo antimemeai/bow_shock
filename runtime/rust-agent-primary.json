@@ -1,7 +1,7 @@
 {
   "rust_version": "1.94.1",
   "revision": "e408947bfd200af42db322daf0fadfe7e26d3bd1",
-  "source_role": "standard-library private socket and child process contracts, study only; no copied implementation or new dependency",
+  "source_role": "standard-library private socket, child process and clock contracts, study only; no copied implementation or new dependency",
   "prepare_command": "mkdir -p context/rust-agent-primary",
   "documents": [
     {
@@ -15,6 +15,18 @@
       "local_path": "context/rust-agent-primary/process-unix.rs",
       "sha256": "b1cbb22bf9cfa57be9968e46137f8289e36948289a3f55948d6aadbe422cc302",
       "restore_command": "curl --fail --location 'https://raw.githubusercontent.com/rust-lang/rust/e408947bfd200af42db322daf0fadfe7e26d3bd1/library/std/src/sys/process/unix/unix.rs' --output context/rust-agent-primary/process-unix.rs"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/rust-lang/rust/e408947bfd200af42db322daf0fadfe7e26d3bd1/library/std/src/sys/pal/unix/time.rs",
+      "local_path": "context/rust-agent-primary/time-unix.rs",
+      "sha256": "42532767921849ef14bb1f3ac81bdbd7114cca27475ae4985a3af76b0621c4cc",
+      "restore_command": "curl --fail --location 'https://raw.githubusercontent.com/rust-lang/rust/e408947bfd200af42db322daf0fadfe7e26d3bd1/library/std/src/sys/pal/unix/time.rs' --output context/rust-agent-primary/time-unix.rs"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/rust-lang/rust/e408947bfd200af42db322daf0fadfe7e26d3bd1/library/std/src/time.rs",
+      "local_path": "context/rust-agent-primary/time.rs",
+      "sha256": "9c7e3cf24010c50e5bc25c62f9bfbaa9bc609b7e3bb27331e7bb91fa7e8dc422",
+      "restore_command": "curl --fail --location 'https://raw.githubusercontent.com/rust-lang/rust/e408947bfd200af42db322daf0fadfe7e26d3bd1/library/std/src/time.rs' --output context/rust-agent-primary/time.rs"
     }
   ]
 }

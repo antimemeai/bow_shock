@@ -15,6 +15,7 @@ Start with [the synthesis](../docs/research-synthesis.md), then:
 - [Closed native proposal connection review](native-agent-connection-code-review.md).
 - [Controller scoped agent proposal review](controller-agent-proposals-code-review.md).
 - [Native clock startup source and observer review](native-clock-startup-source-review.md).
+- [Direct native clock simplification review](native-clock-simplification-review.md).
 - [Native selected-source proposal panel review](native-agent-panel-code-review.md).
 - [Native tandem join review](native-agent-join-code-review.md), with
   [the joined agent task experiment](../docs/experiments/native-agent-workflow.md).
