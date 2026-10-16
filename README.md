@@ -18,6 +18,9 @@ superseding its predecessor. Keep all readings, attempts, previews and recipe
 history for tracking and later study. Metrics/instrumentation and a bidirectional
 traffic capture/editing proxy, including ads, are the fast follows; see
 [the follow-up plan](docs/plan/instrumentation-proxy.md).
+Initial instrumentation is available now: stage events are retained with the
+workspace, and `python3.13 scripts/extraction-metrics.py DATA_DIR/extraction`
+writes a new dated binary-plist/text report without replacing older reports.
 
 A live native browser with Blackbird working beside you. Browse ordinary sites,
 read the rendered page, and send your objective and page context to Blackbird.

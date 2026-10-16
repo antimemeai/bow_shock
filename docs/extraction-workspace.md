@@ -21,7 +21,8 @@ Each `attempts/<id>/` contains:
 - `work/`: the model's working files, including its `result.bplist` submission.
 - `received.bplist`: exact submitted bytes retained at turn completion, even if
   parsing or validation fails; a missing submission remains a reported failure.
-- `response.txt`: the model's final response; `validation-error.txt` when applicable.
+- `response.txt`: the model's final response; `validation-error.txt` for rejected
+  completed output or `outcome-note.txt` for cancellation/failure.
 - `preview.txt`, `preview.rtf`, `preview.pdf`, `preview.bplist`: actual native
   renderer output and source/character mappings, including an error preview when
   the submitted result is invalid.
@@ -85,6 +86,20 @@ uptime. Events cover visits, readings, attempt/model/render stages, cancellation
 failure and recipe activation. The workspace has one serialized writer; sequence
 numbers recover from the prior event history on restart. These are initial
 instrumentation for the metrics/proxy fast follow, not semantic success scores.
+
+The first metrics report is available with:
+
+```sh
+python3.13 scripts/extraction-metrics.py DATA_DIR/extraction
+```
+
+Each run creates a new `reports/<id>/metrics.bplist` and `metrics.txt`, retaining
+the exact source event filenames. Reports include per-attempt stage intervals,
+phases and recipe identity, model outcomes, validation errors, cancellation,
+previews, source document text bytes and recipe activations. Missing stage events
+or incomparable host clocks produce unavailable timing. Model completion, bot
+assessment, error notes and recipe activation remain separate observations.
+Corrupt or absent inputs are reported; counts do not infer collection completeness.
 
 New artifacts use private files, exclusive publication and synchronization.
 Failed publications retain their `.pending-*` files. Original readings, model

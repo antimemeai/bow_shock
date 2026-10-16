@@ -18,6 +18,7 @@ static NSDictionary* Read(NSString* path) {
 @interface ModelTransport : BSBlackbirdConnection
 @property(nonatomic) BOOL omitOutputs;
 @property(nonatomic) BOOL cancelTweak;
+@property(nonatomic) BOOL malformedOutput;
 @property(nonatomic,weak) OXExtractionController* controller;
 @property(nonatomic,readonly) NSUInteger calls;
 @property(nonatomic,readonly) BOOL inspectedPreview;
@@ -48,11 +49,12 @@ static NSDictionary* Read(NSString* path) {
   if ([attempt[@"phase"] isEqual:@"manual"]) Check([attempt[@"readings"] count] == 2,"manual correction includes newly collected same-visit reading");
   dispatch_async(dispatch_get_main_queue(),^{
     if (!self.omitOutputs) {
-      NSDictionary* document = @{@"format":@"oxcart.extraction",@"version":@1,
+      NSMutableDictionary* document = [@{@"format":@"oxcart.extraction",@"version":@1,
           @"title":[@"Result · " stringByAppendingString:attempt[@"phase"]],
           @"blocks":@[@{@"kind":@"paragraph",@"text":@"Source-supported content",@"interpretation":@"observed",@"sources":@[@{@"capture_id":@"capture"}]}],
           @"assessment":@"needs_help",@"issues":@[@"Operator should check coverage"],
-          @"recipe":@{@"page_type":@"Example",@"applicability":@"Matching page types",@"instructions":@"Collect source-supported content"}};
+          @"recipe":@{@"page_type":@"Example",@"applicability":@"Matching page types",@"instructions":@"Collect source-supported content"}} mutableCopy];
+      if (self.malformedOutput) document[@"issues"] = @17;
       NSData* bytes = [NSPropertyListSerialization dataWithPropertyList:document format:NSPropertyListBinaryFormat_v1_0 options:0 error:nil];
       Check(OXWriteArtifact(bytes,[NSURL fileURLWithPath:attempt[@"result_path"]],nil),"model writes native result");
     }
@@ -72,9 +74,10 @@ static void Wait(BOOL* finished) {
     [NSRunLoop.currentRunLoop runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.01]];
   Check(*finished,"native extraction loop finishes");
 }
-int main() { @autoreleasepool {
+int main(int argc, char** argv) { @autoreleasepool {
   [NSApplication sharedApplication];
-  NSURL* root = [NSURL fileURLWithPath:[NSTemporaryDirectory() stringByAppendingPathComponent:NSUUID.UUID.UUIDString] isDirectory:YES];
+  NSString* path = argc > 1 ? [NSString stringWithUTF8String:argv[1]] : [NSTemporaryDirectory() stringByAppendingPathComponent:NSUUID.UUID.UUIDString];
+  NSURL* root = [NSURL fileURLWithPath:path isDirectory:YES];
   NSURL* reading = [root URLByAppendingPathComponent:@"reading"];
   NSDictionary* metadata = @{@"format":@"oxcart.reading",@"version":@1,@"capture_id":@"capture",
       @"documents":@[@{@"text_bytes":@24,@"text_file":@"0.txt"}]};
@@ -82,11 +85,12 @@ int main() { @autoreleasepool {
   Check(OXWriteArtifact(manifest,[reading URLByAppendingPathComponent:@"reading.bplist"],nil),"create direct native reading metadata");
   NSDictionary* reference = @{@"capture_id":@"capture",@"url":reading.absoluteString,@"reading":@{
       @"directory":reading.path,@"manifest_path":[reading URLByAppendingPathComponent:@"reading.bplist"].path}};
-  for (NSUInteger scenario = 0; scenario < 3; ++scenario) {
+  for (NSUInteger scenario = 0; scenario < 4; ++scenario) {
     NSURL* directory = [root URLByAppendingPathComponent:[NSString stringWithFormat:@"case-%lu",(unsigned long)scenario]];
     ModelTransport* transport = [[ModelTransport alloc] initWithExecutableURL:[NSURL fileURLWithPath:@"/usr/bin/true"]
         sessionURL:directory workingDirectoryURL:root model:@"controlled"];
     transport.omitOutputs = scenario == 1; transport.cancelTweak = scenario == 2;
+    transport.malformedOutput = scenario == 3;
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
     OXExtractionController* controller = [[OXExtractionController alloc] initWithDataURL:directory connection:transport result:result];
     transport.controller = controller;
@@ -109,7 +113,7 @@ int main() { @autoreleasepool {
       [controller action:@"revise" fields:@{@"attempt_id":prior,@"correction":@"Include the new reading",@"selection":@"Source-supported content"}];
       Wait(&finished);
       Check(transport.calls == 3 && [result[@"extraction"][@"phase"] isEqual:@"manual"],"operator revision does not start another automatic loop");
-    } else if (scenario == 1) Check(![result[@"extraction"][@"valid"] boolValue] && result[@"extraction_error"],"missing model outputs remain explicit after one tweak");
+    } else if (scenario == 1 || scenario == 3) Check(![result[@"extraction"][@"valid"] boolValue] && result[@"extraction_error"],"missing/malformed model outputs remain explicit after one tweak");
     else {
       Check(result[@"extraction_error"] != nil,"Stop reports retained cancelled work");
       NSArray* attempts = [NSFileManager.defaultManager contentsOfDirectoryAtURL:[[directory URLByAppendingPathComponent:@"extraction"] URLByAppendingPathComponent:@"attempts"] includingPropertiesForKeys:nil options:0 error:nil];
@@ -120,6 +124,6 @@ int main() { @autoreleasepool {
     finished = NO; controller.finished = nil;
     [controller closeWithCompletion:^{ finished = YES; }]; Wait(&finished);
   }
-  [NSFileManager.defaultManager removeItemAtURL:root error:nil];
+  if (argc <= 1) [NSFileManager.defaultManager removeItemAtURL:root error:nil];
   puts("native initial/tweak/manual/Stop loop and actual preview consumption passed");
 }}

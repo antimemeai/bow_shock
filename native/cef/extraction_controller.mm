@@ -152,7 +152,8 @@
       NSDictionary* document = [self->_workspace receiveResultForAttempt:attempt response:response outcome:outcome error:&error];
       NSString* failure = error.localizedDescription;
       if (failure) {
-        NSURL* path = [[NSURL fileURLWithPath:attempt[@"directory"]] URLByAppendingPathComponent:@"validation-error.txt"];
+        NSString* name = [outcome isEqual:@"completed"] ? @"validation-error.txt" : @"outcome-note.txt";
+        NSURL* path = [[NSURL fileURLWithPath:attempt[@"directory"]] URLByAppendingPathComponent:name];
         OXWriteArtifact([failure dataUsingEncoding:NSUTF8StringEncoding],path,nil);
       }
       dispatch_async(dispatch_get_main_queue(),^{

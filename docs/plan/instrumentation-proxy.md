@@ -7,6 +7,17 @@ editorial work on traffic, including ads. The earlier interpretation that
 
 ## Instrumentation and useful metrics
 
+First implementation is available: the native extraction workspace records
+stage events and `scripts/extraction-metrics.py WORKSPACE` writes a new immutable
+metrics snapshot. It reports stage intervals within the same host run, reading
+text bytes, phases, model outcomes, validation errors, previews, cancellation
+and recipe activation. Raw and derived data stay distinct. Malformed result
+fields remain explicit rather than crashing aggregation. Native controlled-
+outcome checks cover initial/tweak/manual, missing/invalid output and Stop, with
+metrics checked against those actual emitted events/artifacts. See
+[workspace usage](../extraction-workspace.md). A richer in-app metrics view and
+bidirectional proxy remain next work.
+
 Join visit, document/capture, extraction attempt, preview and exact recipe
 identities in a local timeline. Record stage start/end/failure, cancellations,
 collection gaps, bytes retained, newly observed content, repeated/conflicting
