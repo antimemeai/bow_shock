@@ -21,6 +21,12 @@ of complete collection. Failed and superseded attempts remain in comparisons;
 do not silently measure only the successful run. Explicitly distinguish an
 operator judgment from a bot judgment and an unreviewed result.
 
+For native interaction, join intended actions, generated OS events, actual
+browser-received events and resulting page/network changes. Retain the exact
+empirical behavior-profile revision and source data used; see
+[empirical input](empirical-input.md). Key-triggered requests can happen during
+typing and corrections, before a field reaches its final intended value.
+
 ## Bidirectional capture and editorial work
 
 Provide a proxy/workbench that captures traffic in both directions and supports

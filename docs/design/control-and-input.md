@@ -225,7 +225,11 @@ delegation region. Fitts-style movement-time relations and minimum-jerk models
 are candidate starting points, not a ready-made human distribution. Wheel bursts
 and trackpad momentum have separate models with bounded direction/distance and
 observed nested scroll targets. Typing accounts for literal text, composition
-and actual platform outcomes; manufactured typos are not a default. Waiting
+and actual platform outcomes. Operator update 2026-10-16: error and correction
+behavior must be grounded in human data, including conditional mistaken-key
+likelihoods; the previous blanket exclusion of modeled typos is superseded.
+Use the [empirical-input plan](../plan/empirical-input.md), with browser-observed
+event sequences and intermediate effects rather than only a final value. Waiting
 follows page/task state and a deadline, rather than random sleeping across errors.
 
 Noise must not widen authority, cross a forbidden surface, defeat cancellation,

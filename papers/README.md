@@ -22,6 +22,8 @@ Start with [the synthesis](../docs/research-synthesis.md), then:
 - [End-user browser automation predecessors](browser-predecessors.md).
 - [Native DOM and runtime identity](native-browser-surfaces.md).
 - [OS input and external network interventions](os-input-and-behavior.md).
+- [Empirical typing/error/pointer data and browser triggers](empirical-human-input.md),
+  with [original-artifact hashes and restoration](human-input-manifest.md).
 - [Network observation, editing, and tracker alerts](network-observatory.md).
 - [Expanded network quarantine and reading map](network-quarantine.md).
 - [Jev for advisory network and extraction judgments](jev-network-judgments.md).

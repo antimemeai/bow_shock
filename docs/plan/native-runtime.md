@@ -254,9 +254,12 @@ owned-window sessions provide task/device-conditioned motion and wheel features;
 exclude private text/key contents and secure fields. Split calibration and
 held-out sessions, and compare complete sequences, velocity/corrections,
 scroll bursts, successful targets, false takeovers and operator corrections.
-Keep wheel and trackpad modes separate until measured. No deliberate typos,
-randomized submission text or loss of Stop responsiveness buys a similarity
-score. [Native-input research and behavioral sources](../../papers/os-input-and-behavior.md).
+Keep wheel and trackpad modes separate until measured. Operator update
+2026-10-16: include empirically modeled typing errors and correction sequences;
+the earlier blanket exclusion of deliberate typos is superseded. Ground mistaken
+keys and timing in real data and preserve all actual page triggers, including
+intermediate edits; see [empirical input](empirical-input.md). Stop remains
+responsive throughout. [Native-input research and behavioral sources](../../papers/os-input-and-behavior.md).
 
 Run engine-default comparison before any fingerprint overrides: same machine,
 network, fixture and comparable Chromium build; CEF without observation, then

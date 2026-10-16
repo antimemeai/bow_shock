@@ -105,6 +105,14 @@ window/focus verification, timing, and takeover behavior.
 The operator wants statistically human trajectories and timing with correctly
 shaped, adaptive noise. Study joint movement, correction, dwell, scrolling, and
 pauses in context. Independent jitter is not automatically human behavior.
+The operator further requires real typing/error data: down/up/hold and overlapping
+keys, conditional likelihood of the key pressed given the intended key, insertion,
+omission/transposition and actual correction behavior. Pointer movement, clicking
+and scrolling require the same empirical grounding. Preserve the browser's full
+event/trigger semantics, including legacy keypress where generated, repeat,
+beforeinput/input, composition and pointer/mouse events. Intermediate mistakes
+can themselves trigger page behavior; observing only the final value is not
+sufficient. See [empirical input](plan/empirical-input.md).
 OS delivery and a browser's trusted-event flag do not prove human origin or
 site acceptance. The person must remain able to take control.
 

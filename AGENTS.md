@@ -25,6 +25,14 @@ loop are the immediate product work. The operator's fast follows are metrics
 and instrumentation plus a bidirectional proxy for traffic capture and editing,
 including ads/tracker traffic. Read `docs/plan/instrumentation-proxy.md`.
 
+Site interaction must be grounded in measured human input sequences: typing
+down/up timing and overlap, intended-versus-pressed key errors and corrections,
+pointer movement/clicks and scrolling. Random jitter and guessed typo rates do
+not meet this standard. Preserve actual browser event/trigger behavior through
+native input, including legacy keypress, input/composition and pointer events.
+Read `docs/plan/empirical-input.md` and its source-study notes before implementing
+the executor. This supersedes earlier blanket exclusions of deliberate typos.
+
 Read [BLACKBIRD.md](BLACKBIRD.md) before working here. The project is a
 semi-automatic browser: human and agent browsing together, with explicit,
 bounded delegation and a native connection to an agent such as Blackbird.

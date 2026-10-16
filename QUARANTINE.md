@@ -11,6 +11,12 @@ Reference code is for study. Nothing in this collection adopts a dependency or
 licenses it for redistribution; consult each upstream license before adoption.
 No acquired implementation has been built or executed.
 
+The 2026-10-16 [human-input acquisition](papers/human-input-manifest.md) has its
+own binary-plist ledger and preserved original typing/mouse archives, papers,
+capture source and standards snapshots. Restore with
+`python3.13 scripts/acquire-human-input.py`. These additions are separate from
+the older generated inventory below; no reference code was executed.
+
 ## Restore
 
 From the project root, with Python 3.13+ and Git:
