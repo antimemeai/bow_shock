@@ -5,7 +5,11 @@ information across a live visit and organizes it independently of DOM shape.
 The candidate-selection-only restrictions below describe the earlier table
 design, not the current extraction boundary. Source references remain necessary;
 semantic restructuring and synthesis are allowed. Complete requested readings
-are retained without the earlier harvest caps. See
+are retained without the earlier harvest caps. Current extraction data and
+recipe history are preserved for tracking and later study; the automatic expiry
+and deletion defaults below are historical and do not govern this workflow.
+Recipe updates are whole new immutable documents with separate activation
+history; earlier recipes remain intact. See
 [visit extraction](../plan/visit-extraction.md) for the current direction.
 
 Status: design proposal, 2026-10-01. This component turns native session evidence

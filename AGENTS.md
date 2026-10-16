@@ -15,6 +15,14 @@ page and iterate until useful. Save the working page-type approach as a dated,
 reusable recipe. Do not require advance knowledge of every website. Read
 `docs/plan/extraction-preview-recipes.md` before implementing this loop.
 
+Recipe updates are whole new immutable recipes that supersede the previous
+active recipe. Never delete or edit earlier recipes. Preserve activation history
+and bind each attempt to the exact recipe it used. Preserve readings/blobs, all
+attempts/results/previews and corrections for tracking and later study; no
+automatic expiry or cleanup of this history. Historical retention defaults do
+not govern the current extraction workflow. Preview/extraction ships first;
+the recipe box follows directly.
+
 Read [BLACKBIRD.md](BLACKBIRD.md) before working here. The project is a
 semi-automatic browser: human and agent browsing together, with explicit,
 bounded delegation and a native connection to an agent such as Blackbird.

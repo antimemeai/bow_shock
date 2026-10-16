@@ -21,8 +21,9 @@ for evaluating the actual attempt.
    page dissection: missing content, nested scroll region, collapsed section,
    mistaken entity boundaries, duplicate records, or poor output organization.
    Continue their directed adjustments until the result is useful.
-5. Save the working approach as a dated page-type recipe. Later failures revise
-   that approach with a new dated revision and preserve what changed.
+5. Save the working approach as a dated page-type recipe. Every update writes a
+   whole new recipe and makes it active, superseding its predecessor. Preserve
+   every prior recipe; no update edits or deletes the earlier one.
 
 The naive pass is allowed to fail. Failure supplies the next concrete problem;
 it does not require a site-certification process or an all-sites abstraction.
@@ -45,8 +46,9 @@ reading only its own success message is not evaluation. Decide the native
 rendering/inspection mechanism from the current UI and engine source before
 implementation; no new library is selected here.
 
-Keep earlier attempt output available when a revision fails, and make clear
-which attempt is displayed. Show missing/unresolved content and let the operator
+Keep every attempt's output, inputs and preview, including failed and rejected
+attempts; do not overwrite earlier output on success either. Make clear which
+attempt is displayed. Show missing/unresolved content and let the operator
 point to a bad or absent item and send a correction. Link factual output to its
 supporting reading/fragment; identify summaries, normalization and inference.
 The stage must make empty output, lost sections, duplicate records and broken
@@ -60,18 +62,43 @@ all harvested content; preview display choices are not capture limits.
 
 ## Recipe box
 
-Each recipe records a stable identity and dated revision, a descriptive page
-type and applicability cues, collection/exploration instructions, extraction
-and organization instructions, useful output expectations, known problems and
-the successful attempt that informed it. Record changes on revision. A recipe
-describes how to handle a class of pages; the visit's profile details and other
-extracted values belong in the result, not copied into the reusable instructions.
+Each recipe is a complete immutable document with its own unique identity and
+creation date, page-type family, predecessor identity when superseding another,
+applicability cues, collection/exploration instructions, extraction/organization
+instructions, output expectations, known problems and the successful attempt
+that informed it. Dates do not substitute for unique identities. An update
+contains the entire working recipe, not only a patch against its predecessor.
+A recipe describes how to handle a class of pages; the visit's extracted values
+belong in the result, not copied into reusable instructions.
+
+Activation is recorded separately: a new recipe becomes the active choice for
+its page type, while its predecessor remains intact and inspectable. Keep the
+activation history as well as the recipes. Write the complete new recipe before
+recording activation; a failed save must not replace the working choice. Each
+extraction attempt refers to the exact immutable recipe identity used at the
+time, never a lookup through today's active recipe. This preserves comparisons
+of collection, interpretation and rendering across attempts and dates.
 
 Store recipes locally using owned native/binary formats with adjacent files as
-needed. Keep them inspectable and editable through Oxcart. Recipe matching is a
+needed. Inspect recipes and create successors through Oxcart. Recipe matching is a
 working hypothesis: apply, preview and adjust when a site's layout changes.
 Save the approach that actually worked, including manual discoveries; do not
 replace it with a claim that a page type is permanently supported.
+
+Preserve the data for tracking and later study: original readings and blobs,
+all extraction attempts and outputs, previews, corrections, recipe documents,
+activation history and their links. Supersession does not delete any of these.
+Do not automatically expire, garbage-collect, compact away or overwrite this
+history. Result deduplication changes the organized view, not the retained raw
+observations. Older design notes proposing session-close or 30-day expiry do
+not govern this extraction workflow.
+
+## Delivery order
+
+Ship the preview renderer, persisted result and generic-pass/tweak loop first.
+Fast-follow with the recipe box using the immutable whole-recipe and activation
+model above. Preserve attempts and their source links from the first unit so
+recipe history can refer to actual work rather than reconstructing it afterward.
 
 ## Direct live evaluation
 

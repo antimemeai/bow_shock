@@ -12,6 +12,9 @@ round of tweaks. Operator and bot then work through remaining page-specific
 failures and save the successful approach as a dated page-type recipe. The
 preview stage and recipe box are planned, not implemented; see
 [the concrete next unit](docs/plan/extraction-preview-recipes.md).
+Recipes are preserved: each update is a whole new recipe that becomes active,
+superseding its predecessor. Keep all readings, attempts, previews and recipe
+history for tracking and later study. The recipe box follows the preview loop.
 
 A live native browser with Blackbird working beside you. Browse ordinary sites,
 read the rendered page, and send your objective and page context to Blackbird.

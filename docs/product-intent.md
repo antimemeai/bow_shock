@@ -42,7 +42,12 @@ page together and adjust collection, interpretation or rendering until they do.
 Preserve a dated recipe for the successful page type in a recipe box. Recipes
 record the reusable approach, applicability and known limitations, separately
 from the visit's extracted data. Try relevant recipes on later visits and revise
-them when the page changes. No all-sites implementation or advance-perfect
+them when the page changes by writing whole new immutable recipes that become
+active and supersede their predecessors. Never delete earlier recipes. Preserve
+activation history and the exact recipe used by each attempt. Retain readings,
+blobs, attempts, results, previews and corrections for tracking and later study;
+no automatic expiry or destructive history cleanup. Preview/extraction ships
+first, with the recipe box following directly. No all-sites implementation or advance-perfect
 page model is required. See [preview and recipes](plan/extraction-preview-recipes.md).
 
 Operator update 2026-10-16: Oxcart develops against live sites. Retire owned-page
