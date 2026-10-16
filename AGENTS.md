@@ -36,6 +36,8 @@ not meet this standard. Preserve actual browser event/trigger behavior through
 native input, including legacy keypress, input/composition and pointer events.
 Read `docs/plan/empirical-input.md` and its source-study notes before implementing
 the executor. This supersedes earlier blanket exclusions of deliberate typos.
+Scoped native/browser recording is implemented; read `docs/input-recording.md`.
+It records complete received episodes but does not fit profiles or post input.
 
 Read [BLACKBIRD.md](BLACKBIRD.md) before working here. The project is a
 semi-automatic browser: human and agent browsing together, with explicit,

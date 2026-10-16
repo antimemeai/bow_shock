@@ -52,6 +52,11 @@ class BrowserClient final : public CefClient,
   CefRefPtr<CefDisplayHandler> GetDisplayHandler() override { return this; }
   CefRefPtr<CefRequestHandler> GetRequestHandler() override { return this; }
   CefRefPtr<CefFocusHandler> GetFocusHandler() override { return this; }
+  bool OnProcessMessageReceived(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame,
+      CefProcessId source, CefRefPtr<CefProcessMessage> message) override {
+    CEF_REQUIRE_UI_THREAD();
+    return source == PID_RENDERER && [livePanel receiveInputForBrowser:browser frame:frame message:message];
+  }
   void OnAfterCreated(CefRefPtr<CefBrowser> browser) override {
     CEF_REQUIRE_UI_THREAD();
     browsers_.push_back(browser); runResult[@"browser_created"] = @YES;
@@ -129,7 +134,11 @@ class BrowserApp final : public CefApp, public CefBrowserProcessHandler {
 @implementation BowShockApplication
 - (BOOL)isHandlingSendEvent { return _sending; }
 - (void)setHandlingSendEvent:(BOOL)value { _sending = value; }
-- (void)sendEvent:(NSEvent*)event { CefScopedSendingEvent scope; [super sendEvent:event]; }
+- (void)sendEvent:(NSEvent*)event {
+  CefScopedSendingEvent scope;
+  [livePanel nativeInputEvent:event];
+  [super sendEvent:event];
+}
 - (void)terminate:(id)sender { (void)sender; [delegate closeBrowsers]; }
 @end
 @implementation OxcartDelegate
@@ -172,6 +181,7 @@ int main(int argc, char** argv) {
     blackbirdSession = [NSURL fileURLWithPath:session]; workingDirectory = [NSURL fileURLWithPath:directory];
     runResult = [@{@"browser_created": @NO, @"browser_closed": @NO, @"cef_shutdown": @NO} mutableCopy];
     runResult[@"smoke_extraction"] = @(command->HasSwitch("ox-smoke-extraction"));
+    runResult[@"record_input_on_start"] = @(command->HasSwitch("ox-record-input"));
     NSString* profile = text("bs-profile") ?: [NSHomeDirectory()
         stringByAppendingPathComponent:@"Library/Application Support/Oxcart/profile"];
     NSError* error = nil;

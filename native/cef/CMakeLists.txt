@@ -24,7 +24,7 @@ add_subdirectory("${CEF_LIBCEF_DLL_WRAPPER_PATH}" cef_wrapper)
 
 add_executable(bow_shock MACOSX_BUNDLE main.mm live_observation.mm reading_archive.mm live_panel.mm
   blackbird_connection.mm blackbird_packet.mm extraction_workspace.mm extraction_preview.mm extraction_controller.mm
-  traffic_session.mm traffic_browser.mm)
+  traffic_session.mm traffic_browser.mm input_archive.mm input_events.mm input_browser.mm)
 SET_EXECUTABLE_TARGET_PROPERTIES(bow_shock)
 target_include_directories(bow_shock PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/../control")
 target_compile_options(bow_shock PRIVATE -fobjc-arc -fobjc-exceptions -Werror)
@@ -41,6 +41,9 @@ add_custom_command(TARGET bow_shock POST_BUILD
     "${APP}/Contents/Frameworks/Chromium Embedded Framework.framework" VERBATIM)
 COPY_MAC_FRAMEWORK(bow_shock "${CEF_BINARY_DIR}" "${APP}")
 
+file(READ "${CMAKE_CURRENT_SOURCE_DIR}/input_observer.js" OX_INPUT_OBSERVER)
+set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/input_observer.js")
+configure_file(input_observer_script.h.in "${CMAKE_BINARY_DIR}/input_observer_script.h" @ONLY)
 foreach(ENTRY IN LISTS CEF_HELPER_APP_SUFFIXES)
   string(REPLACE ":" ";" FIELDS "${ENTRY}")
   list(GET FIELDS 0 NAME_SUFFIX)
@@ -49,7 +52,8 @@ foreach(ENTRY IN LISTS CEF_HELPER_APP_SUFFIXES)
   set(HELPER_NAME "Bow Shock Helper${NAME_SUFFIX}")
   set(HELPER_TARGET "bow_shock_helper${TARGET_SUFFIX}")
   configure_file(helper-Info.plist.in "${CMAKE_BINARY_DIR}/helper${TARGET_SUFFIX}.plist" @ONLY)
-  add_executable(${HELPER_TARGET} MACOSX_BUNDLE helper.cc)
+  add_executable(${HELPER_TARGET} MACOSX_BUNDLE helper.cc input_renderer.cc)
+  target_include_directories(${HELPER_TARGET} PRIVATE "${CMAKE_BINARY_DIR}")
   SET_EXECUTABLE_TARGET_PROPERTIES(${HELPER_TARGET})
   target_compile_options(${HELPER_TARGET} PRIVATE -Werror)
   target_link_libraries(${HELPER_TARGET} PRIVATE libcef_dll_wrapper ${CEF_STANDARD_LIBS})

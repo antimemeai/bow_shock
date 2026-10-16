@@ -27,6 +27,12 @@ outcomes. See [traffic controls and file inspection](docs/traffic-workbench.md).
 The signed build and native command/storage checks pass; live editing remains
 for practical testing.
 
+**Record input** / **Finish input** retains scoped native typing/pointer/scroll
+episodes alongside observed browser triggers, with immutable event chunks and
+reading/traffic locators. Use `--record-input` to begin on launch. See
+[input recording and inspection](docs/input-recording.md); calibrated profiles
+and the native action executor remain next work.
+
 A live native browser with Blackbird working beside you. Browse ordinary sites,
 read the rendered page, and send your objective and page context to Blackbird.
 The conversation panel streams replies, accepts steering during work, and stops
@@ -54,8 +60,8 @@ python3.13 scripts/build-native.py
 ```
 
 Select another executable with `--blackbird /absolute/path/to/blackbird`.
-The launcher checks the ordinary Blackbird release build, debug build, retained
-mainline build, then `blackbird` on PATH, selecting one whose help advertises `--application`.
+The launcher checks the retained mainline build, ordinary Blackbird release
+build, debug build, then `blackbird` on PATH, selecting one whose help advertises `--application`.
 An explicit `--blackbird` selection takes precedence.
 `--data-dir` selects a dedicated browser profile and Blackbird session;
 `--model` selects the Blackbird model. Provider authentication belongs to
@@ -108,8 +114,9 @@ coverage is recorded. Loader-origin metadata does not establish effective window
 origin. Page data remains separate from the operator objective.
 
 The integration does not yet supply Blackbird with browser action tools.
-Keyboard/mouse/scroll execution, network inspection/editing/perturbation and
-automatic page-type recognition remain subsequent product work. Blackbird's ordinary
+Keyboard/mouse/scroll execution and automatic page-type recognition remain
+subsequent product work. The operator already has the native traffic workbench
+and scoped input recording. Blackbird's ordinary
 coding tools retain their usual agency.
 
 Collection currently follows explicit readings; continuous capture, page-local

@@ -1,4 +1,5 @@
 #import "live_panel.h"
+#import "input_browser.h"
 #import "live_observation.h"
 #import "traffic_browser.h"
 #import "blackbird_connection.h"
@@ -32,6 +33,7 @@ NSButton* Button(NSView* view, NSString* title, id target, SEL action, NSRect fr
   NSButton* _stop;
   NSButton* _includePage;
   NSButton* _extract;
+  NSButton* _recordInput;
   OXExtractionController* _extraction;
   BSBlackbirdConnection* _connection;
   NSURL* _readingsURL;
@@ -39,6 +41,9 @@ NSButton* Button(NSView* view, NSString* title, id target, SEL action, NSRect fr
   NSMutableDictionary<NSNumber*, OXTrafficBrowser*>* _traffic;
   NSURL* _trafficRoot;
   dispatch_group_t _trafficWrites;
+  NSMutableDictionary<NSNumber*, OXInputBrowser*>* _input;
+  NSURL* _inputRoot;
+  dispatch_group_t _inputWrites;
   CefRefPtr<CefBrowser> _browser;
   NSMutableDictionary* _result;
   NSString* _request;
@@ -55,6 +60,8 @@ NSButton* Button(NSView* view, NSString* title, id target, SEL action, NSRect fr
   _readingsURL = [[session URLByDeletingLastPathComponent] URLByAppendingPathComponent:@"readings" isDirectory:YES];
   _trafficRoot = [[session URLByDeletingLastPathComponent] URLByAppendingPathComponent:@"traffic" isDirectory:YES];
   _traffic = [NSMutableDictionary dictionary]; _trafficWrites = dispatch_group_create();
+  _inputRoot = [[session URLByDeletingLastPathComponent] URLByAppendingPathComponent:@"input" isDirectory:YES];
+  _input = [NSMutableDictionary dictionary]; _inputWrites = dispatch_group_create();
   _result = result; _smokeObjective = [objective copy]; _smoke = smoke; _quit = [quit copy];
   NSRect screen = NSScreen.mainScreen.visibleFrame;
   CGFloat width = MIN(520, MAX(380, screen.size.width * 0.36));
@@ -68,6 +75,8 @@ NSButton* Button(NSView* view, NSString* title, id target, SEL action, NSRect fr
   NSTextField* heading = [NSTextField labelWithString:@"OXCART"];
   heading.font = [NSFont boldSystemFontOfSize:20];
   heading.frame = NSMakeRect(16, height - 43, width - 32, 27); [content addSubview:heading];
+  _recordInput = Button(content,@"Record input",self,@selector(recordInput:),NSMakeRect(width-152,height-43,136,28));
+  _recordInput.toolTip = @"Record this browser's input, typed values and page events locally. Finish input or Stop ends acquisition.";
   _connectionLabel = [NSTextField labelWithString:@"Connecting to Blackbird…"];
   _connectionLabel.textColor = NSColor.secondaryLabelColor;
   _connectionLabel.frame = NSMakeRect(16, height - 68, width - 32, 20); [content addSubview:_connectionLabel];
@@ -117,6 +126,8 @@ NSButton* Button(NSView* view, NSString* title, id target, SEL action, NSRect fr
   [_transcript scrollRangeToVisible:NSMakeRange(_transcript.string.length, 0)];
 }
 - (void)updateButtons {
+  _recordInput.enabled = !_closing && _browser;
+  _recordInput.title = _browser && _input[@(_browser->GetIdentifier())].activeRecordingID ? @"Finish input" : @"Record input";
   _observe.enabled = !_closing && _browser && !_capturing && !_loading;
   _send.enabled = !_closing && _connection.ready && !_capturing &&
       !_extraction.busy && (_includePage.state != NSControlStateValueOn || (_browser && !_loading));
@@ -170,14 +181,31 @@ NSButton* Button(NSView* view, NSString* title, id target, SEL action, NSRect fr
     if (!paths) { paths = [NSMutableArray array]; _result[@"traffic_directories"] = paths; }
     [paths addObject:_traffic[browserID].directoryURL.path];
   }
+  if (!_input[browserID]) {
+    _input[browserID] = [[OXInputBrowser alloc] initWithBrowser:browser rootURL:_inputRoot];
+    __weak BSLivePanel* weakSelf = self;
+    _input[browserID].failed = ^(NSString* message) {
+      BSLivePanel* panel = weakSelf; if (!panel) return;
+      panel->_status.stringValue = message;
+      [panel append:[NSString stringWithFormat:@"\n%@\n",message]];
+      panel->_result[@"input_recording_error"] = message;
+      [panel updateButtons];
+    };
+  }
   _loading = browser->IsLoading();
   _pageLabel.stringValue = [NSString stringWithUTF8String:browser->GetMainFrame()->GetURL().ToString().c_str()] ?: @"";
   [_extraction beginVisitWithURL:_pageLabel.stringValue title:@"Browser visit"];
   [_traffic[browserID] markContext:@{@"browser_id":browserID,@"page_url":_pageLabel.stringValue,@"lifecycle":@"selected"}];
+  [_input[browserID] markContext:@{@"page_url":_pageLabel.stringValue,@"traffic_directory":_traffic[browserID].directoryURL.path,@"lifecycle":@"selected"}];
+  if ([_result[@"record_input_on_start"] boolValue] && !_result[@"input_started_on_launch"]) {
+    _result[@"input_started_on_launch"] = @YES; [self recordInput:nil];
+  }
   [self updateButtons];
 }
 - (void)mainLoadStartedForBrowser:(CefRefPtr<CefBrowser>)browser {
-  [_traffic[@(browser->GetIdentifier())] markContext:@{@"browser_id":@(browser->GetIdentifier()),@"page_url":[NSString stringWithUTF8String:browser->GetMainFrame()->GetURL().ToString().c_str()] ?: @"",@"navigation_id":NSUUID.UUID.UUIDString,@"lifecycle":@"main_load_started"}];
+  NSDictionary* context = @{@"browser_id":@(browser->GetIdentifier()),@"page_url":[NSString stringWithUTF8String:browser->GetMainFrame()->GetURL().ToString().c_str()] ?: @"",@"navigation_id":NSUUID.UUID.UUIDString,@"lifecycle":@"main_load_started"};
+  [_input[@(browser->GetIdentifier())] markContext:context];
+  [_traffic[@(browser->GetIdentifier())] markContext:context];
   if (!_browser || !_browser->IsSame(browser)) return;
   ++_captureEpoch; _capturing = NO; _loading = YES;
   [_observer cancel]; [_observer nativeLifecycle:@"navigation"]; _status.stringValue = @"Loading page…";
@@ -191,12 +219,19 @@ NSButton* Button(NSView* view, NSString* title, id target, SEL action, NSRect fr
   _status.stringValue = @"Page ready."; [self updateButtons]; [self maybeSmoke];
 }
 - (void)rendererTerminatedForBrowser:(CefRefPtr<CefBrowser>)browser {
+  [_input[@(browser->GetIdentifier())] rendererTerminated];
   if (!_browser || !_browser->IsSame(browser)) return;
   ++_captureEpoch; _capturing = NO; [_observer cancel]; [_observer nativeLifecycle:@"renderer terminated"];
   _status.stringValue = @"Renderer stopped. Reload the page."; [self updateButtons];
 }
 - (void)browserClosing:(CefRefPtr<CefBrowser>)browser {
   NSNumber* identity = @(browser->GetIdentifier());
+  OXInputBrowser* input = _input[identity];
+  if (input) {
+    dispatch_group_enter(_inputWrites);
+    [input closeWithCompletion:^{ dispatch_group_leave(self->_inputWrites); }];
+    [_input removeObjectForKey:identity];
+  }
   OXTrafficBrowser* traffic = _traffic[identity];
   if (traffic) {
     dispatch_group_enter(_trafficWrites);
@@ -223,6 +258,7 @@ NSButton* Button(NSView* view, NSString* title, id target, SEL action, NSRect fr
     self->_result[@"page"] = [page nativeValue];
     [self->_extraction addReading:[page nativeValue]];
     [self->_traffic[@(self->_browser->GetIdentifier())] markContext:@{@"capture_id":page.captureId,@"reading_directory":page.directoryURL.path,@"page_url":page.url,@"lifecycle":@"reading_saved"}];
+    [self->_input[@(self->_browser->GetIdentifier())] markContext:@{@"capture_id":page.captureId,@"reading_directory":page.directoryURL.path,@"page_url":page.url,@"lifecycle":@"reading_saved"}];
     self->_result[@"block_count"] = @(page.blockCount);
     self->_pageLabel.stringValue = page.url;
     self->_status.stringValue = [NSString stringWithFormat:@"Saved %lu text blocks · %llu bytes.",
@@ -262,10 +298,35 @@ NSButton* Button(NSView* view, NSString* title, id target, SEL action, NSRect fr
 }
 - (void)preview:(id)sender { (void)sender; [_extraction showPreview]; }
 - (void)traffic:(id)sender { (void)sender; if (_browser) [_traffic[@(_browser->GetIdentifier())] show]; }
+- (void)recordInput:(id)sender {
+  (void)sender; if (!_browser || _closing) return;
+  OXInputBrowser* input = _input[@(_browser->GetIdentifier())];
+  if (input.activeRecordingID) {
+    [input stop]; _status.stringValue = @"Input recording finished; pending observations are retained.";
+  } else {
+    NSURL* path = [input startWithContext:@{@"objective":_composer.string ?: @"",@"source":@"operator_native_session"}];
+    if (path) {
+      [self append:[NSString stringWithFormat:@"\nRecording browser input and page triggers locally: %@\n",path.path]];
+      _status.stringValue = @"Recording browser input · Finish input or Stop ends recording.";
+      NSMutableArray* paths = _result[@"input_directories"];
+      if (!paths) { paths = [NSMutableArray array]; _result[@"input_directories"] = paths; }
+      [paths addObject:path.path];
+    }
+  }
+  [self updateButtons];
+}
+- (void)nativeInputEvent:(NSEvent*)event {
+  for (OXInputBrowser* input in _input.allValues) [input nativeEvent:event];
+}
+- (BOOL)receiveInputForBrowser:(CefRefPtr<CefBrowser>)browser frame:(CefRefPtr<CefFrame>)frame
+    message:(CefRefPtr<CefProcessMessage>)message {
+  return [_input[@(browser->GetIdentifier())] receiveFrame:frame message:message];
+}
 - (void)stop:(id)sender {
   (void)sender; ++_captureEpoch; _capturing = NO; [_observer cancel];
   [_extraction stop];
   for (OXTrafficBrowser* traffic in _traffic.allValues) [traffic stop];
+  for (OXInputBrowser* input in _input.allValues) [input stop];
   [_connection cancel]; _status.stringValue = @"Stop requested."; [self updateButtons];
 }
 - (void)maybeSmoke {
@@ -290,6 +351,8 @@ NSButton* Button(NSView* view, NSString* title, id target, SEL action, NSRect fr
   [_connection closeWithCompletion:^{ dispatch_group_leave(group); }];
   dispatch_group_enter(group);
   dispatch_group_notify(_trafficWrites,dispatch_get_main_queue(),^{ dispatch_group_leave(group); });
+  dispatch_group_enter(group);
+  dispatch_group_notify(_inputWrites,dispatch_get_main_queue(),^{ dispatch_group_leave(group); });
   dispatch_group_notify(group,dispatch_get_main_queue(),completion);
 }
 @end

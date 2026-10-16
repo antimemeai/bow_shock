@@ -4,7 +4,9 @@ Operator direction, 2026-10-16: how the agent acts must be rooted in real human
 typing, error and pointer data, including the probability of pressing a particular
 wrong key given the intended one. Cover key press/down/up and every relevant
 browser trigger. This applies to page-local exploration in extraction as well as
-later delegated tasks. Existing native input is still unimplemented.
+later delegated tasks. The scoped native/browser recorder is implemented; read
+[its controls, format and gaps](../input-recording.md). The native executor and
+calibrated behavior profiles remain unimplemented.
 
 ## Behavior profiles from real sequences
 

@@ -29,6 +29,7 @@ def main():
     parser.add_argument('--smoke-output', type=Path, help='Read the live page, save a binary plist report and exit.')
     parser.add_argument('--smoke-objective', help='Also send the live page and this objective to Blackbird before exiting.')
     parser.add_argument('--smoke-extraction', action='store_true', help='Run extraction, render its preview, and perform one automatic revision.')
+    parser.add_argument('--record-input', action='store_true', help='Record this browser’s native input and page events locally until Finish input or Stop.')
     parser.add_argument('--app', type=Path, help='Use a separately built native application executable.')
     options = parser.parse_args()
     parsed = urlsplit(options.url)
@@ -66,6 +67,8 @@ def main():
         command.append(f'--ox-smoke-objective={options.smoke_objective}')
     if options.smoke_extraction:
         command.append('--ox-smoke-extraction')
+    if options.record_input:
+        command.append('--ox-record-input')
     print(f'Oxcart: {options.url}\nBlackbird: {selected}\nSession: {data / "blackbird"}', flush=True)
     child = subprocess.Popen(command, start_new_session=not bool(options.smoke_output))
     while True:
