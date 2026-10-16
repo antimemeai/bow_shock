@@ -1,5 +1,13 @@
 # Oxcart
 
+The primary value is extracting and organizing information across a live page
+visit, including successive scroll/expanded/lazy-loaded states. Output need not
+match the DOM or be restricted to copying preselected fields. Preserve source
+references and distinguish interpretation from observed facts. General
+Blackbird-driven browsing comes later. Read `docs/plan/visit-extraction.md` and
+the current clarification at the top of `docs/product-intent.md` before choosing
+next work; these supersede earlier extraction/action sequencing.
+
 Read [BLACKBIRD.md](BLACKBIRD.md) before working here. The project is a
 semi-automatic browser: human and agent browsing together, with explicit,
 bounded delegation and a native connection to an agent such as Blackbird.

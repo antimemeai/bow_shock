@@ -1,5 +1,13 @@
 # Evidence, traffic baselines and learned tables
 
+Current operator clarification, 2026-10-16: the extraction product accumulates
+information across a live visit and organizes it independently of DOM shape.
+The candidate-selection-only restrictions below describe the earlier table
+design, not the current extraction boundary. Source references remain necessary;
+semantic restructuring and synthesis are allowed. Complete requested readings
+are retained without the earlier harvest caps. See
+[visit extraction](../plan/visit-extraction.md) for the current direction.
+
 Status: design proposal, 2026-10-01. This component turns native session evidence
 into inspectable history, change alerts and reviewed rows. It does not grant
 input, network or model-export authority. [Network control](network-control.md)

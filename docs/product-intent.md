@@ -1,5 +1,34 @@
 # Product intent
 
+## Primary purpose — operator clarification 2026-10-16
+
+Oxcart extracts and organizes information encountered during a live page visit
+in a visible, ordinary browser session. A complex profile or feed is the motivating
+example: nested scrolling, expansion, lazy loading and virtualization expose
+information across successive states. Saving offline HTML or taking one DOM
+snapshot does not accomplish this task.
+
+The person arrives at the page. The agent interprets the available content and
+produces useful organized output whose structure follows the information and
+the operator's purpose. Output need not reproduce the DOM or select only existing
+source fields. It can combine fragments, normalize, group, deduplicate and
+summarize, while retaining source references and distinguishing inference from
+observed facts. Tables are one possible output, not the required shape.
+
+Preserve complete requested readings and accumulate them across the visit so
+information remains available after the page removes or replaces its nodes.
+Track what was actually observed, what remains collapsed/unloaded and where
+collection encountered a gap. A complete reading of one state is not a complete
+visit or all information the remote site could provide.
+
+Page-local exploration serves extraction: scrolling the right nested region,
+expanding text or sections, and collecting newly revealed content. Human browsing
+can supply those transitions initially; delegated local exploration requires
+the missing native action machinery. General Blackbird-driven navigation is
+advanced work and is not the next product milestone. The next milestone is a
+useful accumulated, organized extraction from a real visit. See
+[visit extraction](plan/visit-extraction.md).
+
 Operator update 2026-10-16: Oxcart develops against live sites. Retire owned-page
 workflows and site-certification gates. Investigate concrete problems as they
 appear. Blackbird integration is the immediate priority: a native conversation

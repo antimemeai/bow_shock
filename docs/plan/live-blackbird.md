@@ -54,9 +54,14 @@ News capture passes. Live use exposed and repaired a false one-layout-row-per-no
 assumption and a fragment limit that exhausted well before the text-byte budget.
 Observations now include rendered link destinations alongside page text.
 
-Next, let Blackbird request another native reading during a turn through the
-existing application channel. Give host calls their own IDs and return the
-actual capture or error; Stop retires pending calls. Then connect browser-action
-proposals to the separate native OS executor. Keep working on real browsing
-tasks, with ordinary human navigation and direct fixes for encountered failures.
-There is no site-certification prerequisite for either unit.
+The operator's subsequent clarification puts accumulated visit extraction first:
+see [visit extraction](visit-extraction.md). One requested reading and its file
+locator are inputs to that product, not the completed product. Capture successive
+states, retain content that disappears from virtualized pages, and organize it
+semantically with source references. Output need not match the DOM.
+
+Human browsing can reveal content initially. Page-local delegated exploration
+will need fresh native readings and the separate native OS executor, but general
+Blackbird-driven navigation is advanced work. On-demand host calls remain a
+possible mechanism serving extraction rather than the next milestone by default.
+Keep working on real visits and fix encountered failures directly.

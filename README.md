@@ -1,5 +1,12 @@
 # Oxcart
 
+Oxcart's primary purpose is extracting and organizing information across a live
+page visit, including content revealed through scrolling, expansion and lazy
+loading. Organized output follows the information rather than the DOM's shape.
+The current build supplies individual complete readings and a Blackbird panel;
+visit accumulation and semantic extraction are the next product work. See
+[the visit-extraction plan](docs/plan/visit-extraction.md).
+
 A live native browser with Blackbird working beside you. Browse ordinary sites,
 read the rendered page, and send your objective and page context to Blackbird.
 The conversation panel streams replies, accepts steering during work, and stops
