@@ -32,3 +32,17 @@ identities on this host; no certificate or private key was created.
 
 Mainline publication, away-team retirement, the ordinary runtime build and final
 live outcomes are appended after completion.
+
+The link-enabled Python.org run passed the OS prompt, returned HTTP200 with the
+actual title and Blackbird ready, then failed native projection with "invalid
+layout row". Browser close and CefShutdown both completed. Inspecting the acquired
+Blink `inspector_dom_snapshot_agent.cc` (source revision recorded in
+`papers/native-browser-sources.json`) shows BuildLayoutTreeNode recursively emits
+anonymous pseudo-element layout objects with the same node_index (lines713–720).
+Our decoder incorrectly required one layout row per DOM node. Remove that
+assumption: validate every layout row independently and project ordinary text
+rows in emitted order, retaining all matching fragments and existing bounds/
+secret filtering. Add direct native repeated-row regression inputs, distinguish
+malformed row fields in errors, rebuild, and rerun the actual live page. CSS
+pseudo-element text remains outside the ordinary DOM-text projection and gets
+an explicit coverage note. No test page is constructed.

@@ -73,6 +73,18 @@ int main() { @autoreleasepool {
   page.blocks=linkedBlocks; observation=[page nativeValue];
   Require([observation[@"links"] count]==64 && [observation[@"links_truncated"] isEqual:@YES],"distinct rendered links were duplicated or silently omitted at the limit");
 
+  NSMutableDictionary* repeated=Snapshot(@"End");
+  NSMutableDictionary* repeatedDoc=[repeated[@"documents"][0] mutableCopy];
+  NSMutableDictionary* repeatedLayout=[repeatedDoc[@"layout"] mutableCopy];
+  for (NSString* key in repeatedLayout.allKeys) repeatedLayout[key]=[repeatedLayout[key] mutableCopy];
+  for (NSNumber* node in @[@9,@14]) {
+    for (NSString* key in repeatedLayout.allKeys)
+      [repeatedLayout[key] addObject:repeatedLayout[key][node.unsignedIntegerValue]];
+  }
+  repeatedDoc[@"layout"]=repeatedLayout; repeated[@"documents"]=@[repeatedDoc];
+  page=Project(repeated,Frame(),&error);
+  Require(page && [page.text isEqual:@"Café 🐦\nRead docs\nEnd\nEnd"],"valid repeated-node layout rows rejected or ordinary text fragments dropped");
+
   NSString* longUnicode=[@"🕊é" stringByPaddingToLength:9999 withString:@"🕊é" startingAtIndex:0];
   page=Project(Snapshot(longUnicode),Frame(),&error);
   Require(page && page.truncated && [page.blocks.lastObject.text lengthOfBytesUsingEncoding:NSUTF8StringEncoding]<=kBlockBytes,"multibyte block limit failed");

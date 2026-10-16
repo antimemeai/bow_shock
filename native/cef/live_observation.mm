@@ -167,7 +167,7 @@ BSLivePage* Project(NSDictionary* result, BSLiveFrame* frame, NSString** error) 
       *bounds = Array(layout[@"bounds"]), *texts = Array(layout[@"text"]);
   if (!indexes || indexes.count > 200000 || styles.count != indexes.count || bounds.count != indexes.count || texts.count != indexes.count)
     return fail(@"DOM snapshot has inconsistent layout columns.");
-  std::vector<int64_t> parent(count), type(count), backendId(count), layoutFor(count, -1);
+  std::vector<int64_t> parent(count), type(count), backendId(count);
   std::vector<bool> excluded(count, false);
   NSMutableArray<NSString*>* tags = [NSMutableArray arrayWithCapacity:count];
   NSMutableArray<NSString*>* links = [NSMutableArray arrayWithCapacity:count];
@@ -195,8 +195,10 @@ BSLivePage* Project(NSDictionary* result, BSLiveFrame* frame, NSString** error) 
   for (NSUInteger i = 0; i < indexes.count; ++i) {
     NSUInteger node;
     NSArray* css = Array(styles[i]), *rectangle = Array(bounds[i]);
-    if (!Index(indexes[i], count, node) || layoutFor[node] != -1 || !css || (css.count != 3 && css.count != 0) || rectangle.count != 4 || !Intern(strings, texts[i]))
-      return fail(@"DOM snapshot contains an invalid layout row.");
+    if (!Index(indexes[i], count, node)) return fail(@"DOM snapshot contains an invalid layout node index.");
+    if (!css || (css.count != 3 && css.count != 0)) return fail(@"DOM snapshot contains invalid layout styles.");
+    if (rectangle.count != 4) return fail(@"DOM snapshot contains invalid layout bounds.");
+    if (!Intern(strings, texts[i])) return fail(@"DOM snapshot contains an invalid layout text index.");
     for (id number in rectangle) {
       if (![number isKindOfClass:NSNumber.class] || CFGetTypeID((__bridge CFTypeRef)number) == CFBooleanGetTypeID() || !std::isfinite([number doubleValue]))
         return fail(@"DOM snapshot contains an invalid layout rectangle.");
@@ -208,7 +210,6 @@ BSLivePage* Project(NSDictionary* result, BSLiveFrame* frame, NSString** error) 
       // below, while display/opacity exclude the whole subtree.
       if ([display isEqual:@"none"] || opacity.doubleValue <= 0) excluded[node] = true;
     }
-    layoutFor[node] = static_cast<int64_t>(i);
   }
   // Parent-first DOM order makes subtree exclusion/link inheritance linear.
   for (NSUInteger i = 0; i < count; ++i) {
@@ -225,9 +226,11 @@ BSLivePage* Project(NSDictionary* result, BSLiveFrame* frame, NSString** error) 
   NSMutableArray<BSLiveTextBlock*>* blocks = [NSMutableArray array];
   NSMutableString* joined = [NSMutableString string];
   NSUInteger outputBytes = 0;
-  for (NSUInteger node = 0; node < count; ++node) {
-    if (excluded[node] || type[node] != 3 || layoutFor[node] < 0) continue;
-    NSUInteger row = static_cast<NSUInteger>(layoutFor[node]);
+  // Blink can emit several layout rows for one DOM node, including anonymous
+  // pseudo-element layout objects. The validated mapping is many-to-one.
+  for (NSUInteger row = 0; row < indexes.count; ++row) {
+    NSUInteger node = [indexes[row] unsignedIntegerValue];
+    if (excluded[node] || type[node] != 3) continue;
     NSArray* css = styles[row], *rectangle = bounds[row];
     if (css.count && [@[@"hidden", @"collapse"] containsObject:Intern(strings, css[1])]) continue;
     double width = [rectangle[2] doubleValue], height = [rectangle[3] doubleValue];
@@ -255,6 +258,7 @@ BSLivePage* Project(NSDictionary* result, BSLiveFrame* frame, NSString** error) 
     @"Includes offscreen layout text. Occlusion, clipping, pixels and accessibility are not evaluated.",
     @"Input/textarea values and password descendants are omitted. Custom secrets rendered as ordinary page text cannot be recognized.",
     @"Canvas/image/video text is absent. Node IDs and CSS bounds describe this capture, not an action target.",
+    @"CSS-generated pseudo-element text is omitted; ordinary DOM text layout fragments are retained.",
     @"Capture spans an interval; dynamic page text can change during the read."]];
   if (truncated) [coverage addObject:@"Output truncated: at most 256 text blocks, 2048 UTF-8 bytes per block and 32768 UTF-8 bytes total."];
   if (!blocks.count) [coverage addObject:@"No rendered root-document text was available; the page may still be loading or use non-DOM content."];
