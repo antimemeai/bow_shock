@@ -95,7 +95,7 @@ class TrafficObserver final : public CefDevToolsMessageObserver {
   CEF_REQUIRE_UI_THREAD();
   if ((self = [super init])) {
     _browser = browser; _pending = [NSMutableDictionary dictionary];
-    _decode = dispatch_queue_create("dev.oxcart.traffic-protocol",DISPATCH_QUEUE_SERIAL);
+    _decode = dispatch_queue_create("dev.oxcart.traffic-protocol",DISPATCH_QUEUE_SERIAL_WITH_AUTORELEASE_POOL);
     __weak OXTrafficBrowser* weakSelf = self;
     _session = [[OXTrafficSession alloc] initWithRootURL:root transport:^(NSString* method, NSDictionary* params, OXTrafficReply reply) {
       dispatch_async(dispatch_get_main_queue(),^{

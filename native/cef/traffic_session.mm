@@ -82,7 +82,7 @@ NSString* OXTrafficHeaderText(id headers) {
 - (instancetype)initWithRootURL:(NSURL*)root transport:(OXTrafficTransport)transport {
   if ((self = [super init])) {
     _directoryURL = Child(root,NSUUID.UUID.UUIDString);
-    _worker = dispatch_queue_create("dev.oxcart.traffic",DISPATCH_QUEUE_SERIAL);
+    _worker = dispatch_queue_create("dev.oxcart.traffic",DISPATCH_QUEUE_SERIAL_WITH_AUTORELEASE_POOL);
     _transport = [transport copy]; _requests = [NSMutableDictionary dictionary];
     _pauses = [NSMutableDictionary dictionary]; _recent = [NSMutableArray array];
     _context = @{}; _status = @"Starting passive traffic capture…";

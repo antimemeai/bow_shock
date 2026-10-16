@@ -90,3 +90,12 @@ retained provider response shows an exec call with `task_id=""`. Blackbird treat
 any present task binding as an existing task, including the empty optional
 placeholder. Following this concrete failure in an isolated Blackbird worktree;
 also correcting Oxcart's premature handling of nonfatal errors before final.
+
+The matched macOS 26.2 SDK dispatch/queue.h states that manually created queues
+inherit their target's autorelease behavior and global queues do not create a
+pool per item. Set both traffic disk/state and protocol-decoding queues to the
+SDK's serial-with-autorelease-pool attribute. Temporary decoded objects now drain
+after each chunk/callback rather than depending on the lifetime of a busy worker
+thread. This leaves retained chunks/metadata and capture size unchanged. The
+existing direct traffic command/storage check and native build cover the change;
+no separate test merely asserts the chosen queue flag.
