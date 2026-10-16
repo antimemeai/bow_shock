@@ -74,7 +74,7 @@
 
 namespace {
 constexpr size_t kMessageBytes = 24 * 1024 * 1024;
-constexpr NSUInteger kOutputBytes = 32768, kBlockBytes = 2048, kBlocks = 256;
+constexpr NSUInteger kOutputBytes = 32768, kBlockBytes = 2048, kBlocks = 1024;
 constexpr uint64_t kDeadlineNanos = 10 * NSEC_PER_SEC;
 std::atomic<int> nextMessageId{2000000};
 uint64_t NowNanos() {
@@ -260,7 +260,7 @@ BSLivePage* Project(NSDictionary* result, BSLiveFrame* frame, NSString** error) 
     @"Canvas/image/video text is absent. Node IDs and CSS bounds describe this capture, not an action target.",
     @"CSS-generated pseudo-element text is omitted; ordinary DOM text layout fragments are retained.",
     @"Capture spans an interval; dynamic page text can change during the read."]];
-  if (truncated) [coverage addObject:@"Output truncated: at most 256 text blocks, 2048 UTF-8 bytes per block and 32768 UTF-8 bytes total."];
+  if (truncated) [coverage addObject:@"Output truncated: at most 1024 text blocks, 2048 UTF-8 bytes per block and 32768 UTF-8 bytes total."];
   if (!blocks.count) [coverage addObject:@"No rendered root-document text was available; the page may still be loading or use non-DOM content."];
   page.coverage = coverage;
   return page;

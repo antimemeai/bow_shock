@@ -46,3 +46,16 @@ secret filtering. Add direct native repeated-row regression inputs, distinguish
 malformed row fields in errors, rebuild, and rerun the actual live page. CSS
 pseudo-element text remains outside the ordinary DOM-text projection and gets
 an explicit coverage note. No test page is constructed.
+
+The corrected native Python.org read and real model request completed, including
+the actual docs destination and clean browser/CEF shutdown. The inspector's
+literal expectation had an extra trailing slash; inspecting the retained binary
+result against the actual `https://docs.python.org` destination passes. This is
+an expectation correction, not a second model run. Artifacts: run-tp9x_ulz.
+Hacker News then passed the ordinary live inspector (title/text/newest link and
+shutdown), run-jtq3c5fw. Both actual pages reached the 256-fragment cap; HN used
+only2446 bytes of the32768-byte text allowance. A text node often contributes
+only a label or short number. Raise the fragment cap to1024 while keeping the
+same32KiB combined text and2KiB per-fragment bounds, then recheck the actual HN
+page. The node/work and wire-frame limits remain adequate: parsing was already
+bounded independently, and transmitted links still have their own64-entry cap.

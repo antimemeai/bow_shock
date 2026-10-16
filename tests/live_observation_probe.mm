@@ -41,7 +41,7 @@ static NSMutableDictionary* ManyNodes(NSString* text) {
   NSMutableDictionary* nodes=[doc[@"nodes"] mutableCopy], *layout=[doc[@"layout"] mutableCopy];
   for (NSString* key in nodes.allKeys) nodes[key]=[nodes[key] mutableCopy];
   for (NSString* key in layout.allKeys) layout[key]=[layout[key] mutableCopy];
-  for (NSUInteger i=15;i<315;++i) {
+  for (NSUInteger i=15;i<kBlocks+15;++i) {
     [nodes[@"parentIndex"] addObject:@13]; [nodes[@"nodeName"] addObject:@7];
     [nodes[@"nodeType"] addObject:@3]; [nodes[@"backendNodeId"] addObject:@(i+1)]; [nodes[@"attributes"] addObject:@[]];
     [layout[@"nodeIndex"] addObject:@(i)]; [layout[@"styles"] addObject:@[@23,@24,@25]];
