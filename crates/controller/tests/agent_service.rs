@@ -16,7 +16,7 @@ const PEER: &str = r#"#!/usr/bin/python3
 import json,os,signal,socket,sys,time
 from pathlib import Path
 if sys.argv[1:]==['--version']:
- print('codex-cli 0.160.0',flush=True);sys.exit(0)
+ print('codex-cli 0.162.1',flush=True);sys.exit(0)
 base=Path(sys.argv[0]).parent;mode=(base/'mode').read_text()
 assert os.get_blocking(0) and os.get_blocking(1)
 if mode=='writer_stall':
@@ -76,7 +76,7 @@ for line in sys.stdin:
  elif m=='thread/start':
   (base/'thread_seen').write_text(str(os.getpid()))
   p=r['params'];assert p['model']=='fixture-model' and p['sandbox']=='read-only' and p['ephemeral'] is True
-  v={'model':'fixture-model','modelProvider':'openai','cwd':str(base),'approvalPolicy':'never','approvalsReviewer':'user','sandbox':{'type':'readOnly'},'thread':{'id':thread,'ephemeral':True,'cliVersion':'0.160.0','turns':[]}}
+  v={'model':'fixture-model','modelProvider':'openai','cwd':str(base),'approvalPolicy':'never','approvalsReviewer':'user','sandbox':{'type':'readOnly'},'thread':{'id':thread,'ephemeral':True,'cliVersion':'0.162.1','turns':[]}}
   if mode=='thread_actual':v.update(runtimeWorkspaceRoots=[str(base)],activePermissionProfile=None,multiAgentMode='explicitRequestOnly');v['sandbox']['networkAccess']=False
   if mode.startswith('thread_bad_'):
    v.update(runtimeWorkspaceRoots=[str(base)],activePermissionProfile=None,multiAgentMode='explicitRequestOnly');v['sandbox']['networkAccess']=False

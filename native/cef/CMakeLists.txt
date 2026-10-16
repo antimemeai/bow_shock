@@ -22,8 +22,8 @@ list(APPEND CMAKE_MODULE_PATH "${CEF_ROOT}/cmake")
 find_package(CEF REQUIRED)
 add_subdirectory("${CEF_LIBCEF_DLL_WRAPPER_PATH}" cef_wrapper)
 
-add_executable(bow_shock MACOSX_BUNDLE main.mm controller_connection.mm observation.mm continuous_clock.mm
-  control_connection.mm table_connection.mm table_projection.mm table_controls.mm agent_panel.mm)
+add_executable(bow_shock MACOSX_BUNDLE main.mm live_observation.mm live_panel.mm
+  blackbird_connection.mm blackbird_packet.mm)
 SET_EXECUTABLE_TARGET_PROPERTIES(bow_shock)
 target_include_directories(bow_shock PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/../control")
 target_compile_options(bow_shock PRIVATE -fobjc-arc -fobjc-exceptions -Werror)
@@ -39,20 +39,6 @@ add_custom_command(TARGET bow_shock POST_BUILD
   COMMAND "${CMAKE_COMMAND}" -E rm -rf
     "${APP}/Contents/Frameworks/Chromium Embedded Framework.framework" VERBATIM)
 COPY_MAC_FRAMEWORK(bow_shock "${CEF_BINARY_DIR}" "${APP}")
-
-add_executable(bow_shock_clock_probe "../../tests/native_clock_probe.mm" continuous_clock.mm)
-target_include_directories(bow_shock_clock_probe PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}")
-target_compile_options(bow_shock_clock_probe PRIVATE -fobjc-arc -Wall -Wextra -Werror)
-target_link_libraries(bow_shock_clock_probe PRIVATE "-framework Foundation")
-add_dependencies(bow_shock bow_shock_clock_probe)
-
-# Independent control/expiry only; this target does not link CEF or input APIs.
-add_executable(bow_shock_native_control "../control/main.mm" continuous_clock.mm)
-target_include_directories(bow_shock_native_control PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}")
-target_compile_options(bow_shock_native_control PRIVATE -fobjc-arc -fobjc-exceptions -Wall -Wextra -Werror)
-target_link_libraries(bow_shock_native_control PRIVATE "-framework Foundation")
-set_target_properties(bow_shock_native_control PROPERTIES OUTPUT_NAME "bow-shock-native-control")
-add_dependencies(bow_shock bow_shock_native_control)
 
 foreach(ENTRY IN LISTS CEF_HELPER_APP_SUFFIXES)
   string(REPLACE ":" ";" FIELDS "${ENTRY}")
@@ -77,13 +63,10 @@ foreach(ENTRY IN LISTS CEF_HELPER_APP_SUFFIXES)
 endforeach()
 
 add_custom_command(TARGET bow_shock POST_BUILD
-  COMMAND "${CMAKE_COMMAND}" -E copy "$<TARGET_FILE:bow_shock_native_control>"
-    "${APP}/Contents/MacOS/bow-shock-native-control"
-  COMMAND "${CMAKE_COMMAND}" -E copy "$<TARGET_FILE:bow_shock_clock_probe>"
+  COMMAND "${CMAKE_COMMAND}" -E rm -f
     "${APP}/Contents/MacOS/bow_shock_clock_probe"
-  COMMAND "${CMAKE_COMMAND}" -E copy
-    "${CMAKE_CURRENT_SOURCE_DIR}/../../target/release/bow-shock-controller"
     "${APP}/Contents/MacOS/bow-shock-controller"
+    "${APP}/Contents/MacOS/bow-shock-native-control"
   COMMAND "${CMAKE_COMMAND}" -E make_directory "${APP}/Contents/Resources"
   COMMAND "${CMAKE_COMMAND}" -E copy "${CEF_ROOT}/LICENSE.txt" "${APP}/Contents/Resources/CEF-LICENSE.txt"
   COMMAND /usr/bin/codesign --force --deep --sign - "${APP}" VERBATIM)

@@ -1,5 +1,31 @@
 # Implemented construction invariants
 
+## Current live application — 2026-10-16
+
+The active native target now uses the live root-document reader and Blackbird
+application connection. The fixture-only workflow described below is historical
+and is not compiled into the application.
+
+The native reader decodes Chromium replies on a worker and emits typed page/text
+records. It compares root loader/frame metadata across the read and reports its
+actual interval and coverage. Forms do not disable observation. Input/textarea
+values, child-frame text, pixels and accessibility are omitted; loader origin
+metadata is not an effective-window-origin assertion. Stop drops the host's
+pending capture; it does not claim to cancel Blink's internal work.
+
+The Blackbird client uses four-byte big-endian lengths and BBM2 values, with a
+4 MiB packet bound, 8 MiB ordinary outgoing queue, and bounded pending UI events.
+Private subprocess IO, termination and reap run off AppKit's main thread. A
+steer uses a new request ID; an old final cannot retire the replacement. Page
+evidence and operator objectives are separate fields. The real Blackbird engine
+owns its ordinary tools/session; no browser action executor is added here.
+
+See [the current integration plan](plan/live-blackbird.md),
+[live-reader plan](plan/live-observation.md), `tests/blackbird_transport.py` and
+`tests/live_observation.py`. Browser behavior is exercised on actual live sites.
+
+## Earlier construction records
+
 Pipe framing, a control-only controller child, an owned native shell/fixture
 reader, reviewed-table storage and scoped agent proposals are implemented at the
 scope below. General capture, OS input and network effects retain their later

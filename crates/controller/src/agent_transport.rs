@@ -1,4 +1,4 @@
-//! Private 0.160.0 App Server adapter; no generic forwarding or tool owner.
+//! Private 0.162.1 App Server adapter; no generic forwarding or tool owner.
 use crate::agent::{self, Descriptor, Disclosure, Fence, Proposal, Settings, Task};
 use bow_shock_evidence::ClockOwner;
 use serde::de::{DeserializeSeed, MapAccess, SeqAccess, Visitor};
@@ -360,7 +360,7 @@ fn version(
             Err(_) => return Err(()),
         }
     }
-    if bytes != b"codex-cli 0.160.0\n" {
+    if bytes != b"codex-cli 0.162.1\n" {
         return Err(());
     }
     Ok(())
@@ -461,7 +461,7 @@ fn handshake(
     }
     let descriptor = Descriptor {
         runtime: "codex",
-        version: "0.160.0",
+        version: "0.162.1",
         role: "trusted_coding_peer",
         placement: "hosted",
         model: settings.model.clone(),
@@ -550,7 +550,7 @@ pub fn propose(
         || thread["approvalsReviewer"] != "user"
         || thread["sandbox"]["type"] != "readOnly"
         || thread["thread"]["ephemeral"] != true
-        || thread["thread"]["cliVersion"] != "0.160.0"
+        || thread["thread"]["cliVersion"] != "0.162.1"
         || thread["thread"]["turns"] != json!([])
     {
         return Err(());

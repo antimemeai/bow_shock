@@ -1,24 +1,17 @@
 #import <Cocoa/Cocoa.h>
-#import "controller_connection.h"
-#import "observation.h"
-#import "continuous_clock.h"
-#import "table_controls.h"
+#import "live_panel.h"
 
 #include "include/cef_app.h"
-#include "include/base/cef_callback.h"
-#include "include/base/cef_bind.h"
 #include "include/cef_application_mac.h"
 #include "include/cef_browser.h"
 #include "include/cef_command_line.h"
 #include "include/cef_display_handler.h"
+#include "include/cef_focus_handler.h"
 #include "include/cef_life_span_handler.h"
 #include "include/cef_load_handler.h"
 #include "include/cef_request_handler.h"
-#include "include/cef_task.h"
-#include "include/wrapper/cef_closure_task.h"
 #include "include/wrapper/cef_helpers.h"
 #include "include/wrapper/cef_library_loader.h"
-
 #include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -27,380 +20,193 @@
 
 class BrowserClient;
 static CefRefPtr<BrowserClient> client;
-static NSMutableDictionary* smokeResult;
-static NSString* smokeOutput;
+static BSLivePanel* livePanel;
 static NSString* initialURL;
-static NSString* sandboxProbe;
-static NSString* sandboxProbeOutside;
-static BSControllerConnection* controller;
-static BSNativeObservation* observation;
-static NSString* observationOrigin;
-static NSArray<NSString*>* observationFields;
-static NSArray<NSString*>* observationMarkers;
-static BOOL pauseObservationAtStart;
-static BSOwnedTableControls* tableControls;
-static NSString* tableOrigin;
-static NSString* tableDatabase;
-static NSString* tableSmokeMode;
-static BSAgentConfiguration* agentConfiguration;
-
-static void SmokeStage(const char* stage) {
-  if (smokeOutput) fprintf(stderr, "BS_LIFETIME %s\n", stage);
-}
+static NSString* smokeOutput;
+static NSString* smokeObjective;
+static NSURL* blackbirdExecutable;
+static NSURL* blackbirdSession;
+static NSURL* workingDirectory;
+static NSString* selectedModel;
+static NSMutableDictionary* runResult;
+static BOOL closing;
 
 @interface BowShockApplication : NSApplication <CefAppProtocol> {
   BOOL _sending;
 }
 @end
-
-@interface BowShockDelegate : NSObject <NSApplicationDelegate>
-@property(nonatomic, strong) NSPanel* controls;
-@property(nonatomic, strong) NSTextField* status;
-@property(nonatomic, strong) NSButton* stop;
-@property(nonatomic) BOOL observationFinished;
+@interface OxcartDelegate : NSObject <NSApplicationDelegate>
 - (void)closeBrowsers;
-- (void)stopAll:(id)sender;
-- (void)finishSmoke;
 @end
-
-static BowShockDelegate* delegate;
+static OxcartDelegate* delegate;
 
 class BrowserClient final : public CefClient,
                             public CefLifeSpanHandler,
                             public CefLoadHandler,
                             public CefDisplayHandler,
-                            public CefRequestHandler {
+                            public CefRequestHandler,
+                            public CefFocusHandler {
  public:
   CefRefPtr<CefLifeSpanHandler> GetLifeSpanHandler() override { return this; }
   CefRefPtr<CefLoadHandler> GetLoadHandler() override { return this; }
   CefRefPtr<CefDisplayHandler> GetDisplayHandler() override { return this; }
   CefRefPtr<CefRequestHandler> GetRequestHandler() override { return this; }
-
+  CefRefPtr<CefFocusHandler> GetFocusHandler() override { return this; }
   void OnAfterCreated(CefRefPtr<CefBrowser> browser) override {
     CEF_REQUIRE_UI_THREAD();
-    SmokeStage("browser_created");
-    browsers_.push_back(browser);
-    if (tableControls) [tableControls attachBrowser:browser];
-    smokeResult[@"browser_created"] = @YES;
+    browsers_.push_back(browser); runResult[@"browser_created"] = @YES;
+    [livePanel attachBrowser:browser];
   }
-
+  void OnGotFocus(CefRefPtr<CefBrowser> browser) override {
+    CEF_REQUIRE_UI_THREAD(); [livePanel attachBrowser:browser];
+  }
   void OnBeforeClose(CefRefPtr<CefBrowser> browser) override {
-    CEF_REQUIRE_UI_THREAD();
-    SmokeStage("browser_before_close");
-    if (tableControls) [tableControls browserClosing:browser];
-    if (observation) { [observation close]; observation = nil; }
+    CEF_REQUIRE_UI_THREAD(); [livePanel browserClosing:browser];
     browsers_.erase(std::remove_if(browsers_.begin(), browsers_.end(),
-                                  [&](const auto& item) { return item->IsSame(browser); }), browsers_.end());
+        [&](const auto& item) { return item->IsSame(browser); }), browsers_.end());
     if (browsers_.empty()) {
-      smokeResult[@"browser_closed"] = @YES;
-      if (tableControls) [tableControls closeWithCompletion:^{ CefQuitMessageLoop(); }];
-      else CefQuitMessageLoop();
-    }
+      runResult[@"browser_closed"] = @YES;
+      [livePanel closeWithCompletion:^{ CefQuitMessageLoop(); }];
+    } else if (!closing) [livePanel attachBrowser:browsers_.back()];
   }
-
-  void OnTitleChange(CefRefPtr<CefBrowser>, const CefString& title) override {
+  void OnLoadStart(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame,
+                   TransitionType) override {
     CEF_REQUIRE_UI_THREAD();
-    if (smokeOutput && title.length() <= 4096) {
-      smokeResult[@"loaded_title"] = [NSString stringWithUTF8String:title.ToString().c_str()];
-    }
+    if (frame->IsMain()) [livePanel mainLoadStartedForBrowser:browser];
   }
-
   void OnLoadEnd(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, int status) override {
     CEF_REQUIRE_UI_THREAD();
-    if (frame->IsMain()) SmokeStage("main_load_ended");
-    if (frame->IsMain() && tableControls) [tableControls mainLoadEndedForBrowser:browser];
-    if (smokeOutput && frame->IsMain() && !smokeScheduled_) {
-      smokeScheduled_ = true;
-      smokeResult[@"load_status"] = @(status);
-      NSView* view = CAST_CEF_WINDOW_HANDLE_TO_NSVIEW(browser->GetHost()->GetWindowHandle());
-      smokeResult[@"native_window_visible"] = @([view.window isVisible]);
-      if (observationOrigin) {
-        NSString* surface = [NSString stringWithFormat:@"browser-%d", browser->GetIdentifier()];
-        observation = [[BSNativeObservation alloc] initWithBrowser:browser runId:controller.runId
-            surfaceId:surface allowedOrigin:observationOrigin fieldIds:observationFields
-            secretMarkers:observationMarkers];
-        observation.pauseAtFixtureStartForTesting = pauseObservationAtStart;
-      }
-      if (!tableControls)
-        CefPostDelayedTask(TID_UI, CefCreateClosureTask(base::BindOnce([] { [delegate finishSmoke]; })), 1500);
+    if (frame->IsMain()) {
+      runResult[@"load_status"] = @(status);
+      [livePanel mainLoadEndedForBrowser:browser];
     }
   }
-
-  void OnLoadStart(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, TransitionType) override {
+  void OnLoadError(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame,
+                   ErrorCode code, const CefString& error, const CefString&) override {
     CEF_REQUIRE_UI_THREAD();
-    if (observation && frame->IsMain()) [observation nativeLifecycle:@"native_main_load_started"];
-    if (tableControls && frame->IsMain()) [tableControls mainLoadStartedForBrowser:browser];
+    if (!frame->IsMain() || code == ERR_ABORTED) return;
+    runResult[@"load_error"] = [NSString stringWithUTF8String:error.ToString().c_str()];
+    if (smokeOutput) [delegate closeBrowsers];
+    else [livePanel mainLoadEndedForBrowser:browser];
   }
-
-  void OnRenderProcessTerminated(CefRefPtr<CefBrowser> browser, TerminationStatus status, int, const CefString&) override {
+  void OnRenderProcessTerminated(CefRefPtr<CefBrowser> browser, TerminationStatus,
+                                 int, const CefString&) override {
+    CEF_REQUIRE_UI_THREAD(); [livePanel rendererTerminatedForBrowser:browser];
+  }
+  void OnTitleChange(CefRefPtr<CefBrowser>, const CefString& title) override {
     CEF_REQUIRE_UI_THREAD();
-    if ([tableSmokeMode hasPrefix:@"lifecycle-"]) {
-      if (!smokeResult[@"lifecycle_renderer_events"]) smokeResult[@"lifecycle_renderer_events"] = [NSMutableArray array];
-      [smokeResult[@"lifecycle_renderer_events"] addObject:@{@"browser_id": @(browser->GetIdentifier()), @"crashed": @(status == TS_PROCESS_CRASHED)}];
-    }
-    if (observation) [observation nativeLifecycle:@"native_renderer_terminated"];
-    if (tableControls) [tableControls rendererTerminatedForBrowser:browser];
+    runResult[@"title"] = [NSString stringWithUTF8String:title.ToString().c_str()] ?: @"";
   }
-
-  void CloseAll() {
+  void closeAll() {
     CEF_REQUIRE_UI_THREAD();
-    // The API permits synchronous OnBeforeClose, which mutates browsers_.
-    auto closing = browsers_;
-    for (auto& browser : closing) browser->GetHost()->CloseBrowser(false);
+    const auto browsers = browsers_;
+    for (const auto& browser : browsers) browser->GetHost()->CloseBrowser(false);
   }
-
  private:
   std::vector<CefRefPtr<CefBrowser>> browsers_;
-  bool smokeScheduled_ = false;
   IMPLEMENT_REFCOUNTING(BrowserClient);
 };
-
 class BrowserApp final : public CefApp, public CefBrowserProcessHandler {
  public:
   CefRefPtr<CefBrowserProcessHandler> GetBrowserProcessHandler() override { return this; }
-
-  void OnBeforeChildProcessLaunch(CefRefPtr<CefCommandLine> command) override {
-    if (sandboxProbe) command->AppendSwitchWithValue("bs-sandbox-probe", sandboxProbe.UTF8String);
-    if (sandboxProbeOutside)
-      command->AppendSwitchWithValue("bs-sandbox-probe-outside", sandboxProbeOutside.UTF8String);
-  }
-
   void OnContextInitialized() override {
     CEF_REQUIRE_UI_THREAD();
-    SmokeStage("context_initialized");
     client = new BrowserClient;
-    CefWindowInfo window;
-    window.runtime_style = CEF_RUNTIME_STYLE_CHROME;
-    window.bounds = CefRect(80, 80, 1100, 780);
+    CefWindowInfo window; window.runtime_style = CEF_RUNTIME_STYLE_CHROME;
+    NSRect screen = NSScreen.mainScreen.visibleFrame;
+    window.bounds = CefRect(12, 50, static_cast<int>(screen.size.width * 0.62),
+                            static_cast<int>(screen.size.height - 70));
     CefBrowserSettings settings;
     if (!CefBrowserHost::CreateBrowser(window, client, initialURL.UTF8String, settings, nullptr, nullptr)) {
-      smokeResult[@"browser_creation_failed"] = @YES;
-      CefQuitMessageLoop();
+      runResult[@"browser_creation_failed"] = @YES;
+      [livePanel closeWithCompletion:^{ CefQuitMessageLoop(); }];
     }
   }
-
   CefRefPtr<CefClient> GetDefaultClient() override { return client; }
-
  private:
   IMPLEMENT_REFCOUNTING(BrowserApp);
 };
-
 @implementation BowShockApplication
 - (BOOL)isHandlingSendEvent { return _sending; }
 - (void)setHandlingSendEvent:(BOOL)value { _sending = value; }
-- (void)sendEvent:(NSEvent*)event {
-  CefScopedSendingEvent scope;
-  [super sendEvent:event];
-}
-- (void)terminate:(id)sender { [delegate closeBrowsers]; }
+- (void)sendEvent:(NSEvent*)event { CefScopedSendingEvent scope; [super sendEvent:event]; }
+- (void)terminate:(id)sender { (void)sender; [delegate closeBrowsers]; }
 @end
-
-@implementation BowShockDelegate
+@implementation OxcartDelegate
 - (void)applicationDidFinishLaunching:(NSNotification*)notification {
-  [NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
+  (void)notification; [NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
   [NSApp activateIgnoringOtherApps:YES];
 }
-
-- (void)showControls {
-  if (tableOrigin && tableDatabase) {
-    tableControls = [[BSOwnedTableControls alloc] initWithOrigin:tableOrigin
-        databaseURL:[NSURL fileURLWithPath:tableDatabase] smokeMode:tableSmokeMode
-        result:smokeResult agentConfiguration:agentConfiguration quit:^{ [delegate closeBrowsers]; }];
-    if ([tableSmokeMode hasPrefix:@"lifecycle-"])
-      [tableControls configureLifecycleReleasePath:[smokeOutput stringByAppendingString:@".release"]];
-    if ([tableSmokeMode hasPrefix:@"agent"]) [tableControls configureAgentSmokePath:smokeOutput];
-    self.controls = tableControls.panel;
-    [tableControls start];
-    return;
-  }
-  self.controls = [[NSPanel alloc] initWithContentRect:NSMakeRect(1200, 200, 340, 200)
-      styleMask:NSWindowStyleMaskTitled | NSWindowStyleMaskClosable
-      backing:NSBackingStoreBuffered defer:NO];
-  self.controls.title = @"Bow Shock controls";
-  self.controls.releasedWhenClosed = NO;
-  NSTextField* heading = [NSTextField labelWithString:@"Human browsing · bootstrap POC"];
-  heading.frame = NSMakeRect(20, 160, 300, 24);
-  [self.controls.contentView addSubview:heading];
-  self.status = [NSTextField wrappingLabelWithString:@"Controller connecting…\nNo delegated powers."];
-  self.status.frame = NSMakeRect(20, 90, 300, 60);
-  [self.controls.contentView addSubview:self.status];
-  self.stop = [NSButton buttonWithTitle:@"Stop all" target:self action:@selector(stopAll:)];
-  self.stop.frame = NSMakeRect(20, 25, 130, 36);
-  self.stop.enabled = NO;
-  [self.controls.contentView addSubview:self.stop];
-  NSButton* quit = [NSButton buttonWithTitle:@"Quit Bow Shock" target:self action:@selector(quit:)];
-  quit.frame = NSMakeRect(165, 25, 150, 36);
-  [self.controls.contentView addSubview:quit];
-  [self.controls orderFront:nil];
-  controller = [[BSControllerConnection alloc] init];
-  controller.disconnectHandler = ^{
-    self.stop.enabled = NO;
-    self.status.stringValue = @"Controller disconnected.\nManual browsing remains available.";
-    smokeResult[@"controller_disconnected"] = @YES;
-  };
-  [controller startWithCompletion:^(NSDictionary* reply) {
-    smokeResult[@"controller_initialized"] = @(reply != nil);
-    self.stop.enabled = reply != nil;
-    self.status.stringValue = reply ? @"Controller connected.\nNo delegated powers." : @"Controller unavailable.\nManual browsing remains available.";
-    if (reply) smokeResult[@"controller_pid"] = @(controller.childPid);
-  }];
-}
-
-- (void)stopAll:(id)sender {
-  self.stop.enabled = NO;
-  [controller sendOperation:@"stop_all" completion:^(NSDictionary* reply) {
-    self.stop.enabled = reply != nil;
-    self.status.stringValue = reply ? @"Stop processed.\nNo active powers." : @"Controller disconnected.\nNo delegation available.";
-    if (reply) smokeResult[@"controller_stop_generation"] = reply[@"stop_generation"];
-  }];
-}
-
-- (void)quit:(id)sender { [self closeBrowsers]; }
-- (void)closeBrowsers { if (client) client->CloseAll(); }
-- (BOOL)applicationSupportsSecureRestorableState:(NSApplication*)app { return YES; }
-
-- (void)finishSmoke {
-  if (observation && !self.observationFinished) {
-    self.observationFinished = YES;
-    [observation captureFixtureWithCompletion:^(NSDictionary* record) {
-      smokeResult[@"observation"] = record;
-      [self finishSmoke];
-    }];
-    return;
-  }
-  if (![smokeResult[@"controller_initialized"] boolValue]) {
-    [self closeBrowsers];
-    return;
-  }
-  [controller sendOperation:@"stop_all" completion:^(NSDictionary* reply) {
-    if (reply) smokeResult[@"controller_stop_generation"] = reply[@"stop_generation"];
-    [controller sendOperation:@"shutdown" completion:^(NSDictionary*) { [self closeBrowsers]; }];
-  }];
+- (BOOL)applicationSupportsSecureRestorableState:(NSApplication*)app { (void)app; return YES; }
+- (void)closeBrowsers {
+  if (closing) return;
+  closing = YES;
+  if (client) client->closeAll();
+  else [livePanel closeWithCompletion:^{ CefQuitMessageLoop(); }];
 }
 @end
-
 int main(int argc, char** argv) {
-  bool smokeRequested = false;
-  for (int i = 1; i < argc; ++i)
-    if (std::string(argv[i]).rfind("--bs-smoke-output=", 0) == 0) smokeRequested = true;
-  if (smokeRequested) fprintf(stderr, "BS_LIFETIME app_entered_main\n");
-  CefScopedLibraryLoader loader;
-  if (!loader.LoadInMain()) return 1;
-  if (smokeRequested) fprintf(stderr, "BS_LIFETIME framework_loaded\n");
+  CefScopedLibraryLoader loader; if (!loader.LoadInMain()) return 1;
   @autoreleasepool {
     [BowShockApplication sharedApplication];
     if (![NSApp isKindOfClass:BowShockApplication.class]) return 1;
     CefRefPtr<CefCommandLine> command = CefCommandLine::CreateCommandLine();
     command->InitFromArgv(argc, argv);
     auto text = [&](const char* key) -> NSString* {
-      auto value = command->GetSwitchValue(key).ToString();
+      const auto value = command->GetSwitchValue(key).ToString();
       return value.empty() ? nil : [NSString stringWithUTF8String:value.c_str()];
     };
-    smokeOutput = text("bs-smoke-output");
-    sandboxProbe = smokeOutput ? text("bs-sandbox-probe") : nil;
-    sandboxProbeOutside = smokeOutput ? text("bs-sandbox-probe-outside") : nil;
-    observationOrigin = smokeOutput ? text("bs-observation-origin") : nil;
-    observationFields = [text("bs-observation-fields") componentsSeparatedByString:@","] ?: @[];
-    observationMarkers = [text("bs-observation-markers") componentsSeparatedByString:@","] ?: @[];
-    pauseObservationAtStart = smokeOutput && command->HasSwitch("bs-observation-pause-start");
-    tableOrigin = text("bs-table-origin");
-    tableDatabase = text("bs-table-db");
-    tableSmokeMode = smokeOutput ? text("bs-table-smoke") : nil;
-    NSArray<NSString*>* agentKeys = @[@"bs-agent-executable", @"bs-agent-cwd", @"bs-agent-user-home", @"bs-agent-home", @"bs-agent-model"];
-    NSMutableArray<NSString*>* selections = [NSMutableArray array];
-    BOOL anyAgent = command->HasSwitch("bs-agent-account");
-    for (NSString* key in agentKeys) {
-      NSString* selection = text(key.UTF8String);
-      anyAgent = anyAgent || command->HasSwitch(key.UTF8String);
-      if (selection) [selections addObject:selection];
+    initialURL = text("bs-url") ?: @"https://news.ycombinator.com/";
+    smokeOutput = text("ox-smoke-output"); smokeObjective = text("ox-smoke-objective");
+    NSString* executable = text("ox-blackbird") ?: [NSHomeDirectory()
+        stringByAppendingPathComponent:@"projects/blackbird/build/release/blackbird"];
+    NSString* directory = text("ox-cwd") ?: NSFileManager.defaultManager.currentDirectoryPath;
+    NSString* session = text("ox-session") ?: [NSHomeDirectory()
+        stringByAppendingPathComponent:@"Library/Application Support/Oxcart/blackbird"];
+    selectedModel = text("ox-model") ?: @"gpt-6.1-sol";
+    if (!executable.isAbsolutePath || !directory.isAbsolutePath || !session.isAbsolutePath ||
+        (smokeOutput && !smokeOutput.isAbsolutePath)) {
+      fprintf(stderr, "Oxcart executable, session, working directory and output paths must be absolute.\n"); return 1;
     }
-    if (anyAgent) {
-      BOOL valid = tableOrigin && selections.count == agentKeys.count &&
-          (!command->HasSwitch("bs-agent-account") || text("bs-agent-account"));
-      if (valid) for (NSUInteger index = 0; index < 4; ++index)
-        valid = valid && selections[index].isAbsolutePath;
-      if (!valid) { fprintf(stderr, "Agent startup requires explicit local runtime, workspace, homes and model.\n"); return 1; }
-      agentConfiguration = [[BSAgentConfiguration alloc]
-          initWithExecutableURL:[[NSURL fileURLWithPath:selections[0]] URLByResolvingSymlinksInPath]
-          workingDirectoryURL:[[NSURL fileURLWithPath:selections[1]] URLByResolvingSymlinksInPath]
-          userHomeURL:[[NSURL fileURLWithPath:selections[2]] URLByResolvingSymlinksInPath]
-          codexHomeURL:[[NSURL fileURLWithPath:selections[3]] URLByResolvingSymlinksInPath]
-          model:selections[4] expectedAccountID:text("bs-agent-account")];
-    }
-    if ((tableOrigin != nil) != (tableDatabase != nil) ||
-        (tableDatabase && !tableDatabase.isAbsolutePath) ||
-        (tableSmokeMode && ![@[@"save", @"reopen", @"drafts", @"workload", @"lifecycle-browser", @"lifecycle-stop", @"lifecycle-display", @"agent", @"agent-stop", @"agent-control-loss", @"agent-close"] containsObject:tableSmokeMode]) ||
-        ([tableSmokeMode hasPrefix:@"agent"] && !agentConfiguration)) {
-      fprintf(stderr, "Invalid owned table workflow configuration.\n"); return 1;
-    }
-    initialURL = text("bs-url") ?: @"about:blank";
-    if ([tableSmokeMode hasPrefix:@"lifecycle-"] || [tableSmokeMode hasPrefix:@"agent"]) {
-      NSURL* owned = [NSURL URLWithString:tableOrigin];
-      if (![owned.scheme isEqual:@"http"] || ![owned.host isEqual:@"127.0.0.1"] || !owned.port ||
-          owned.user || owned.password || owned.query || owned.fragment || owned.path.length ||
-          ![initialURL isEqual:[tableOrigin stringByAppendingString:@"/amber"]]) {
-        fprintf(stderr, "Lifecycle/agent smoke requires the owned loopback Amber catalog.\n"); return 1;
-      }
-    }
-    smokeResult = [@{@"browser_created": @NO, @"browser_closed": @NO, @"cef_shutdown": @NO,
-                     @"controller_initialized": @NO, @"controller_stop_generation": @0} mutableCopy];
-    if (smokeOutput) smokeResult[@"clock_start"] = BSContinuousClockWitness() ?: @{};
-    NSString* profile = text("bs-profile") ?: [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Application Support/Bow Shock/POC"];
-    NSError* profileError = nil;
+    blackbirdExecutable = [NSURL fileURLWithPath:executable];
+    blackbirdSession = [NSURL fileURLWithPath:session]; workingDirectory = [NSURL fileURLWithPath:directory];
+    runResult = [@{@"browser_created": @NO, @"browser_closed": @NO, @"cef_shutdown": @NO} mutableCopy];
+    NSString* profile = text("bs-profile") ?: [NSHomeDirectory()
+        stringByAppendingPathComponent:@"Library/Application Support/Oxcart/profile"];
+    NSError* error = nil;
     if (![[NSFileManager defaultManager] createDirectoryAtPath:profile
-        withIntermediateDirectories:YES attributes:nil error:&profileError]) {
-      fprintf(stderr, "Unable to create Bow Shock profile directory.\n");
-      return 1;
+        withIntermediateDirectories:YES attributes:nil error:&error]) {
+      fprintf(stderr, "Unable to create Oxcart profile directory: %s\n", error.localizedDescription.UTF8String); return 1;
     }
-    // Foundation normalizes some /private aliases back to /var. CEF's root
-    // containment check uses POSIX canonical paths, so derive every path here.
-    char* resolvedProfile = realpath(profile.fileSystemRepresentation, nullptr);
-    if (!resolvedProfile) {
-      fprintf(stderr, "Unable to resolve Bow Shock profile directory.\n");
-      return 1;
-    }
-    const std::string canonicalProfile(resolvedProfile);
-    free(resolvedProfile);
-    CefSettings settings;
-    settings.no_sandbox = false;
-    settings.command_line_args_disabled = true;
-    settings.remote_debugging_port = 0;
+    char* resolved = realpath(profile.fileSystemRepresentation, nullptr);
+    if (!resolved) return 1;
+    const std::string canonicalProfile(resolved); free(resolved);
+    CefSettings settings; settings.no_sandbox = false;
+    settings.command_line_args_disabled = true; settings.remote_debugging_port = 0;
     settings.log_severity = LOGSEVERITY_ERROR;
     CefString(&settings.root_cache_path) = canonicalProfile;
     CefString(&settings.cache_path) = canonicalProfile + "/Default";
     CefString(&settings.log_file) = canonicalProfile + "/cef.log";
-    delegate = [[BowShockDelegate alloc] init];
-    NSApp.delegate = delegate;
+    delegate = [[OxcartDelegate alloc] init]; NSApp.delegate = delegate;
+    livePanel = [[BSLivePanel alloc] initWithBlackbirdURL:blackbirdExecutable sessionURL:blackbirdSession
+        workingDirectoryURL:workingDirectory model:selectedModel result:runResult
+        smokeObjective:smokeObjective smoke:smokeOutput != nil quit:^{ [delegate closeBrowsers]; }];
     CefRefPtr<BrowserApp> app = new BrowserApp;
-    SmokeStage("cef_initialize_start");
     if (!CefInitialize(CefMainArgs(argc, argv), settings, app, nullptr)) return CefGetExitCode();
-    SmokeStage("cef_initialize_end");
-    [delegate showControls];
-    CefRunMessageLoop();
-    SmokeStage("message_loop_returned");
-    [controller invalidate];
-    // The live UI loop is over. Finish owned-child reap before app process exit.
-    SmokeStage("controller_join_start");
-    [controller waitForTermination];
-    [tableControls finishTermination];
-    SmokeStage("controller_join_end");
-    if (observation) { [observation close]; observation = nil; }
-    client = nullptr;
-    app = nullptr;
-    SmokeStage("cef_shutdown_start");
-    CefShutdown();
-    SmokeStage("cef_shutdown_end");
-    smokeResult[@"cef_shutdown"] = @YES;
     if (smokeOutput) {
-      smokeResult[@"clock_end"] = BSContinuousClockWitness() ?: @{};
-      NSData* result = [NSJSONSerialization dataWithJSONObject:smokeResult options:NSJSONWritingPrettyPrinted error:nil];
-      if (![result writeToFile:smokeOutput atomically:YES]) return 1;
+      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 90 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        if (!closing) { runResult[@"timeout"] = @YES; [delegate closeBrowsers]; }
+      });
     }
-    [delegate.controls orderOut:nil];
-    NSApp.delegate = nil;
-    delegate = nil;
-    controller = nil;
-    tableControls = nil;
+    CefRunMessageLoop();
+    client = nullptr; app = nullptr; CefShutdown(); runResult[@"cef_shutdown"] = @YES;
+    if (smokeOutput) {
+      NSData* data = [NSPropertyListSerialization dataWithPropertyList:runResult
+          format:NSPropertyListBinaryFormat_v1_0 options:0 error:&error];
+      if (!data || ![data writeToFile:smokeOutput options:NSDataWritingAtomic error:&error]) return 1;
+    }
+    [livePanel.panel orderOut:nil]; livePanel = nil;
+    NSApp.delegate = nil; delegate = nil;
   }
   return 0;
 }

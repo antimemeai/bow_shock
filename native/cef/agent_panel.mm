@@ -14,7 +14,7 @@ id Snapshot(id value, NSUInteger maximum) {
 NSString* JSON(id value) { NSData* bytes=[NSJSONSerialization dataWithJSONObject:value options:NSJSONWritingPrettyPrinted|NSJSONWritingSortedKeys error:nil]; return bytes ? [[NSString alloc] initWithData:bytes encoding:NSUTF8StringEncoding] : @""; }
 BOOL Descriptor(NSDictionary* value, BSAgentConfiguration* config) {
   if (![value isKindOfClass:NSDictionary.class] || value.count!=14 || !config) return NO;
-  NSDictionary* fixed=@{@"runtime":@"codex",@"version":@"0.160.0",@"role":@"trusted_coding_peer",@"placement":@"hosted",@"provider":@"openai",@"account_type":@"chatgpt",@"protocol_version":@1,@"account_verification":@"measured_backend_reference",@"structured_output":@"unverified",@"history":@"fresh_only",@"steer":@"unsupported",@"cancellation":@"host_retirement_and_owned_child_kill"};
+  NSDictionary* fixed=@{@"runtime":@"codex",@"version":@"0.162.1",@"role":@"trusted_coding_peer",@"placement":@"hosted",@"provider":@"openai",@"account_type":@"chatgpt",@"protocol_version":@1,@"account_verification":@"measured_backend_reference",@"structured_output":@"unverified",@"history":@"fresh_only",@"steer":@"unsupported",@"cancellation":@"host_retirement_and_owned_child_kill"};
   for (NSString* key in fixed) if (![value[key] isEqual:fixed[key]]) return NO;
   if (![value[@"protocol_version"] isKindOfClass:NSNumber.class] || CFGetTypeID((__bridge CFTypeRef)value[@"protocol_version"])==CFBooleanGetTypeID()) return NO;
   const char* numberType=[value[@"protocol_version"] objCType]; if (numberType[0]=='d' || numberType[0]=='f') return NO;

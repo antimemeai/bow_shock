@@ -1,65 +1,62 @@
 #!/usr/bin/env python3
-"""Run the owned catalog and dedicated native browser together."""
+"""Open a live site in Oxcart with its native Blackbird conversation panel."""
 import argparse
 from pathlib import Path
+import shutil
 import subprocess
 import sys
-import shutil
+from urllib.parse import urlsplit
 
-from fixture_service import ROOT, arguments, serve
+ROOT = Path(__file__).resolve().parents[1]
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--data-dir', type=Path, default=ROOT / 'context/runtime/poc')
-    parser.add_argument('--port', type=int, default=43177,
-                        help='Keep this port for same-origin saved-table reopen.')
-    parser.add_argument('--page', choices=['amber', 'birch'], default='amber')
-    parser.add_argument('--agent', action='store_true', help='Enable explicit native Ask/Use proposal controls with installed Codex.')
-    parser.add_argument('--agent-executable', type=Path, help='Trusted installed Codex executable; default: codex on PATH.')
-    parser.add_argument('--agent-model', default='gpt-6.1-sol')
-    parser.add_argument('--agent-home', type=Path, default=Path.home() / '.codex')
-    parser.add_argument('--agent-account', help='Optional expected backend account ID; credentials remain in Codex.')
+    parser.add_argument('url', nargs='?', default='https://news.ycombinator.com/')
+    parser.add_argument('--data-dir', type=Path, default=ROOT / 'context/runtime/live')
+    parser.add_argument('--blackbird', type=Path, help='Blackbird executable with --application support.')
+    parser.add_argument('--model', default='gpt-6.1-sol')
+    parser.add_argument('--smoke-output', type=Path, help='Read the live page, save a binary plist report and exit.')
+    parser.add_argument('--smoke-objective', help='Also send the live page and this objective to Blackbird before exiting.')
     options = parser.parse_args()
-    if not 0 <= options.port <= 65535:
-        parser.error('--port must be between 0 and 65535.')
+    parsed = urlsplit(options.url)
+    if parsed.scheme not in ('http', 'https') or not parsed.hostname:
+        parser.error('Choose an HTTP or HTTPS live site URL.')
     app = ROOT / 'context/build/native/Bow Shock.app/Contents/MacOS/Bow Shock'
     if sys.platform != 'darwin' or not app.is_file():
-        parser.error('Build the macOS ARM64 app with python3 scripts/build-native.py first.')
-    agent_args = []
-    if options.agent:
-        selected = options.agent_executable or shutil.which('codex')
-        if not selected or not Path(selected).expanduser().is_file():
-            parser.error('Install Codex or select its executable with --agent-executable.')
-        agent_args = [f'--bs-agent-executable={Path(selected).expanduser().resolve()}',
-                      f'--bs-agent-cwd={ROOT}', f'--bs-agent-user-home={Path.home()}',
-                      f'--bs-agent-home={options.agent_home.expanduser().resolve()}',
-                      f'--bs-agent-model={options.agent_model}']
-        if options.agent_account:
-            agent_args.append(f'--bs-agent-account={options.agent_account}')
-    elif options.agent_executable or options.agent_account:
-        parser.error('Agent settings require --agent.')
+        parser.error('Build the macOS app with python3 scripts/build-native.py first.')
+    candidates = [
+        Path.home() / 'projects/blackbird-oxcart/build/release/blackbird',
+        Path.home() / 'projects/blackbird-oxcart/build/debug/blackbird',
+        Path.home() / 'projects/blackbird/build/release/blackbird',
+    ]
+    selected = options.blackbird or next((path for path in candidates if path.is_file()), None)
+    if selected is None:
+        command = shutil.which('blackbird')
+        selected = Path(command) if command else candidates[-1]
+    selected = selected.expanduser().resolve()
+    if not selected.is_file() and options.smoke_objective:
+        parser.error('Build Blackbird or select --blackbird to send a request.')
+    if options.smoke_objective and not options.smoke_output:
+        parser.error('--smoke-objective requires --smoke-output.')
     data = options.data_dir.expanduser().resolve()
     data.mkdir(parents=True, exist_ok=True)
-    try:
-        server = serve(options.port)
-    except OSError as error:
-        parser.error(f'Cannot bind the owned catalog port: {error}')
-    origin = f'http://127.0.0.1:{server.server_port}'
-    try:
-        print(f'Owned catalog: {origin}; retained tables: {data / "tables.sqlite"}', flush=True)
-        print('Use the native controls to observe, review and save. Quit Bow Shock to close the table store cleanly.', flush=True)
-        # A separate process group keeps terminal Ctrl-C from destroying the
-        # app before its native asynchronous table-close workflow can finish.
-        child = subprocess.Popen(arguments(app, data, origin, options.page) + agent_args, start_new_session=True)
-        while True:
-            try:
-                return child.wait()
-            except KeyboardInterrupt:
-                print('Close Bow Shock with its Quit button or window close; the catalog remains available for clean shutdown.', flush=True)
-    finally:
-        server.shutdown()
-        server.server_close()
+    command = [str(app), f'--bs-profile={data / "profile"}', f'--bs-url={options.url}',
+               f'--ox-blackbird={selected}', f'--ox-session={data / "blackbird"}',
+               f'--ox-cwd={ROOT}', f'--ox-model={options.model}']
+    if options.smoke_output:
+        output = options.smoke_output.expanduser().resolve()
+        output.parent.mkdir(parents=True, exist_ok=True)
+        command.append(f'--ox-smoke-output={output}')
+    if options.smoke_objective:
+        command.append(f'--ox-smoke-objective={options.smoke_objective}')
+    print(f'Oxcart: {options.url}\nBlackbird: {selected}\nSession: {data / "blackbird"}', flush=True)
+    child = subprocess.Popen(command, start_new_session=not bool(options.smoke_output))
+    while True:
+        try:
+            return child.wait()
+        except KeyboardInterrupt:
+            print('Quit Oxcart from its application menu or close its browser windows.', flush=True)
 
 
 if __name__ == '__main__':

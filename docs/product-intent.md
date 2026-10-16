@@ -1,5 +1,12 @@
 # Product intent
 
+Operator update 2026-10-16: Oxcart develops against live sites. Retire owned-page
+workflows and site-certification gates. Investigate concrete problems as they
+appear. Blackbird integration is the immediate priority: a native conversation
+panel shares fresh page observations with a real Blackbird session, accepts
+objectives/steering and streams replies. Ship the Blackbird interface through
+an isolated worktree. See [the live integration plan](plan/live-blackbird.md).
+
 The operator's direction as clarified on 2026-10-01. This brief guides research;
 it is not a final implementation specification. It takes precedence over earlier
 generic assumptions about an agent driving browser tools.

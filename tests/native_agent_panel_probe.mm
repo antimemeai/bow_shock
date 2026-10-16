@@ -26,7 +26,7 @@ static void Require(BOOL ok, const char* reason) { if (!ok) { fprintf(stderr, "%
 @end
 
 static NSDictionary* Descriptor(void) {
-  return @{@"runtime":@"codex",@"version":@"0.160.0",@"role":@"trusted_coding_peer",@"placement":@"hosted",@"model":@"test-model",@"provider":@"openai",@"account_ref":@"test-account",@"account_type":@"chatgpt",@"protocol_version":@1,@"account_verification":@"measured_backend_reference",@"structured_output":@"unverified",@"history":@"fresh_only",@"steer":@"unsupported",@"cancellation":@"host_retirement_and_owned_child_kill"};
+  return @{@"runtime":@"codex",@"version":@"0.162.1",@"role":@"trusted_coding_peer",@"placement":@"hosted",@"model":@"test-model",@"provider":@"openai",@"account_ref":@"test-account",@"account_type":@"chatgpt",@"protocol_version":@1,@"account_verification":@"measured_backend_reference",@"structured_output":@"unverified",@"history":@"fresh_only",@"steer":@"unsupported",@"cancellation":@"host_retirement_and_owned_child_kill"};
 }
 static NSDictionary* Batch(void) {
   NSMutableArray* rows=[NSMutableArray array];

@@ -4,7 +4,7 @@
 
 namespace {
 NSDictionary* Descriptor() {
-  return @{@"runtime":@"codex", @"version":@"0.160.0", @"role":@"trusted_coding_peer",
+  return @{@"runtime":@"codex", @"version":@"0.162.1", @"role":@"trusted_coding_peer",
       @"placement":@"hosted", @"model":@"fixture-model", @"provider":@"openai",
       @"account_ref":@"fixture-account", @"account_type":@"chatgpt", @"protocol_version":@1,
       @"account_verification":@"measured_backend_reference", @"structured_output":@"unverified",

@@ -7,7 +7,7 @@ import sys
 import time
 
 if sys.argv[1:] == ['--version']:
-    print('codex-cli 0.160.0', flush=True)
+    print('codex-cli 0.162.1', flush=True)
     raise SystemExit(0)
 assert sys.argv[1:4] == ['app-server', '--stdio', '--strict-config']
 base = Path(sys.argv[0]).resolve().parent
@@ -44,7 +44,7 @@ for line in sys.stdin:
         value = {'model': 'fixture-model', 'modelProvider': 'openai', 'cwd': str(base),
                  'approvalPolicy': 'never', 'approvalsReviewer': 'user', 'sandbox': {'type': 'readOnly', 'networkAccess': False},
                  'runtimeWorkspaceRoots': [str(base)], 'activePermissionProfile': None, 'multiAgentMode': 'explicitRequestOnly',
-                 'thread': {'id': thread, 'ephemeral': True, 'cliVersion': '0.160.0', 'turns': []}}
+                 'thread': {'id': thread, 'ephemeral': True, 'cliVersion': '0.162.1', 'turns': []}}
         for status in ('starting', 'ready'):
             emit({'method': 'mcpServer/startupStatus/updated', 'params': {
                 'threadId': thread, 'name': 'owned-fixture-server', 'status': status,

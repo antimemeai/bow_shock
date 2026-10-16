@@ -3,10 +3,10 @@
 <plist version="1.0"><dict>
 <key>CFBundleExecutable</key><string>${MACOSX_BUNDLE_EXECUTABLE_NAME}</string>
 <key>CFBundleIdentifier</key><string>dev.bowshock.poc</string>
-<key>CFBundleName</key><string>Bow Shock</string>
+<key>CFBundleName</key><string>Oxcart</string>
 <key>CFBundlePackageType</key><string>APPL</string>
-<key>CFBundleVersion</key><string>0.1</string>
-<key>CFBundleShortVersionString</key><string>0.1</string>
+<key>CFBundleVersion</key><string>0.2</string>
+<key>CFBundleShortVersionString</key><string>0.2</string>
 <key>NSPrincipalClass</key><string>BowShockApplication</string>
 <key>NSHighResolutionCapable</key><true/>
 <key>NSSupportsAutomaticGraphicsSwitching</key><true/>

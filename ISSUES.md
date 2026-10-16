@@ -1,5 +1,17 @@
 # Work and open decisions
 
+## Current direction — 2026-10-16
+
+Develop on live sites; retire owned-page/catalog progression and certification
+gates. Current delivery joins a native live reader and conversation panel to
+Blackbird's application interface, implemented in an isolated Blackbird
+worktree. Codex adapter pin is bumped directly to 0.162.1. The old completion
+records and issue table below are historical; they do not block current work.
+
+Next product work after this integration: browser action tools and actual OS
+execution, useful learned extraction, passive network observation and then
+network editing/experiments. Track concrete live failures as they arise.
+
 ## Completed in the initial research pass
 
 - Copy and read the workspace Blackbird doctrine; establish project guidance,

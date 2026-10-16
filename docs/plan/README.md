@@ -1,5 +1,10 @@
 # Implementation plan
 
+**2026-10-16 direction:** the [live Blackbird integration](live-blackbird.md)
+supersedes this document's owned-page progression and certification gates.
+Develop on live sites and fix actual defects. The broader product capabilities
+below remain useful context; their old promotion sequence is historical.
+
 2026-10-01. This plan implements the [reviewed design](../design/README.md),
 including its [16 integrated tribunal dispositions](../../papers/design-tribunal.md).
 It is a proposed execution sequence, not evidence of a working browser. Plan

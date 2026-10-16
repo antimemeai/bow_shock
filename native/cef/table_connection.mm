@@ -186,7 +186,7 @@ BOOL CandidateIDs(id value) {
 BOOL AgentDescriptor(id value) {
   return Keys(value, @[@"runtime", @"version", @"role", @"placement", @"model", @"provider", @"account_ref", @"account_type",
       @"protocol_version", @"account_verification", @"structured_output", @"history", @"steer", @"cancellation"]) &&
-      [value[@"runtime"] isEqual:@"codex"] && [value[@"version"] isEqual:@"0.160.0"] &&
+      [value[@"runtime"] isEqual:@"codex"] && [value[@"version"] isEqual:@"0.162.1"] &&
       [value[@"role"] isEqual:@"trusted_coding_peer"] && [value[@"placement"] isEqual:@"hosted"] &&
       [value[@"provider"] isEqual:@"openai"] && [value[@"account_type"] isEqual:@"chatgpt"] &&
       UInt(value[@"protocol_version"]) && [value[@"protocol_version"] unsignedLongLongValue] == 1 &&
