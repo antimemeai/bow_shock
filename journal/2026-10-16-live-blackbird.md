@@ -111,3 +111,20 @@ A final composer fix binds the include-page checkbox to button refresh, allowing
 conversation without a page while navigation is loading. The changed native
 panel passes strict source compilation. The already-open preview predates this
 small binding change; the next ordinary build/restart activates it.
+
+## Delivered
+
+Both Oxcart checkpoints (`c4e0c27`, `4d57e84`) are pushed to
+`origin/work/live-blackbird-2026-10-16`. Blackbird source checkpoint `b84da24`
+and results checkpoint `2c3ca4c` are pushed to
+`origin/work/oxcart-interface-2026-10-16`; that worktree is clean. The required
+Blackbird source gate passed all 162 Debug tests and all owned C++/Lua lint.
+Corrected-source Linux Debug and ASan application/CLI checks also passed.
+Blackbird issue `arconaut-ums` is closed and its issue backup completed. Neither
+branch was merged into the repositories' ongoing main-checkout work.
+
+The normal native app remains open on Python.org. Native capture still awaits
+the operator's macOS Safe Storage response; no successful native capture or
+combined native-page/model turn is reported. The separate actual live-HTTP/model
+turn above succeeded. The next product work is using this live interface and
+fixing concrete reader/browser/model issues encountered on actual sites.
