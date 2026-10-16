@@ -10,6 +10,16 @@ from urllib.parse import urlsplit
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def supports_application(path):
+    if not path.is_file():
+        return False
+    try:
+        probe = subprocess.run([str(path), '--help'], capture_output=True, timeout=5)
+    except (OSError, subprocess.TimeoutExpired):
+        return False
+    return probe.returncode == 0 and b'--application' in probe.stdout
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('url', nargs='?', default='https://news.ycombinator.com/')
@@ -26,17 +36,16 @@ def main():
     if sys.platform != 'darwin' or not app.is_file():
         parser.error('Build the macOS app with python3 scripts/build-native.py first.')
     candidates = [
-        Path.home() / 'projects/blackbird-oxcart/build/release/blackbird',
-        Path.home() / 'projects/blackbird-oxcart/build/debug/blackbird',
         Path.home() / 'projects/blackbird/build/release/blackbird',
+        Path.home() / 'projects/blackbird/build/debug/blackbird',
     ]
-    selected = options.blackbird or next((path for path in candidates if path.is_file()), None)
-    if selected is None:
-        command = shutil.which('blackbird')
-        selected = Path(command) if command else candidates[-1]
+    installed = shutil.which('blackbird')
+    if installed:
+        candidates.append(Path(installed))
+    selected = options.blackbird or next((path for path in candidates if supports_application(path)), candidates[0])
     selected = selected.expanduser().resolve()
-    if not selected.is_file() and options.smoke_objective:
-        parser.error('Build Blackbird or select --blackbird to send a request.')
+    if options.smoke_objective and not supports_application(selected):
+        parser.error('Build Blackbird with --application support or select --blackbird to send a request.')
     if options.smoke_objective and not options.smoke_output:
         parser.error('--smoke-objective requires --smoke-output.')
     data = options.data_dir.expanduser().resolve()

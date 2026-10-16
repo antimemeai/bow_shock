@@ -21,6 +21,13 @@ State root-only coverage, offscreen inclusion, unknown occlusion, canvas/image
 omission and truncation. Omit input/textarea values and password descendants;
 do not claim to identify arbitrary secrets rendered by custom page code.
 
+The native value passed to Blackbird and the live-run inspector includes up to
+64 distinct HTTP(S) destinations from these rendered text blocks. Each carries
+its first text fragment. Link-list truncation is reported independently from
+text truncation; links outside the retained text blocks are not enumerated.
+This gives Blackbird actual navigation destinations without inventing action
+coordinates or granting browser execution.
+
 Validation uses the native compiler and captures on public live pages through
 the actual shell. Inspect returned text/identity/bounds and exercise repeat reads
 and navigation. No owned web fixture or site certification gate is introduced.

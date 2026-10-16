@@ -29,6 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, readonly) NSUInteger childFrameCount;
 @property(nonatomic, copy, readonly) NSArray<BSLiveTextBlock*>* blocks;
 @property(nonatomic, copy, readonly) NSArray<NSString*>* coverage;
+/// Native observation fields, including up to 64 distinct rendered HTTP(S) links.
+- (NSDictionary*)nativeValue;
 @end
 
 /// UI-thread lifecycle; protocol decoding and DOM projection run on a worker.

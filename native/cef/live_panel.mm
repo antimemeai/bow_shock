@@ -16,13 +16,6 @@ NSButton* Button(NSView* view, NSString* title, id target, SEL action, NSRect fr
   NSButton* button = [NSButton buttonWithTitle:title target:target action:action];
   button.frame = frame; [view addSubview:button]; return button;
 }
-NSDictionary* PageValue(BSLivePage* page) {
-  return @{@"url": page.url, @"title": page.title, @"text": page.text,
-    @"origin": page.origin, @"frame_id": page.frameId, @"document_id": page.documentId,
-    @"capture_id": page.captureId, @"capture_start_ns": @(page.captureStartNanos),
-    @"capture_end_ns": @(page.captureEndNanos), @"truncated": @(page.truncated),
-    @"coverage": page.coverage};
-}
 }
 
 @implementation BSLivePanel {
@@ -189,7 +182,7 @@ NSDictionary* PageValue(BSLivePage* page) {
       self->_result[@"capture_error"] = self->_status.stringValue;
       [self updateButtons]; if (self->_smoke) self->_quit(); return;
     }
-    self->_result[@"page"] = PageValue(page);
+    self->_result[@"page"] = [page nativeValue];
     self->_result[@"block_count"] = @(page.blocks.count);
     self->_pageLabel.stringValue = page.url;
     self->_status.stringValue = [NSString stringWithFormat:@"Read %lu text blocks%@.",
@@ -205,7 +198,7 @@ NSDictionary* PageValue(BSLivePage* page) {
 }
 - (void)submit:(NSString*)objective page:(BSLivePage*)page {
   BOOL steer = _connection.running;
-  NSString* request = [_connection sendObjective:objective observations:page ? @[PageValue(page)] : @[] steer:steer];
+  NSString* request = [_connection sendObjective:objective observations:page ? @[[page nativeValue]] : @[] steer:steer];
   if (!request) { _status.stringValue = @"Blackbird could not accept the request."; [self updateButtons]; return; }
   _request = request; _streaming = NO;
   [self append:[NSString stringWithFormat:@"\nYou%@\n%@\n", page ? [@" · " stringByAppendingString:page.url] : @"", objective]];

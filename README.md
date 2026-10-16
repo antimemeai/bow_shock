@@ -8,10 +8,10 @@ engine and tools. Oxcart owns browser observation and presentation.
 
 ## Run
 
-Build the Blackbird application interface in its worktree:
+Build the merged Blackbird application interface in its ordinary checkout:
 
 ```sh
-cd ~/projects/blackbird-oxcart
+cd ~/projects/blackbird
 cmake --preset debug -DCMAKE_OSX_SYSROOT="$(xcrun --show-sdk-path)"
 cmake --build build/debug --target blackbird --parallel 6
 ```
@@ -25,8 +25,9 @@ python3.13 scripts/build-native.py
 ```
 
 Select another executable with `--blackbird /absolute/path/to/blackbird`.
-The launcher prefers the Blackbird integration worktree, then the ordinary
-Blackbird release build. The selected executable must support `--application`.
+The launcher checks the ordinary Blackbird release build, debug build, then
+`blackbird` on PATH, selecting one whose help advertises `--application`.
+An explicit `--blackbird` selection takes precedence.
 `--data-dir` selects a dedicated browser profile and Blackbird session;
 `--model` selects the Blackbird model. Provider authentication belongs to
 Blackbird and uses its existing account configuration.
@@ -39,7 +40,10 @@ capture and requests cancellation of Blackbird's active work. Ordinary native
 browser navigation continues while the agent works.
 
 Page observations retain URL/title, frame/document/capture identity, timing,
-truncation and coverage. The reader includes rendered root-document text and
+truncation and coverage. Blackbird also receives up to 64 distinct HTTP(S) link
+destinations from the captured text blocks, each with its first rendered text
+fragment; `links_truncated` identifies omission at that link-list bound. Links
+outside the captured text remain outside this observation. The reader includes rendered root-document text and
 omits input/textarea values. Child-frame text, pixels and accessibility are not
 currently included; occlusion and clipping are not evaluated. Origin metadata
 comes from the Chromium loader and does not establish effective window origin.
@@ -61,7 +65,7 @@ remain historical, including in-progress work that predates this change.
 [The integration plan](docs/plan/live-blackbird.md) records current ownership and
 interface. [The live-reader plan](docs/plan/live-observation.md) records its actual
 capture behavior. The Blackbird side documents the wire contract in
-`../blackbird-oxcart/docs/APPLICATION_INTERFACE.md`.
+`../blackbird/docs/APPLICATION_INTERFACE.md`.
 
 Production uses AppKit/Objective-C++ and the adopted matched CEF runtime.
 Native Blackbird IPC uses length-prefixed BBM2 values. The retained Rust/Codex

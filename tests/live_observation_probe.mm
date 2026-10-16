@@ -60,6 +60,18 @@ int main() { @autoreleasepool {
   Require([page.blocks[1].linkURL isEqual:@"https://example.org/docs"],"link did not resolve against document base");
   Require(NSEqualRects(page.blocks[1].bounds,NSMakeRect(10,200,200,18)),"document CSS bounds changed");
   Require(![page.text containsString:@"secret"] && ![page.text containsString:@"hidden"],"excluded content leaked");
+  page.captureId=@"capture";
+  NSDictionary* observation=[page nativeValue];
+  Require([observation[@"links"] isEqual:@[@{@"url":@"https://example.org/docs",@"text":@"Read docs"}]],"rendered link destination/label lost on native observation boundary");
+  Require([observation[@"links_truncated"] isEqual:@NO] && [observation[@"text"] isEqual:page.text],"native observation changed text or link coverage");
+  NSMutableArray* linkedBlocks=[NSMutableArray array];
+  for (NSUInteger i=0;i<65;++i) {
+    BSLiveTextBlock* block=[BSLiveTextBlock new]; block.text=@"A link";
+    block.linkURL=[NSString stringWithFormat:@"https://example.org/%lu",(unsigned long)i];
+    [linkedBlocks addObject:block]; [linkedBlocks addObject:block];
+  }
+  page.blocks=linkedBlocks; observation=[page nativeValue];
+  Require([observation[@"links"] count]==64 && [observation[@"links_truncated"] isEqual:@YES],"distinct rendered links were duplicated or silently omitted at the limit");
 
   NSString* longUnicode=[@"🕊é" stringByPaddingToLength:9999 withString:@"🕊é" startingAtIndex:0];
   page=Project(Snapshot(longUnicode),Frame(),&error);

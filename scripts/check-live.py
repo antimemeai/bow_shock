@@ -16,6 +16,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('url')
     parser.add_argument('--expect-text', help='A source text fragment expected on this live page.')
+    parser.add_argument('--expect-link', help='An exact rendered link destination expected on this live page.')
     parser.add_argument('--objective', help='Run a real Blackbird turn with the captured page.')
     parser.add_argument('--blackbird', type=Path)
     args = parser.parse_args()
@@ -63,6 +64,8 @@ def main():
         raise AssertionError('missing actual capture identity/coverage')
     if args.expect_text and args.expect_text.casefold() not in page['text'].casefold():
         raise AssertionError(('expected live text absent', args.expect_text, data))
+    if args.expect_link and not any(link['url'] == args.expect_link for link in page.get('links', [])):
+        raise AssertionError(('expected rendered link absent', args.expect_link, data))
     if args.objective and (result.get('outcome') != 'completed' or not result.get('answer', '').strip()):
         raise AssertionError(('Blackbird request failed', result.get('outcome'), result.get('blackbird_error'), data))
     print(f'Captured {page["title"]!r}: {result["block_count"]} blocks, '

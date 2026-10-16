@@ -33,6 +33,22 @@
 @property(nonatomic, copy) NSArray<NSString*>* coverage;
 @end
 @implementation BSLivePage
+- (NSDictionary*)nativeValue {
+  NSMutableArray* links = [NSMutableArray array];
+  NSMutableSet<NSString*>* destinations = [NSMutableSet set];
+  BOOL linksTruncated = NO;
+  for (BSLiveTextBlock* block in self.blocks) {
+    if (!block.linkURL.length || [destinations containsObject:block.linkURL]) continue;
+    if (links.count == 64) { linksTruncated = YES; break; }
+    [destinations addObject:block.linkURL];
+    [links addObject:@{@"url": block.linkURL, @"text": block.text}];
+  }
+  return @{@"url": self.url, @"title": self.title, @"text": self.text,
+    @"origin": self.origin, @"frame_id": self.frameId, @"document_id": self.documentId,
+    @"capture_id": self.captureId, @"capture_start_ns": @(self.captureStartNanos),
+    @"capture_end_ns": @(self.captureEndNanos), @"truncated": @(self.truncated),
+    @"coverage": self.coverage, @"links": links, @"links_truncated": @(linksTruncated)};
+}
 @end
 
 // These are native protocol-adapter values. Decoded JSON never crosses the
