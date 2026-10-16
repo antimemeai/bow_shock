@@ -13,6 +13,7 @@ subprocess.run([
     "-DCEF_API_VERSION=15400", "-DCEF_USE_SANDBOX", "-isystem", cef,
     "-Wall", "-Wextra", "-Werror", "-Wno-unused-function",
     str(ROOT / "tests/live_observation_probe.mm"),
+    str(ROOT / "native/cef/reading_archive.mm"),
     str(BUILD / "cef_wrapper/libcef_dll_wrapper.a"),
     "-framework", "Foundation", "-framework", "Cocoa", "-o", str(output),
 ], check=True, cwd=ROOT)

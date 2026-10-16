@@ -30,6 +30,7 @@ NSButton* Button(NSView* view, NSString* title, id target, SEL action, NSRect fr
   NSButton* _stop;
   NSButton* _includePage;
   BSBlackbirdConnection* _connection;
+  NSURL* _readingsURL;
   BSLiveObservation* _observer;
   CefRefPtr<CefBrowser> _browser;
   NSMutableDictionary* _result;
@@ -44,6 +45,7 @@ NSButton* Button(NSView* view, NSString* title, id target, SEL action, NSRect fr
     result:(NSMutableDictionary*)result smokeObjective:(NSString*)objective
     smoke:(BOOL)smoke quit:(void (^)(void))quit {
   self = [super init]; if (!self) return nil;
+  _readingsURL = [[session URLByDeletingLastPathComponent] URLByAppendingPathComponent:@"readings" isDirectory:YES];
   _result = result; _smokeObjective = [objective copy]; _smoke = smoke; _quit = [quit copy];
   NSRect screen = NSScreen.mainScreen.visibleFrame;
   CGFloat width = MIN(520, MAX(380, screen.size.width * 0.36));
@@ -143,7 +145,7 @@ NSButton* Button(NSView* view, NSString* title, id target, SEL action, NSRect fr
 - (void)attachBrowser:(CefRefPtr<CefBrowser>)browser {
   if (_closing || (_browser && _browser->IsSame(browser))) return;
   ++_captureEpoch; [_observer close]; _capturing = NO;
-  _browser = browser; _observer = [[BSLiveObservation alloc] initWithBrowser:browser];
+  _browser = browser; _observer = [[BSLiveObservation alloc] initWithBrowser:browser readingsURL:_readingsURL];
   _loading = browser->IsLoading();
   _pageLabel.stringValue = [NSString stringWithUTF8String:browser->GetMainFrame()->GetURL().ToString().c_str()] ?: @"";
   [self updateButtons];
@@ -183,17 +185,17 @@ NSButton* Button(NSView* view, NSString* title, id target, SEL action, NSRect fr
       [self updateButtons]; if (self->_smoke) self->_quit(); return;
     }
     self->_result[@"page"] = [page nativeValue];
-    self->_result[@"block_count"] = @(page.blocks.count);
+    self->_result[@"block_count"] = @(page.blockCount);
     self->_pageLabel.stringValue = page.url;
-    self->_status.stringValue = [NSString stringWithFormat:@"Read %lu text blocks%@.",
-        (unsigned long)page.blocks.count, page.truncated ? @" (partial)" : @""];
+    self->_status.stringValue = [NSString stringWithFormat:@"Saved %lu text blocks · %llu bytes.",
+        (unsigned long)page.blockCount, (unsigned long long)page.textBytes];
     [self updateButtons]; completion(page);
   }];
 }
 - (void)observe:(id)sender {
   (void)sender;
   [self capture:^(BSLivePage* page) {
-    [self append:[NSString stringWithFormat:@"\nPage · %@\n%@\n%@\n", page.title, page.url, page.text]];
+    [self append:[NSString stringWithFormat:@"\nReading · %@\n%@\nSaved complete reading: %@\n", page.title, page.url, page.directoryURL.path]];
   }];
 }
 - (void)submit:(NSString*)objective page:(BSLivePage*)page {

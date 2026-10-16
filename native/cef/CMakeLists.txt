@@ -22,7 +22,7 @@ list(APPEND CMAKE_MODULE_PATH "${CEF_ROOT}/cmake")
 find_package(CEF REQUIRED)
 add_subdirectory("${CEF_LIBCEF_DLL_WRAPPER_PATH}" cef_wrapper)
 
-add_executable(bow_shock MACOSX_BUNDLE main.mm live_observation.mm live_panel.mm
+add_executable(bow_shock MACOSX_BUNDLE main.mm live_observation.mm reading_archive.mm live_panel.mm
   blackbird_connection.mm blackbird_packet.mm)
 SET_EXECUTABLE_TARGET_PROPERTIES(bow_shock)
 target_include_directories(bow_shock PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/../control")

@@ -1,33 +1,32 @@
 # Read the live web
 
-The observer supplies the current root page to Blackbird while the person browses
-ordinary HTTP(S) sites. It has no fixture origin, known field IDs, or site-owned
-markup contract. It executes only fixed DevTools reader commands, never page
-JavaScript. Frame metadata identifies the loader and its security-origin metadata;
-this field does not establish the effective JavaScript window origin. DOMSnapshot
-supplies actual rendered text and layout.
+Operator2026-10-16 requires complete file-backed readings. The implementation and
+format are described in [complete readings](complete-readings.md). This supersedes
+all earlier per-text, fragment, link, node, response-size and elapsed-time caps.
 
-Capture root-frame identity, capture its DOM/layout, then read frame identity
-again. A changed root loader fails that capture; normal DOM updates do not.
-Capture IDs and monotonic start/end timestamps describe the observation interval,
-not an atomic page state. Decoding/projection run off the UI thread. A deadline,
-callback byte bound, node/work bound and output bound stop runaway reads; errors
-remain explicit and the next capture can retry.
+Fixed native reader commands harvest the current target's entire DOMSnapshot
+and frame trees. Every returned document and every source column/string remains
+in the structured local capture. Each document has an indexed full text view;
+large strings live beside the native binary tables as referenced blobs.
 
-Emit typed native page and text-block records. Only the DevTools boundary uses
-JSON. Include root URL, title, origin, frame/loader/capture identity, bounded
-rendered text, backend node IDs, element names, links and document CSS bounds.
-State root-only coverage, offscreen inclusion, unknown occlusion, canvas/image
-omission and truncation. Omit input/textarea values and password descendants;
-do not claim to identify arbitrary secrets rendered by custom page code.
+Read frame identity, harvest the snapshot, then read identity again. The saved
+metadata contains both frame trees and records changes. Capture IDs and monotonic
+timestamps describe an interval, not atomic page state. The typed CEF result
+callback routes by ID before copying; unrelated events do not queue data. Disk
+writing and projection run on the worker. Stop/navigation retire pending UI
+callbacks. Completed readings remain available on disk.
 
-The native value passed to Blackbird and the live-run inspector includes up to
-64 distinct HTTP(S) destinations from these rendered text blocks. Each carries
-its first text fragment. Link-list truncation is reported independently from
-text truncation; links outside the retained text blocks are not enumerated.
-This gives Blackbird actual navigation destinations without inventing action
-coordinates or granting browser execution.
+The full source retains hidden nodes and form fields. Text views omit hidden,
+input/textarea and password regions, while including offscreen and CSS-generated
+layout text. Their byte indexes reference the complete UTF-8 view, with backend
+node IDs, element names, all resolved HTTP(S) links and document CSS bounds.
+Text-view errors are explicit without discarding the full source.
 
-Validation uses the native compiler and captures on public live pages through
-the actual shell. Inspect returned text/identity/bounds and exercise repeat reads
-and navigation. No owned web fixture or site certification gate is introduced.
+The reader retains all documents returned by this Chromium target. Separately
+attached out-of-process targets, network/image/media bodies, pixels and AX are
+not supplied by these commands. Loader securityOrigin is metadata rather than
+verified effective JavaScript window origin. Coverage is stored with the reading.
+
+Blackbird receives file paths and chooses its own whole/range/programmatic access.
+Validation uses native format/IO checks and actual live captures; there is no
+owned web fixture or site-certification gate.

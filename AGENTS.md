@@ -7,6 +7,10 @@ bounded delegation and a native connection to an agent such as Blackbird.
 Operator 2026-10-16: work on live sites throughout. The owned-page/catalog POC
 and its capability-promotion gates are retired. Use direct checks of actual
 behavior and fix encountered defects; do not invent certification work.
+Readings must retain the whole harvested dataset in structured local files with
+adjacent blobs; Blackbird chooses whole-file or ranged consumption. Do not add
+content/count/time caps to harvests or inline a capped substitute. Read
+`docs/plan/complete-readings.md`.
 Internal protocol/state/decoder tests remain useful. Blackbird integration is
 the current priority: read `docs/plan/live-blackbird.md`. Blackbird-side changes
 use an isolated worktree; preserve its active main checkout. Bump the existing

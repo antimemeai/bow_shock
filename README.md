@@ -35,21 +35,33 @@ An explicit `--blackbird` selection takes precedence.
 Blackbird and uses its existing account configuration.
 
 The panel shows the selected browser URL, conversation and a multiline composer.
-**Read page** shows a fresh native reading locally. **Send** includes a fresh
+**Read page** saves a complete native reading locally. **Send** shares its file paths with Blackbird after a fresh
 reading when the checkbox is selected; **Steer** interrupts current work and
 starts the replacement objective. Command+Enter sends. **Stop** cancels pending
 capture and requests cancellation of Blackbird's active work. Ordinary native
 browser navigation continues while the agent works.
 
-Page observations retain URL/title, frame/document/capture identity, timing,
-truncation and coverage. Blackbird also receives up to 64 distinct HTTP(S) link
-destinations from the captured text blocks, each with its first rendered text
-fragment; `links_truncated` identifies omission at that link-list bound. Links
-outside the captured text remain outside this observation. The reader includes rendered root-document text and
-omits input/textarea values. Child-frame text, pixels and accessibility are not
-currently included; occlusion and clipping are not evaluated. Origin metadata
-comes from the Chromium loader and does not establish effective window origin.
-Blackbird receives page content separately from the operator objective.
+Each reading is saved under the selected data directory's `readings/<capture-id>/`:
+
+- `reading.bplist`: metadata, before/after frame trees, coverage and document file paths.
+- `dom.bplist`: complete returned DOMSnapshot columns and indexed strings for every returned document.
+- `documents/N.txt` and `N.blocks.bplist`: full UTF-8 layout-text views and columnar byte offsets, node IDs, links and bounds.
+- `blobs/`: large string values with exact bytes and declared encodings.
+- `README.txt`: the format description for Blackbird and ordinary file tools.
+
+There are no text, block, link, node-count, response-size or elapsed-time harvest
+caps. A 64 KiB string-placement threshold moves values to blobs without shortening
+them. Captures publish after all files succeed; IO failures are explicit.
+A text-projection error leaves the complete source tables available and marks that
+view incomplete. The archive retains hidden nodes and form fields returned by
+Chromium; readable text views skip hidden/password/input/editor regions.
+
+Blackbird receives a small locator rather than an inline page dump and chooses
+whole-file, line, byte-range or programmatic reads through its ordinary tools.
+No chunk size is imposed by Oxcart. Images/network bodies, pixels, accessibility
+and separately attached out-of-process frame targets remain outside this reader;
+coverage is recorded. Loader-origin metadata does not establish effective window
+origin. Page data remains separate from the operator objective.
 
 The integration does not yet supply Blackbird with browser action tools.
 Keyboard/mouse/scroll execution, network inspection/editing/perturbation and

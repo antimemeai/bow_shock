@@ -193,11 +193,6 @@ int main(int argc, char** argv) {
         smokeObjective:smokeObjective smoke:smokeOutput != nil quit:^{ [delegate closeBrowsers]; }];
     CefRefPtr<BrowserApp> app = new BrowserApp;
     if (!CefInitialize(CefMainArgs(argc, argv), settings, app, nullptr)) return CefGetExitCode();
-    if (smokeOutput) {
-      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 90 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        if (!closing) { runResult[@"timeout"] = @YES; [delegate closeBrowsers]; }
-      });
-    }
     CefRunMessageLoop();
     client = nullptr; app = nullptr; CefShutdown(); runResult[@"cef_shutdown"] = @YES;
     if (smokeOutput) {

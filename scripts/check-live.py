@@ -19,6 +19,7 @@ def main():
     parser.add_argument('--expect-link', help='An exact rendered link destination expected on this live page.')
     parser.add_argument('--objective', help='Run a real Blackbird turn with the captured page.')
     parser.add_argument('--blackbird', type=Path)
+    parser.add_argument('--timeout', type=float, help='Optional automation timeout in seconds; ordinary readings wait for completion or Stop.')
     args = parser.parse_args()
     artifacts = ROOT / 'context/runtime/live-checks'
     artifacts.mkdir(parents=True, exist_ok=True)
@@ -34,7 +35,7 @@ def main():
     with (data / 'app.stderr').open('wb') as errors:
         process = subprocess.Popen(command, cwd=ROOT, stderr=errors, start_new_session=True)
         try:
-            process.wait(timeout=110)
+            process.wait(timeout=args.timeout)
         except subprocess.TimeoutExpired:
             os.killpg(process.pid, signal.SIGTERM)
             try:
@@ -53,8 +54,19 @@ def main():
     for name in ['timeout', 'load_error', 'capture_error']:
         if name in result:
             raise AssertionError((name, result[name], data))
-    page = result['page']
-    if not page['text'].strip() or result['block_count'] < 1:
+    reference = result['page']['reading']
+    directory = Path(reference['directory'])
+    with Path(reference['manifest_path']).open('rb') as stream:
+        page = plistlib.load(stream)
+    assert page['format'] == 'oxcart.reading' and page['version'] == 1
+    assert (directory / page['snapshot_file']).is_file()
+    assert (directory / 'README.txt').is_file()
+    views = page['documents']
+    view = next((view for view in views if view['frame_id'] == page['frame_id']), views[0])
+    text = (directory / view['text_file']).read_text()
+    with (directory / view['blocks_file']).open('rb') as stream:
+        blocks = plistlib.load(stream)
+    if not text.strip() or result['block_count'] < 1:
         raise AssertionError(('empty live capture', data))
     if not page['url'].startswith(('https://', 'http://')):
         raise AssertionError(('unexpected URL', page['url']))
@@ -62,14 +74,14 @@ def main():
         raise AssertionError('invalid actual capture interval')
     if not page['document_id'] or not page['frame_id'] or not page['coverage']:
         raise AssertionError('missing actual capture identity/coverage')
-    if args.expect_text and args.expect_text.casefold() not in page['text'].casefold():
+    if args.expect_text and args.expect_text.casefold() not in text.casefold():
         raise AssertionError(('expected live text absent', args.expect_text, data))
-    if args.expect_link and not any(link['url'] == args.expect_link for link in page.get('links', [])):
+    if args.expect_link and args.expect_link not in blocks['link_url']:
         raise AssertionError(('expected rendered link absent', args.expect_link, data))
     if args.objective and (result.get('outcome') != 'completed' or not result.get('answer', '').strip()):
         raise AssertionError(('Blackbird request failed', result.get('outcome'), result.get('blackbird_error'), data))
-    print(f'Captured {page["title"]!r}: {result["block_count"]} blocks, '
-          f'{len(page["text"].encode())} UTF-8 bytes, truncated={page["truncated"]}', flush=True)
+    print(f'Captured {page["title"]!r}: {len(views)} documents, '
+          f'{result["block_count"]} blocks, {reference["text_bytes"]} UTF-8 text bytes; {directory}', flush=True)
     if args.objective:
         print('Blackbird: ' + result['answer'], flush=True)
 
