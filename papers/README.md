@@ -25,6 +25,7 @@ Start with [the synthesis](../docs/research-synthesis.md), then:
 - [Empirical typing/error/pointer data and browser triggers](empirical-human-input.md),
   with [original-artifact hashes and restoration](human-input-manifest.md).
 - [Network observation, editing, and tracker alerts](network-observatory.md).
+- [Matched Chromium 154 traffic streaming/editing implementation](native-traffic-154.md).
 - [Expanded network quarantine and reading map](network-quarantine.md).
 - [Jev for advisory network and extraction judgments](jev-network-judgments.md).
 - [Fingerprint consistency and privacy experiments](fingerprints-and-privacy.md).

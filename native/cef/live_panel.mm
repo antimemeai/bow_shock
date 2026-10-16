@@ -1,5 +1,6 @@
 #import "live_panel.h"
 #import "live_observation.h"
+#import "traffic_browser.h"
 #import "blackbird_connection.h"
 #import "extraction_controller.h"
 
@@ -35,6 +36,9 @@ NSButton* Button(NSView* view, NSString* title, id target, SEL action, NSRect fr
   BSBlackbirdConnection* _connection;
   NSURL* _readingsURL;
   BSLiveObservation* _observer;
+  NSMutableDictionary<NSNumber*, OXTrafficBrowser*>* _traffic;
+  NSURL* _trafficRoot;
+  dispatch_group_t _trafficWrites;
   CefRefPtr<CefBrowser> _browser;
   NSMutableDictionary* _result;
   NSString* _request;
@@ -49,6 +53,8 @@ NSButton* Button(NSView* view, NSString* title, id target, SEL action, NSRect fr
     smoke:(BOOL)smoke quit:(void (^)(void))quit {
   self = [super init]; if (!self) return nil;
   _readingsURL = [[session URLByDeletingLastPathComponent] URLByAppendingPathComponent:@"readings" isDirectory:YES];
+  _trafficRoot = [[session URLByDeletingLastPathComponent] URLByAppendingPathComponent:@"traffic" isDirectory:YES];
+  _traffic = [NSMutableDictionary dictionary]; _trafficWrites = dispatch_group_create();
   _result = result; _smokeObjective = [objective copy]; _smoke = smoke; _quit = [quit copy];
   NSRect screen = NSScreen.mainScreen.visibleFrame;
   CGFloat width = MIN(520, MAX(380, screen.size.width * 0.36));
@@ -70,6 +76,7 @@ NSButton* Button(NSView* view, NSString* title, id target, SEL action, NSRect fr
   _pageLabel.frame = NSMakeRect(16, height - 99, width - 32, 22); [content addSubview:_pageLabel];
   _extract = Button(content,@"Extract",self,@selector(extract:),NSMakeRect(16,height-140,120,30));
   Button(content,@"Preview",self,@selector(preview:),NSMakeRect(146,height-140,120,30));
+  Button(content,@"Traffic",self,@selector(traffic:),NSMakeRect(276,height-140,94,30));
   _transcript = TextView(content, NSMakeRect(16, 226, width - 32, height - 378), NO);
   _includePage = [NSButton checkboxWithTitle:@"Include a fresh reading of this page" target:self action:@selector(includePageChanged:)];
   _includePage.state = NSControlStateValueOn;
@@ -115,7 +122,7 @@ NSButton* Button(NSView* view, NSString* title, id target, SEL action, NSRect fr
       !_extraction.busy && (_includePage.state != NSControlStateValueOn || (_browser && !_loading));
   _extract.enabled = !_closing && _connection.ready && !_connection.running && !_extraction.busy && !_capturing && _browser && !_loading;
   _send.title = _connection.running ? @"Steer" : @"Send";
-  _stop.enabled = !_closing && (_capturing || _connection.running || _extraction.busy);
+  _stop.enabled = !_closing && (_browser || _capturing || _connection.running || _extraction.busy);
 }
 - (void)includePageChanged:(id)sender { (void)sender; [self updateButtons]; }
 - (void)receive:(NSDictionary*)event {
@@ -156,12 +163,21 @@ NSButton* Button(NSView* view, NSString* title, id target, SEL action, NSRect fr
   if (_closing || (_browser && _browser->IsSame(browser))) return;
   ++_captureEpoch; [_observer close]; _capturing = NO;
   _browser = browser; _observer = [[BSLiveObservation alloc] initWithBrowser:browser readingsURL:_readingsURL];
+  NSNumber* browserID = @(browser->GetIdentifier());
+  if (!_traffic[browserID]) {
+    _traffic[browserID] = [[OXTrafficBrowser alloc] initWithBrowser:browser rootURL:_trafficRoot];
+    NSMutableArray* paths = _result[@"traffic_directories"];
+    if (!paths) { paths = [NSMutableArray array]; _result[@"traffic_directories"] = paths; }
+    [paths addObject:_traffic[browserID].directoryURL.path];
+  }
   _loading = browser->IsLoading();
   _pageLabel.stringValue = [NSString stringWithUTF8String:browser->GetMainFrame()->GetURL().ToString().c_str()] ?: @"";
   [_extraction beginVisitWithURL:_pageLabel.stringValue title:@"Browser visit"];
+  [_traffic[browserID] markContext:@{@"browser_id":browserID,@"page_url":_pageLabel.stringValue,@"lifecycle":@"selected"}];
   [self updateButtons];
 }
 - (void)mainLoadStartedForBrowser:(CefRefPtr<CefBrowser>)browser {
+  [_traffic[@(browser->GetIdentifier())] markContext:@{@"browser_id":@(browser->GetIdentifier()),@"page_url":[NSString stringWithUTF8String:browser->GetMainFrame()->GetURL().ToString().c_str()] ?: @"",@"navigation_id":NSUUID.UUID.UUIDString,@"lifecycle":@"main_load_started"}];
   if (!_browser || !_browser->IsSame(browser)) return;
   ++_captureEpoch; _capturing = NO; _loading = YES;
   [_observer cancel]; [_observer nativeLifecycle:@"navigation"]; _status.stringValue = @"Loading page…";
@@ -180,6 +196,13 @@ NSButton* Button(NSView* view, NSString* title, id target, SEL action, NSRect fr
   _status.stringValue = @"Renderer stopped. Reload the page."; [self updateButtons];
 }
 - (void)browserClosing:(CefRefPtr<CefBrowser>)browser {
+  NSNumber* identity = @(browser->GetIdentifier());
+  OXTrafficBrowser* traffic = _traffic[identity];
+  if (traffic) {
+    dispatch_group_enter(_trafficWrites);
+    [traffic closeWithCompletion:^{ dispatch_group_leave(self->_trafficWrites); }];
+    [_traffic removeObjectForKey:identity];
+  }
   if (!_browser || !_browser->IsSame(browser)) return;
   ++_captureEpoch; [_observer close]; _observer = nil; _browser = nullptr; _capturing = NO;
   _pageLabel.stringValue = @"No browser selected."; [self updateButtons];
@@ -199,6 +222,7 @@ NSButton* Button(NSView* view, NSString* title, id target, SEL action, NSRect fr
     }
     self->_result[@"page"] = [page nativeValue];
     [self->_extraction addReading:[page nativeValue]];
+    [self->_traffic[@(self->_browser->GetIdentifier())] markContext:@{@"capture_id":page.captureId,@"reading_directory":page.directoryURL.path,@"page_url":page.url,@"lifecycle":@"reading_saved"}];
     self->_result[@"block_count"] = @(page.blockCount);
     self->_pageLabel.stringValue = page.url;
     self->_status.stringValue = [NSString stringWithFormat:@"Saved %lu text blocks · %llu bytes.",
@@ -237,9 +261,11 @@ NSButton* Button(NSView* view, NSString* title, id target, SEL action, NSRect fr
   [self capture:^(BSLivePage*) { [self->_extraction extract:objective]; }];
 }
 - (void)preview:(id)sender { (void)sender; [_extraction showPreview]; }
+- (void)traffic:(id)sender { (void)sender; if (_browser) [_traffic[@(_browser->GetIdentifier())] show]; }
 - (void)stop:(id)sender {
   (void)sender; ++_captureEpoch; _capturing = NO; [_observer cancel];
   [_extraction stop];
+  for (OXTrafficBrowser* traffic in _traffic.allValues) [traffic stop];
   [_connection cancel]; _status.stringValue = @"Stop requested."; [self updateButtons];
 }
 - (void)maybeSmoke {
@@ -262,6 +288,8 @@ NSButton* Button(NSView* view, NSString* title, id target, SEL action, NSRect fr
   dispatch_group_t group = dispatch_group_create(); dispatch_group_enter(group); dispatch_group_enter(group);
   [_extraction closeWithCompletion:^{ dispatch_group_leave(group); }];
   [_connection closeWithCompletion:^{ dispatch_group_leave(group); }];
+  dispatch_group_enter(group);
+  dispatch_group_notify(_trafficWrites,dispatch_get_main_queue(),^{ dispatch_group_leave(group); });
   dispatch_group_notify(group,dispatch_get_main_queue(),completion);
 }
 @end

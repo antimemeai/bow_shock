@@ -26,6 +26,8 @@ not govern the current extraction workflow. Preview, extraction and the recipe
 loop are the immediate product work. The operator's fast follows are metrics
 and instrumentation plus a bidirectional proxy for traffic capture and editing,
 including ads/tracker traffic. Read `docs/plan/instrumentation-proxy.md`.
+The native traffic workbench is implemented; read `docs/traffic-workbench.md` for
+capture/edit controls, preserved files, protocol limits and pending live checks.
 
 Site interaction must be grounded in measured human input sequences: typing
 down/up timing and overlap, intended-versus-pressed key errors and corrections,

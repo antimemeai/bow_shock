@@ -1,5 +1,6 @@
 #import "live_observation.h"
 #import "reading_archive.h"
+#include "devtools_ids.h"
 #include "include/cef_devtools_message_observer.h"
 #include "include/wrapper/cef_helpers.h"
 #include <atomic>
@@ -58,7 +59,6 @@
 @implementation BSLiveReply
 @end
 namespace {
-std::atomic<int> nextMessageId{2000000};
 uint64_t NowNanos() {
   static const auto scale = [] { mach_timebase_info_data_t x; mach_timebase_info(&x); return x; }();
   return static_cast<uint64_t>(static_cast<long double>(mach_continuous_time()) * scale.numer / scale.denom);
@@ -274,7 +274,7 @@ class LiveObserver final : public CefDevToolsMessageObserver {
 }
 - (void)sendNext {
   if (!_completion || _closed) return;
-  int messageId = nextMessageId.fetch_add(1);
+  int messageId = OXNextDevToolsID();
   if (messageId <= 0 || messageId == INT_MAX) { [self finish:nil error:@"DevTools message IDs exhausted."]; return; }
   _pendingId = messageId;
   NSString* command = _phase == 1

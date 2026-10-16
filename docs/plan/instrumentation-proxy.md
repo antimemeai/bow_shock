@@ -15,8 +15,12 @@ and recipe activation. Raw and derived data stay distinct. Malformed result
 fields remain explicit rather than crashing aggregation. Native controlled-
 outcome checks cover initial/tweak/manual, missing/invalid output and Stop, with
 metrics checked against those actual emitted events/artifacts. See
-[workspace usage](../extraction-workspace.md). A richer in-app metrics view and
-bidirectional proxy remain next work.
+[workspace usage](../extraction-workspace.md). The native bidirectional traffic
+workbench is now implemented: [controls, archive and limits](../traffic-workbench.md).
+It streams passive bodies, supports explicitly armed request/response edits and
+preserves original/edit/command outcome artifacts. Native protocol/storage checks
+and the signed build pass; practical live editing remains for the operator's
+return. A richer in-app metrics view remains follow-on work.
 
 Join visit, document/capture, extraction attempt, preview and exact recipe
 identities in a local timeline. Record stage start/end/failure, cancellations,
@@ -70,13 +74,13 @@ and baseline/change comparisons as direct follow-on work on real traffic.
 
 ## Implementation approach and direct live checks
 
-The active native target has no traffic capture/editor adapter or proxy backend.
+The active native target now includes an owned CEF Network/Fetch capture/editor.
+See [the implementation unit](native-traffic-workbench.md) and
+[matched runtime source study](../../papers/native-traffic-154.md).
 The older network studies contain useful CEF/protocol/proxy source findings,
 but their broad experimental topology and certification sequence are superseded.
-Study the matched runtime and select the smallest owned implementation that
-actually supplies both request and response editing. A read-only observer alone
-does not satisfy this unit. No proxy library, system routing change or TLS trust
-configuration is selected merely by recording this plan.
+The matched runtime supplies request changes and response fulfillment. No proxy
+library, system routing change or TLS trust configuration was introduced.
 
 Start with live browsing: inspect actual exchanges, correlate them with the
 visit, change a selected request and a selected response, and inspect what was

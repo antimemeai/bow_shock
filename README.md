@@ -21,6 +21,11 @@ traffic capture/editing proxy, including ads, are the fast follows; see
 Initial instrumentation is available now: stage events are retained with the
 workspace, and `python3.13 scripts/extraction-metrics.py DATA_DIR/extraction`
 writes a new dated binary-plist/text report without replacing older reports.
+The native **Traffic** window now captures response chunks and supports explicitly
+armed request/response editing, with preserved originals, body blobs and decision
+outcomes. See [traffic controls and file inspection](docs/traffic-workbench.md).
+The signed build and native command/storage checks pass; live editing remains
+for practical testing.
 
 A live native browser with Blackbird working beside you. Browse ordinary sites,
 read the rendered page, and send your objective and page context to Blackbird.
