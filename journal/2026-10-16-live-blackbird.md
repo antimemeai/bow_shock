@@ -100,3 +100,14 @@ for the live app are staged normally; the Codex string changes and new status
 introductions are staged over HEAD for mixed files, leaving the older clock
 changes in the working tree. The orientation journal from the preceding request
 is included as work history. No unrelated clock source is discarded or committed.
+
+Oxcart checkpoint `c4e0c27` was pushed to its feature branch. The normal live app
+was opened on Python.org with the worktree's actual `build/debug/blackbird` and
+its own session. It remains open for operator inspection/Keychain response.
+Blackbird's complete 162-test Debug run and corrected-source Linux interface
+checks passed; its required lint/publication work follows independently.
+
+A final composer fix binds the include-page checkbox to button refresh, allowing
+conversation without a page while navigation is loading. The changed native
+panel passes strict source compilation. The already-open preview predates this
+small binding change; the next ordinary build/restart activates it.

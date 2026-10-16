@@ -71,7 +71,7 @@ NSDictionary* PageValue(BSLivePage* page) {
   _pageLabel.lineBreakMode = NSLineBreakByTruncatingMiddle;
   _pageLabel.frame = NSMakeRect(16, height - 99, width - 32, 22); [content addSubview:_pageLabel];
   _transcript = TextView(content, NSMakeRect(16, 226, width - 32, height - 340), NO);
-  _includePage = [NSButton checkboxWithTitle:@"Include a fresh reading of this page" target:nil action:nil];
+  _includePage = [NSButton checkboxWithTitle:@"Include a fresh reading of this page" target:self action:@selector(includePageChanged:)];
   _includePage.state = NSControlStateValueOn;
   _includePage.frame = NSMakeRect(16, 194, width - 32, 25); [content addSubview:_includePage];
   _composer = TextView(content, NSMakeRect(16, 91, width - 32, 98), YES);
@@ -113,6 +113,7 @@ NSDictionary* PageValue(BSLivePage* page) {
   _send.title = _connection.running ? @"Steer" : @"Send";
   _stop.enabled = !_closing && (_capturing || _connection.running);
 }
+- (void)includePageChanged:(id)sender { (void)sender; [self updateButtons]; }
 - (void)receive:(NSDictionary*)event {
   NSString* type = event[@"type"];
   if ([type isEqual:@"ready"]) {
