@@ -89,3 +89,12 @@ Oxcart launcher now selects this actual runtime and has opened Hacker News using
 the persistent `context/runtime/live` profile/session. This normal preview has
 no smoke deadline and remains available for the operator's macOS item-access
 response. No product rebuild or signing change follows it in this turn.
+
+Blackbird mainline closeout `46f3204` is pushed after source merge `be4a46f`.
+The away-team worktree is physically removed and its merged local feature branch
+deleted; remote history remains. Useful ignored artifacts are retained under
+`blackbird/context/retired-worktrees/oxcart-2026-10-16`. Supported issue backup
+completed. The primary TUI branch at45b1454 and its concurrent source/index/art
+remain intact. Oxcart continuation checkpoints are pushed on
+`work/live-blackbird-2026-10-16`; unrelated in-progress clock work remains outside
+these commits.
