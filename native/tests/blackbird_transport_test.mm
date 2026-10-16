@@ -88,6 +88,13 @@ static void Child(NSString* test) {
   NSDictionary* turn = Receive();
   Check([turn[@"type"] isEqual:@"turn"] && [turn[@"objective"] isEqual:@"read live page"], "turn objective");
   Check([turn[@"observations"][0][@"capture_end_ns"] unsignedLongLongValue] == UINT64_MAX, "observation uint64 unchanged");
+  if ([test isEqual:@"error-final"]) {
+    Send(@{@"type":@"error",@"id":turn[@"id"],@"message":@"invalid_range",@"final_follows":@YES});
+    NSDictionary* cancel = Receive(); Check([cancel[@"type"] isEqual:@"cancel"] && [cancel[@"id"] isEqual:turn[@"id"]],"failed admitted turn retains request ownership until final");
+    Send(@{@"type":@"final",@"id":turn[@"id"],@"outcome":@"failed",@"text":@"Retained failed response"});
+    NSDictionary* close = Receive(); Check([close[@"type"] isEqual:@"close"],"failed turn closes after final");
+    Send(@{@"type":@"closed",@"id":close[@"id"]}); exit(0);
+  }
   Send(@{@"type": @"text", @"id": turn[@"id"], @"text": @"hello"}, true);
   BOOL cancelledPending = [test isEqual:@"steer-cancel-pending"];
   if ([test hasPrefix:@"steer"]) {
@@ -118,9 +125,9 @@ static void ConnectionCheck(NSString* executable, NSString* test) {
     BSBlackbirdConnection* connection = weakConnection;
     Check(NSThread.isMainThread, "callback main thread");
     if ([event[@"type"] isEqual:@"ready"]) {
-      if ([test isEqual:@"success"] || [test hasPrefix:@"steer"] || [test isEqual:@"stubborn"]) Check(connection.ready, "ready state before callback");
+      if ([test isEqual:@"success"] || [test hasPrefix:@"steer"] || [test isEqual:@"stubborn"] || [test isEqual:@"error-final"]) Check(connection.ready, "ready state before callback");
       if ([test isEqual:@"stubborn"]) [connection closeWithCompletion:^{ done = YES; }];
-      else if ([test isEqual:@"success"] || [test hasPrefix:@"steer"]) {
+      else if ([test isEqual:@"success"] || [test hasPrefix:@"steer"] || [test isEqual:@"error-final"]) {
         activeID = [connection sendObjective:@"read live page" observations:@[@{@"capture_end_ns": @(UINT64_MAX)}] steer:NO];
         Check(activeID != nil && [connection.activeRequestID isEqual:activeID], "turn accepted and visible");
         Check([connection sendObjective:@"second" observations:@[] steer:NO] == nil, "busy turn rejected");
@@ -139,16 +146,17 @@ static void ConnectionCheck(NSString* executable, NSString* test) {
       } else { [connection cancel]; [connection cancel]; }
     }
     if ([event[@"type"] isEqual:@"final"]) {
-      NSString* expected = [test isEqual:@"steer-cancel-pending"] && [event[@"id"] isEqual:activeID] ? @"" : @"hello";
-      Check([event[@"text"] isEqual:expected] && [event[@"outcome"] isEqual:@"cancelled"], "final outcome preserved");
+      NSString* expected = [test isEqual:@"error-final"] ? @"Retained failed response" : [test isEqual:@"steer-cancel-pending"] && [event[@"id"] isEqual:activeID] ? @"" : @"hello";
+      Check([event[@"text"] isEqual:expected] && [event[@"outcome"] isEqual:([test isEqual:@"error-final"] ? @"failed" : @"cancelled")], "final outcome preserved");
       if ([event[@"id"] isEqual:activeID]) { final = YES; [connection closeWithCompletion:^{ done = YES; }]; }
       else if (![test isEqual:@"steer-cancel-pending"]) Check(connection.running, "old final leaves replacement active");
     }
     if ([event[@"type"] isEqual:@"error"]) {
       ++errors;
       if ([test isEqual:@"steer-rejected"]) { Check(connection.running && [connection.activeRequestID isEqual:activeID], "rejected steer restores old active task"); [connection cancel]; }
+      if ([test isEqual:@"error-final"]) { Check(connection.running && [connection.activeRequestID isEqual:activeID],"error before final does not release admitted request"); [connection cancel]; }
     }
-    if ([event[@"type"] isEqual:@"closed"]) { ++closed; if (![test isEqual:@"success"] && ![test hasPrefix:@"steer"] && ![test isEqual:@"stubborn"]) done = YES; }
+    if ([event[@"type"] isEqual:@"closed"]) { ++closed; if (![test isEqual:@"success"] && ![test hasPrefix:@"steer"] && ![test isEqual:@"stubborn"] && ![test isEqual:@"error-final"]) done = YES; }
   };
   [connection start];
   if ([test isEqual:@"overflow"]) usleep(300000); // Deliberately stop the main consumer.
@@ -158,7 +166,7 @@ static void ConnectionCheck(NSString* executable, NSString* test) {
   Check(!connection.running && !connection.ready, "terminal state");
   Check(closed == 1, "one closed event");
   Check(errors == (([test isEqual:@"success"] || [test isEqual:@"steer"] || [test isEqual:@"steer-cancel-pending"] || [test isEqual:@"stubborn"]) ? 0 : 1), "error count");
-  if ([test isEqual:@"success"] || [test hasPrefix:@"steer"]) Check(final, "completed cancellation final");
+  if ([test isEqual:@"success"] || [test hasPrefix:@"steer"] || [test isEqual:@"error-final"]) Check(final, "completed cancellation/failure final");
   if (pid > 0) { errno = 0; Check(kill(pid, 0) < 0 && errno == ESRCH, "child reaped before completion"); }
   [connection closeWithCompletion:nil]; connection.eventHandler = nil;
 }
@@ -167,7 +175,7 @@ int main(int argc, char** argv) {
     if (argc == 2 && strcmp(argv[1], "--application") == 0) { Child([NSString stringWithUTF8String:getenv("OXCART_TRANSPORT_TEST")]); return 0; }
     PacketChecks();
     NSString* executable = [NSString stringWithUTF8String:argv[0]];
-    for (NSString* test in @[@"success", @"steer", @"steer-cancel-pending", @"steer-rejected", @"malformed", @"oversize", @"truncated", @"overflow", @"stubborn", @"missing"]) ConnectionCheck(executable, test);
+    for (NSString* test in @[@"success", @"steer", @"steer-cancel-pending", @"steer-rejected", @"error-final", @"malformed", @"oversize", @"truncated", @"overflow", @"stubborn", @"missing"]) ConnectionCheck(executable, test);
     puts("Blackbird packet and process transport checks passed");
   }
 }

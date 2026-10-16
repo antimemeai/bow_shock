@@ -123,6 +123,7 @@ def collect(workspace):
               'readable_attempts': len(attempts),
               'attempt_phases': dict(collections.Counter(item['phase'] for item in attempts)),
               'model_outcomes': dict(collections.Counter(item['model_outcome'] for item in attempts)),
+              'command_rejections': kinds['command_rejected'],
               'validation_errors': sum(item['validation_error_present'] for item in attempts),
               'attempts_with_previews': sum(item['preview_present'] for item in attempts),
               'cancel_requests': kinds['cancel_requested'], 'recipe_activations': kinds['recipe_activated'],
@@ -134,7 +135,7 @@ def collect(workspace):
             'definitions': {
                 'durations': 'Native host uptime differences within the same recorded run; missing/incomparable intervals stay unavailable.',
                 'source_rendered_text_bytes': 'Bytes in saved document text views, not full DOM/blob size or network bytes.',
-                'model_outcome': 'Engine turn outcome, separate from extraction validity and the bot assessment.',
+                'model_outcome': 'Engine turn outcome, or rejected for a command that received no admitted final; separate from extraction validity and bot assessment.',
                 'recipe_activations': 'Recorded recipe activation operations, not a semantic completeness score.',
                 'counts': 'Observed events/artifacts; no extraction precision, recall or coverage percentage is inferred.'}}
 

@@ -201,7 +201,9 @@ bool Text(id value) { return [value isKindOfClass:NSString.class]; }
   } else if ([type isEqual:@"error"]) {
     if (!Text(event[@"message"])) { *error = @"Blackbird emitted an invalid error event"; return NO; }
     [_lock lock];
-    if ([event[@"id"] isEqual:_activeID]) { _activeID = _steeringFromID; _steeringFromID = nil; _cancelQueued = NO; }
+    if ([event[@"id"] isEqual:_activeID] && ![event[@"final_follows"] boolValue]) {
+      _activeID = _steeringFromID; _steeringFromID = nil; _cancelQueued = NO;
+    }
     [_lock unlock];
   } else if (![type isEqual:@"status"]) {
     *error = @"Blackbird emitted an unknown event type"; return NO;

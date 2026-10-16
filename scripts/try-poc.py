@@ -38,9 +38,9 @@ def main():
     if sys.platform != 'darwin' or not app.is_file():
         parser.error('Build the macOS app with python3 scripts/build-native.py first.')
     candidates = [
+        Path.home() / 'projects/blackbird/context/mainline-runtime/build/debug/blackbird',
         Path.home() / 'projects/blackbird/build/release/blackbird',
         Path.home() / 'projects/blackbird/build/debug/blackbird',
-        Path.home() / 'projects/blackbird/context/mainline-runtime/build/debug/blackbird',
     ]
     installed = shutil.which('blackbird')
     if installed:

@@ -38,6 +38,33 @@ files. App shutdown waits for queued extraction IO and Blackbird closure.
 The stage's attempt menu covers the current run; earlier runs remain inspectable
 in the stored workspace. Recipe history is loaded across app restarts.
 
+Failed admitted Blackbird turns emit an error with `final_follows=true`, then a
+failed final. Oxcart keeps that request active until final and preserves any
+submission, final response, outcome and actual error message. Rejected
+commands instead report no following final. A failure does not trigger an
+automatic tweak.
+Commands rejected without an admitted final are recorded separately as
+`command_rejected` with outcome `rejected`; metrics count these independently.
+
+Reuse a saved reading without opening another browser/Keychain prompt:
+
+```
+python3.13 scripts/extract-reading.py /path/to/readings/CAPTURE \
+  --blackbird /path/to/blackbird \
+  --objective 'Organize the useful information and retain source links'
+```
+
+This runs the same native coordinator, renderer and real Blackbird file tools,
+including the initial pass and exactly one tweak. It creates a fresh retained
+workspace by default; `--data-dir` chooses one explicitly. New run records never
+replace earlier records. Its native driver has a unique build path per invocation
+so starting another extraction cannot replace a running executable.
+
+`scripts/build-blackbird-runtime.py --repo /path/to/blackbird --revision master`
+exports/builds a retained Blackbird revision with stable workflow/helper paths,
+preserving its active Git checkout. Oxcart's launcher prefers that retained
+mainline runtime; `--blackbird` still selects an explicit executable.
+
 ## Result format
 
 The agent writes a binary plist with `format=oxcart.extraction`, integer

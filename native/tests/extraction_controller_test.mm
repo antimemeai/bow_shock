@@ -19,6 +19,8 @@ static NSDictionary* Read(NSString* path) {
 @property(nonatomic) BOOL omitOutputs;
 @property(nonatomic) BOOL cancelTweak;
 @property(nonatomic) BOOL malformedOutput;
+@property(nonatomic) BOOL errorBeforeFinal;
+@property(nonatomic) BOOL rejectCommand;
 @property(nonatomic,weak) OXExtractionController* controller;
 @property(nonatomic,readonly) NSUInteger calls;
 @property(nonatomic,readonly) BOOL inspectedPreview;
@@ -59,9 +61,14 @@ static NSDictionary* Read(NSString* path) {
       Check(OXWriteArtifact(bytes,[NSURL fileURLWithPath:attempt[@"result_path"]],nil),"model writes native result");
     }
     if (self.cancelTweak && [attempt[@"phase"] isEqual:@"tweak"]) [self.controller stop];
+    if (self.errorBeforeFinal) {
+      [self.controller receiveEvent:@{@"type":@"error",@"id":request,@"message":@"invalid_range",@"final_follows":@(!self.rejectCommand)}];
+      Check(self.controller.busy,"error before final keeps extraction working");
+      if (self.rejectCommand) { self->_active = nil; return; }
+    }
     self->_active = nil;
     [self.controller receiveEvent:@{@"type":@"final",@"id":request,@"text":@"Result saved",
-        @"outcome":self->_cancelled ? @"cancelled" : @"completed"}];
+        @"outcome":self.errorBeforeFinal ? @"failed" : self->_cancelled ? @"cancelled" : @"completed"}];
   });
   return request;
 }
@@ -85,12 +92,13 @@ int main(int argc, char** argv) { @autoreleasepool {
   Check(OXWriteArtifact(manifest,[reading URLByAppendingPathComponent:@"reading.bplist"],nil),"create direct native reading metadata");
   NSDictionary* reference = @{@"capture_id":@"capture",@"url":reading.absoluteString,@"reading":@{
       @"directory":reading.path,@"manifest_path":[reading URLByAppendingPathComponent:@"reading.bplist"].path}};
-  for (NSUInteger scenario = 0; scenario < 4; ++scenario) {
+  for (NSUInteger scenario = 0; scenario < 6; ++scenario) {
     NSURL* directory = [root URLByAppendingPathComponent:[NSString stringWithFormat:@"case-%lu",(unsigned long)scenario]];
     ModelTransport* transport = [[ModelTransport alloc] initWithExecutableURL:[NSURL fileURLWithPath:@"/usr/bin/true"]
         sessionURL:directory workingDirectoryURL:root model:@"controlled"];
-    transport.omitOutputs = scenario == 1; transport.cancelTweak = scenario == 2;
+    transport.omitOutputs = scenario == 1 || scenario == 5; transport.cancelTweak = scenario == 2;
     transport.malformedOutput = scenario == 3;
+    transport.errorBeforeFinal = scenario >= 4; transport.rejectCommand = scenario == 5;
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
     OXExtractionController* controller = [[OXExtractionController alloc] initWithDataURL:directory connection:transport result:result];
     transport.controller = controller;
@@ -98,7 +106,8 @@ int main(int argc, char** argv) { @autoreleasepool {
     [controller beginVisitWithURL:@"https://www.python.org/" title:@"Saved native inputs"];
     [controller addReading:reference]; [controller extract:@"Organize the retained inputs"];
     Wait(&finished);
-    Check(transport.calls == 2 && transport.inspectedPreview,"exactly initial pass plus one revision, using real renderer output");
+    if (scenario < 4) Check(transport.calls == 2 && transport.inspectedPreview,"exactly initial pass plus one revision, using real renderer output");
+    else Check(transport.calls == 1,"engine failure does not trigger an automatic retry");
     Check(!controller.busy,"finished loop leaves no active extraction");
     if (scenario == 0) {
       Check([result[@"extraction"][@"valid"] boolValue],"valid second result is available");
@@ -119,7 +128,12 @@ int main(int argc, char** argv) { @autoreleasepool {
       NSArray* attempts = [NSFileManager.defaultManager contentsOfDirectoryAtURL:[[directory URLByAppendingPathComponent:@"extraction"] URLByAppendingPathComponent:@"attempts"] includingPropertiesForKeys:nil options:0 error:nil];
       NSUInteger retained = 0;
       for (NSURL* attempt in attempts) if ([NSFileManager.defaultManager fileExistsAtPath:[attempt URLByAppendingPathComponent:@"received.bplist"].path]) ++retained;
-      Check(retained == 2,"cancelled second submission remains retained");
+      Check(retained == (scenario == 5 ? 0 : scenario == 4 ? 1 : 2),"cancelled or failed submission remains retained; rejected command did not run model");
+      if (scenario == 4) {
+        NSString* note = [NSString stringWithContentsOfURL:[attempts[0] URLByAppendingPathComponent:@"outcome-note.txt"] encoding:NSUTF8StringEncoding error:nil];
+        Check([note containsString:@"invalid_range"],"failed attempt retains actual engine error");
+        Check([NSFileManager.defaultManager fileExistsAtPath:[attempts[0] URLByAppendingPathComponent:@"response.txt"].path],"failed response is saved before finish");
+      }
     }
     finished = NO; controller.finished = nil;
     [controller closeWithCompletion:^{ finished = YES; }]; Wait(&finished);

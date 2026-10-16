@@ -18,7 +18,7 @@ subprocess.run([
 ], check=True, cwd=ROOT)
 artifacts = ROOT / 'context/build/controller-checks' / str(uuid.uuid4())
 subprocess.run([str(output), str(artifacts)], check=True, cwd=ROOT, timeout=90)
-for case, expected in [(0, (3, 0)), (1, (2, 2)), (2, (2, 0)), (3, (2, 2))]:
+for case, expected in [(0, (3, 0)), (1, (2, 2)), (2, (2, 0)), (3, (2, 2)), (4, (1, 0)), (5, (1, 0))]:
     workspace = artifacts / f'case-{case}' / 'extraction'
     subprocess.run([sys.executable, str(ROOT / 'scripts/extraction-metrics.py'), str(workspace)],
                    check=True, cwd=ROOT, stdout=subprocess.DEVNULL)
@@ -33,4 +33,9 @@ for case, expected in [(0, (3, 0)), (1, (2, 2)), (2, (2, 0)), (3, (2, 2))]:
         assert data['counts']['model_outcomes'] == {'completed': 1, 'cancelled': 1}
     if case == 3:
         assert all(not item['reported_issues_available'] for item in data['attempts'])
+    if case == 4:
+        assert data['counts']['model_outcomes'] == {'failed': 1}
+    if case == 5:
+        assert data['counts']['model_outcomes'] == {'rejected': 1}
+        assert data['counts']['command_rejections'] == 1
 print('Native coordinator and metrics artifacts: ' + str(artifacts))

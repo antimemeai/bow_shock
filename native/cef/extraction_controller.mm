@@ -17,6 +17,7 @@
   NSDictionary* _activeAttempt;
   NSMutableDictionary* _result;
   NSString* _request;
+  NSString* _modelError;
   BOOL _busy, _stopped, _closing;
   uint64_t _epoch;
 }
@@ -89,6 +90,7 @@
   if (_closing) return;
   _busy = YES; _stopped = NO; uint64_t epoch = ++_epoch;
   _activeAttempt = nil;
+  _modelError = nil;
   NSString* token = _visitToken;
   NSArray* latestReadings = [_readings copy];
   NSArray* readings = prior ? prior[@"readings"] : latestReadings;
@@ -146,11 +148,13 @@
   } else if ([event[@"type"] isEqual:@"final"]) {
     NSDictionary* attempt = _activeAttempt; uint64_t epoch = _epoch;
     NSString* response = event[@"text"] ?: @"", *outcome = event[@"outcome"] ?: @"failed";
+    NSString* modelError = _modelError;
     _request = nil;
     dispatch_async(_worker,^{ @autoreleasepool {
       NSError* error = nil;
       NSDictionary* document = [self->_workspace receiveResultForAttempt:attempt response:response outcome:outcome error:&error];
       NSString* failure = error.localizedDescription;
+      if (modelError.length && ![outcome isEqual:@"completed"]) failure = [NSString stringWithFormat:@"%@\n%@",modelError,failure ?: @""];
       if (failure) {
         NSString* name = [outcome isEqual:@"completed"] ? @"validation-error.txt" : @"outcome-note.txt";
         NSURL* path = [[NSURL fileURLWithPath:attempt[@"directory"]] URLByAppendingPathComponent:name];
@@ -191,13 +195,15 @@
       });
     }});
   } else if ([event[@"type"] isEqual:@"error"]) {
+    _modelError = event[@"message"] ?: @"Blackbird extraction failed";
+    BOOL follows = [event[@"final_follows"] boolValue];
     NSDictionary* attempt = _activeAttempt;
     dispatch_async(_worker,^{ @autoreleasepool {
-      [self->_workspace record:@"model_failed" fields:@{@"attempt_id":attempt[@"id"] ?: @"preparing",
-          @"message":event[@"message"] ?: @"Blackbird extraction failed"} error:nil];
+      [self->_workspace record:follows ? @"model_failed" : @"command_rejected" fields:@{@"attempt_id":attempt[@"id"] ?: @"preparing",
+          @"message":event[@"message"] ?: @"Blackbird extraction failed",@"final_follows":@(follows)} error:nil];
     }});
-    _request = nil; _busy = NO; [self problem:event[@"message"] ?: @"Blackbird extraction failed."]; [self changed];
-    if (_finished) _finished();
+    [self problem:_modelError]; [self changed];
+    if (!follows) [self receiveEvent:@{@"type":@"final",@"id":_request,@"outcome":@"rejected",@"text":@""}];
   }
   return YES;
 }

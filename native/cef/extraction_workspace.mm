@@ -133,6 +133,7 @@ BOOL OXValidateExtraction(NSDictionary* document, NSDictionary* manifests, NSErr
 NSString* OXExtractionFormatGuide() {
   return @"Oxcart extraction document v1. Write work/result.bplist as a BINARY property list.\n"
       "Use Python 3.13's plistlib.dump(value, file, fmt=plistlib.FMT_BINARY), or native tools. Do not use JSON internally.\n"
+      "Binary plist date objects represent absolute UTC instants; Python plistlib's default naive datetime values are UTC. A visit's created_at is host workspace creation time, not a site publication date or necessarily the reading's capture time; reused readings can predate this visit.\n"
       "Root dictionary, exactly: format='oxcart.extraction', version=1 (integer), title (string), blocks (array), issues (array of strings), assessment ('ready' or 'needs_help'), recipe (dictionary).\n"
       "recipe has exactly page_type, applicability, instructions: nonempty strings describing a reusable COMPLETE approach, without this visit's extracted personal values.\n"
       "Each block is one of:\n"

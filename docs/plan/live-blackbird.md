@@ -21,8 +21,11 @@ Blackbird owns model/provider/session/tool execution. Oxcart owns its browser,
 page capture and presentation. One child/session uses a 32-bit big-endian frame
 length and Blackbird BBM2 native values, capped at 4 MiB per frame. Commands are
 open, turn, steer, cancel and close; events are ready, text, status, final, error
-and closed. Strings identify requests. A turn has objective plus observations;
-each observation now carries a complete local reading's file locator and format
+and closed. Strings identify requests.
+Errors include `final_follows`: admitted turn failures keep the request active
+through their final event; rejected commands/steering do not promise a final.
+A turn has objective plus observations; each observation now carries a complete
+local reading's file locator and format
 instructions. URL/title, frame/document/capture identity, timing, full source
 columns, per-document text/links and coverage live in the archive. Blackbird
 chooses how much to read. Streamed text is plain conversation text. Native IPC
