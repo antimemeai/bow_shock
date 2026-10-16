@@ -164,6 +164,13 @@ int main(int argc, const char* argv[]) {
     Reply(Take(commands,@"Fetch.takeResponseBodyAsStream"),YES,@{@"stream":@"stream-B"});
     Reply(Take(commands,@"IO.read"),YES,@{@"data":@"first chunk",@"eof":@NO});
     NSDictionary* outstanding = Take(commands,@"IO.read");
+    BOOL indexedBeforeEOF = NO;
+    for (NSDictionary* event in Manifests(session.directoryURL,@"events")) {
+      if ([event[@"kind"] isEqual:@"upstream_chunk"] && [event[@"fields"][@"fetch_id"] isEqual:@"stop-stream"]) {
+        indexedBeforeEOF = [Join(session.directoryURL,@[event[@"fields"][@"body_blob"]]) isEqual:[@"first chunk" dataUsingEncoding:NSUTF8StringEncoding]];
+      }
+    }
+    Check(indexedBeforeEOF,@"Original chunk ownership and bytes are indexed before EOF or Stop");
     [session stop];
     Reply(Take(commands,@"IO.close"),YES,@{});
     NSDictionary* aborted = Take(commands,@"Fetch.failRequest");

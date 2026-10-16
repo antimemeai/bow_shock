@@ -143,7 +143,7 @@ NSString* OXTrafficHeaderText(id headers) {
     dispatch_async(owner->_worker,^{
       if (owner->_closed) return;
       if (owner->_generation != generation) {
-        [owner record:@"retired_command_result" fields:@{@"method":method,@"success":@(success),@"result":result}]; return;
+        [owner record:@"retired_command_result" fields:@{@"method":method,@"parameters":params,@"success":@(success),@"result":result}]; return;
       }
       completion(success,Dict(result));
     });
@@ -274,9 +274,11 @@ NSString* OXTrafficHeaderText(id headers) {
         NSDictionary* chunk = [self blob:[result[@"bufferedData"] isKindOfClass:NSString.class] ? [[NSData alloc] initWithBase64EncodedString:result[@"bufferedData"] options:0] : nil
             representation:@"Network.streamResourceContent initial buffered bytes"];
         [request[@"chunks"] insertObject:chunk atIndex:0];
+        request[@"buffered_chunk"] = chunk;
         if (![chunk[@"available"] boolValue]) { request[@"stream_ok"] = @NO; request[@"error"] = @{@"message":@"Missing or invalid initial buffered data."}; }
       } else request[@"error"] = result;
-      [self record:@"stream_started" fields:@{@"exchange_id":request[@"id"],@"success":@(ok),@"error":ok ? @{} : result}];
+      [self record:@"stream_started" fields:@{@"exchange_id":request[@"id"],@"success":@(ok),@"error":ok ? @{} : result,
+        @"buffered_chunk":request[@"buffered_chunk"] ?: @{}}];
       [self finishRequest:request]; [self publish];
     }];
   }
@@ -347,6 +349,7 @@ NSString* OXTrafficHeaderText(id headers) {
         [self publish]; return;
       }
       pause[@"stream"] = stream; pause[@"owned"] = @YES; pause[@"state"] = @"reading_stream";
+      [self record:@"upstream_stream_opened" fields:@{@"pause_id":identity,@"fetch_id":fetchID,@"handle":stream}];
       if (self->_stopping || [pause[@"cancel_when_open"] boolValue]) [self cancel:pause identity:identity];
       else [self readStream:pause identity:identity];
     }];
@@ -374,6 +377,8 @@ NSString* OXTrafficHeaderText(id headers) {
     NSData* bytes = Body(result,@"data");
     NSDictionary* blob = [self blob:bytes representation:@"Fetch/IO stream bytes"];
     [pause[@"chunks"] addObject:blob];
+    [self record:@"upstream_chunk" fields:@{@"pause_id":identity,@"fetch_id":pause[@"summary"][@"fetch_id"],
+        @"index":@([pause[@"chunks"] count]-1),@"body_blob":blob}];
     pause[@"body_bytes"] = @([pause[@"body_bytes"] unsignedLongLongValue] + bytes.length);
     if (![blob[@"available"] boolValue]) { [self cancel:pause identity:identity]; return; }
     if ([result[@"eof"] boolValue]) {

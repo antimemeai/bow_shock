@@ -81,3 +81,16 @@ Issue arconaut-6fc records the fix and actual success; bd backup was run.
 The default and isolated Oxcart native bundles build/sign successfully. Practical
 browser traffic editing, additional target coverage and empirical OS input remain
 follow-on work; no native actor or complete Facebook extraction is claimed.
+
+Closeout: Blackbird `74a42f467c53646c76b608998e8f5f98f0eaaef0` was pushed as a
+checkpoint branch, then fast-forwarded into remote/local master after all 228
+tests and the owned lint passed. Exported/compiled tree
+`a741c5872c3a9c97ba61e937f1243c479d59326c` matches that commit exactly. The permanent
+runtime passed native application startup/reopen and a real local exec with the
+empty optional binding; no provider call was needed for those relocation checks.
+Runtime pin/readme now identify this commit. Prior pin/readme, Testing logs and
+the original away reference archive are retained in
+`blackbird/context/mainline-runtime/history/8db1b57d-b840-49aa-a004-fd516c4e151f`.
+Removed only `context/oxcart-live-fix` and its merged local branch. Kept the remote
+checkpoint branch. The primary TUI checkout/index was not checked out, reset,
+stashed or merged into; unrelated Oxcart clock work remains unchanged.

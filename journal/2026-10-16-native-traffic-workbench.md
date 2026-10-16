@@ -99,3 +99,12 @@ after each chunk/callback rather than depending on the lifetime of a busy worker
 thread. This leaves retained chunks/metadata and capture size unchanged. The
 existing direct traffic command/storage check and native build cover the change;
 no separate test merely asserts the chosen queue flag.
+
+Persist the upstream stream-handle mapping and each chunk reference as it arrives,
+and retain the initial passive buffered-chunk reference in its stream-start event.
+Previously these references lived in memory until EOF/Stop/close; an interrupted
+long stream could leave bytes without their association. Retired replies also
+retain command parameters. The direct check now reads a real chunk event and its
+exact bytes before EOF or Stop, then checks the normal partial-body reconstruction.
+Publication of the blob and its index remain two filesystem writes; partials are
+retained if publication fails. There is no claim of atomic multi-file commits.
