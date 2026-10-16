@@ -71,3 +71,7 @@ recipe](extraction-preview-recipes.md). Blackbird helps interpret readings and
 revise attempts; a visible rendered result supports evaluation. A generic first
 pass plus one tweak precedes operator/bot troubleshooting. This does not require
 an autonomous navigation loop or advance-perfect knowledge of a site.
+
+The operator's fast follows are [metrics/instrumentation and a bidirectional
+traffic capture/editing proxy](instrumentation-proxy.md), including ads. They
+follow the extraction/preview/recipe loop rather than autonomous navigation.

@@ -28,6 +28,9 @@ the first extraction. Ship the result artifact and preview first, attach the
 generic pass to existing complete readings, and improve collection on real visits
 as failures demand it.
 
+Metrics/instrumentation and a bidirectional traffic capture/editing proxy,
+including ads, fast-follow this loop; see [instrumentation and proxy](instrumentation-proxy.md).
+
 Build a visit collection that links successive immutable reading archives to
 the browser visit and exposes them together to extraction. Keep full readings;
 derive incremental indexes rather than rewriting old observations. Document

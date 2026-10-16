@@ -46,9 +46,24 @@ them when the page changes by writing whole new immutable recipes that become
 active and supersede their predecessors. Never delete earlier recipes. Preserve
 activation history and the exact recipe used by each attempt. Retain readings,
 blobs, attempts, results, previews and corrections for tracking and later study;
-no automatic expiry or destructive history cleanup. Preview/extraction ships
-first, with the recipe box following directly. No all-sites implementation or advance-perfect
+no automatic expiry or destructive history cleanup. Preview, extraction and the
+recipe loop are the immediate work. No all-sites implementation or advance-perfect
 page model is required. See [preview and recipes](plan/extraction-preview-recipes.md).
+
+## Fast follows: instrumentation and bidirectional traffic workbench
+
+Add metrics and instrumentation for visits, collection, extraction attempts,
+preview evaluation and recipe use, linked to the retained source artifacts.
+Measure actual work and failure: elapsed stages, bytes collected, collection
+gaps, new/repeated/conflicting records, corrections and outcome. Counts alone
+do not establish extraction completeness.
+
+Add a bidirectional proxy for capture and editorial work on requests and
+responses, including ads and tracker traffic. Inspect and edit headers and
+bodies in either direction; retain originals, transformations and actual
+sent/delivered versions. Join traffic to the visit and extraction where observed
+identities support it. These capabilities fast-follow the extraction/preview/
+recipe loop. See [instrumentation and proxy](plan/instrumentation-proxy.md).
 
 Operator update 2026-10-16: Oxcart develops against live sites. Retire owned-page
 workflows and site-certification gates. Investigate concrete problems as they

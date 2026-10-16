@@ -1,5 +1,13 @@
 # Network control: human workbench and external environment
 
+Current direction, 2026-10-16: a bidirectional proxy for capture and editorial
+work on requests and responses, including ads, is an immediate fast follow to
+the extraction/preview/recipe loop, alongside metrics and instrumentation.
+Preserve original and sent/delivered traffic, transformations and historical
+links for later study. The automatic expiry/eviction defaults and arbitrary
+capture budgets below are historical, not current retention requirements.
+See [the current delivery plan](../plan/instrumentation-proxy.md).
+
 Status: design proposal, 2026-10-01, [tribunal reviewed](../../papers/design-tribunal.md). No engine, proxy, privileged helper, or dependency is adopted by this document. No host network changes are authorized by writing it. The [product intent](../product-intent.md) requires human request/response craftsmanship and deliberate interruptions outside Chromium to perturb tracker inference. This design preserves both powers while separating their execution owners from the model's ordinary OS-input path.
 
 ## 1. Owners and invariant boundaries

@@ -20,8 +20,10 @@ active recipe. Never delete or edit earlier recipes. Preserve activation history
 and bind each attempt to the exact recipe it used. Preserve readings/blobs, all
 attempts/results/previews and corrections for tracking and later study; no
 automatic expiry or cleanup of this history. Historical retention defaults do
-not govern the current extraction workflow. Preview/extraction ships first;
-the recipe box follows directly.
+not govern the current extraction workflow. Preview, extraction and the recipe
+loop are the immediate product work. The operator's fast follows are metrics
+and instrumentation plus a bidirectional proxy for traffic capture and editing,
+including ads/tracker traffic. Read `docs/plan/instrumentation-proxy.md`.
 
 Read [BLACKBIRD.md](BLACKBIRD.md) before working here. The project is a
 semi-automatic browser: human and agent browsing together, with explicit,

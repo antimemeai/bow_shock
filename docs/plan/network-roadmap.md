@@ -1,5 +1,14 @@
 # Network implementation lane
 
+Current direction, 2026-10-16: metrics/instrumentation and a bidirectional proxy
+for traffic capture and editing, including ads, fast-follow the live extraction,
+preview and recipe loop. See [the current follow-up plan](instrumentation-proxy.md).
+The ordering, owned-page progression, capability-promotion gates, arbitrary
+capture caps and automatic data eviction/expiry below are historical; they do
+not govern this delivery. Retain original and modified traffic with the visit
+history. Fix concrete live failures without requiring every network capability
+or external fault topology before shipping a useful workbench.
+
 Status: implementation-plan proposal, 2026-10-01. This orders the reviewed
 [network design](../design/network-control.md) and
 [evidence/baseline design](../design/evidence-and-tables.md). It adopts no engine,

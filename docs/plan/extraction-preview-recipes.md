@@ -95,10 +95,11 @@ not govern this extraction workflow.
 
 ## Delivery order
 
-Ship the preview renderer, persisted result and generic-pass/tweak loop first.
-Fast-follow with the recipe box using the immutable whole-recipe and activation
-model above. Preserve attempts and their source links from the first unit so
-recipe history can refer to actual work rather than reconstructing it afterward.
+Ship the preview renderer, persisted result, generic-pass/tweak and recipe loop.
+Preserve attempts and their source links from the first unit so recipe history
+refers to actual work rather than reconstructing it afterward. The operator's
+fast follows are metrics/instrumentation and a bidirectional traffic proxy for
+capture and editing, including ads; see [the follow-up plan](instrumentation-proxy.md).
 
 ## Direct live evaluation
 
