@@ -59,3 +59,33 @@ only a label or short number. Raise the fragment cap to1024 while keeping the
 same32KiB combined text and2KiB per-fragment bounds, then recheck the actual HN
 page. The node/work and wire-frame limits remain adequate: parsing was already
 bounded independently, and transmitted links still have their own64-entry cap.
+
+The1024-fragment native tests and signed rebuild passed. Its first actual HN
+attempt (run-whfxv2d4) displayed another macOS per-item prompt for the changed
+ad-hoc signature and reached Chromium's teardown watchdog before a capture
+report. Retain that failure without claiming a larger native reading yet.
+No further product-source rebuild is planned while this access decision is
+pending. The next integration unit is on-demand native page reads through the
+existing Blackbird application channel, followed by separate OS execution of
+action proposals; the live plan records that sequence without site gates.
+
+Blackbird's combined source gate passed165 Debug tests and full owned C++/Lua
+lint, producing merge be4a46f. While that gate ran, independent TUI source edits
+appeared in the primary checkout. Preserve those source/index changes and its
+branch, rather than switching that active checkout to master. Retain an exported
+merged-mainline source/build under `blackbird/context/mainline-runtime` (no Git
+worktree) for Oxcart. Its default workflow and helpers then have stable paths;
+update the persistent normal Oxcart session's saved workflow through Blackbird's
+ordinary CLI. The launcher now considers this application-capable build after
+ordinary release/debug builds and before PATH. No new production source or test
+gate is needed for relocating the identical source build.
+
+The stable mainline target build succeeded at
+`blackbird/context/mainline-runtime/build/debug/blackbird`; its exported source
+is under `context/mainline-runtime/source`. Blackbird reopened the normal Oxcart
+session with that source's `programs/turn.lua` through its ordinary CLI and EOF,
+exiting0 without a model call. History/provider/auth remain retained. The ordinary
+Oxcart launcher now selects this actual runtime and has opened Hacker News using
+the persistent `context/runtime/live` profile/session. This normal preview has
+no smoke deadline and remains available for the operator's macOS item-access
+response. No product rebuild or signing change follows it in this turn.

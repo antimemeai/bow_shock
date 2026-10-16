@@ -38,6 +38,7 @@ def main():
     candidates = [
         Path.home() / 'projects/blackbird/build/release/blackbird',
         Path.home() / 'projects/blackbird/build/debug/blackbird',
+        Path.home() / 'projects/blackbird/context/mainline-runtime/build/debug/blackbird',
     ]
     installed = shutil.which('blackbird')
     if installed:

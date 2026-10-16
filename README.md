@@ -8,12 +8,14 @@ engine and tools. Oxcart owns browser observation and presentation.
 
 ## Run
 
-Build the merged Blackbird application interface in its ordinary checkout:
+Blackbird's application interface is merged on master. A mainline source/build
+export keeps Oxcart running while the main Blackbird checkout has independent
+TUI work. Rebuild that retained runtime with:
 
 ```sh
-cd ~/projects/blackbird
-cmake --preset debug -DCMAKE_OSX_SYSROOT="$(xcrun --show-sdk-path)"
-cmake --build build/debug --target blackbird --parallel 6
+cd ~/projects/blackbird/context/mainline-runtime/source
+cmake --preset debug -B ../build/debug -DCMAKE_OSX_SYSROOT="$(xcrun --show-sdk-path)"
+cmake --build ../build/debug --target blackbird --parallel 6
 ```
 
 Then build and open Oxcart:
@@ -25,8 +27,8 @@ python3.13 scripts/build-native.py
 ```
 
 Select another executable with `--blackbird /absolute/path/to/blackbird`.
-The launcher checks the ordinary Blackbird release build, debug build, then
-`blackbird` on PATH, selecting one whose help advertises `--application`.
+The launcher checks the ordinary Blackbird release build, debug build, retained
+mainline build, then `blackbird` on PATH, selecting one whose help advertises `--application`.
 An explicit `--blackbird` selection takes precedence.
 `--data-dir` selects a dedicated browser profile and Blackbird session;
 `--model` selects the Blackbird model. Provider authentication belongs to
@@ -64,8 +66,8 @@ remain historical, including in-progress work that predates this change.
 
 [The integration plan](docs/plan/live-blackbird.md) records current ownership and
 interface. [The live-reader plan](docs/plan/live-observation.md) records its actual
-capture behavior. The Blackbird side documents the wire contract in
-`../blackbird/docs/APPLICATION_INTERFACE.md`.
+capture behavior. Blackbird documents the
+[wire contract](https://github.com/antimemeai/blackbird/blob/master/docs/APPLICATION_INTERFACE.md).
 
 Production uses AppKit/Objective-C++ and the adopted matched CEF runtime.
 Native Blackbird IPC uses length-prefixed BBM2 values. The retained Rust/Codex

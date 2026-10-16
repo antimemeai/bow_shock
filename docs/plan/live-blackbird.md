@@ -44,3 +44,17 @@ transport checks. Run a real Blackbird request with a live page observation and
 inspect its actual answer. Run changed Rust checks for the Codex bump. Review
 concrete source and fix findings once; no review of reviews or extra permission
 gate. Preserve unrelated in-progress work in both repositories.
+
+## Continue from live use
+
+The native Python.org reading now reaches a real Blackbird answer, and Hacker
+News capture passes. Live use exposed and repaired a false one-layout-row-per-node
+assumption and a fragment limit that exhausted well before the text-byte budget.
+Observations now include rendered link destinations alongside page text.
+
+Next, let Blackbird request another native reading during a turn through the
+existing application channel. Give host calls their own IDs and return the
+actual capture or error; Stop retires pending calls. Then connect browser-action
+proposals to the separate native OS executor. Keep working on real browsing
+tasks, with ordinary human navigation and direct fixes for encountered failures.
+There is no site-certification prerequisite for either unit.
