@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Build Oxcart's live native browser against the acquired CEF tuple."""
 import hashlib
+import argparse
 import json
 from pathlib import Path
 import re
@@ -8,7 +9,11 @@ import shutil
 import subprocess
 
 ROOT = Path(__file__).resolve().parent.parent
-app = ROOT / 'context/build/native/Bow Shock.app'
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--build-dir', type=Path, default=ROOT / 'context/build/native')
+options = parser.parse_args()
+build = options.build_dir.expanduser().resolve()
+app = build / 'Bow Shock.app'
 processes = subprocess.run(['/usr/bin/pgrep', '-f', '^' + re.escape(str(app)) + '/'],
                            capture_output=True, text=True, timeout=10)
 if processes.returncode == 0:
@@ -19,9 +24,9 @@ manifest = json.loads((ROOT / 'runtime/cef-macos-arm64.json').read_text())
 if manifest['status'] != 'acquired':
     raise SystemExit('Acquire the pinned CEF runtime first: python3 scripts/cef-runtime.py acquire')
 commands = [
-    ['cmake', '-S', str(ROOT / 'native/cef'), '-B', str(ROOT / 'context/build/native'),
+    ['cmake', '-S', str(ROOT / 'native/cef'), '-B', str(build),
      '-G', 'Ninja', '-DCMAKE_BUILD_TYPE=Release', f'-DCEF_ROOT={ROOT / manifest["distribution_dir"]}'],
-    ['cmake', '--build', str(ROOT / 'context/build/native'), '--target', 'bow_shock', '--parallel', '4'],
+    ['cmake', '--build', str(build), '--target', 'bow_shock', '--parallel', '4'],
 ]
 for command in commands:
     print('+ ' + ' '.join(command), flush=True)
@@ -30,7 +35,7 @@ for command in commands:
 for name in ['bow_shock_clock_probe', 'bow-shock-controller', 'bow-shock-native-control']:
     (app / 'Contents/MacOS' / name).unlink(missing_ok=True)
 plists = [app / 'Contents/Info.plist']
-for helper in (ROOT / 'context/build/native/helpers').glob('*.app'):
+for helper in (build / 'helpers').glob('*.app'):
     destination = app / 'Contents/Frameworks' / helper.name
     if destination.exists():
         shutil.rmtree(destination)

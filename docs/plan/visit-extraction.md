@@ -12,8 +12,11 @@ The visible native CEF browser loads live sites. A requested reading saves the
 complete DOMSnapshot dataset returned by its current target, plus full derived
 text/index files and large-string blobs. Blackbird receives the file locator and
 can inspect it using ordinary tools. This is one state, not the whole visit.
-There is no visit accumulator, continuous collection, semantic result workspace,
-or browser-input executor in the active target. Existing capture limitations
+The active target now accumulates explicitly requested reading references per
+visit, runs structured Blackbird extraction and one automatic revision, renders
+a native result/source preview, accepts further corrections and preserves full
+recipe/activation history. There is no continuous collection or browser-input
+executor yet. Existing capture limitations
 include images/network bodies and separately attached out-of-process targets.
 
 ## Next product unit

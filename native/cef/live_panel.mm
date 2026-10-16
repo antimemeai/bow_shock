@@ -1,6 +1,7 @@
 #import "live_panel.h"
 #import "live_observation.h"
 #import "blackbird_connection.h"
+#import "extraction_controller.h"
 
 namespace {
 NSTextView* TextView(NSView* parent, NSRect frame, BOOL editable) {
@@ -29,6 +30,8 @@ NSButton* Button(NSView* view, NSString* title, id target, SEL action, NSRect fr
   NSButton* _observe;
   NSButton* _stop;
   NSButton* _includePage;
+  NSButton* _extract;
+  OXExtractionController* _extraction;
   BSBlackbirdConnection* _connection;
   NSURL* _readingsURL;
   BSLiveObservation* _observer;
@@ -65,7 +68,9 @@ NSButton* Button(NSView* view, NSString* title, id target, SEL action, NSRect fr
   _pageLabel = [NSTextField labelWithString:@"Browse to a page to begin."];
   _pageLabel.lineBreakMode = NSLineBreakByTruncatingMiddle;
   _pageLabel.frame = NSMakeRect(16, height - 99, width - 32, 22); [content addSubview:_pageLabel];
-  _transcript = TextView(content, NSMakeRect(16, 226, width - 32, height - 340), NO);
+  _extract = Button(content,@"Extract",self,@selector(extract:),NSMakeRect(16,height-140,120,30));
+  Button(content,@"Preview",self,@selector(preview:),NSMakeRect(146,height-140,120,30));
+  _transcript = TextView(content, NSMakeRect(16, 226, width - 32, height - 378), NO);
   _includePage = [NSButton checkboxWithTitle:@"Include a fresh reading of this page" target:self action:@selector(includePageChanged:)];
   _includePage.state = NSControlStateValueOn;
   _includePage.frame = NSMakeRect(16, 194, width - 32, 25); [content addSubview:_includePage];
@@ -80,8 +85,11 @@ NSButton* Button(NSView* view, NSString* title, id target, SEL action, NSRect fr
   _status.frame = NSMakeRect(16, 18, width - 32, 23); [content addSubview:_status];
   _connection = [[BSBlackbirdConnection alloc] initWithExecutableURL:executable
       sessionURL:session workingDirectoryURL:directory model:model];
+  _extraction = [[OXExtractionController alloc] initWithDataURL:session.URLByDeletingLastPathComponent connection:_connection result:result];
   __weak BSLivePanel* weakSelf = self;
   _connection.eventHandler = ^(NSDictionary* event) { [weakSelf receive:event]; };
+  _extraction.stateChanged = ^{ [weakSelf updateButtons]; };
+  _extraction.finished = ^{ BSLivePanel* panel = weakSelf; if (panel && panel->_smoke && [panel->_result[@"smoke_extraction"] boolValue]) panel->_quit(); };
   [_panel orderFront:nil]; [self updateButtons]; [_connection start];
   return self;
 }
@@ -104,12 +112,14 @@ NSButton* Button(NSView* view, NSString* title, id target, SEL action, NSRect fr
 - (void)updateButtons {
   _observe.enabled = !_closing && _browser && !_capturing && !_loading;
   _send.enabled = !_closing && _connection.ready && !_capturing &&
-      (_includePage.state != NSControlStateValueOn || (_browser && !_loading));
+      !_extraction.busy && (_includePage.state != NSControlStateValueOn || (_browser && !_loading));
+  _extract.enabled = !_closing && _connection.ready && !_connection.running && !_extraction.busy && !_capturing && _browser && !_loading;
   _send.title = _connection.running ? @"Steer" : @"Send";
-  _stop.enabled = !_closing && (_capturing || _connection.running);
+  _stop.enabled = !_closing && (_capturing || _connection.running || _extraction.busy);
 }
 - (void)includePageChanged:(id)sender { (void)sender; [self updateButtons]; }
 - (void)receive:(NSDictionary*)event {
+  if ([_extraction receiveEvent:event]) { [self updateButtons]; return; }
   NSString* type = event[@"type"];
   if ([type isEqual:@"ready"]) {
     _connectionLabel.stringValue = [NSString stringWithFormat:@"Blackbird · %@", event[@"model"] ?: @"ready"];
@@ -148,12 +158,14 @@ NSButton* Button(NSView* view, NSString* title, id target, SEL action, NSRect fr
   _browser = browser; _observer = [[BSLiveObservation alloc] initWithBrowser:browser readingsURL:_readingsURL];
   _loading = browser->IsLoading();
   _pageLabel.stringValue = [NSString stringWithUTF8String:browser->GetMainFrame()->GetURL().ToString().c_str()] ?: @"";
+  [_extraction beginVisitWithURL:_pageLabel.stringValue title:@"Browser visit"];
   [self updateButtons];
 }
 - (void)mainLoadStartedForBrowser:(CefRefPtr<CefBrowser>)browser {
   if (!_browser || !_browser->IsSame(browser)) return;
   ++_captureEpoch; _capturing = NO; _loading = YES;
   [_observer cancel]; [_observer nativeLifecycle:@"navigation"]; _status.stringValue = @"Loading page…";
+  [_extraction beginVisitWithURL:[NSString stringWithUTF8String:browser->GetMainFrame()->GetURL().ToString().c_str()] ?: @"" title:@"Browser visit"];
   [self updateButtons];
 }
 - (void)mainLoadEndedForBrowser:(CefRefPtr<CefBrowser>)browser {
@@ -182,9 +194,11 @@ NSButton* Button(NSView* view, NSString* title, id target, SEL action, NSRect fr
     if (!page) {
       self->_status.stringValue = error ?: @"Page reading failed. Try again.";
       self->_result[@"capture_error"] = self->_status.stringValue;
+      [self->_extraction readingFailed:self->_status.stringValue];
       [self updateButtons]; if (self->_smoke) self->_quit(); return;
     }
     self->_result[@"page"] = [page nativeValue];
+    [self->_extraction addReading:[page nativeValue]];
     self->_result[@"block_count"] = @(page.blockCount);
     self->_pageLabel.stringValue = page.url;
     self->_status.stringValue = [NSString stringWithFormat:@"Saved %lu text blocks · %llu bytes.",
@@ -210,13 +224,22 @@ NSButton* Button(NSView* view, NSString* title, id target, SEL action, NSRect fr
 - (void)send:(id)sender {
   (void)sender;
   NSString* objective = [_composer.string stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceAndNewlineCharacterSet];
-  if (!objective.length || !_connection.ready || _closing || _capturing) return;
+  if (!objective.length || !_connection.ready || _closing || _capturing || _extraction.busy) return;
   if (_includePage.state == NSControlStateValueOn) {
     [self capture:^(BSLivePage* page) { [self submit:objective page:page]; }];
   } else [self submit:objective page:nil];
 }
+- (void)extract:(id)sender {
+  (void)sender;
+  if (!_extract.enabled) return;
+  NSString* objective = [_composer.string stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceAndNewlineCharacterSet];
+  if (!objective.length) objective = @"Extract and organize the useful information from this visit, preserving source-supported detail and describing gaps.";
+  [self capture:^(BSLivePage*) { [self->_extraction extract:objective]; }];
+}
+- (void)preview:(id)sender { (void)sender; [_extraction showPreview]; }
 - (void)stop:(id)sender {
   (void)sender; ++_captureEpoch; _capturing = NO; [_observer cancel];
+  [_extraction stop];
   [_connection cancel]; _status.stringValue = @"Stop requested."; [self updateButtons];
 }
 - (void)maybeSmoke {
@@ -226,7 +249,8 @@ NSButton* Button(NSView* view, NSString* title, id target, SEL action, NSRect fr
   _smokeStarted = YES;
   dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 800 * NSEC_PER_MSEC), dispatch_get_main_queue(), ^{
     [self capture:^(BSLivePage* page) {
-      if (self->_smokeObjective.length) [self submit:self->_smokeObjective page:page];
+      if ([self->_result[@"smoke_extraction"] boolValue]) [self->_extraction extract:self->_smokeObjective];
+      else if (self->_smokeObjective.length) [self submit:self->_smokeObjective page:page];
       else self->_quit();
     }];
   });
@@ -234,6 +258,10 @@ NSButton* Button(NSView* view, NSString* title, id target, SEL action, NSRect fr
 - (void)closeWithCompletion:(void (^)(void))completion {
   if (_closing) return;
   _closing = YES; ++_captureEpoch; [_observer close]; _observer = nil; _browser = nullptr;
-  [self updateButtons]; [_connection closeWithCompletion:completion];
+  [self updateButtons];
+  dispatch_group_t group = dispatch_group_create(); dispatch_group_enter(group); dispatch_group_enter(group);
+  [_extraction closeWithCompletion:^{ dispatch_group_leave(group); }];
+  [_connection closeWithCompletion:^{ dispatch_group_leave(group); }];
+  dispatch_group_notify(group,dispatch_get_main_queue(),completion);
 }
 @end

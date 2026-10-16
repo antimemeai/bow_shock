@@ -28,11 +28,13 @@ def main():
     parser.add_argument('--model', default='gpt-6.1-sol')
     parser.add_argument('--smoke-output', type=Path, help='Read the live page, save a binary plist report and exit.')
     parser.add_argument('--smoke-objective', help='Also send the live page and this objective to Blackbird before exiting.')
+    parser.add_argument('--smoke-extraction', action='store_true', help='Run extraction, render its preview, and perform one automatic revision.')
+    parser.add_argument('--app', type=Path, help='Use a separately built native application executable.')
     options = parser.parse_args()
     parsed = urlsplit(options.url)
     if parsed.scheme not in ('http', 'https') or not parsed.hostname:
         parser.error('Choose an HTTP or HTTPS live site URL.')
-    app = ROOT / 'context/build/native/Bow Shock.app/Contents/MacOS/Bow Shock'
+    app = options.app.expanduser().resolve() if options.app else ROOT / 'context/build/native/Bow Shock.app/Contents/MacOS/Bow Shock'
     if sys.platform != 'darwin' or not app.is_file():
         parser.error('Build the macOS app with python3 scripts/build-native.py first.')
     candidates = [
@@ -49,6 +51,8 @@ def main():
         parser.error('Build Blackbird with --application support or select --blackbird to send a request.')
     if options.smoke_objective and not options.smoke_output:
         parser.error('--smoke-objective requires --smoke-output.')
+    if options.smoke_extraction and not options.smoke_objective:
+        parser.error('--smoke-extraction requires --smoke-objective and --smoke-output.')
     data = options.data_dir.expanduser().resolve()
     data.mkdir(parents=True, exist_ok=True)
     command = [str(app), f'--bs-profile={data / "profile"}', f'--bs-url={options.url}',
@@ -60,6 +64,8 @@ def main():
         command.append(f'--ox-smoke-output={output}')
     if options.smoke_objective:
         command.append(f'--ox-smoke-objective={options.smoke_objective}')
+    if options.smoke_extraction:
+        command.append('--ox-smoke-extraction')
     print(f'Oxcart: {options.url}\nBlackbird: {selected}\nSession: {data / "blackbird"}', flush=True)
     child = subprocess.Popen(command, start_new_session=not bool(options.smoke_output))
     while True:

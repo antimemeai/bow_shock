@@ -23,7 +23,7 @@ find_package(CEF REQUIRED)
 add_subdirectory("${CEF_LIBCEF_DLL_WRAPPER_PATH}" cef_wrapper)
 
 add_executable(bow_shock MACOSX_BUNDLE main.mm live_observation.mm reading_archive.mm live_panel.mm
-  blackbird_connection.mm blackbird_packet.mm)
+  blackbird_connection.mm blackbird_packet.mm extraction_workspace.mm extraction_preview.mm extraction_controller.mm)
 SET_EXECUTABLE_TARGET_PROPERTIES(bow_shock)
 target_include_directories(bow_shock PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/../control")
 target_compile_options(bow_shock PRIVATE -fobjc-arc -fobjc-exceptions -Werror)

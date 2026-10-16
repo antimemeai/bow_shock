@@ -3,14 +3,15 @@
 Oxcart's primary purpose is extracting and organizing information across a live
 page visit, including content revealed through scrolling, expansion and lazy
 loading. Organized output follows the information rather than the DOM's shape.
-The current build supplies individual complete readings and a Blackbird panel;
-visit accumulation and semantic extraction are the next product work. See
+The current implementation supplies complete readings, accumulated per-visit
+reading references, a native extraction preview and an immutable recipe box. See
 [the visit-extraction plan](docs/plan/visit-extraction.md).
 
-The next implementation loop is a generic extraction, rendered preview and one
+The extraction loop is a generic extraction, rendered preview and one
 round of tweaks. Operator and bot then work through remaining page-specific
 failures and save the successful approach as a dated page-type recipe. The
-preview stage and recipe box are planned, not implemented; see
+preview stage supports source inspection, selected-text corrections and recipe
+successor saves; see
 [the concrete next unit](docs/plan/extraction-preview-recipes.md).
 Recipes are preserved: each update is a whole new recipe that becomes active,
 superseding its predecessor. Keep all readings, attempts, previews and recipe
@@ -59,6 +60,23 @@ starts the replacement objective. Command+Enter sends. **Stop** cancels pending
 capture and requests cancellation of Blackbird's active work. Ordinary native
 browser navigation continues while the agent works.
 
+**Extract** uses the composer objective (or a general extraction objective), saves
+a fresh reading and starts a structured extraction using readings collected in
+this visit. **Preview** opens the native result stage. Blackbird writes an initial
+result, reads its actual rendered preview and makes one automatic revision.
+Further revisions come from your corrections in the preview editor; selected
+result text is included. Source links open retained capture text and highlight
+document byte ranges when supplied. Human scrolling/expansion plus **Read page**
+adds further states; the next manual correction can include those new readings.
+
+**Save recipe…** lets you edit the full proposed approach and saves a new dated
+recipe that becomes active for that page type. **Recipes…** shows all versions
+and lets you choose one for the next extraction, including a historical version
+or the generic pass. Selecting a recipe is explicit in this first implementation.
+Every attempt keeps its exact recipe identity. Original readings, outputs,
+previews, failed attempts and superseded recipes remain on disk. See
+[the workspace format](docs/extraction-workspace.md).
+
 Each reading is saved under the selected data directory's `readings/<capture-id>/`:
 
 - `reading.bplist`: metadata, before/after frame trees, coverage and document file paths.
@@ -83,8 +101,13 @@ origin. Page data remains separate from the operator objective.
 
 The integration does not yet supply Blackbird with browser action tools.
 Keyboard/mouse/scroll execution, network inspection/editing/perturbation and
-learned table extraction remain subsequent product work. Blackbird's ordinary
+automatic page-type recognition remain subsequent product work. Blackbird's ordinary
 coding tools retain their usual agency.
+
+Collection currently follows explicit readings; continuous capture, page-local
+agent exploration and fitted empirical input profiles remain later work. The
+bot inspects saved renderer text/source maps; the native stage supports human
+visual inspection and exports PDF/RTF from the displayed document.
 
 ## Development
 
@@ -110,6 +133,8 @@ Focused checks:
 ```sh
 python3.13 tests/live_observation.py
 python3.13 tests/blackbird_transport.py
+python3.13 tests/extraction_workspace.py
+python3.13 tests/extraction_controller.py
 python3.13 scripts/try-poc.py https://www.python.org/ --smoke-output context/runtime/python.plist
 ```
 

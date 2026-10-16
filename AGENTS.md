@@ -14,6 +14,8 @@ and bot can evaluate it. If that still fails, operator and bot inspect the actua
 page and iterate until useful. Save the working page-type approach as a dated,
 reusable recipe. Do not require advance knowledge of every website. Read
 `docs/plan/extraction-preview-recipes.md` before implementing this loop.
+The native extraction/preview/recipe loop is now implemented; read
+`docs/extraction-workspace.md` for the current files, controls and remaining gaps.
 
 Recipe updates are whole new immutable recipes that supersede the previous
 active recipe. Never delete or edit earlier recipes. Preserve activation history

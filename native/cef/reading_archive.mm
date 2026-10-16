@@ -163,6 +163,14 @@ NSURL* BSWriteReading(NSURL* root, NSString* captureID, NSDictionary* metadata,
       success = YES;
     } while (false);
   } @catch (NSException* exception) { Fail(&failure,exception.reason ?: @"Reading archive failed."); }
-  if (!success) { [NSFileManager.defaultManager removeItemAtURL:stage error:nil]; if (outputError) *outputError = failure; return nil; }
+  if (!success) {
+    NSMutableDictionary* details = [failure.userInfo mutableCopy] ?: [NSMutableDictionary dictionary];
+    details[@"retained_reading_directory"] = stage.path;
+    details[NSLocalizedDescriptionKey] = [NSString stringWithFormat:@"%@ Partial reading retained at %@",
+        failure.localizedDescription ?: @"Reading archive failed.",stage.path];
+    if (failure) details[NSUnderlyingErrorKey] = failure;
+    if (outputError) *outputError = [NSError errorWithDomain:@"dev.oxcart.reading" code:1 userInfo:details];
+    return nil;
+  }
   return final;
 }

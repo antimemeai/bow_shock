@@ -5,6 +5,12 @@ format with adjacent blobs, and let Blackbird decide how to consume it. This
 supersedes text, fragment, link, snapshot-size, node-count and elapsed-time caps.
 Keep structural validation and explicit capture/IO failures. Stop still cancels.
 
+Preservation update: failed writes/publications retain their `.reading-*`
+directory and report its path. The new extraction timeline records reading
+failure when storage permits. Partial directories remain separate from completed
+readings and are never advertised to extraction as complete. This supersedes
+the initial writer's removal of failed staging data.
+
 Each requested reading writes a private directory under the browser data area's
 `readings/`. `reading.bplist` contains versioned native metadata, before/after
 frame trees, all DOMSnapshot documents/columns and its indexed string table.

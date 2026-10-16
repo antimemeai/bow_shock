@@ -116,11 +116,15 @@ int main() { @autoreleasepool {
   diskFull=false;
   Require([failure.localizedDescription containsString:@"Write reading"],"write failure lost its error across autorelease pools");
   Require(![NSFileManager.defaultManager fileExistsAtPath:[root.path stringByAppendingPathComponent:@"disk-full"]],"failed write published a partial reading");
+  NSString* retained=failure.userInfo[@"retained_reading_directory"];
+  Require(retained && [NSFileManager.defaultManager fileExistsAtPath:[retained stringByAppendingPathComponent:@"dom.bplist"]],"failed capture discarded harvested source tables");
   NSURL* occupied=[root URLByAppendingPathComponent:@"not-a-directory"];
   [@"occupied" writeToURL:occupied atomically:YES encoding:NSUTF8StringEncoding error:nil];
   Require(!BSWriteReading(occupied,@"failure",@{},snapshot,page.documents,&failure),"failed archive destination reported successful");
+  NSUInteger partials=0;
   for (NSURL* entry in [NSFileManager.defaultManager contentsOfDirectoryAtURL:root includingPropertiesForKeys:nil options:0 error:nil])
-    Require(![entry.lastPathComponent hasPrefix:@".reading-"],"failed write leaked staging directory");
+    if ([entry.lastPathComponent hasPrefix:@".reading-"]) ++partials;
+  Require(partials>=2,"failed publication did not retain prior partial attempts");
   unichar surrogate=0xd800;
   NSString* unusual=[NSString stringWithCharacters:&surrogate length:1];
   NSDictionary* unusualSnapshot=Snapshot(unusual);

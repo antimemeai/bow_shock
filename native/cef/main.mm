@@ -171,6 +171,7 @@ int main(int argc, char** argv) {
     blackbirdExecutable = [NSURL fileURLWithPath:executable];
     blackbirdSession = [NSURL fileURLWithPath:session]; workingDirectory = [NSURL fileURLWithPath:directory];
     runResult = [@{@"browser_created": @NO, @"browser_closed": @NO, @"cef_shutdown": @NO} mutableCopy];
+    runResult[@"smoke_extraction"] = @(command->HasSwitch("ox-smoke-extraction"));
     NSString* profile = text("bs-profile") ?: [NSHomeDirectory()
         stringByAppendingPathComponent:@"Library/Application Support/Oxcart/profile"];
     NSError* error = nil;

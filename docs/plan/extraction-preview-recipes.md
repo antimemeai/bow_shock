@@ -32,11 +32,15 @@ iteration or truncate content in any reading.
 
 ## Preview stage: first implementation unit
 
-The active native application has a browser and conversation panel, but no
-extraction-result renderer. Add a separate result stage with the browser still
-available for comparison. The stage displays organized extraction output, not
-the source DOM or a stream of model commentary. Support useful combinations of
-sections, records, text and references rather than requiring a single table.
+Implemented in the active native target: an AppKit extraction-result stage
+beside the browser/conversation panel. It renders headings, paragraphs, lists,
+labeled records and tables with source links and interpretation labels. Each
+attempt retains the structured result, actual displayed text/RTF/PDF and source
+map. Initial extraction gets one automatic revision; further corrections are
+operator-directed. Explicit readings accumulate per visit, and complete recipe
+successors plus activation history persist independently. See
+[the workspace format](../extraction-workspace.md). Continuous collection and
+native input remain later work; recipe selection is explicit initially.
 
 Use a persisted structured result artifact as the renderer's input. The bot and
 operator evaluate the same attempt: an attempt identity binds input readings,

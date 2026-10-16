@@ -17,8 +17,11 @@ def main():
     parser.add_argument('url')
     parser.add_argument('--expect-text', help='A source text fragment expected on this live page.')
     parser.add_argument('--expect-link', help='An exact rendered link destination expected on this live page.')
+    parser.add_argument('--expect-preview-text', action='append', default=[], help='A concrete value expected in the actual extraction preview; repeat as needed.')
     parser.add_argument('--objective', help='Run a real Blackbird turn with the captured page.')
     parser.add_argument('--blackbird', type=Path)
+    parser.add_argument('--app', type=Path)
+    parser.add_argument('--extraction', action='store_true', help='Inspect actual structured extraction and rendered previews after one revision.')
     parser.add_argument('--timeout', type=float, help='Optional automation timeout in seconds; ordinary readings wait for completion or Stop.')
     args = parser.parse_args()
     artifacts = ROOT / 'context/runtime/live-checks'
@@ -29,6 +32,12 @@ def main():
                '--data-dir', str(data), '--smoke-output', str(output)]
     if args.blackbird:
         command += ['--blackbird', str(args.blackbird)]
+    if args.app:
+        command += ['--app', str(args.app)]
+    if args.extraction:
+        if not args.objective:
+            parser.error('--extraction requires --objective.')
+        command += ['--smoke-extraction']
     if args.objective:
         command += ['--smoke-objective', args.objective]
     print(f'Live run: {data}', flush=True)
@@ -78,11 +87,31 @@ def main():
         raise AssertionError(('expected live text absent', args.expect_text, data))
     if args.expect_link and args.expect_link not in blocks['link_url']:
         raise AssertionError(('expected rendered link absent', args.expect_link, data))
-    if args.objective and (result.get('outcome') != 'completed' or not result.get('answer', '').strip()):
+    if args.objective and not args.extraction and (result.get('outcome') != 'completed' or not result.get('answer', '').strip()):
         raise AssertionError(('Blackbird request failed', result.get('outcome'), result.get('blackbird_error'), data))
     print(f'Captured {page["title"]!r}: {len(views)} documents, '
           f'{result["block_count"]} blocks, {reference["text_bytes"]} UTF-8 text bytes; {directory}', flush=True)
-    if args.objective:
+    if args.extraction:
+        extraction = result.get('extraction', {})
+        if not extraction.get('valid') or extraction.get('phase') != 'tweak' or result.get('extraction_error'):
+            raise AssertionError(('extraction failed', result, data))
+        attempt = Path(extraction['directory'])
+        with (attempt / 'received.bplist').open('rb') as stream:
+            document = plistlib.load(stream)
+        assert document['format'] == 'oxcart.extraction' and document['blocks']
+        assert (attempt / 'preview.txt').read_text().strip()
+        preview_text = (attempt / 'preview.txt').read_text()
+        for expected in args.expect_preview_text:
+            if expected.casefold() not in preview_text.casefold():
+                raise AssertionError(('expected extraction value absent', expected, attempt))
+        assert (attempt / 'preview.pdf').read_bytes().startswith(b'%PDF-')
+        assert (attempt / 'preview.rtf').is_file() and (attempt / 'preview.bplist').is_file()
+        with (attempt / 'attempt.bplist').open('rb') as stream:
+            manifest = plistlib.load(stream)
+        previous = Path(manifest['predecessor_directory'])
+        assert (previous / 'preview.txt').is_file() and (previous / 'received.bplist').is_file()
+        print('Extraction preview: ' + str(attempt))
+    elif args.objective:
         print('Blackbird: ' + result['answer'], flush=True)
 
 
