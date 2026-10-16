@@ -7,6 +7,12 @@ The current build supplies individual complete readings and a Blackbird panel;
 visit accumulation and semantic extraction are the next product work. See
 [the visit-extraction plan](docs/plan/visit-extraction.md).
 
+The next implementation loop is a generic extraction, rendered preview and one
+round of tweaks. Operator and bot then work through remaining page-specific
+failures and save the successful approach as a dated page-type recipe. The
+preview stage and recipe box are planned, not implemented; see
+[the concrete next unit](docs/plan/extraction-preview-recipes.md).
+
 A live native browser with Blackbird working beside you. Browse ordinary sites,
 read the rendered page, and send your objective and page context to Blackbird.
 The conversation panel streams replies, accepts steering during work, and stops

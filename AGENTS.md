@@ -8,6 +8,13 @@ Blackbird-driven browsing comes later. Read `docs/plan/visit-extraction.md` and
 the current clarification at the top of `docs/product-intent.md` before choosing
 next work; these supersede earlier extraction/action sequencing.
 
+Operator's implementation standard: a generic first attempt and one round of
+tweaks are step zero. Render the extracted result in a preview stage so operator
+and bot can evaluate it. If that still fails, operator and bot inspect the actual
+page and iterate until useful. Save the working page-type approach as a dated,
+reusable recipe. Do not require advance knowledge of every website. Read
+`docs/plan/extraction-preview-recipes.md` before implementing this loop.
+
 Read [BLACKBIRD.md](BLACKBIRD.md) before working here. The project is a
 semi-automatic browser: human and agent browsing together, with explicit,
 bounded delegation and a native connection to an agent such as Blackbird.

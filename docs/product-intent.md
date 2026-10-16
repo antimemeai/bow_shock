@@ -29,6 +29,22 @@ advanced work and is not the next product milestone. The next milestone is a
 useful accumulated, organized extraction from a real visit. See
 [visit extraction](plan/visit-extraction.md).
 
+## Implementation standard: attempt, preview, adjust
+
+Start with a naive generic extraction and one round of tweaks. Judge the actual
+result in a preview renderer beside the live page. The operator and Oxcart bot
+need that stage to inspect what was collected, how it was organized, what is
+missing, and whether duplicates or misleading groupings remain. A conversation
+answer saying extraction succeeded is insufficient.
+
+If the first attempt and tweak do not work, operator and bot dissect the live
+page together and adjust collection, interpretation or rendering until they do.
+Preserve a dated recipe for the successful page type in a recipe box. Recipes
+record the reusable approach, applicability and known limitations, separately
+from the visit's extracted data. Try relevant recipes on later visits and revise
+them when the page changes. No all-sites implementation or advance-perfect
+page model is required. See [preview and recipes](plan/extraction-preview-recipes.md).
+
 Operator update 2026-10-16: Oxcart develops against live sites. Retire owned-page
 workflows and site-certification gates. Investigate concrete problems as they
 appear. Blackbird integration is the immediate priority: a native conversation

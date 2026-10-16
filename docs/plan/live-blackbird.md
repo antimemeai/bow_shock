@@ -65,3 +65,9 @@ will need fresh native readings and the separate native OS executor, but general
 Blackbird-driven navigation is advanced work. On-demand host calls remain a
 possible mechanism serving extraction rather than the next milestone by default.
 Keep working on real visits and fix encountered failures directly.
+
+The immediate implementation loop is [attempt, preview, adjust and save a
+recipe](extraction-preview-recipes.md). Blackbird helps interpret readings and
+revise attempts; a visible rendered result supports evaluation. A generic first
+pass plus one tweak precedes operator/bot troubleshooting. This does not require
+an autonomous navigation loop or advance-perfect knowledge of a site.

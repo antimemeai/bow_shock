@@ -18,6 +18,16 @@ include images/network bodies and separately attached out-of-process targets.
 
 ## Next product unit
 
+The operator further specifies the implementation loop: generic first attempt,
+one round of tweaks, then collaborative page dissection if needed. A preview
+renderer is the stage for evaluating actual output, and a dated recipe box
+preserves successful page-type approaches. See
+[preview and recipes](extraction-preview-recipes.md). The collection work below
+serves that loop; it is not a prerequisite to solve every site's behavior before
+the first extraction. Ship the result artifact and preview first, attach the
+generic pass to existing complete readings, and improve collection on real visits
+as failures demand it.
+
 Build a visit collection that links successive immutable reading archives to
 the browser visit and exposes them together to extraction. Keep full readings;
 derive incremental indexes rather than rewriting old observations. Document
